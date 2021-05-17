@@ -1,0 +1,136 @@
+<app-header
+  [title]="title"
+  [longSearch]="longSearch"
+  [showBackButton]="showBackButton"
+  [isLoading]="loading"
+  [showSearch]="showSearch"
+>
+</app-header>
+
+<ion-content>
+  <ion-content>
+    <div *ngIf="recentlyViewedProducts.length>0">
+      <div>
+        <section class="sectionProductItem">
+          <ion-grid class="zero">
+            <ion-row
+              *ngFor="let prod of recentlyViewedProducts; let i=index;"
+              class="gridProductItemList"
+            >
+              <ion-col size="3" routerLink="/products/{{prod._id}}">
+                <app-aspect-ratio [ratio]="{w:1, h:1}">
+                  <app-image-shell
+                    animation="gradient"
+                    [src]="prod?.gallery[0]"
+                    [alt]="'Product Image'"
+                  >
+                  </app-image-shell>
+                </app-aspect-ratio>
+              </ion-col>
+              <ion-col size="9">
+                <ion-row class="zero">
+                  <ion-col size="11" class="zero">
+                    <app-text-shell
+                      animation="gradient"
+                      [data]="prod?.storeData.name | titlecase"
+                      class="note_title10Sec"
+                    >
+                    </app-text-shell>
+                  </ion-col>
+                  <ion-col size="1" class="zero">
+                    <!-- <ion-icon
+                      name="trash-outline"
+                      color="secondary"
+                      (click)="deleteWishlistItem(prod)"
+                    ></ion-icon> -->
+                  </ion-col>
+                </ion-row>
+                <ion-row class="zero">
+                  <ion-col
+                    size="11"
+                    class="zero"
+                    routerLink="/products/{{prod._id}}"
+                  >
+                    <h3 style="margin-top: 0px;">
+                      <app-text-shell
+                        animation="gradient"
+                        [data]="prod?.name"
+                        lines="3"
+                        class="note_title12Black"
+                      >
+                      </app-text-shell>
+                    </h3>
+                  </ion-col>
+                  <ion-col size="1" class="zero">
+                    &nbsp;
+                  </ion-col>
+                </ion-row>
+                <ion-row class="zero">
+                  <ion-col size="11" class="zero">
+                    <app-text-shell
+                      animation="gradient"
+                      [data]="prod?.price |currency:'₦':'symbol':'1.2-2'"
+                    >
+                    </app-text-shell>
+                  </ion-col>
+                  <ion-col size="1" class="zero">
+                    &nbsp;
+                  </ion-col>
+                </ion-row>
+                <ion-row class="zero">
+                  <ion-col size="6" class="zero">
+                    &nbsp;
+                  </ion-col>
+                  <ion-col size="6" style="text-align: right;" class="zero">
+                    <ion-button
+                      expand="full"
+                      size="small"
+                      color="secondary"
+                      (click)="addToCart(prod)"
+                      >ADD TO CART
+                    </ion-button>
+                  </ion-col>
+                </ion-row>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+          <!-- <ion-grid *ngIf="recentlyViewedProducts.length>0" class="grid">
+            <ion-row>
+              <ion-col size="12">
+                <ion-button expand="block" fill="clear" color="primary"
+                  >CLEAR ALL</ion-button
+                >
+              </ion-col>
+            </ion-row>
+          </ion-grid> -->
+        </section>
+      </div>
+    </div>
+
+    <div *ngIf="!recentlyViewedProducts">
+      <ion-grid class="grid" class="t_center" style="padding-top: 50px;">
+        <ion-row>
+          <ion-col size="12">
+            <ion-icon size="large" name="cart-sharp" color="primary"></ion-icon>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="12">
+            <ion-text> No products in your recently viewed items</ion-text>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="12">
+            <ion-button
+              expand="block"
+              color="primary"
+              [routerLink]="['/app/home']"
+            >
+              CLICK TO SHOP
+            </ion-button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+  </ion-content></ion-content
+>

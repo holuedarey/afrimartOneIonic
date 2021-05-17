@@ -1,0 +1,279 @@
+<app-header [title]="title" [longSearch]="longSearch" [showBackButton]="showBackButton" [isLoading]="loading"
+  [showSearch]="showSearch">
+</app-header>
+<ion-content>
+  <ion-row class="card" *ngIf="!currentUser" style="opacity:0.9; background-image: url('../../assets/dummy-images/company_profile.png'); background-size: cover;">
+    <ion-col size="5">
+      <div class="profile-imageCompany"
+        style="background-image: url('../../assets/dummy-images/user.jpg'); background-size: cover;">
+      </div>
+    </ion-col>
+
+    <ion-col size="7" style="font-size: 10px !important;">
+      <ion-row>
+        <ion-col class="font-bold uppercase font-20">Atlantis</ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="3" class="">
+          <ion-icon src="../../assets/vectors/icons/profile/location.svg" class="xxx"></ion-icon>
+        </ion-col>
+        <ion-col size="9" class="font-14">West Africa</ion-col>
+      </ion-row>
+      
+      <ion-row>
+        <ion-col size="3">
+          <ion-icon src="../../assets/vectors/icons/profile/country.svg" class="xxx"></ion-icon>
+        </ion-col>
+        <ion-col size="9" class="font-14">Nigeria</ion-col>
+      </ion-row>  
+      <ion-row class="no-padding" style="margin-top:-9px">
+        <ion-col size="12" class="no-padding">
+          <ion-button expand="block" color="primary" class="capitilize font-14"> Send Message </ion-button>
+        </ion-col>
+      </ion-row>
+      
+    </ion-col>
+
+  </ion-row>
+  
+  <ion-grid class="cards" *ngIf="!topProds">
+    <ion-row class="">
+      <ion-col size="12" class="note_title_bold12Sec">
+        <ion-text>
+          <ion-row>
+            <ion-col size="9">
+              <span class="ion-text-left bold-text">PRODUCTS </span>
+            </ion-col>
+            <ion-col size="3">
+              <span class="t_right home-view-all">View all</span>
+            </ion-col>
+          </ion-row>
+        </ion-text>
+      </ion-col>
+    </ion-row>
+    
+    
+    <ion-row class="t_centers">
+      <ion-col col-6 class="productsCol card" routerLink="/">
+        <app-image-shell animation="gradient" src="/assets/vectors/icons/test.svg" [alt]="'Product Image'"
+          class="inner-img" style="padding-bottom: 5px;">
+          <!-- <br><br> -->
+        </app-image-shell>
+        <!-- <app-text-shell animation="gradient" [data]="productName" lines="2" class="note_title10Black text-truncate">
+        </app-text-shell> -->
+        <p class="text-left product-description-height">Cotton socks</p>
+        <app-text-shell animation="gradient" [data]="'$0.07 - $0.09'" lines="1"
+          class="text-left  bold-text note_title_bold10Black" style="padding: 5px 0;">
+        </app-text-shell>
+        <app-text-shell animation="gradient" [data]="'1000 Dozen(s) (Min Order)'" lines="1"
+          class="note_title_bold12Black text-left" style="padding: 5px 0;">
+        </app-text-shell>
+        
+      </ion-col>
+
+      <ion-col col-6 class="productsCol card" routerLink="/">
+        <app-image-shell animation="gradient" src="/assets/vectors/icons/test1.svg" [alt]="'Product Image'"
+          class="inner-img" style="padding-bottom: 5px;">
+          <!-- <br><br> -->
+        </app-image-shell>
+        <!-- <app-text-shell animation="gradient" [data]="productName" lines="2" class="note_title10Black text-truncate">
+        </app-text-shell> -->
+        <p class="text-left product-description-height">Automatic PET Blowing Machine APF - 3002</p>
+        <app-text-shell animation="gradient" [data]="'$0.07 - $1.22'" lines="1"
+          class="text-left  bold-text note_title_bold10Black" style="padding: 5px 0;">
+        </app-text-shell>
+        <app-text-shell animation="gradient" [data]="'1 Units(s) (Min Order)'" lines="1"
+          class="note_title_bold12Black text-left" style="padding: 5px 0;">
+        </app-text-shell>
+        
+      </ion-col>
+
+
+      <!-- <ion-col col-6 class="productsCol" routerLink="/products/{{tp._id}}" *ngFor="let tp of topProds"> -->
+      <!-- <app-image-shell animation="gradient" [src]="tp?.gallery[0]" [alt]="'Product Image'" class="inner-img"
+          style="padding-bottom: 5px;">
+        </app-image-shell>
+        <app-text-shell animation="gradient" [data]="tp?.name" lines="2" class="note_title10Black text-truncate">
+        </app-text-shell>
+        <app-text-shell animation="gradient" [data]="tp?.price | currency:'₦':'symbol':'1.2-2'" lines="1"
+          class="note_title_bold12Black" style="padding: 5px 0;">
+        </app-text-shell> -->
+      <!-- </ion-col> -->
+    </ion-row>
+    
+       
+    <ion-row class="t_centers">
+      <ion-col col-6 class="productsCol card" routerLink="/">
+        <app-image-shell animation="gradient" src="/assets/vectors/icons/test.svg" [alt]="'Product Image'"
+          class="inner-img" style="padding-bottom: 5px;">
+          <!-- <br><br> -->
+        </app-image-shell>
+        <!-- <app-text-shell animation="gradient" [data]="productName" lines="2" class="note_title10Black text-truncate">
+        </app-text-shell> -->
+        <p class="text-left product-description-height">Cotton socks</p>
+        <app-text-shell animation="gradient" [data]="'$0.07 - $0.09'" lines="1"
+          class="text-left  bold-text note_title_bold10Black" style="padding: 5px 0;">
+        </app-text-shell>
+        <app-text-shell animation="gradient" [data]="'1000 Dozen(s) (Min Order)'" lines="1"
+          class="note_title_bold12Black text-left" style="padding: 5px 0;">
+        </app-text-shell>
+        
+      </ion-col>
+
+      <ion-col col-6 class="productsCol card" routerLink="/">
+        <app-image-shell animation="gradient" src="/assets/vectors/icons/test1.svg" [alt]="'Product Image'"
+          class="inner-img" style="padding-bottom: 5px;">
+          <!-- <br><br> -->
+        </app-image-shell>
+        <!-- <app-text-shell animation="gradient" [data]="productName" lines="2" class="note_title10Black text-truncate">
+        </app-text-shell> -->
+        <p class="text-left product-description-height">Automatic PET Blowing Machine APF - 3002</p>
+        <app-text-shell animation="gradient" [data]="'$0.07 - $1.22'" lines="1"
+          class="text-left  bold-text note_title_bold10Black" style="padding: 5px 0;">
+        </app-text-shell>
+        <app-text-shell animation="gradient" [data]="'1 Units(s) (Min Order)'" lines="1"
+          class="note_title_bold12Black text-left" style="padding: 5px 0;">
+        </app-text-shell>
+        
+      </ion-col>
+
+
+      <!-- <ion-col col-6 class="productsCol" routerLink="/products/{{tp._id}}" *ngFor="let tp of topProds"> -->
+      <!-- <app-image-shell animation="gradient" [src]="tp?.gallery[0]" [alt]="'Product Image'" class="inner-img"
+          style="padding-bottom: 5px;">
+        </app-image-shell>
+        <app-text-shell animation="gradient" [data]="tp?.name" lines="2" class="note_title10Black text-truncate">
+        </app-text-shell>
+        <app-text-shell animation="gradient" [data]="tp?.price | currency:'₦':'symbol':'1.2-2'" lines="1"
+          class="note_title_bold12Black" style="padding: 5px 0;">
+        </app-text-shell> -->
+      <!-- </ion-col> -->
+    </ion-row>
+    
+       
+    <ion-row class="t_centers">
+      <ion-col col-6 class="productsCol card" routerLink="/">
+        <app-image-shell animation="gradient" src="/assets/vectors/icons/test.svg" [alt]="'Product Image'"
+          class="inner-img" style="padding-bottom: 5px;">
+          <!-- <br><br> -->
+        </app-image-shell>
+        <!-- <app-text-shell animation="gradient" [data]="productName" lines="2" class="note_title10Black text-truncate">
+        </app-text-shell> -->
+        <p class="text-left product-description-height">Cotton socks</p>
+        <app-text-shell animation="gradient" [data]="'$0.07 - $0.09'" lines="1"
+          class="text-left  bold-text note_title_bold10Black" style="padding: 5px 0;">
+        </app-text-shell>
+        <app-text-shell animation="gradient" [data]="'1000 Dozen(s) (Min Order)'" lines="1"
+          class="note_title_bold12Black text-left" style="padding: 5px 0;">
+        </app-text-shell>
+        
+      </ion-col>
+
+      <ion-col col-6 class="productsCol card" routerLink="/">
+        <app-image-shell animation="gradient" src="/assets/vectors/icons/test1.svg" [alt]="'Product Image'"
+          class="inner-img" style="padding-bottom: 5px;">
+          <!-- <br><br> -->
+        </app-image-shell>
+        <!-- <app-text-shell animation="gradient" [data]="productName" lines="2" class="note_title10Black text-truncate">
+        </app-text-shell> -->
+        <p class="text-left product-description-height">Automatic PET Blowing Machine APF - 3002</p>
+        <app-text-shell animation="gradient" [data]="'$0.07 - $1.22'" lines="1"
+          class="text-left  bold-text note_title_bold10Black" style="padding: 5px 0;">
+        </app-text-shell>
+        <app-text-shell animation="gradient" [data]="'1 Units(s) (Min Order)'" lines="1"
+          class="note_title_bold12Black text-left" style="padding: 5px 0;">
+        </app-text-shell>
+        
+      </ion-col>
+
+
+      <!-- <ion-col col-6 class="productsCol" routerLink="/products/{{tp._id}}" *ngFor="let tp of topProds"> -->
+      <!-- <app-image-shell animation="gradient" [src]="tp?.gallery[0]" [alt]="'Product Image'" class="inner-img"
+          style="padding-bottom: 5px;">
+        </app-image-shell>
+        <app-text-shell animation="gradient" [data]="tp?.name" lines="2" class="note_title10Black text-truncate">
+        </app-text-shell>
+        <app-text-shell animation="gradient" [data]="tp?.price | currency:'₦':'symbol':'1.2-2'" lines="1"
+          class="note_title_bold12Black" style="padding: 5px 0;">
+        </app-text-shell> -->
+      <!-- </ion-col> -->
+    </ion-row>
+    
+  </ion-grid>
+  <ion-grid>
+    <ion-row class="">
+      <ion-col size="12" class="note_title_bold12Sec">
+        <ion-text>
+          <ion-row>
+            <ion-col size="12">
+              <span class="ion-text-left bold-text uppercase">company profile</span>
+            </ion-col>
+            
+          </ion-row>
+        </ion-text>
+      </ion-col>
+    </ion-row>
+    
+  <ion-row class="card" >
+    
+    <ion-col size="12" style="font-size: 10px !important;">
+      <ion-row>
+        <ion-col size="5"> Owner:</ion-col>
+        <ion-col size="7"> Atlansis Enterprises</ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="5">Email Address:</ion-col>
+        <ion-col size="7">atlansisinc@gmail.com</ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="5">  Phone Number:</ion-col>
+        <ion-col size="7"> +2348022552057</ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="5">Location:</ion-col>
+        <ion-col size="7">Western Africa  Nigeria</ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="5"> External Link:</ion-col>
+        <ion-col size="7"> https://www.instagram.com/atlansispage</ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="5">Products:</ion-col>
+        <ion-col size="7">1</ion-col>
+      </ion-row>
+      
+      <ion-row>
+        <ion-col size="5">Created:</ion-col>
+        <ion-col size="7">2019-01-10</ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col size="5">Categories:</ion-col>
+        <ion-col size="7">Fashion & Accessories</ion-col>
+      </ion-row>
+    </ion-col>
+  
+  <ion-row style="margin-top:10px">
+    <ion-col size="2">
+      <ion-icon src="../../assets/vectors/icons/profile/top-service.svg" class="xxx" ></ion-icon>
+    </ion-col>
+    <ion-col size="10">
+      <ion-text class="font-12 comp-verify"> Top Quality Supplier</ion-text>
+    </ion-col>
+  </ion-row>
+  <ion-row style="margin-top:10px">
+    <ion-col size="3">
+      <ion-icon src="../../assets/vectors/icons/profile/verified.svg" class="xxx" ></ion-icon>
+    </ion-col>
+    <ion-col size="9">
+      <ion-text class="font-12 comp-verify"> Verifield Supplier</ion-text>
+    </ion-col>
+  </ion-row>
+  <br>
+  <ion-row style="padding:15px">
+    <p>Description </p>
+    <ion-text>Atlansis is a trendsetting Online Footwear Store, offering our first-rate bespoke leather footwear and leather goods with exceptional customer service to shoppers from the comfort of their own homes. We’re a business made up of innovators and forward-thinkers, with the drive to constantly update and improve the online shopping experience.</ion-text>
+  </ion-row>
+  </ion-row>
+  </ion-grid>
+</ion-content>

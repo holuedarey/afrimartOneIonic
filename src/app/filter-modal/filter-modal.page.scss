@@ -1,0 +1,26 @@
+.catMenu {
+  font-size: 10px;
+  background: #fff;
+  color: #343434;
+  padding: 15px 0;
+  text-align: center;
+}
+.catMenuActive {
+  color: var(--ion-color-secondary);
+}
+ion-content {
+  overflow: hidden;
+  //  height: 100vh;
+  //  width: 100vw;
+}
+.leftSec {
+  height: 550px;
+  max-height: 550px;
+  overflow-y: scroll;
+}
+.rightSec {
+  height: 550px;
+  max-height: 550px;
+  overflow-y: scroll;
+  //  padding: 20px;
+}

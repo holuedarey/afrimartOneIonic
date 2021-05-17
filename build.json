@@ -1,0 +1,18 @@
+{
+    "android": {
+        "debug": {
+            "keystore": "~/.android/debug.keystore",
+            "storePassword": "Domdam@30",
+            "alias": "androiddebugkey",
+            "password" : "Domdam@30",
+            "keystoreType": ""
+        },
+        "release": {
+           "keystore": "easymall.keystore",
+           "storePassword": "Domdam@30",
+           "alias": "easymall",
+           "password": "Domdam@30",
+           "keystoreType": ""
+       }
+    }
+}

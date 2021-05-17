@@ -1,0 +1,292 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-item>
+      <ion-icon size="small" name="search-outline" slot="end"></ion-icon>
+      <ion-input placeholder="Search for products & brands"></ion-input>
+    </ion-item>
+    <ion-buttons slot="end">       
+      <ion-button>
+        <ion-icon size="small" name="cart-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col size="3">
+        <div  class="scroll" scrollY="true">
+          <div class="catMenuActive" (click)="getSubCat()">Phones & Tablets</div>
+          <div class="catMenu">Computing</div>
+          <div class="catMenu">Electronics</div>
+          <div class="catMenu">Home & Office</div>
+          <div class="catMenu">Fashion</div>
+          <div class="catMenu">health & Beauty</div>
+          <div class="catMenu">Games</div>
+          <div class="catMenu">Groceries</div>
+          <div class="catMenu">Baby Products</div>
+          <div class="catMenu">Other Categories</div>
+        </div>
+      </ion-col>
+      <ion-col size="9">
+        <ion-grid class="gridSubCat">
+          <ion-row class="gridSubCatHeader">
+            <ion-col size="9"  class="subCatHeader">
+              <ion-text>MOBILE PHONES</ion-text>
+            </ion-col>
+            <ion-col size="3"  class="subCatViewAll">
+              <ion-text  [routerLink]="['/sub-category']">SEE ALL</ion-text>
+            </ion-col>
+          </ion-row>
+
+          <ion-row>
+            <ion-col size="4">
+              <app-aspect-ratio [ratio]="{w:1, h:1}">
+                <app-image-shell animation="gradient" [src]="xData?.productImg" [alt]="'Product Image'" class="imgHolder">
+                </app-image-shell>
+              </app-aspect-ratio>
+              <app-text-shell animation="gradient" [data]="xData?.productName" lines="2" class="subSubCatTitle">
+              </app-text-shell>
+            </ion-col>
+            <ion-col size="4">
+            <app-aspect-ratio [ratio]="{w:1, h:1}">
+              <app-image-shell animation="gradient" [src]="xData?.productImg" [alt]="'Product Image'" class="imgHolder">
+              </app-image-shell>
+            </app-aspect-ratio>
+            <app-text-shell animation="gradient" [data]="xData?.productName" lines="2"  class="subSubCatTitle">
+            </app-text-shell>
+            </ion-col>
+            <ion-col size="4">
+            <app-aspect-ratio [ratio]="{w:1, h:1}">
+              <app-image-shell animation="gradient" [src]="xData?.productImg" [alt]="'Product Image'" class="imgHolder">
+              </app-image-shell>
+            </app-aspect-ratio>
+            <app-text-shell animation="gradient" [data]="xData?.productName" lines="2"  class="subSubCatTitle">
+            </app-text-shell>
+            </ion-col>
+          </ion-row>         
+          <ion-row>
+            <ion-col size="4">
+              <app-aspect-ratio [ratio]="{w:1, h:1}">
+                <app-image-shell animation="gradient" [src]="xData?.productImg" [alt]="'Product Image'" class="imgHolder">
+                </app-image-shell>
+              </app-aspect-ratio>
+              <app-text-shell animation="gradient" [data]="xData?.productName" lines="2" class="subSubCatTitle">
+              </app-text-shell>
+            </ion-col>
+            <ion-col size="4">
+              <app-aspect-ratio [ratio]="{w:1, h:1}">
+                <app-image-shell animation="gradient" [src]="xData?.productImg" [alt]="'Product Image'" class="imgHolder">
+                </app-image-shell>
+              </app-aspect-ratio>
+              <app-text-shell animation="gradient" [data]="xData?.productName" lines="2"  class="subSubCatTitle">
+              </app-text-shell>
+            </ion-col>
+            <ion-col size="4">
+              <app-aspect-ratio [ratio]="{w:1, h:1}">
+                <app-image-shell animation="gradient" [src]="xData?.productImg" [alt]="'Product Image'" class="imgHolder">
+                </app-image-shell>
+              </app-aspect-ratio>
+              <app-text-shell animation="gradient" [data]="xData?.productName" lines="2"  class="subSubCatTitle">
+              </app-text-shell>
+            </ion-col>
+          </ion-row>
+
+        </ion-grid>
+        <ion-grid class="gridSubCat">
+          <ion-row  class="gridSubCatHeader">
+            <ion-col size="9" class="subCatHeader">
+              <ion-text>TABLETS</ion-text>
+            </ion-col>
+            <ion-col size="3" class="subCatViewAll">
+              <ion-text (click)="viewAllSubCats()">SEE ALL</ion-text>
+            </ion-col>
+          </ion-row>        
+          <ion-row>
+            <ion-col size="4">
+              <app-aspect-ratio [ratio]="{w:1, h:1}">
+                <app-image-shell animation="gradient" [src]="xData?.productImg" [alt]="'Product Image'" class="imgHolder">
+                </app-image-shell>
+              </app-aspect-ratio>
+              <app-text-shell animation="gradient" [data]="xData?.productName" lines="2"  class="subSubCatTitle">
+              </app-text-shell>
+            </ion-col>
+            <ion-col size="4">
+              <app-aspect-ratio [ratio]="{w:1, h:1}">
+                <app-image-shell animation="gradient" [src]="xData?.productImg" [alt]="'Product Image'" class="imgHolder">
+                </app-image-shell>
+              </app-aspect-ratio>
+              <app-text-shell animation="gradient" [data]="xData?.productName" lines="2"  class="subSubCatTitle">
+              </app-text-shell>
+            </ion-col>
+            <ion-col size="4">
+              <app-aspect-ratio [ratio]="{w:1, h:1}">
+                <app-image-shell animation="gradient" [src]="xData?.productImg" [alt]="'Product Image'" class="imgHolder">
+                </app-image-shell>
+              </app-aspect-ratio>
+              <app-text-shell animation="gradient" [data]="xData?.productName" lines="2"  class="subSubCatTitle">
+              </app-text-shell>
+            </ion-col>
+          </ion-row>        
+          <ion-row>
+            <ion-col size="4">
+              <app-aspect-ratio [ratio]="{w:1, h:1}">
+                <app-image-shell animation="gradient" [src]="xData?.productImg" [alt]="'Product Image'" class="imgHolder">
+                </app-image-shell>
+              </app-aspect-ratio>
+              <app-text-shell animation="gradient" [data]="xData?.productName" lines="2"  class="subSubCatTitle">
+              </app-text-shell>
+            </ion-col>
+            <ion-col size="4">
+              <app-aspect-ratio [ratio]="{w:1, h:1}">
+                <app-image-shell animation="gradient" [src]="xData?.productImg" [alt]="'Product Image'" class="imgHolder">
+                </app-image-shell>
+              </app-aspect-ratio>
+              <app-text-shell animation="gradient" [data]="xData?.productName" lines="2"  class="subSubCatTitle">
+              </app-text-shell>
+            </ion-col>
+            <ion-col size="4">
+              <app-aspect-ratio [ratio]="{w:1, h:1}">
+                <app-image-shell animation="gradient" [src]="xData?.productImg" [alt]="'Product Image'" class="imgHolder">
+                </app-image-shell>
+              </app-aspect-ratio>
+              <app-text-shell animation="gradient" [data]="xData?.productName" lines="2"  class="subSubCatTitle">
+              </app-text-shell>
+            </ion-col>
+          </ion-row>
+        
+        </ion-grid>
+
+        <ion-grid class="gridSubCat">
+          <ion-row class="gridSubCatHeader">
+            <ion-col size="9" class="subCatHeader">
+              <ion-text>MOBILE PHONES</ion-text>
+            </ion-col>
+            <ion-col size="3" class="subCatViewAll">
+              <ion-text (click)="viewAllSubCats()">SEE ALL</ion-text>
+            </ion-col>
+          </ion-row>
+        
+          <ion-row>
+            <ion-col size="4">
+              <app-aspect-ratio [ratio]="{w:1, h:1}">
+                <app-image-shell animation="gradient" [src]="xData?.productImg" [alt]="'Product Image'" class="imgHolder">
+                </app-image-shell>
+              </app-aspect-ratio>
+              <app-text-shell animation="gradient" [data]="xData?.productName" lines="2" class="subSubCatTitle">
+              </app-text-shell>
+            </ion-col>
+            <ion-col size="4">
+              <app-aspect-ratio [ratio]="{w:1, h:1}">
+                <app-image-shell animation="gradient" [src]="xData?.productImg" [alt]="'Product Image'" class="imgHolder">
+                </app-image-shell>
+              </app-aspect-ratio>
+              <app-text-shell animation="gradient" [data]="xData?.productName" lines="2" class="subSubCatTitle">
+              </app-text-shell>
+            </ion-col>
+            <ion-col size="4">
+              <app-aspect-ratio [ratio]="{w:1, h:1}">
+                <app-image-shell animation="gradient" [src]="xData?.productImg" [alt]="'Product Image'" class="imgHolder">
+                </app-image-shell>
+              </app-aspect-ratio>
+              <app-text-shell animation="gradient" [data]="xData?.productName" lines="2" class="subSubCatTitle">
+              </app-text-shell>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col size="4">
+              <app-aspect-ratio [ratio]="{w:1, h:1}">
+                <app-image-shell animation="gradient" [src]="xData?.productImg" [alt]="'Product Image'" class="imgHolder">
+                </app-image-shell>
+              </app-aspect-ratio>
+              <app-text-shell animation="gradient" [data]="xData?.productName" lines="2" class="subSubCatTitle">
+              </app-text-shell>
+            </ion-col>
+            <ion-col size="4">
+              <app-aspect-ratio [ratio]="{w:1, h:1}">
+                <app-image-shell animation="gradient" [src]="xData?.productImg" [alt]="'Product Image'" class="imgHolder">
+                </app-image-shell>
+              </app-aspect-ratio>
+              <app-text-shell animation="gradient" [data]="xData?.productName" lines="2" class="subSubCatTitle">
+              </app-text-shell>
+            </ion-col>
+            <ion-col size="4">
+              <app-aspect-ratio [ratio]="{w:1, h:1}">
+                <app-image-shell animation="gradient" [src]="xData?.productImg" [alt]="'Product Image'" class="imgHolder">
+                </app-image-shell>
+              </app-aspect-ratio>
+              <app-text-shell animation="gradient" [data]="xData?.productName" lines="2" class="subSubCatTitle">
+              </app-text-shell>
+            </ion-col>
+          </ion-row>
+        
+        </ion-grid>
+        <ion-grid class="gridSubCat">
+          <ion-row class="gridSubCatHeader">
+            <ion-col size="9" class="subCatHeader">
+              <ion-text>TABLETS</ion-text>
+            </ion-col>
+            <ion-col size="3" class="subCatViewAll">
+              <ion-text (click)="viewAllSubCats()">SEE ALL</ion-text>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col size="4">
+              <app-aspect-ratio [ratio]="{w:1, h:1}">
+                <app-image-shell animation="gradient" [src]="xData?.productImg" [alt]="'Product Image'" class="imgHolder">
+                </app-image-shell>
+              </app-aspect-ratio>
+              <app-text-shell animation="gradient" [data]="xData?.productName" lines="2" class="subSubCatTitle">
+              </app-text-shell>
+            </ion-col>
+            <ion-col size="4">
+              <app-aspect-ratio [ratio]="{w:1, h:1}">
+                <app-image-shell animation="gradient" [src]="xData?.productImg" [alt]="'Product Image'" class="imgHolder">
+                </app-image-shell>
+              </app-aspect-ratio>
+              <app-text-shell animation="gradient" [data]="xData?.productName" lines="2" class="subSubCatTitle">
+              </app-text-shell>
+            </ion-col>
+            <ion-col size="4">
+              <app-aspect-ratio [ratio]="{w:1, h:1}">
+                <app-image-shell animation="gradient" [src]="xData?.productImg" [alt]="'Product Image'" class="imgHolder">
+                </app-image-shell>
+              </app-aspect-ratio>
+              <app-text-shell animation="gradient" [data]="xData?.productName" lines="2" class="subSubCatTitle">
+              </app-text-shell>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col size="4">
+              <app-aspect-ratio [ratio]="{w:1, h:1}">
+                <app-image-shell animation="gradient" [src]="xData?.productImg" [alt]="'Product Image'" class="imgHolder">
+                </app-image-shell>
+              </app-aspect-ratio>
+              <app-text-shell animation="gradient" [data]="xData?.productName" lines="2" class="subSubCatTitle">
+              </app-text-shell>
+            </ion-col>
+            <ion-col size="4">
+              <app-aspect-ratio [ratio]="{w:1, h:1}">
+                <app-image-shell animation="gradient" [src]="xData?.productImg" [alt]="'Product Image'" class="imgHolder">
+                </app-image-shell>
+              </app-aspect-ratio>
+              <app-text-shell animation="gradient" [data]="xData?.productName" lines="2" class="subSubCatTitle">
+              </app-text-shell>
+            </ion-col>
+            <ion-col size="4">
+              <app-aspect-ratio [ratio]="{w:1, h:1}">
+                <app-image-shell animation="gradient" [src]="xData?.productImg" [alt]="'Product Image'" class="imgHolder">
+                </app-image-shell>
+              </app-aspect-ratio>
+              <app-text-shell animation="gradient" [data]="xData?.productName" lines="2" class="subSubCatTitle">
+              </app-text-shell>
+            </ion-col>
+          </ion-row>
+        
+        </ion-grid>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+</ion-content>

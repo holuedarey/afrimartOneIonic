@@ -1,0 +1,14 @@
+{
+  "slide1": "./assets/dummy-images/slide1.png",
+  "slide2": "./assets/dummy-images/slide2.png",
+  "slide3": "./assets/dummy-images/slide3.png",
+  "_id":"abcedera213",
+  "productId": "fasdfhidsfa247",
+  "prodcutCartImg": "./assets/dummy-images/travel.png",
+  "productImg": "./assets/dummy-images/product.png",
+  "productName": "Dummy Title",
+  "desc": "Dummy Description",
+  "price": "₦5000",
+  "weight": "5",
+  "qty": "13"
+}

@@ -1,0 +1,13 @@
+<div #container class="container animated"
+  [class.fadeOut]="!showSplash"
+  [style.background-image]="'url('+ backgroundImage +')'">
+  <div class="content"
+    [style.animation-duration]="animationDuration"
+    [style.animation-delay]="'2s'"
+    [style.-webkit-animation-delay]="animationDelay"
+    [style.-webkit-animation-duration]="animationDuration"
+    [class.infinite]="infinite"
+    [ngClass]="animationName">
+    <img [src]="image" width="200">
+  </div>
+</div>

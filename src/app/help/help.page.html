@@ -1,0 +1,18 @@
+<app-header [title]="title" [longSearch]="longSearch" [showBackButton]="showBackButton" [isLoading]="loading"
+  [showSearch]="showSearch">
+</app-header>
+<ion-content padding>
+  
+  <ion-row class="gridSubCatHeader">
+    <ion-col size="12" style="text-align: left;" class="note_title_bold16Sec background-general-header">
+      <ion-text>FAQS</ion-text>
+    </ion-col>
+  </ion-row>
+<app-accordion 
+     *ngFor="let faq of faqs" 
+     name="{{ faq.name }}" 
+     description="{{ faq.description }}" 
+     >
+</app-accordion>
+
+</ion-content>

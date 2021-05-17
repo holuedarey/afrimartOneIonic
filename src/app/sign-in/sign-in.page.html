@@ -1,0 +1,104 @@
+<!-- <app-header [title]="title" [longSearch]="longSearch" [showBackButton]="showBackButton" [isLoading]="loading"
+  [showSearch]="showSearch">
+</app-header> -->
+<ion-content>
+  <div class="topFadedLogo"> </div>
+  <form [formGroup]="loginForm">
+    <ion-grid style="padding-top:75px;">
+      <ion-row>
+        <ion-col text-center>
+          <div class="ion-text-center header-title">Sign in</div>
+        </ion-col>
+
+        <ion-col size="12">
+          <ion-row>
+            <ion-col size="12" class="colForm">
+                <ion-label color="dark" position="floating">Email Address</ion-label>
+              <ion-item lines="none">
+                <!-- <ion-icon name="mail-outline" color="dark" slot="start"></ion-icon> -->
+                <ion-input formControlName="email" type="email" placeholder="Enter your Email Address" clear-input="true">
+                </ion-input>
+              </ion-item>
+            </ion-col>
+            <div *ngIf="!loginForm.controls.email.valid && loginForm.controls.email.dirty">
+              <p style="color:#330501!important;text-align:center;">Please enter a VALID email Address</p>
+            </div>
+          </ion-row>
+          <br>
+          <ion-row>
+            <ion-col col-12 class="colForm">
+                <ion-label color="dark" position="floating">Password</ion-label>
+
+              <ion-item lines="none">
+                <!-- <ion-icon name="lock-open-outline" color="dark" slot="start"></ion-icon> -->
+                <ion-input formControlName="password" [type]="showPassword? 'text':'password'" placeholder="Enter your Password"
+                  clear-input="true">
+                </ion-input>
+                <ion-icon [name]="passwordToggleIcon" color="primary" class="iconEyeSize" slot="end"
+                  (click)="togglePassword()"></ion-icon>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+
+          <ion-row>
+            <ion-col col-12 class="t_right" style="padding-right:20px;">
+              <a class="note_title12Pri" [routerLink]="['/forgot-password']"> Forgot Password?
+              </a>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col size="12" style="padding: 0px;">
+              <div style="padding-top: 10px;">
+                <ion-button expand="block" color="primary" (click)="loginUser()" [disabled]="!loginForm.valid"> SIGN IN
+                </ion-button>
+                <br>
+                <div color="success" class="t_center legal-stuff">OR</div>
+              </div>
+            </ion-col>
+          </ion-row>
+          <ion-row class="t_center">
+            <ion-col size="12">
+              <div class="note_title14Black">
+                SIGN IN WITH<br>
+                <a color="primary" (click)="faceBookSignIn()">
+                  <img src="../../assets/vectors/icons/facebook.svg" class="pre_social_icons">
+                </a>
+                <a color="primary" (click)="googleSignIn()">
+                  <img src="../../assets/vectors/icons/google.svg" class="pre_social_icons">
+                </a>
+              </div>
+            </ion-col>
+          </ion-row>
+          <ion-row class="t_center">
+            <ion-col size="12" style="padding: 0px;">
+              <div class="legal-stuff note_title14Black" style="padding-top: 10px;">
+                DON'T HAVE AN <br> ACCOUNT?
+                <a [routerLink]="['/sign-up']" class="legal-action"> SIGN UP</a>
+              </div>
+            </ion-col>
+          </ion-row>
+          <hr class="preload">
+          <ion-row class="t_center">
+            <ion-col size="12" style="padding: 0px;">
+              <div class="legal-stuffs note_title14Black" style="padding-top: 10px;">
+                DIDN'T GET AN ACTIVATION <br> LINK?
+                <!-- <a color="primary" [routerLink]="['/sign-up']" class="legal-action note_title14Pri"> REQUEST LINK</a> -->
+                <a color="primary" [routerLink]="['/app/home']" class=" note_title14Pris"> REQUEST LINK</a>
+              </div>
+            </ion-col>
+          </ion-row>
+
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+  </form>
+  <ion-grid>
+    <ion-row>
+      <ion-col size="12" *ngIf="isloadingSettings">
+        <ion-note color="primary">{{loadingText}}</ion-note>
+        <ion-progress-bar color="primary" type="indeterminate"></ion-progress-bar>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

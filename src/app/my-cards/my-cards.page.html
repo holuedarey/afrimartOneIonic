@@ -1,0 +1,61 @@
+<app-header
+  [title]="title"
+  [longSearch]="longSearch"
+  [showBackButton]="showBackButton"
+  [isLoading]="loading"
+  [showSearch]="showSearch"
+>
+</app-header>
+
+<ion-content>
+  <ion-row>
+    <ion-col size="8" class="t_left note_title_bold14Sec">
+      {{cards_count}} CARD(S)
+    </ion-col>
+    <ion-col size="4" class="t_right">
+      <a (click)="presentCardModal()" class="note_title_bold12Sec">
+        <ion-icon name="add-outline"></ion-icon>
+        ADD NEW CARD</a
+      >
+    </ion-col>
+  </ion-row>
+
+  <div *ngIf="lt_cards">
+    <ion-list *ngFor="let x of lt_cards;let i=index" lines="none">
+      <ion-item-sliding id="item100">
+        <ion-item [ngClass]="(i % 2 == 0) ? 'odd' : 'even'">
+          <ion-icon
+            ion-text
+            color="dark"
+            name="card-outline"
+            item-start
+          ></ion-icon>
+          <ion-label>
+            <h3><b>{{x.bank}}</b></h3>
+            <h5>{{x.bin}} ********** {{x.last4}} ({{x.brand}})</h5>
+            <h5><b>Exp:</b> {{x.expMonth}}/{{x.expYear}}</h5>
+          </ion-label>
+          <ion-note slot="end" *ngIf="x.isDefault">
+            <ion-icon color="primary" name="checkmark-circle"></ion-icon>
+            <div style="font-size: 12px; color: #bc4dad;">Default</div>
+          </ion-note>
+        </ion-item>
+        <ion-item-options side="end">
+          <ion-item-option
+            color="success"
+            (click)="makeDefault(x)"
+            *ngIf="!x.isDefault"
+          >
+            <ion-icon slot="icon-only" name="checkmark"></ion-icon> Make Default
+          </ion-item-option>
+          <ion-item-option color="danger" (click)="deleteConfirm(x)">
+            <ion-icon slot="icon-only" name="trash"></ion-icon> Delete
+          </ion-item-option>
+        </ion-item-options>
+      </ion-item-sliding>
+    </ion-list>
+    <br>
+    <ion-note class="note_title_bold14Black">&nbsp;&nbsp;Please swipe a card to the right for the menu!!</ion-note>
+  </div>
+  
+</ion-content>

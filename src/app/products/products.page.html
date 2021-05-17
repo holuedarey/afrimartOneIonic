@@ -1,0 +1,235 @@
+<app-header [title]="title" [longSearch]="longSearch" [showBackButton]="showBackButton" [isLoading]="loading"
+  [showSearch]="showSearch">
+</app-header>
+<ion-content>
+  <div *ngIf="prod_data">
+    <ion-grid class="borderBottom card">
+      <ion-row>
+        <ion-col size="7">
+          SOLD BY:<br />
+          <span class="note_title10Sec">{{prod_data.storeData.name | uppercase}}</span>
+        </ion-col>
+        <ion-col size="5" class="viewSeller" routerLink="/company-profile">
+          <ion-text color="primary" class="font-9">View Company Profile</ion-text>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+    <ion-grid style="max-height: 250px; padding: 0px;" class="card">
+      <ion-row>
+        <ion-col size="12">
+          <ion-slides direction="horizontal" [options]="slideOpts" pager="true">
+            <ion-slide style="height: 200px; width: 200px !important;" *ngFor="let gal of prod_data.gallery">
+              <ion-row>
+                <ion-col size="12">
+                  <img src="../../assets/dummy-images/productView.png" alt="EasyMall" class="img_slider" />
+                </ion-col>
+              </ion-row>
+            </ion-slide>
+          </ion-slides>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+    <ion-grid class="grid">
+      <ion-row style="padding-left: 10px; padding-right:10px;">
+        <ion-col size="12">
+          <ion-row>
+            <ion-col size="8">
+              <app-text-shell animation="gradient" [data]="'$65.62-$393.70 / Piece(s) '" lines="3"
+                class="note_title14Black font-bold">
+              </app-text-shell>
+              <app-text-shell animation="gradient" [data]="'(₦25,000-₦150,000)'" lines="3" class="note_title14Black">
+              </app-text-shell>
+              <br><br>
+              <app-text-shell animation="gradient" [data]="'1 Piece(s) (Min. Order)'" lines="3"
+                class="note_title14Black"></app-text-shell>
+
+              <br />
+              <!-- <app-text-shell
+            animation="gradient"
+            [data]="prod_data?.price | currency:'₦':'symbol':'1.2-2'"
+            lines="1"
+            class="note_title_bold16Black"
+          >
+          </app-text-shell> -->
+            </ion-col>
+            <ion-col size="4" style="padding-top: 8px;">
+              <ion-row>
+                <ion-col class="t_right" style="padding-right:10px;">
+                  <a (click)="addToWishlist(prod_data)">
+                    <ion-icon *ngIf="!checkIfProdInWishList(prod_data)" size="large" name="heart-outline"
+                      color="primary">
+                    </ion-icon>
+                    <ion-icon *ngIf="checkIfProdInWishList(prod_data)" size="large" name="heart" color="primary">
+                    </ion-icon>
+                  </a>
+                </ion-col>
+                <ion-col>
+                  <a (click)="addToWishlist(prod_data)">
+                    <ion-icon size="large" name="share-social-outline" color="primary"></ion-icon>
+                  </a>
+                </ion-col>
+              </ion-row>
+            </ion-col>
+          </ion-row>
+
+          <ion-row>
+            <ion-col size="5">
+              <ion-text class="note_title14Black">Seller Support</ion-text>
+            </ion-col>
+            <ion-col size="7">
+              <ion-text class="note_title14Black">Trade Assurance</ion-text>
+              <p style="margin-top:2px;">To protect your orders from payment to delivery </p>
+            </ion-col>
+          </ion-row>
+          <ion-row class="no-padding">
+            <ion-col size="12" class="no-padding">
+              <ion-button expand="block" color="primary" class="capitilize"> Contact Supplier </ion-button>
+            </ion-col>
+            <ion-col size="12" class="no-padding" style="margin-top: -10px;">
+              <ion-button expand="block" color="primary" fill="outline" class="capitilize"> Get Quote </ion-button>
+            </ion-col>
+          </ion-row>
+        </ion-col>
+
+      </ion-row>
+
+      <!-- <ion-row class="rating_row">
+        <ion-col size="4" style="padding-left: 10px;">
+          <app-rating-input max="5" readOnly="true" class="button-inner">
+          </app-rating-input>
+        </ion-col>
+        <ion-col size="6" class="ratingText" *ngIf="prod_data.rating>0" style="padding-top: 3px;">
+          ({{prod_data.rating}} rating(s))
+        </ion-col>
+        <ion-col size="6" class="ratingText" *ngIf="prod_data.rating==0" style="padding-top: 3px;">
+          (No ratings avaialable)
+        </ion-col>
+        
+      </ion-row> -->
+    </ion-grid>
+    <ion-grid class="grid">
+      <ion-row class="headerBg">
+        <ion-col size="12">
+          <ion-text class="note_title12Sec uppercase  ">Product details</ion-text>
+        </ion-col>
+      </ion-row>
+      <div style="padding:12px;">
+        <ion-row class="zero-height">
+          <ion-col size="12">Overview</ion-col>
+        </ion-row>
+        <ion-row class="zero-height">
+          <ion-col size="5">Brand Name:</ion-col>
+          <ion-col size="7">follyb men wears</ion-col>
+        </ion-row>
+        
+        <ion-row class="zero-height">
+          <ion-col size="5">Location</ion-col>
+          <ion-col size="7">Nigeria</ion-col>
+        </ion-row>
+        <ion-row class="zero-height">
+          <ion-col size="5">Availability</ion-col>
+          <ion-col size="7">Available</ion-col>
+        </ion-row>
+        <br>
+  
+        <ion-row class="zero-height">
+          <ion-col size="6">Logistics</ion-col>
+        </ion-row>
+        <ion-row class="zero-height">
+          <ion-col size="5"> Pickup Country: </ion-col>
+          <ion-col size="7">NG</ion-col>
+        </ion-row>
+        <br>
+        <ion-row class="zero-height">
+          <ion-col size="7">Description</ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="12"> Agbada is one of oldest fashion dress for men but never run out of fashion.</ion-col>
+        </ion-row>
+      </div>
+     
+
+    </ion-grid>
+    <br>
+    <ion-grid class="grid">
+      <ion-row class="headerBg">
+        <ion-col size="12">
+          <ion-text class="note_title12Sec">REVIEW</ion-text>
+        </ion-col>
+      </ion-row>
+      <ion-row style="padding-left: 10px;">
+        <ion-col size="12">
+          <span class="ratingBorder">5.0/5</span><span class="note_title12Black"> 7 ratings</span>
+        </ion-col>
+      </ion-row>
+      <ion-row class="rating_row" style="border-bottom: 1px solid #e5e5e5;">
+        <ion-col size="4" style="padding-left: 10px;">
+          <app-rating-input max="5" readOnly="true" class="button-inner">
+          </app-rating-input>
+        </ion-col>
+        <ion-col size="8" class="t_right note_title12Black" style="padding-right: 10px;">
+          2020-11-01
+        </ion-col>
+        <div style="margin-top: -20px; padding-bottom: 10px;padding-left: 12px;" class="note_title12Black">
+          I love it
+          <br />
+          By Toyin
+        </div>
+      </ion-row>
+
+      <ion-row class="rating_row" style="border-bottom: 1px solid #e5e5e5;">
+        <ion-col size="4" style="padding-left: 10px;">
+          <app-rating-input max="5" readOnly="true" class="button-inner">
+          </app-rating-input>
+        </ion-col>
+        <ion-col size="8" class="t_right note_title12Black" style="padding-right: 10px;">
+          2020-11-01
+        </ion-col>
+        <div style="margin-top: -20px; padding-bottom: 10px;padding-left: 12px;" class="note_title12Black">
+          100% what I needed
+          <br />
+          By Light
+        </div>
+      </ion-row>
+    </ion-grid>
+  </div>
+  <div *ngIf="recommendedProducts">
+    <ion-grid class="grids">
+      <ion-row class="headerBgs">
+        <ion-col size="12">
+          <ion-text class="note_title12Sec">RECOMMENDED FOR YOU</ion-text>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="12" style="margin-top: 20px;">
+          <ion-slides direction="horizontal" [options]="slideOptsTwo">
+            <ion-slide style="height: 200px; width: 200px !important;" *ngFor="let rec of recommendedProducts">
+              <ion-row>
+                <ion-col size="12" (click)="viewProduct(rec)" class="card" style="margin-bottom: 33px; margin-top: 5px; box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);">
+                  <div>
+                    <img src="../../assets/dummy-images/productView.png" alt="EasyMall" class="img_slider" />
+                  </div>
+                  <br />
+                  <app-text-shell animation="gradient" [data]="rec?.name" lines="2"
+                    class="note_title14Black text-truncate" (click)="viewProduct(rec)">
+                  </app-text-shell>
+                  <app-text-shell animation="gradient" [data]="rec?.price  | currency:'₦':'symbol':'1.2-2'" lines="1"
+                    class="note_title14Pri" (click)="viewProduct(rec)">
+                  </app-text-shell>
+                </ion-col>
+              </ion-row>
+            </ion-slide>
+          </ion-slides>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+  <ion-grid>
+    <ion-row>
+      <ion-col size="12">
+        &nbsp;
+        <br>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

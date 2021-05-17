@@ -1,0 +1,42 @@
+ion-toolbar {
+  --background:#fff;
+  --color: #000 !important;
+  ion-title{
+    font-family: "RedHatDisplay"!important;
+    padding-left:2px;
+   }
+
+  .request-header{
+    position: relative;
+    top: 2px;
+    font-size:14px !important;
+  }
+  .desc{
+    position: relative;
+    top: -24px;
+    left:9px;
+    line-break: auto;
+    font-size: 10px;
+  }
+}
+
+
+ion-textarea{
+  height:121px;
+  background:#F9F9F9;
+}
+ion-content{
+  --background:#fff;
+  --color: #000 !important;
+}
+
+.pad-left{
+  padding-left:19px;
+}
+
+.close-icon{
+  position: relative;
+  top: 17px;
+  left: 2px;
+  color: #ABABAB;
+}

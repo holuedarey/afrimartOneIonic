@@ -1,0 +1,112 @@
+<ion-header>
+  <ion-toolbar>
+    <div>
+      <ion-searchbar
+        animated="false"
+        debounce="500"
+        inputmode="search"
+        showCancelButton="focus"
+        (ionChange)="loadSearchModal($event)"
+        (ionCancel)="removeSearchModal()"
+        placeholder="Search"
+      >
+      </ion-searchbar>
+    </div>
+  </ion-toolbar>
+</ion-header>
+<ion-progress-bar
+  color="primary"
+  type="indeterminate"
+  *ngIf="isLoading"
+></ion-progress-bar>
+<ion-content>
+  <ion-list *ngIf="isItemAvailable"> 
+    <ion-grid class="borderBottom" *ngIf="isGrid">
+      <ion-row
+        *ngFor="let prod of Products;let even=even"
+        class="gridProductItemList"
+      >
+        <ion-col size="4">
+          <app-aspect-ratio
+            [ratio]="{w:1, h:1}"
+            (click)="removeSearchModal()"
+            routerLink="/products/{{prod._id}}"
+          >
+            <app-image-shell
+              animation="gradient"
+              [src]="prod?.gallery[0]"
+              [alt]="'Product Image'"
+              class="imgHolder"
+            >
+            </app-image-shell>
+          </app-aspect-ratio>
+        </ion-col>
+        <ion-col size="7">
+          <app-text-shell
+            animation="gradient"
+            [data]="prod?.name"
+            lines="2"
+            class="note_title12Black text-truncate"
+            (click)="removeSearchModal()"
+            routerLink="/products/{{prod._id}}"
+          >
+          </app-text-shell>
+          <app-text-shell
+            animation="gradient"
+            [data]="prod?.price  | currency:'₦':'symbol':'1.2-2'"
+            class="note_title14Sec"
+            (click)="removeSearchModal()"
+            routerLink="/products/{{prod._id}}"
+          >
+          </app-text-shell>
+          <ion-row class="rating_row">
+            <ion-col size="7">
+              <app-rating-input max="5" readOnly="true" class="button-inner">
+              </app-rating-input>
+            </ion-col>
+            <ion-col size="5" class="ratingText"
+              >({{prod?.rating}} rating(s))
+            </ion-col>
+          </ion-row>
+        </ion-col>
+        <ion-col size="1" class="" *ngIf="prod">
+          <a (click)="addToWishlist(prod)">
+            <ion-icon
+              *ngIf="!checkIfProdInWishList(prod)"
+              size="small"
+              name="heart-outline"
+              color="primary"
+            ></ion-icon>
+            <ion-icon
+              *ngIf="checkIfProdInWishList(prod)"
+              size="small"
+              name="heart"
+              color="primary"
+            >
+            </ion-icon>
+          </a>
+        </ion-col>
+      </ion-row>
+      <ion-row class="zero">
+        <!-- <ion-col size="6" class="zero">
+        &nbsp;
+      </ion-col> -->
+        <ion-col
+          size="12"
+          style="text-align: center;"
+          class="zero"
+          *ngIf="Products"
+        >
+          <ion-button
+            fill="outline"
+            size="small"
+            color="secondary"
+            (click)="removeSearchModal()"
+            routerLink="/product-details/{{searchString}}"
+            >SEE ALL RESULTS ({{searchCnt | number}})
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-list>
+</ion-content>

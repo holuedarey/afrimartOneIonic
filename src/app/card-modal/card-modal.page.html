@@ -1,0 +1,149 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="dismiss()">
+        <ion-icon
+          size="small"
+          name="arrow-back-outline"
+          color="light"
+        ></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>NEW CARD</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-progress-bar
+  color="primary"
+  type="indeterminate"
+  *ngIf="isLoading"
+></ion-progress-bar>
+
+<ion-content>
+  <form *ngIf="!accVerified" [formGroup]="cardForm">
+    <ion-grid class="card">
+      <ion-row>
+        <ion-col size="12" col-12>
+          <ion-item lines="none">
+            <ion-label color="dark" position="floating"
+              >Card Number</ion-label
+            >
+            <ion-input
+              type="tel"
+              formControlName="card_number"
+              name="card_number"
+              minlength="16"
+              placeholder=""
+              clear-input="true"
+            >
+            </ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="12" col-12>
+          <ion-item lines="none">
+            <ion-label color="dark" position="floating"
+              >Name on Card</ion-label
+            >
+            <ion-input
+              type="text"
+              formControlName="card_name"
+              name="card_name"
+              placeholder=""
+              clear-input="true"
+            >
+            </ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="4" col-4>
+          <ion-item lines="none">
+            <ion-label color="dark" position="floating">MM</ion-label>
+            <ion-input
+              type="tel"
+              formControlName="mm"
+              name="mm"
+              maxlength="2"
+              placeholder=""
+              (keyup)="cardNumberHandlerMM($event)"
+              clear-input="true"
+            >
+            </ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col size="4" col-4>
+          <ion-item lines="none">
+            <ion-label color="dark" position="floating">YY</ion-label>
+            <ion-input
+              type="tel"
+              formControlName="yy"
+              name="yy"
+              maxlength="2"
+              placeholder=""
+              (keyup)="cardNumberHandlerYY($event)"
+              clear-input="true"
+            >
+            </ion-input>
+          </ion-item>
+        </ion-col>
+
+        <ion-col size="4" col-4>
+          <ion-item lines="none">
+            <ion-label color="dark" position="floating">CVC</ion-label>
+            <ion-input
+              formControlName="cvc"
+              type="tel"
+              maxlength="3"
+              placeholder=""
+              clear-input="true"
+            >
+            </ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-12>
+          <ion-note class="note_title_bold12Black">
+            <br />
+            <div class="note_title_bold14Sec"><b>NOTICE</b></div>
+            <br />YOU WILL BE CHARGED <b>"{{amt}} NGN"</b> FOR CARD VERIFICATION
+            FEES
+          </ion-note>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-12 align-self-center>
+          <ion-item>
+            <ion-checkbox
+              color="dark"
+              formControlName="checkAgree"
+              slot="start"
+            ></ion-checkbox>
+            <ion-label>I AUTHORISE YOU </ion-label>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-12>
+          <ion-button
+            expand="full"
+            color="primary"
+            (click)="saveCard()"
+            [disabled]="!cardForm.valid"
+          >
+            <ion-icon ion-text name="checkmark" slot="start"></ion-icon>
+            SAVE CARD
+          </ion-button>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-12>
+          <br />
+          <img src="../../assets/paystack_long.png" />
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </form>
+</ion-content>

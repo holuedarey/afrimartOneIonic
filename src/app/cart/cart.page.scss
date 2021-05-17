@@ -1,0 +1,26 @@
+.alertX {
+  button.alertButton {
+    color: #343434 !important;
+  }
+}
+ion-icon {
+  &.xx {
+    width: 20px;
+    height: 20px;
+    stroke-width: 10px;
+  }
+  &.xxx {
+    width: 40px;
+    height: 40px;
+    stroke-width: 10px;
+  }
+
+  &.xxxx {
+    width: 80px;
+    height: 80px;
+  }
+
+  &.purple {
+    color: #ad49d2;
+  }
+}

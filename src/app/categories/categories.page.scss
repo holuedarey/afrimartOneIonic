@@ -1,0 +1,81 @@
+.catMenu {
+  font-size: 10px;
+  background: #fff;
+  color: #343434;
+  padding: 15px 0;
+  text-align: center;
+  font-weight: bold;  
+  padding-bottom: 0px;
+  padding-top: 0px;
+}
+
+.catMenuActive {
+  // color: var(--ion-color-secondary);
+  background: #F9F9F9 !important;
+  height:50px;
+  padding-top:21px;
+  border-left: 4px solid #00733F;
+}
+
+
+.sub-categories-head{
+  background: #CA7529; 
+  height: 33px; 
+  padding-top:6px
+}
+.imgHolder {
+  border-radius: 2px;
+  background: #eee;
+  // width: 100px!important;
+  // height: 100px!important;
+  // max-width: 100px!important;
+  // max-height: 100px!important;
+}
+
+.gridSubCat {
+  padding: 0px;
+}
+.gridSubCatHeader {
+  background: var(--ion-color-light);
+  color: var(--ion-color-primary);
+  //  padding: 5px 0;
+}
+ion-content {
+  overflow: hidden;
+  //  height: 100vh;
+  //  width: 100vw;
+}
+.leftSec {
+  height: 550px;
+  max-height: 550px;
+  overflow-y: scroll;
+}
+.rightSec {
+  height: 550px;
+  max-height: 550px;
+  overflow-y: scroll;
+  //  padding: 20px;
+}
+// .fixed[scrollx='true'],
+// div[scrolly='true'] {
+//   position: relative;
+//   overflow: hidden;
+
+//   ::-webkit-scrollbar {
+//     display: none;
+//   }
+// }
+// .fixed[scrollx='true'] {
+//   overflow-x: auto;
+// }
+// .fixed[scrolly='true'] {
+//   overflow-y: auto;
+// }
+// .scroll {
+//   overflow: auto;
+// }
+
+ion-item {
+  --inner-padding-start: 0px;
+  --padding-start: 0px;
+}

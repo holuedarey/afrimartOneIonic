@@ -1,0 +1,118 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="dismiss()">
+        <ion-icon
+          size="small"
+          name="arrow-back-outline"
+          color="light"
+        ></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Filters ({{cnt}})</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid class="zero">
+    <ion-row class="zero">
+      <ion-col size="3" class="zero">
+        <ion-row class="leftSec zero">
+          <ion-col
+            size="12"
+            class="zero catMenu"
+            *ngFor="let filter of filterList"
+            (click)="loadFilters(filter)"
+          >
+            <div
+              [className]="filter.name==isActive ? 'catMenuActive' : ''"
+              class="zero"
+            >
+              {{filter?.name | titlecase}}
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-col>
+
+      <ion-col size="9" class="zero">
+        <ion-row class="rightSec zero">
+          <ion-col size="12" class="zero">
+            <ion-grid class="gridSubCat" class="zero">
+              <ion-row class="gridSubCatHeader">
+                <ion-col size="12" class="note_title10Black">
+                  <ion-text>{{filterName | uppercase}}</ion-text>
+                </ion-col>
+              </ion-row>
+              <ion-row class="">
+                <ion-col size="12">
+                  <div *ngIf=" this.showFilter=='Rating'">
+                    <ion-list lines *ngFor="let item of itemList">
+                      <ion-item>
+                        <ion-label>{{item.name}}</ion-label>
+                        <ion-checkbox
+                          slot="end"
+                          [(ngModel)]="item.isChecked"
+                        ></ion-checkbox>
+                      </ion-item>
+                    </ion-list>
+                  </div>
+
+                  <div *ngIf=" this.showFilter=='Brand'">
+                    <ion-list lines *ngFor="let item of itemList">
+                      <ion-item>
+                        <ion-label>{{item.name}}</ion-label>
+                        <ion-checkbox
+                          slot="end"
+                          [(ngModel)]="item.isChecked"
+                        ></ion-checkbox>
+                      </ion-item>
+                    </ion-list>
+                  </div>
+                  <div *ngIf=" this.showFilter=='Price'"></div>
+                  <div *ngIf=" this.showFilter=='Shipped From'">
+                    <ion-list lines *ngFor="let item of itemList">
+                      <ion-item>
+                        <ion-label>{{item.name}}</ion-label>
+                        <ion-checkbox
+                          slot="end"
+                          [(ngModel)]="item.isChecked"
+                        ></ion-checkbox>
+                      </ion-item>
+                    </ion-list>
+                  </div>
+                  <div *ngIf=" this.showFilter=='Discount'">
+                    <ion-list lines *ngFor="let item of itemList">
+                      <ion-item>
+                        <ion-label>{{item.name}}</ion-label>
+                        <ion-checkbox
+                          slot="end"
+                          [(ngModel)]="item.isChecked"
+                        ></ion-checkbox>
+                      </ion-item>
+                    </ion-list>
+                  </div>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </ion-col>
+        </ion-row>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
+<ion-footer class="ion-no-border" class="footer">
+  <ion-toolbar>
+    <ion-row>
+      <ion-col size="6" style="padding: 0px;">
+        <ion-button expand="full" color="light" (click)="clearFilterList()">
+          <ion-icon name="trash"></ion-icon> CLEAR ALL
+        </ion-button>
+      </ion-col>
+      <ion-col size="6" style="padding: 0px;">
+        <ion-button expand="full" color="primary" (click)="applyFilterList()">
+          <ion-icon name="checkmark-done-outline"></ion-icon> APPLY
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-toolbar>
+</ion-footer>

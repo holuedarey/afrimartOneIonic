@@ -1,0 +1,58 @@
+.catMenu {
+  font-size: 10px;
+//   min-height: 40px;
+  padding: 15px 0;
+ text-align: center;
+}
+.catMenuActive {
+  font-size: 10px;
+//   min-height: 40px;
+  padding: 15px 0;
+  text-align: center;
+  background: #EEE;
+  border-left-style: solid;
+  border-left-color: var(--ion-color-primary);
+}
+.imgHolder{
+ border-radius: 2px;
+ background: #EEE;
+}
+.subSubCatTitle{
+    font-size: 8px;
+}
+.subCatHeader{
+ font-size: 10px;
+}
+.subCatViewAll{
+ font-size: 8px;
+ text-align: right;
+}
+.gridSubCat{
+padding: 0px;
+}
+.gridSubCatHeader{
+ background:var(--ion-color-primary);  
+ color:#fff;
+ padding: 5px 0;
+}
+
+.fixed[scrollx=true], div[scrolly=true] {
+  position: relative;
+  overflow: hidden;
+
+  ::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.fixed[scrollx=true] {
+  overflow-x: auto;
+}
+
+.fixed[scrolly=true] {
+  overflow-y: auto;
+}
+
+.scroll {
+    overflow: auto;
+  }

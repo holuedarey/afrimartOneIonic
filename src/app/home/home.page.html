@@ -1,0 +1,481 @@
+<app-header [title]="title" [longSearch]="longSearch" [showBackButton]="showBackButton" [isLoading]="loading"
+  [showSearch]="showSearch">
+</app-header>
+<ion-content
+[scrollEvents]="true"
+  (ionScrollStart)="logScrollStart()"
+  (ionScroll)="logScrolling($event)"
+  (ionScrollEnd)="logScrollEnd()"
+>
+
+  <ion-grid class="card">
+    <ion-row>
+      <ion-col size="12">
+        <ion-slides pager="true" style="padding-bottom: 25px;" [options]="slideOpts">
+          <!-- <ion-slide *ngFor="let s of Slides" (click)="viewCategory(s.imgLink)">
+
+            <img [src]="s.imgUrl" alt="{{s.imgUrl}}" />
+          </ion-slide> -->
+          <!-- <ion-slide *ngFor="let s of Slides" (click)="viewCategory(s.imgLink)">
+            <img [src]="s.imgUrl" alt="{{s.imgUrl}}" />
+          </ion-slide> -->
+
+          <ion-slide>
+            <img src="../../assets/imgs/slides_1.png" alt="Slides" />
+          </ion-slide>
+          <ion-slide>
+            <img src="../../assets/dummy-images/slide1.png" alt="Slides" />
+          </ion-slide>
+          <ion-slide>
+            <img src="../../assets/dummy-images/slide2.png" alt="Slides" />
+          </ion-slide>
+          <ion-slide>
+            <img src="../../assets/dummy-images/slide3.png" alt="Slides" />
+          </ion-slide>
+          <ion-slide>
+            <img src="../../assets/dummy-images/slide1.png" alt="Slides" />
+          </ion-slide>
+          <ion-slide>
+            <img src="../../assets/dummy-images/slide3.png" alt="Slides" />
+          </ion-slide>
+        </ion-slides>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <!-- <ion-grid class="t_center">
+    <ion-row class="gridSubCatHeader">
+      <ion-col size="12">
+        <ion-text>BRANDS</ion-text>
+      </ion-col>
+    </ion-row>
+    <ion-row *ngIf="Brands" class="card">
+      <ion-col col-6 *ngFor="let brand of Brands">
+        <app-image-shell
+          animation="gradient"
+          [src]="brand?.imgUrl"
+          [alt]="'Brand'"
+          class="brand"
+        >
+        </app-image-shell>
+      </ion-col>
+    </ion-row>
+  </ion-grid> -->
+  <ion-grid class="t_center">
+    <ion-row class="gridSubCatHeader">
+      <ion-col size="12" style="text-align: left;" class="note_title_bold12Sec">
+        <ion-text class="bold-text">CATEGORIES</ion-text>
+      </ion-col>
+    </ion-row>
+    <ion-row class="card catMenu">
+      <ion-col size="3" (click)="viewSubCategory('5e09ceaa5b359465f1e64a45','Phones & Tablets')">
+        <ion-icon src="/assets/vectors/icons/Agriculture.svg" class="xxx"></ion-icon><br />
+        <ion-text class="catText">Agriculture</ion-text>
+      </ion-col>
+      <ion-col size="3" (click)="viewSubCategory('5e09d21c5b359465f1e64a4d','Computing')">
+        <ion-icon src="/assets/vectors/icons/medical&pharmacy.svg" class="xxx"></ion-icon><br />
+        <ion-text class="catText">Medical & Pharmaceutical</ion-text>
+      </ion-col>
+      <ion-col size="3" (click)="viewSubCategory('5e09d5e05b359465f1e64a5a','Electronics')">
+        <ion-icon src="/assets/vectors/icons/Electronics.svg" class="xxx"></ion-icon><br />
+        <ion-text class="catText">Electrical &
+          Electronics</ion-text>
+      </ion-col>
+      <ion-col size="3" (click)="viewSubCategory('5e09d8b25b359465f1e64a68','Home & Office')">
+        <ion-icon src="/assets/vectors/icons/Art_Crafts.svg" class="xxx"></ion-icon><br />
+        <ion-text class="catText">Arts & Crafts</ion-text>
+      </ion-col>
+    </ion-row>
+    <ion-row class="card catMenu">
+      <ion-col size="3" (click)="viewSubCategory('5e09ddbf5b359465f1e64a81','Fashion')">
+        <ion-icon src="/assets/vectors/icons/Fashion.svg" class="xxx"></ion-icon><br />
+        <ion-text class="catText">Fashion & Accessories</ion-text>
+      </ion-col>
+      <ion-col size="3" (click)="viewSubCategory('5e09e9c924f32d6afe9265d2','Health & Beauty')">
+        <ion-icon src="/assets/vectors/icons/leather.svg" class="xxx"></ion-icon><br />
+        <ion-text class="catText">Leather Goods</ion-text>
+      </ion-col>
+      <ion-col size="3" (click)="viewSubCategory('5e09faeb6a00076b11349871','Groceries')">
+        <ion-icon src="/assets/vectors/icons/Automobile.svg" class="xxx"></ion-icon><br />
+        <ion-text class="catText">Automobile</ion-text>
+      </ion-col>
+      <ion-col size="3" (click)="viewSubCategory('5e2f870c25a2290ed0b668c6','Others')">
+        <ion-icon src="/assets/vectors/icons/All_Categories.svg" class="xxx"></ion-icon><br />
+        <ion-text class="catText">All Categories</ion-text>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-grid class="cards" *ngIf="topProds">
+    <ion-row class="">
+      <ion-col size="12" class="note_title_bold12Sec">
+        <ion-text>
+          <ion-row>
+            <ion-col size="9">
+              <span class="ion-text-left bold-text">TOP PRODUCTS </span>
+            </ion-col>
+            <ion-col size="3">
+              <span class="t_right home-view-all">View all</span>
+            </ion-col>
+          </ion-row>
+        </ion-text>
+      </ion-col>
+    </ion-row>
+    <ion-row class="t_centers">
+      <ion-col col-6 class="productsCol card" routerLink="/">
+        <app-image-shell animation="gradient" src="/assets/vectors/icons/test.svg" [alt]="'Product Image'"
+          class="inner-img" style="padding-bottom: 5px;">
+          <!-- <br><br> -->
+        </app-image-shell>
+        <!-- <app-text-shell animation="gradient" [data]="productName" lines="2" class="note_title10Black text-truncate">
+        </app-text-shell> -->
+        <p class="text-left product-description-height">Cotton socks</p>
+        <app-text-shell animation="gradient" [data]="'$0.07 - $0.09'" lines="1"
+          class="text-left  bold-text note_title_bold10Black" style="padding: 5px 0;">
+        </app-text-shell>
+        <app-text-shell animation="gradient" [data]="'1000 Dozen(s) (Min Order)'" lines="1"
+          class="note_title_bold12Black text-left" style="padding: 5px 0;">
+        </app-text-shell>
+      </ion-col>
+
+      <ion-col col-6 class="productsCol card" routerLink="/">
+        <app-image-shell animation="gradient" src="/assets/vectors/icons/test1.svg" [alt]="'Product Image'"
+          class="inner-img" style="padding-bottom: 5px;">
+          <!-- <br><br> -->
+        </app-image-shell>
+        <!-- <app-text-shell animation="gradient" [data]="productName" lines="2" class="note_title10Black text-truncate">
+        </app-text-shell> -->
+        <p class="text-left product-description-height">Automatic PET Blowing Machine APF - 3002</p>
+        <app-text-shell animation="gradient" [data]="'$0.07 - $1.22'" lines="1"
+          class="text-left  bold-text note_title_bold10Black" style="padding: 5px 0;">
+        </app-text-shell>
+        <app-text-shell animation="gradient" [data]="'1 Units(s) (Min Order)'" lines="1"
+          class="note_title_bold12Black text-left" style="padding: 5px 0;">
+        </app-text-shell>
+      </ion-col>
+
+
+      <!-- <ion-col col-6 class="productsCol" routerLink="/products/{{tp._id}}" *ngFor="let tp of topProds"> -->
+      <!-- <app-image-shell animation="gradient" [src]="tp?.gallery[0]" [alt]="'Product Image'" class="inner-img"
+          style="padding-bottom: 5px;">
+        </app-image-shell>
+        <app-text-shell animation="gradient" [data]="tp?.name" lines="2" class="note_title10Black text-truncate">
+        </app-text-shell>
+        <app-text-shell animation="gradient" [data]="tp?.price | currency:'₦':'symbol':'1.2-2'" lines="1"
+          class="note_title_bold12Black" style="padding: 5px 0;">
+        </app-text-shell> -->
+      <!-- </ion-col> -->
+    </ion-row>
+
+    <ion-row class="t_centers">
+      <ion-col col-6 class="productsCol card" routerLink="/">
+        <app-image-shell animation="gradient" src="/assets/vectors/icons/test.svg" [alt]="'Product Image'"
+          class="inner-img" style="padding-bottom: 5px;">
+          <!-- <br><br> -->
+        </app-image-shell>
+        <!-- <app-text-shell animation="gradient" [data]="productName" lines="2" class="note_title10Black text-truncate">
+        </app-text-shell> -->
+        <p class="text-left product-description-height">Cotton socks</p>
+        <app-text-shell animation="gradient" [data]="'$0.07 - $0.09'" lines="1"
+          class="text-left  bold-text note_title_bold10Black" style="padding: 5px 0;">
+        </app-text-shell>
+        <app-text-shell animation="gradient" [data]="'1000 Dozen(s) (Min Order)'" lines="1"
+          class="note_title_bold12Black text-left" style="padding: 5px 0;">
+        </app-text-shell>
+      </ion-col>
+
+      <ion-col col-6 class="productsCol card" routerLink="/">
+        <app-image-shell animation="gradient" src="/assets/vectors/icons/test1.svg" [alt]="'Product Image'"
+          class="inner-img" style="padding-bottom: 5px;">
+          <!-- <br><br> -->
+        </app-image-shell>
+        <!-- <app-text-shell animation="gradient" [data]="productName" lines="2" class="note_title10Black text-truncate">
+        </app-text-shell> -->
+        <p class="text-left product-description-height">Automatic PET Blowing Machine APF - 3002</p>
+        <app-text-shell animation="gradient" [data]="'$0.07 - $1.22'" lines="1"
+          class="text-left  bold-text note_title_bold10Black" style="padding: 5px 0;">
+        </app-text-shell>
+        <app-text-shell animation="gradient" [data]="'1 Units(s) (Min Order)'" lines="1"
+          class="note_title_bold12Black text-left" style="padding: 5px 0;">
+        </app-text-shell>
+      </ion-col>
+
+
+      <!-- <ion-col col-6 class="productsCol" routerLink="/products/{{tp._id}}" *ngFor="let tp of topProds"> -->
+      <!-- <app-image-shell animation="gradient" [src]="tp?.gallery[0]" [alt]="'Product Image'" class="inner-img"
+          style="padding-bottom: 5px;">
+        </app-image-shell>
+        <app-text-shell animation="gradient" [data]="tp?.name" lines="2" class="note_title10Black text-truncate">
+        </app-text-shell>
+        <app-text-shell animation="gradient" [data]="tp?.price | currency:'₦':'symbol':'1.2-2'" lines="1"
+          class="note_title_bold12Black" style="padding: 5px 0;">
+        </app-text-shell> -->
+      <!-- </ion-col> -->
+    </ion-row>
+  </ion-grid>
+
+  <ion-grid>
+    <ion-row class="p-t-b-20 card">
+      <ion-col size="12" class="note_title_bold12Sec">
+        <ion-text color="primary">
+          <span class="ion-text-left uppercase bold-text">one request, multiple quotes.</span>
+        </ion-text>
+      </ion-col>
+      <ion-col size="12">
+        <ion-input class="searchFormQoute" type="text" placeholder="What would you like to search for?"
+          clear-input="true"></ion-input>
+      </ion-col>
+      <ion-col>
+        <ion-button expand="block" color="primary" class="capitilize">Request For Quotes <ion-icon
+            style="margin-left: 5px;" src="/assets/vectors/icons/sendIcon.svg"></ion-icon>
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-grid class="cards" *ngIf="dailyProds">
+    <ion-row class="gridSubCatHeader">
+      <ion-col size="12" class="note_title_bold12Sec">
+        <ion-text class="category-header-text">
+          <ion-row>
+            <ion-col size="12">
+              <span class="ion-text-left bold-text">FEATURED CATEGORIES </span>
+            </ion-col>
+          </ion-row>
+        </ion-text>
+      </ion-col>
+    </ion-row>
+    <ion-row class="t_center card">
+      <ion-col col-6 class="productsCol card feature-categories" routerLink="/"
+        style="background-image:url('/assets/vectors/icons/test2.svg')">
+        <div class="feature-top-desc">Fashion & Acessories</div>
+      </ion-col>
+      <ion-col col-6 class="productsCol card feature-categories" routerLink="/"
+        style="background-image:url('/assets/vectors/icons/test3.svg')">
+        <div class="feature-top-desc">Agriculture</div>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-6 class="productsCol card feature-categories" routerLink="/"
+        style="background-image:url('/assets/vectors/icons/test4.svg')">
+        <div class="feature-top-desc">Food & Beverages</div>
+      </ion-col>
+      <ion-col col-6 class="productsCol card feature-categories" routerLink="/"
+        style="background-image:url('/assets/vectors/icons/test5.svg')">
+        <div class="feature-top-desc">Business services</div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-grid class="cards" *ngIf="topProds">
+    <ion-row class="">
+      <ion-col size="12" class="note_title_bold12Sec">
+        <ion-text>
+          <ion-row>
+            <ion-col size="9">
+              <span class="ion-text-left bold-text">TOP PRODUCTS </span>
+            </ion-col>
+            <ion-col size="3">
+              <span class="t_right home-view-all">View all</span>
+            </ion-col>
+          </ion-row>
+        </ion-text>
+      </ion-col>
+    </ion-row>
+    <ion-row class="t_centers">
+      <ion-col col-6 class="productsCol card" routerLink="/">
+        <app-image-shell animation="gradient" src="/assets/vectors/icons/test.svg" [alt]="'Product Image'"
+          class="inner-img" style="padding-bottom: 5px;">
+          <!-- <br><br> -->
+        </app-image-shell>
+        <!-- <app-text-shell animation="gradient" [data]="productName" lines="2" class="note_title10Black text-truncate">
+        </app-text-shell> -->
+        <p class="text-left product-description-height">Cotton socks</p>
+        <app-text-shell animation="gradient" [data]="'$0.07 - $0.09'" lines="1"
+          class="text-left  bold-text note_title_bold10Black" style="padding: 5px 0;">
+        </app-text-shell>
+        <app-text-shell animation="gradient" [data]="'1000 Dozen(s) (Min Order)'" lines="1"
+          class="note_title_bold12Black text-left" style="padding: 5px 0;">
+
+        </app-text-shell>
+        <ion-button color="primary"  expand="block" class="contat-supplier-btn">Contact Supplier</ion-button>
+      </ion-col>
+
+      <ion-col col-6 class="productsCol card" routerLink="/">
+        <app-image-shell animation="gradient" src="/assets/vectors/icons/test1.svg" [alt]="'Product Image'"
+          class="inner-img" style="padding-bottom: 5px;">
+          <!-- <br><br> -->
+        </app-image-shell>
+        <!-- <app-text-shell animation="gradient" [data]="productName" lines="2" class="note_title10Black text-truncate">
+        </app-text-shell> -->
+        <p class="text-left product-description-height">Automatic PET Blowing Machine APF - 3002</p>
+        <app-text-shell animation="gradient" [data]="'$0.07 - $1.22'" lines="1"
+          class="text-left  bold-text note_title_bold10Black" style="padding: 5px 0;">
+        </app-text-shell>
+        <app-text-shell animation="gradient" [data]="'1 Units(s) (Min Order)'" lines="1"
+          class="note_title_bold12Black text-left" style="padding: 5px 0;">
+        </app-text-shell>
+        <ion-button color="primary" expand="block" class="contat-supplier-btn">Contact Supplier</ion-button>
+      </ion-col>
+
+
+      <!-- <ion-col col-6 class="productsCol" routerLink="/products/{{tp._id}}" *ngFor="let tp of topProds"> -->
+      <!-- <app-image-shell animation="gradient" [src]="tp?.gallery[0]" [alt]="'Product Image'" class="inner-img"
+          style="padding-bottom: 5px;">
+        </app-image-shell>
+        <app-text-shell animation="gradient" [data]="tp?.name" lines="2" class="note_title10Black text-truncate">
+        </app-text-shell>
+        <app-text-shell animation="gradient" [data]="tp?.price | currency:'₦':'symbol':'1.2-2'" lines="1"
+          class="note_title_bold12Black" style="padding: 5px 0;">
+        </app-text-shell> -->
+      <!-- </ion-col> -->
+    </ion-row>
+
+    <ion-row class="t_centers">
+      <ion-col col-6 class="productsCol card" routerLink="/">
+        <app-image-shell animation="gradient" src="/assets/vectors/icons/test.svg" [alt]="'Product Image'"
+          class="inner-img" style="padding-bottom: 5px;">
+          <!-- <br><br> -->
+        </app-image-shell>
+        <!-- <app-text-shell animation="gradient" [data]="productName" lines="2" class="note_title10Black text-truncate">
+        </app-text-shell> -->
+        <p class="text-left product-description-height">Cotton socks</p>
+        <app-text-shell animation="gradient" [data]="'$0.07 - $0.09'" lines="1"
+          class="text-left  bold-text note_title_bold10Black" style="padding: 5px 0;">
+        </app-text-shell>
+        <app-text-shell animation="gradient" [data]="'1000 Dozen(s) (Min Order)'" lines="1"
+          class="note_title_bold12Black text-left" style="padding: 5px 0;">
+        </app-text-shell>
+        <ion-button color="primary" expand="block" class="contat-supplier-btn">Contact Supplier</ion-button>
+      </ion-col>
+
+      <ion-col col-6 class="productsCol card" routerLink="/">
+        <app-image-shell animation="gradient" src="/assets/vectors/icons/test1.svg" [alt]="'Product Image'"
+          class="inner-img" style="padding-bottom: 5px;">
+          <!-- <br><br> -->
+        </app-image-shell>
+        <!-- <app-text-shell animation="gradient" [data]="productName" lines="2" class="note_title10Black text-truncate">
+        </app-text-shell> -->
+        <p class="text-left product-description-height">Automatic PET Blowing Machine APF - 3002</p>
+        <app-text-shell animation="gradient" [data]="'$0.07 - $1.22'" lines="1"
+          class="text-left  bold-text note_title_bold10Black" style="padding: 5px 0;">
+        </app-text-shell>
+        <app-text-shell animation="gradient" [data]="'1 Units(s) (Min Order)'" lines="1"
+          class="note_title_bold12Black text-left" style="padding: 5px 0;">
+        </app-text-shell>
+        <ion-button color="primary" expand="block" class="contat-supplier-btn">Contact Supplier</ion-button>
+      </ion-col>
+
+
+      <!-- <ion-col col-6 class="productsCol" routerLink="/products/{{tp._id}}" *ngFor="let tp of topProds"> -->
+      <!-- <app-image-shell animation="gradient" [src]="tp?.gallery[0]" [alt]="'Product Image'" class="inner-img"
+          style="padding-bottom: 5px;">
+        </app-image-shell>
+        <app-text-shell animation="gradient" [data]="tp?.name" lines="2" class="note_title10Black text-truncate">
+        </app-text-shell>
+        <app-text-shell animation="gradient" [data]="tp?.price | currency:'₦':'symbol':'1.2-2'" lines="1"
+          class="note_title_bold12Black" style="padding: 5px 0;">
+        </app-text-shell> -->
+      <!-- </ion-col> -->
+    </ion-row>
+    <ion-row class="t_centers">
+      <ion-col col-6 class="productsCol card" routerLink="/">
+        <app-image-shell animation="gradient" src="/assets/vectors/icons/test.svg" [alt]="'Product Image'"
+          class="inner-img" style="padding-bottom: 5px;">
+          <!-- <br><br> -->
+        </app-image-shell>
+        <!-- <app-text-shell animation="gradient" [data]="productName" lines="2" class="note_title10Black text-truncate">
+        </app-text-shell> -->
+        <p class="text-left product-description-height">Cotton socks</p>
+        <app-text-shell animation="gradient" [data]="'$0.07 - $0.09'" lines="1"
+          class="text-left  bold-text note_title_bold10Black" style="padding: 5px 0;">
+        </app-text-shell>
+        <app-text-shell animation="gradient" [data]="'1000 Dozen(s) (Min Order)'" lines="1"
+          class="note_title_bold12Black text-left" style="padding: 5px 0;">
+        </app-text-shell>
+        <ion-button color="primary" expand="block" class="contat-supplier-btn">Contact Supplier</ion-button>
+      </ion-col>
+
+      <ion-col col-6 class="productsCol card" routerLink="/">
+        <app-image-shell animation="gradient" src="/assets/vectors/icons/test1.svg" [alt]="'Product Image'"
+          class="inner-img" style="padding-bottom: 5px;">
+          <!-- <br><br> -->
+        </app-image-shell>
+        <!-- <app-text-shell animation="gradient" [data]="productName" lines="2" class="note_title10Black text-truncate">
+        </app-text-shell> -->
+        <p class="text-left product-description-height">Automatic PET Blowing Machine APF - 3002</p>
+        <app-text-shell animation="gradient" [data]="'$0.07 - $1.22'" lines="1"
+          class="text-left  bold-text note_title_bold10Black" style="padding: 5px 0;">
+        </app-text-shell>
+        <app-text-shell animation="gradient" [data]="'1 Units(s) (Min Order)'" lines="1"
+          class="note_title_bold12Black text-left" style="padding: 5px 0;">
+        </app-text-shell>
+        <ion-button color="primary" expand="block" class="contat-supplier-btn">Contact Supplier</ion-button>
+      </ion-col>
+
+
+      <!-- <ion-col col-6 class="productsCol" routerLink="/products/{{tp._id}}" *ngFor="let tp of topProds"> -->
+      <!-- <app-image-shell animation="gradient" [src]="tp?.gallery[0]" [alt]="'Product Image'" class="inner-img"
+          style="padding-bottom: 5px;">
+        </app-image-shell>
+        <app-text-shell animation="gradient" [data]="tp?.name" lines="2" class="note_title10Black text-truncate">
+        </app-text-shell>
+        <app-text-shell animation="gradient" [data]="tp?.price | currency:'₦':'symbol':'1.2-2'" lines="1"
+          class="note_title_bold12Black" style="padding: 5px 0;">
+        </app-text-shell> -->
+      <!-- </ion-col> -->
+    </ion-row>
+    <ion-row class="t_centers">
+      <ion-col col-6 class="productsCol card" routerLink="/">
+        <app-image-shell animation="gradient" src="/assets/vectors/icons/test.svg" [alt]="'Product Image'"
+          class="inner-img" style="padding-bottom: 5px;">
+          <!-- <br><br> -->
+        </app-image-shell>
+        <!-- <app-text-shell animation="gradient" [data]="productName" lines="2" class="note_title10Black text-truncate">
+        </app-text-shell> -->
+        <p class="text-left product-description-height">Cotton socks</p>
+        <app-text-shell animation="gradient" [data]="'$0.07 - $0.09'" lines="1"
+          class="text-left  bold-text note_title_bold10Black" style="padding: 5px 0;">
+        </app-text-shell>
+        <app-text-shell animation="gradient" [data]="'1000 Dozen(s) (Min Order)'" lines="1"
+          class="note_title_bold12Black text-left" style="padding: 5px 0;">
+        </app-text-shell>
+        <ion-button color="primary" expand="block" class="contat-supplier-btn">Contact Supplier</ion-button>
+      </ion-col>
+
+      <ion-col col-6 class="productsCol card" routerLink="/">
+        <app-image-shell animation="gradient" src="/assets/vectors/icons/test1.svg" [alt]="'Product Image'"
+          class="inner-img" style="padding-bottom: 5px;">
+          <!-- <br><br> -->
+        </app-image-shell>
+        <!-- <app-text-shell animation="gradient" [data]="productName" lines="2" class="note_title10Black text-truncate">
+        </app-text-shell> -->
+        <p class="text-left product-description-height">Automatic PET Blowing Machine APF - 3002</p>
+        <app-text-shell animation="gradient" [data]="'$0.07 - $1.22'" lines="1"
+          class="text-left  bold-text note_title_bold10Black" style="padding: 5px 0;">
+        </app-text-shell>
+        <app-text-shell animation="gradient" [data]="'1 Units(s) (Min Order)'" lines="1"
+          class="note_title_bold12Black text-left" style="padding: 5px 0;">
+        </app-text-shell>
+        <ion-button color="primary" expand="block" class="contat-supplier-btn">Contact Supplier</ion-button>
+      </ion-col>
+
+
+      <!-- <ion-col col-6 class="productsCol" routerLink="/products/{{tp._id}}" *ngFor="let tp of topProds"> -->
+      <!-- <app-image-shell animation="gradient" [src]="tp?.gallery[0]" [alt]="'Product Image'" class="inner-img"
+          style="padding-bottom: 5px;">
+        </app-image-shell>
+        <app-text-shell animation="gradient" [data]="tp?.name" lines="2" class="note_title10Black text-truncate">
+        </app-text-shell>
+        <app-text-shell animation="gradient" [data]="tp?.price | currency:'₦':'symbol':'1.2-2'" lines="1"
+          class="note_title_bold12Black" style="padding: 5px 0;">
+        </app-text-shell> -->
+      <!-- </ion-col> -->
+    </ion-row>
+  </ion-grid>
+  <ion-row *ngIf="showUpArrow">
+    <ion-col (click)="scrollToTop()">
+      <div class="circleUp">
+        <img src="/assets/vectors/icons/arrowUp.svg" all="top">
+      </div>
+    </ion-col>
+  </ion-row>
+</ion-content>

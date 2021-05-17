@@ -1,0 +1,75 @@
+{
+  "prepare_queue": {
+    "installed": [],
+    "uninstalled": []
+  },
+  "config_munge": {
+    "files": {}
+  },
+  "installed_plugins": {
+    "cordova-custom-config": {
+      "PACKAGE_NAME": "ng.easymall.app"
+    },
+    "cordova-plugin-add-swift-support": {
+      "PACKAGE_NAME": "ng.easymall.app"
+    },
+    "cordova-plugin-android-permissions": {
+      "PACKAGE_NAME": "ng.easymall.app"
+    },
+    "cordova-plugin-camera": {
+      "ANDROID_SUPPORT_V4_VERSION": "27.+",
+      "PACKAGE_NAME": "ng.easymall.app"
+    },
+    "cordova-plugin-device": {
+      "PACKAGE_NAME": "ng.easymall.app"
+    },
+    "cordova-plugin-facebook4": {
+      "APP_ID": "2504590776291199",
+      "APP_NAME": "easycoopWebClient",
+      "FACEBOOK_HYBRID_APP_EVENTS": "false",
+      "FACEBOOK_ANDROID_SDK_VERSION": "5.5.2",
+      "PACKAGE_NAME": "ng.easymall.app"
+    },
+    "cordova-plugin-file": {
+      "PACKAGE_NAME": "ng.easymall.app"
+    },
+    "cordova-plugin-filechooser": {
+      "PACKAGE_NAME": "ng.easymall.app"
+    },
+    "cordova-plugin-filepath": {
+      "PACKAGE_NAME": "ng.easymall.app"
+    },
+    "cordova-plugin-filepicker": {
+      "PACKAGE_NAME": "ng.easymall.app"
+    },
+    "cordova-plugin-googleplus": {
+      "PLAY_SERVICES_VERSION": "15.0.1",
+      "PACKAGE_NAME": "ng.easymall.app"
+    },
+    "cordova-plugin-ionic-keyboard": {
+      "PACKAGE_NAME": "ng.easymall.app"
+    },
+    "cordova-plugin-ionic-webview": {
+      "PACKAGE_NAME": "ng.easymall.app"
+    },
+    "cordova-plugin-nativestorage": {
+      "PACKAGE_NAME": "ng.easymall.app"
+    },
+    "cordova-plugin-network-information": {
+      "PACKAGE_NAME": "ng.easymall.app"
+    },
+    "cordova-plugin-paystack": {
+      "PACKAGE_NAME": "ng.easymall.app"
+    },
+    "cordova-plugin-splashscreen": {
+      "PACKAGE_NAME": "ng.easymall.app"
+    },
+    "cordova-plugin-statusbar": {
+      "PACKAGE_NAME": "ng.easymall.app"
+    },
+    "cordova-plugin-whitelist": {
+      "PACKAGE_NAME": "ng.easymall.app"
+    }
+  },
+  "dependent_plugins": {}
+}

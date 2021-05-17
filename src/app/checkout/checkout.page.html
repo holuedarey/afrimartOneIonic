@@ -1,0 +1,525 @@
+<app-header
+  [title]="title"
+  [longSearch]="longSearch"
+  [showBackButton]="showBackButton"
+  [isLoading]="loading"
+  [showSearch]="showSearch"
+>
+</app-header>
+<ion-content>
+  <ion-segment
+    scrollable
+    [(ngModel)]="checkoutSegment"
+    (ionChange)="segmentChanged($event)"
+    color="secondary"
+  >
+    <ion-segment-button
+      value="delivery"
+      layout="icon-bottom"
+      [disabled]="!isSegmentActive('delivery')"
+    >
+      DELIVERY
+    </ion-segment-button>
+    <ion-segment-button
+      value="payment"
+      layout="icon-bottom"
+      [disabled]="!isSegmentActive('payment')"
+    >
+      PAYMENT
+    </ion-segment-button>
+    <ion-segment-button
+      value="summary"
+      layout="icon-bottom"
+      [disabled]="!isSegmentActive('summary')"
+    >
+      SUMMARY
+    </ion-segment-button>
+  </ion-segment>
+  <div [ngSwitch]="checkoutSegment">
+    <div *ngSwitchCase="'delivery'">
+      <ion-grid class="grid">
+        <ion-row class="headerBg">
+          <ion-col size="9">
+            <ion-text class="note_title12Sec">ADDRESS DETAILS</ion-text>
+          </ion-col>
+          <ion-col size="3">
+            <ion-text class="note_title12Sec" (click)="showEditAddress()"
+              >CHANGE</ion-text
+            >
+          </ion-col>
+        </ion-row>
+        <ion-row *ngIf="defAddy">
+          <ion-col size="10">
+            <ion-row>
+              <ion-col size="12">
+                <app-text-shell
+                  animation="gradient"
+                  [data]="defAddy?.name"
+                  class="note_title_bold14Sec"
+                ></app-text-shell>
+                <app-text-shell
+                  animation="gradient"
+                  [data]="defAddy?.no+' '+ defAddy?.street+', '+ defAddy?.landmark"
+                >
+                </app-text-shell>
+                <app-text-shell
+                  animation="gradient"
+                  [data]="defAddy.city+', ' +defAddy.state+', ' +defAddy.country"
+                >
+                </app-text-shell>
+                <br />
+                <app-text-shell
+                  animation="gradient"
+                  [data]="defAddy?.phone"
+                ></app-text-shell>
+              </ion-col>
+            </ion-row>
+          </ion-col>
+          <ion-col size="2">
+            &nbsp;
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+      <ion-grid class="grid">
+        <ion-row class="headerBg">
+          <ion-col size="12">
+            <ion-text class="note_title12Sec"
+              >SELECT A DELIVERY METHOD</ion-text
+            >
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="12">
+            <ion-radio-group
+              value="door"
+              (ionChange)="getSelectedDelivery($event)"
+              [(ngModel)]="selectDeliveryType"
+            >
+              <ion-item ines="none">
+                <ion-label class="ion-text-wrap"
+                  ><b>Door Delivery</b><br />Delivery between Tuesday 23th, Apr
+                  and Tuesday 30th<br />
+                  Shipping Fee:
+                  <b>{{fee.totalShipping | currency:'₦':'symbol':'1.2-2'}}</b>
+                </ion-label>
+                <ion-radio slot="start" value="door"></ion-radio>
+              </ion-item>
+              <ion-item ines="none">
+                <ion-radio slot="start" value="pickup"></ion-radio>
+                <ion-label class="ion-text-wrap"
+                  ><b>Pickup Station</b><br />Ready for Pickup between Tuesday
+                  23th, Apr and Tuesday 30th</ion-label
+                >
+              </ion-item>
+            </ion-radio-group>
+          </ion-col>
+        </ion-row>
+        <!-- <ion-row>
+          <ion-col size="12" class="t_center">
+            <br />
+            <ion-text class="note_title14Pri"
+              >Select a station nearest to you</ion-text
+            >
+          </ion-col>
+        </ion-row> -->
+        <ion-row class="headerBg">
+          <ion-col size="12">
+            &nbsp;
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+
+      <ion-grid class="grid">
+        <ion-row>
+          <ion-col size="5" class="note_title_bold12Black">
+            Subtotal
+          </ion-col>
+          <ion-col
+            size="7"
+            style="text-align: right;"
+            class="note_title_bold12Black"
+          >
+            {{fee.subTotal | currency:'₦':'symbol':'1.2-2'}}
+          </ion-col>
+        </ion-row>
+        <ion-row style="background: #e4e1e1;">
+          <ion-col size="5" class="note_title_bold12Black">
+            Total shipping fee
+          </ion-col>
+          <ion-col
+            size="7"
+            style="text-align: right;"
+            class="note_title_bold12Black"
+          >
+            {{fee.totalShipping | currency:'₦':'symbol':'1.2-2'}}
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="12"> </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="5" class="note_title_bold14Black">
+            Total
+          </ion-col>
+          <ion-col
+            size="7"
+            style="text-align: right;"
+            class="note_title_bold14Sec"
+          >
+            {{fee.total | currency:'₦':'symbol':'1.2-2'}}
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="12">
+            <br />
+            <ion-button
+              expand="block"
+              color="primary"
+              (click)="proceedToPayment()"
+            >
+              PROCEED TO PAYMENT
+            </ion-button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+    <div *ngSwitchCase="'payment'">
+      <ion-grid class="grid">
+        <ion-row>
+          <ion-col size="12">
+            <ion-text class="note_title12Sec"
+              >CHOOSE YOUR PREFERRED PAYMENT</ion-text
+            >
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="12">
+            <ion-radio-group
+              value="po"
+              (ionChange)="getPaymentType($event)"
+              [(ngModel)]="PaymentType"
+            >
+              <ion-item ines="none">
+                <ion-label class="ion-text-wrap">
+                  <ion-icon
+                    src="/assets/vectors/icons/mastercard.svg"
+                    class="xxx"
+                  ></ion-icon
+                  >&nbsp;
+                  <ion-icon
+                    src="/assets/vectors/icons/visa.svg"
+                    class="xxx"
+                  ></ion-icon
+                  >&nbsp;
+                  <ion-icon
+                    src="/assets/vectors/icons/vervelogo.svg"
+                    class="xxx"
+                  ></ion-icon>
+                  <!-- <ion-icon name="card-outline" slot="start" size="large"></ion-icon> -->
+                </ion-label>
+                <ion-radio slot="start" value="po"></ion-radio>
+              </ion-item>
+              <ion-item ines="none">
+                <ion-radio slot="start" value="pod"></ion-radio>
+                <div>
+                  <ion-icon
+                    src="/assets/vectors/icons/money_delivery.svg"
+                    class="xxx"
+                  ></ion-icon
+                  >&nbsp;
+                </div>
+                <span class="note_title14Black"> Payment on Delivery</span>
+              </ion-item>
+            </ion-radio-group>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+      <ion-grid class="grid">
+        <!-- <ion-row class="headerBg">
+          <ion-col size="12">
+            <ion-text class="note_title12Sec"
+              >GOT AN EASYMALL VOUCHER CODE? USE BELOW</ion-text
+            >
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="12">
+            <ion-note class="note_title_bold14Black"
+              >Enter Voucher Code</ion-note
+            >
+            <ion-item lines="none">
+              <ion-input
+                [(ngModel)]="voucher_code"
+                type="text"
+                clear-input="true"
+                style="
+                  border-bottom: 1px solid #343434 !important;
+                  padding-bottom: 0px;
+                "
+              ></ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="3">
+            &nbsp;
+          </ion-col>
+          <ion-col size="6">
+            <ion-button fill="outline" expand="block" color="primary">
+              APPLY
+            </ion-button>
+          </ion-col>
+          <ion-col size="3">
+            &nbsp;
+          </ion-col>
+        </ion-row> -->
+        <ion-row class="headerBg">
+          <ion-col size="12">&nbsp;</ion-col>
+        </ion-row>
+      </ion-grid>
+      <ion-grid class="grid">
+        <ion-row>
+          <ion-col size="5" class="note_title_bold12Black">
+            Subtotal
+          </ion-col>
+          <ion-col
+            size="7"
+            style="text-align: right;"
+            class="note_title_bold12Black"
+          >
+            {{fee.subTotal | currency:'₦':'symbol':'1.2-2'}}
+          </ion-col>
+        </ion-row>
+        <ion-row style="background: #e4e1e1;">
+          <ion-col size="5" class="note_title_bold12Black">
+            Total shipping fee
+          </ion-col>
+          <ion-col
+            size="7"
+            style="text-align: right;"
+            class="note_title_bold12Black"
+          >
+            {{fee.totalShipping | currency:'₦':'symbol':'1.2-2'}}
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="12"> </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="5" class="note_title_bold14Black">
+            Total
+          </ion-col>
+          <ion-col
+            size="7"
+            style="text-align: right;"
+            class="note_title_bold14Sec"
+          >
+            {{fee.total | currency:'₦':'symbol':'1.2-2'}}
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="12">
+            <br />
+            <ion-button
+              expand="block"
+              color="primary"
+              (click)="proceedToSummary()"
+            >
+              PROCEED TO SUMMARY
+            </ion-button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+    <div *ngSwitchCase="'summary'">
+      <ion-grid class="grid">
+        <ion-row>
+          <ion-col size="12">
+            <ion-text class="note_title12Sec">YOUR ORDER</ion-text>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="5" class="note_title_bold12Black">
+            Subtotal
+          </ion-col>
+          <ion-col
+            size="7"
+            style="text-align: right;"
+            class="note_title_bold12Black"
+          >
+            {{fee.subTotal | currency:'₦':'symbol':'1.2-2'}}
+          </ion-col>
+        </ion-row>
+        <ion-row style="background: #e4e1e1;">
+          <ion-col size="5" class="note_title_bold12Black">
+            Total shipping fee
+          </ion-col>
+          <ion-col
+            size="7"
+            style="text-align: right;"
+            class="note_title_bold12Black"
+          >
+            {{fee.totalShipping | currency:'₦':'symbol':'1.2-2'}}
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="12"> </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="5" class="note_title_bold14Black">
+            Total
+          </ion-col>
+          <ion-col
+            size="7"
+            style="text-align: right;"
+            class="note_title_bold14Sec"
+          >
+            {{fee.total | currency:'₦':'symbol':'1.2-2'}}
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="12">
+            &nbsp;
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+      <ion-grid class="grid">
+        <ion-row class="headerBg">
+          <ion-col size="9">
+            <ion-text class="note_title12Sec">ADDRESS DETAILS</ion-text>
+          </ion-col>
+          <ion-col size="3">
+            <ion-text class="note_title12Sec" (click)="showEditAddress()"
+              >CHANGE</ion-text
+            >
+          </ion-col>
+        </ion-row>
+        <ion-row *ngIf="defAddy">
+          <ion-col size="10">
+            <ion-row>
+              <ion-col size="12">
+                <app-text-shell
+                  animation="gradient"
+                  [data]="defAddy?.name"
+                  class="note_title_bold14Sec"
+                ></app-text-shell>
+                <app-text-shell
+                  animation="gradient"
+                  [data]="defAddy?.no+' '+ defAddy?.street+', '+ defAddy?.landmark"
+                >
+                </app-text-shell>
+                <app-text-shell
+                  animation="gradient"
+                  [data]="defAddy.city+', ' +defAddy.state+', ' +defAddy.country"
+                >
+                </app-text-shell>
+                <br />
+                <app-text-shell
+                  animation="gradient"
+                  [data]="defAddy?.phone"
+                ></app-text-shell>
+              </ion-col>
+            </ion-row>
+          </ion-col>
+          <ion-col size="2">
+            &nbsp;
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+      <ion-grid class="grid">
+        <ion-row class="headerBg">
+          <ion-col size="9">
+            <ion-text class="note_title12Sec">DELIVERY METHOD</ion-text>
+          </ion-col>
+          <ion-col size="3">
+            <ion-text class="note_title12Sec" (click)="showEditAddress()"
+              >CHANGE</ion-text
+            >
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="10" *ngIf="selectDeliveryType=='door'">
+            <ion-label class="ion-text-wrap"><b>Door Delivery</b> </ion-label>
+          </ion-col>
+          <ion-col size="10" *ngIf="selectDeliveryType=='pickup'">
+            <ion-label class="ion-text-wrap"><b>Pickup Station</b> </ion-label>
+          </ion-col>
+          <ion-col size="2">
+            &nbsp;
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+      <ion-grid class="grid">
+        <ion-row class="headerBg">
+          <ion-col size="9">
+            <ion-text class="note_title12Sec">PAYMENT METHOD</ion-text>
+          </ion-col>
+          <ion-col size="3">
+            <ion-text class="note_title12Sec" (click)="showEditAddress()"
+              >CHANGE</ion-text
+            >
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="12" *ngIf="PaymentType=='po'">
+            <ion-label class="ion-text-wrap"><b>Debit Card</b></ion-label>
+            <div *ngIf="lt_cards.length>0">
+              <ion-radio-group
+                (ionChange)="getSelectedCard($event)"
+                [(ngModel)]="selectedCard"
+              >
+                <ion-item
+                  lines="none"
+                  *ngFor="let x of lt_cards;let i=index"
+                  [ngClass]="(i % 2 == 0) ? 'odd' : 'even'"
+                >
+                  <ion-label>
+                    <h3><b>{{x.bank}}</b></h3>
+                    <h5>{{x.bin}} ********** {{x.last4}}</h5>
+                    <h5><b>{{x.brand}}</b></h5>
+                  </ion-label>
+                  <ion-radio
+                    slot="start"
+                    [value]="x.authorizationCode"
+                  ></ion-radio>
+                </ion-item>
+              </ion-radio-group>
+            </div>
+          </ion-col>
+
+          <ion-col size="10" *ngIf="PaymentType=='pod'">
+            <ion-label class="ion-text-wrap"
+              ><b>Payment on Delivery</b></ion-label
+            >
+          </ion-col>
+          <ion-col size="2">
+            &nbsp;
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+      <ion-grid class="grid">
+        <ion-row>
+          <ion-col size="6">
+            <ion-button
+              expand="block"
+              color="primary"
+              (click)="selectChargeMethod()"
+            >
+              CONFIRM ORDER
+            </ion-button>
+          </ion-col>
+          <ion-col size="6">
+            <ion-button
+              expand="block"
+              fill="outline"
+              color="primary"
+              (click)="proceedToDelivery()"
+            >
+              RESTART
+            </ion-button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+  </div>
+</ion-content>

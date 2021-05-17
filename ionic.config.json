@@ -1,0 +1,7 @@
+{
+  "name": "easyMall",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}

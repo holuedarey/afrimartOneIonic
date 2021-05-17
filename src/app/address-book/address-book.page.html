@@ -1,0 +1,281 @@
+<ion-header>
+  <ion-toolbar *ngIf="!edit && !add">
+    <ion-buttons slot="start">
+      <ion-button (click)="myBackButton()">
+        <ion-icon
+          size="small"
+          name="arrow-back-outline"
+          color="light"
+        ></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button>
+        <ion-icon size="small" name="search-outline" color="light"></ion-icon>
+      </ion-button>
+      <ion-button id="notification-button" (click)="goToCart()">
+        <ion-icon size="large" name="cart-outline" color="light"></ion-icon>
+        <ion-badge
+          id="notifications-badge"
+          color="light"
+          class="note_title8Black"
+          *ngIf="currentUser"
+          >{{ cartTotal }}
+        </ion-badge>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>My Addresses</ion-title>
+  </ion-toolbar>
+  <ion-toolbar *ngIf="edit || add">
+    <ion-buttons slot="end">
+      <ion-button (click)="closeDialog()">
+        <ion-icon
+          size="small"
+          name="close-circle-outline"
+          color="light"
+        ></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>{{title}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-progress-bar
+  color="primary"
+  type="indeterminate"
+  *ngIf="isLoading"
+></ion-progress-bar>
+
+<ion-content>
+  <section class="sectionProductItem" *ngIf="!edit && !add">
+    <ion-grid>
+      <ion-row
+        *ngFor="let address of addresses; let i=index"
+        class="gridProductItemList"
+      >
+        <ion-col size="9">
+          <ion-row>
+            <ion-col size="12">
+              <app-text-shell
+                animation="gradient"
+                [data]="address?.name"
+                class="note_title_bold14Sec"
+              ></app-text-shell>
+              <!-- <app-text-shell animation="gradient" [data]="address?.no+' ' + address?.street+', ' "></app-text-shell> -->
+              <app-text-shell
+                animation="gradient"
+                [data]="address?.no+' '+ address?.street+', '+ address?.landmark"
+              >
+              </app-text-shell>
+              <app-text-shell
+                animation="gradient"
+                [data]="address.city+', ' +address.state+', ' +address.country"
+              ></app-text-shell>
+              <br />
+              <app-text-shell
+                animation="gradient"
+                [data]="address?.phone"
+              ></app-text-shell>
+              <br />
+              <div *ngIf="address.isDefault" class="note_title10Black">
+                * This is your default address
+              </div>
+            </ion-col>
+          </ion-row>
+        </ion-col>
+        <ion-col size="3" class="t_right note_title12Sec">
+          <ion-icon
+            name="create-outline"
+            color="success"
+            (click)="editAddress(address)"
+          ></ion-icon>
+          <ion-icon
+            name="trash-outline"
+            color="danger"
+            (click)="deleteAddress(address)"
+          ></ion-icon>
+          <!-- <ion-text *ngIf="address">Edit</ion-text> -->
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </section>
+  <section *ngIf="edit || add">
+    <form [formGroup]="addressForm">
+      <ion-grid style="padding-top: 10%;" class="card">
+        <ion-row>
+          <ion-col col-12 class="colForm">
+            <ion-item lines="none">
+              <ion-label color="dark" position="floating"
+                >Full Name</ion-label
+              >
+              <ion-input formControlName="name" type="text" clear-input="true">
+              </ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col col-12 class="colForm">
+            <ion-item lines="none">
+              <ion-label color="dark" position="floating"
+                >House Number</ion-label
+              >
+              <ion-input formControlName="no" type="text" clear-input="true">
+              </ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col col-12 class="colForm">
+            <ion-item lines="none">
+              <ion-label color="dark" position="floating"
+                >Street Name</ion-label
+              >
+              <ion-input formControlName="street" clear-input="true">
+              </ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col col-12 class="colForm">
+            <ion-item lines="none">
+              <ion-label color="dark" position="floating"
+                >Landmark</ion-label
+              >
+              <ion-input
+                formControlName="landmark"
+                type="text"
+                clear-input="true"
+              >
+              </ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col size="3" class="colForm">
+            <ion-item lines="none">
+              <ion-select  value="+234" (ionChange)="changeMobileCountry($event)" formControlName="ext">
+                  <ion-select-option  value="+234">+234</ion-select-option>
+              </ion-select>
+            </ion-item>
+          </ion-col>
+
+          <ion-col size="9" class="colForm">
+          <ion-item lines="none">
+           <ion-input formControlName="phone" type="tel" clear-input="true" placeholder="Mobile phone number"  maxlength="10"></ion-input>
+          </ion-item>
+           </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col col-12 class="colForm">
+            <ion-item lines="none">
+              <ion-label color="dark">State</ion-label>
+              <ion-select
+                [value]="state"
+                (ionChange)="changeState($event)"
+                okText="Okay"
+                cancelText="Dismiss"
+                formControlName="state"
+              >
+                <ng-container *ngIf="states">
+                  <ion-select-option value=""
+                    >Choose ...</ion-select-option
+                  >
+                  <ion-select-option
+                    value="{{st.state.name}}"
+                    *ngFor="let st of states"
+                    >{{st.state.name}}
+                  </ion-select-option>
+                </ng-container>
+              </ion-select>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col col-12 class="colForm">
+            <ion-item lines="none">
+              <ion-label color="dark">City</ion-label>
+              <ion-select
+                [value]="city"
+                (ionChange)="changeCity($event)"
+                okText="Okay"
+                cancelText="Dismiss"
+                formControlName="city"
+              >
+                <ng-container *ngIf="lgas">
+                  <ion-select-option value=""
+                  >Choose ...</ion-select-option
+                >
+                  <ion-select-option
+                    value="{{lga.name}}"
+                    *ngFor="let lga of lgas"
+                    >{{lga.name}}
+                  </ion-select-option>
+                </ng-container>
+              </ion-select>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <!-- <ion-row>
+              <ion-col col-12  class="colForm">
+                <ion-item lines="none">
+                  <ion-label color="primary" position="floating">Country</ion-label>
+                  <ion-input formControlName="country" type="text" clear-input="true" readonly="true">
+                  </ion-input>
+                </ion-item>
+              </ion-col>
+            </ion-row> -->
+
+        <ion-row>
+          <ion-col col-12 class="colForm">
+            <ion-item lines="none">
+              <ion-checkbox formControlName="isDefault"></ion-checkbox>
+              &nbsp;Set as "Default Shipping Address"
+            </ion-item>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </form>
+  </section>
+  <section *ngIf="!addresses">
+    <ion-grid class="grid" class="t_center" style="padding-top: 50px;">
+      <ion-row>
+        <ion-col size="12">
+          <ion-icon
+            name="reader-outline"
+            size="large"
+            slot="start"
+            color="primary"
+          ></ion-icon>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="12">
+          <ion-text> YOU CURRENTLY HAVE NO ADDRESS!</ion-text>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </section>
+</ion-content>
+<ion-footer class="ion-no-border" class="footer">
+  <ion-toolbar>
+    <ion-button
+      expand="full"
+      color="primary"
+      (click)="newAddress()"
+      *ngIf="!edit && !add"
+    >
+      <ion-icon size="small" name="add-outline"></ion-icon> ADD NEW ADDRESS
+    </ion-button>
+    <ion-button
+      expand="full"
+      color="primary"
+      [disabled]="!addressForm.valid"
+      (click)="onSubmit()"
+      *ngIf="edit || add"
+    >
+      {{addressId ? 'UPDATE' : 'ADD'}} ADDRESS
+    </ion-button>
+  </ion-toolbar>
+</ion-footer>

@@ -1,0 +1,112 @@
+<app-header [title]="title" [longSearch]="longSearch" [showBackButton]="showBackButton" [isLoading]="loading"
+  [showSearch]="showSearch">
+</app-header>
+
+<ion-content >
+  <div *ngIf="order">
+  <ion-row>
+    <ion-col size="9" class="note_title_bold12Sec">
+      <ion-text>ORDER N<sup>o</sup>: {{order.tag}}</ion-text>
+    </ion-col>
+    <ion-col size="3" class="t_right note_title10Sec">
+      <ion-text>{{order.confirmDate | date : 'mediumDate'}}</ion-text>
+    </ion-col>
+  </ion-row>
+  <ion-grid class="card">
+    <ion-row class="gridProductItemList">
+      <ion-col size="8" class="">
+       {{order.totalQuantity}} item(s)<br>
+       {{order.grandTotal |currency:'₦':'symbol':'1.2-2'}} (Including shipping!)
+      </ion-col>
+      <ion-col size="4" style="border-left: 1px #e4e1e1 solid;">
+       Payment:<br>
+       {{order.paymentMethod}}
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-grid class="card">
+    <ion-row>
+      <ion-col size="12">
+        Shipping
+      </ion-col>
+    </ion-row>
+    <ion-row class="gridProductItemList">
+      <ion-col size="12">
+        <app-text-shell
+          animation="gradient"
+          [data]="order.shippingAddress?.name"
+          class="note_title_bold14Black"
+        ></app-text-shell>
+        <app-text-shell
+          animation="gradient"
+          [data]="order.shippingAddress?.no+' '+ order.shippingAddress?.street+', '+ order.shippingAddress?.landmark"
+        >
+        </app-text-shell>
+        <app-text-shell
+          animation="gradient"
+          [data]="order.shippingAddress.city+', ' +order.shippingAddress.state+', ' +order.shippingAddress.country"
+        ></app-text-shell>
+        <app-text-shell
+          animation="gradient"
+          [data]="order.shippingAddress?.phone"
+        ></app-text-shell>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-row>
+    <ion-col size="12" class="note_title_bold12Sec">
+      <ion-text>ITEMS IN YOUR ORDER</ion-text>
+    </ion-col>
+  </ion-row>
+  <section *ngFor="let prod of order.cartProducts; let i=index;">
+  <ion-grid class="card">
+          <ion-row routerLink="/products/{{prod.productId}}">
+            <ion-col size="4" >
+              <app-aspect-ratio [ratio]="{w:1, h:1}">
+                <app-image-shell
+                  animation="gradient"
+                  [src]="prod?.imgUrl"
+                  [alt]="'Product Image'"
+                >
+                </app-image-shell>
+              </app-aspect-ratio>
+            </ion-col>
+
+            <ion-col
+              size="8"
+              class="counter-list"
+            >
+            <ion-row>
+              <ion-col size="12">
+                <ion-text class="note_title10Pri">{{prod.categoryData.name | titlecase}}</ion-text>
+                <br>
+                <h3 style="margin-top: 0px;">
+                  <app-text-shell
+                    animation="gradient"
+                    [data]="prod?.productName"
+                    lines="3"
+                    class="note_title12Black"
+                  >
+                  </app-text-shell>
+                </h3>
+                <app-text-shell
+                  animation="gradient"
+                  [data]="prod?.unitPrice |currency:'₦':'symbol':'1.2-2'"
+                  class="note_title12Black"
+                ></app-text-shell>
+              </ion-col>
+              <ion-col size="12">
+                Quantity: <b>{{prod.quantity}}</b>
+              </ion-col>
+              <ion-col size="12">
+                FROM <b>{{prod.storeName | uppercase}}</b>
+              </ion-col>
+            </ion-row>
+            </ion-col>
+            
+          </ion-row>
+        
+  </ion-grid>
+ </section>
+</div>
+</ion-content>

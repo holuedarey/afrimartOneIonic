@@ -1,0 +1,46 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-searchbar
+      *ngIf="longSearch && showSearch"
+      animated="false"
+      placeholder="Search for products & brands"
+      (ionFocus)="loadSearchModal()"
+    >
+    </ion-searchbar>
+
+    <ion-buttons slot="start" *ngIf="showBackButton">
+      <ion-button (click)="myBackButton()">   
+        <ion-icon
+          size="small"
+          name="arrow-back-outline"
+          color="light"
+        ></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-buttons slot="end" *ngIf="showSearch">
+      <ion-button *ngIf="!longSearch && showSearch" (click)="loadSearchModal()">
+        <ion-icon name="search-outline" color="light"></ion-icon>
+      </ion-button>
+      <ion-button id="notification-button" (click)="presentQouteModal()">
+        <ion-icon src="/assets/vectors/icons/qoute.svg" color="light"></ion-icon>
+      </ion-button>
+      <ion-button id="notification-button" (click)="presentQouteModal()">
+        <ion-icon src="/assets/vectors/icons/label.svg"  color="light"></ion-icon>
+        <ion-badge
+          id="notifications-badge"
+          color="light"
+          class="note_title8Black"
+          *ngIf="currentUser"
+          >{{ cartTotal }}</ion-badge
+        >
+      </ion-button>
+    </ion-buttons>
+    <ion-title class="ion-text-center">{{ title }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-progress-bar
+  color="primary"
+  type="indeterminate"
+  *ngIf="isLoading"
+></ion-progress-bar>

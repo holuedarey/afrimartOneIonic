@@ -1,0 +1,189 @@
+<app-header
+  [title]="title  | titlecase"
+  [longSearch]="longSearch"
+  [showBackButton]="showBackButton"
+  [isLoading]="loading"
+  [showSearch]="showSearch"
+>
+</app-header>
+
+<ion-content>
+  <ion-grid class="borderBottom">
+    <ion-row style="text-align: center;">
+      <ion-col size="6" class="borderRight" (click)="presentFilterModal()">
+        <ion-icon size="small" name="funnel-outline"></ion-icon>
+        Filter
+      </ion-col>
+      <ion-col size="4" class="borderRight" (click)="showSortFilter()">
+        <ion-icon size="small" name="swap-vertical-outline"></ion-icon>
+        Sort
+      </ion-col>
+      <ion-col size="2">
+        <a *ngIf="isGrid" (click)="changeListType()">
+          <ion-icon size="small" name="menu-outline"></ion-icon>
+        </a>
+        <a *ngIf="!isGrid" (click)="changeListType()">
+          <ion-icon size="small" name="grid-outline"></ion-icon>
+        </a>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-grid *ngIf="isGrid">
+    <ion-row>
+      <ion-col
+        size="6"
+        class="borderBottom"
+        [class.borderRight]="even"
+        *ngFor="let prod of Products;let even=even"
+      >
+        <ion-row style="text-align: center;">
+          <ion-col size="10">
+            <app-aspect-ratio
+              [ratio]="{w:1, h:1}"
+              routerLink="/products/{{prod._id}}"
+            >
+              <app-image-shell
+                animation="gradient"
+                [src]="prod?.gallery[0]"
+                [alt]="'Product Image'"
+                class="imgHolder"
+              >
+              </app-image-shell>
+            </app-aspect-ratio>
+          </ion-col>
+          <ion-col size="2" class="" *ngIf="prod">
+            <a *ngIf="isGrid" (click)="addToWishlist(prod)">
+              <ion-icon
+                *ngIf="!checkIfProdInWishList(prod)"
+                size="small"
+                name="heart-outline"
+                color="primary"
+              ></ion-icon>
+              <ion-icon
+                *ngIf="checkIfProdInWishList(prod)"
+                size="small"
+                name="heart"
+                color="primary"
+              >
+              </ion-icon>
+            </a>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="12">
+            <app-text-shell
+              animation="gradient"
+              [data]="prod?.name"
+              lines="2"
+              class="note_title12Black text-truncate"
+              routerLink="/products/{{prod._id}}"
+            >
+            </app-text-shell>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="12">
+            <app-text-shell
+              animation="gradient"
+              [data]="prod?.price | currency:'₦':'symbol':'1.2-2'"
+              lines="2"
+              class="note_title14Sec"
+              routerLink="/products/{{prod._id}}"
+            >
+            </app-text-shell>
+          </ion-col>
+        </ion-row>
+        <ion-row class="rating_row" *ngIf="prod.rating>0">
+          <ion-col size="7">
+            <app-rating-input max="5" readOnly="true" class="button-inner">
+            </app-rating-input>
+          </ion-col>
+          <ion-col size="5" class="ratingText"
+            >({{prod?.rating}} rating(s))</ion-col
+          >
+        </ion-row>
+      </ion-col>
+    </ion-row>
+
+    <ion-infinite-scroll
+      (ionInfinite)="loadMore($event)"
+      loadingSpinner="bubbles"
+      loadingText="Loading more products..."
+    >
+      <ion-infinite-scroll-content></ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+  </ion-grid>
+
+  <ion-grid class="borderBottom" *ngIf="!isGrid">
+    <ion-row
+      *ngFor="let prod of Products;let even=even"
+      class="gridProductItemList"
+    >
+      <ion-col size="4">
+        <app-aspect-ratio
+          [ratio]="{w:1, h:1}"
+          routerLink="/products/{{prod._id}}"
+        >
+          <app-image-shell
+            animation="gradient"
+            [src]="prod?.gallery[0]"
+            [alt]="'Product Image'"
+            class="imgHolder"
+          >
+          </app-image-shell>
+        </app-aspect-ratio>
+      </ion-col>
+      <ion-col size="7">
+        <app-text-shell
+          animation="gradient"
+          [data]="prod?.name"
+          lines="2"
+          class="note_title12Black text-truncate"
+          routerLink="/products/{{prod._id}}"
+        >
+        </app-text-shell>
+        <app-text-shell
+          animation="gradient"
+          [data]="prod?.price  | currency:'₦':'symbol':'1.2-2'"
+          class="note_title14Sec"
+          routerLink="/products/{{prod._id}}"
+        >
+        </app-text-shell>
+        <ion-row class="rating_row">
+          <ion-col size="7">
+            <app-rating-input max="5" readOnly="true" class="button-inner">
+            </app-rating-input>
+          </ion-col>
+          <ion-col size="5" class="ratingText"
+            >({{prod?.rating}} rating(s))
+          </ion-col>
+        </ion-row>
+      </ion-col>
+      <ion-col size="1" class="" *ngIf="prod">
+        <a (click)="addToWishlist(prod)">
+          <ion-icon
+            *ngIf="!checkIfProdInWishList(prod)"
+            size="small"
+            name="heart-outline"
+            color="primary"
+          ></ion-icon>
+          <ion-icon
+            *ngIf="checkIfProdInWishList(prod)"
+            size="small"
+            name="heart"
+            color="primary"
+          >
+          </ion-icon>
+        </a>
+      </ion-col>
+    </ion-row>
+    <ion-infinite-scroll
+      (ionInfinite)="loadMore($event)"
+      loadingSpinner="bubbles"
+      loadingText="Loading more products..."
+    >
+      <ion-infinite-scroll-content></ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+  </ion-grid>
+</ion-content>

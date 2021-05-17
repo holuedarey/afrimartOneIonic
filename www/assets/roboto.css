@@ -1,0 +1,15 @@
+/* regular font */
+@font-face {
+  font-family: 'RedHatDisplay';
+  font-style: normal;
+  font-weight: 700;
+  src: url("../assets/fonts/RedHatDisplay-Medium.ttf");
+}
+
+/* regular font */
+@font-face {
+  font-family: 'RedHatDisplayBold';
+  font-style: normal;
+  font-weight: 700;
+  src: url("../assets/fonts/RedHatDisplay-Black.ttf");
+}

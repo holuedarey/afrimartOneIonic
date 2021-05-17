@@ -1,0 +1,29 @@
+ion-content {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    left: 0px;
+    top: 0px;
+    align-content: left;
+    display: flex;
+    flex-direction: column;
+    // justify-content: center;
+    text-align: left;
+     padding: 0 5%;
+     --background: #FFF;
+    //  background-color: #000000;
+    .topFadedLogo{
+    position: absolute;
+    top:0px!important;
+    left:0px!important;
+    background: url('../../assets/vectors/icons/topLeftLogo.svg')!important;
+    opacity: 0.4;
+    height: 70px!important;
+    width: 70px!important;
+    }
+}
+
+
+
+
+ 

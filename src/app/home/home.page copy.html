@@ -1,0 +1,439 @@
+<app-header [title]="title" [longSearch]="longSearch" [showBackButton]="showBackButton" [isLoading]="loading"
+  [showSearch]="showSearch">
+</app-header>
+<ion-content>
+  <ion-grid class="card">
+    <ion-row>
+      <ion-col size="12">
+        <ion-slides pager="true" style="padding-bottom: 25px;" [options]="slideOpts">
+          <!-- <ion-slide *ngFor="let s of Slides" (click)="viewCategory(s.imgLink)">
+
+            <img [src]="s.imgUrl" alt="{{s.imgUrl}}" />
+          </ion-slide> -->
+          <!-- <ion-slide *ngFor="let s of Slides" (click)="viewCategory(s.imgLink)">
+            <img [src]="s.imgUrl" alt="{{s.imgUrl}}" />
+          </ion-slide> -->
+
+          <ion-slide>
+            <img src="../../assets/imgs/slides_1.png" alt="Slides" />
+          </ion-slide>
+          <ion-slide>
+            <img src="../../assets/dummy-images/slide1.png" alt="Slides" />
+          </ion-slide>
+          <ion-slide>
+            <img src="../../assets/dummy-images/slide2.png" alt="Slides" />
+          </ion-slide>
+          <ion-slide>
+            <img src="../../assets/dummy-images/slide3.png" alt="Slides" />
+          </ion-slide>
+          <ion-slide>
+            <img src="../../assets/dummy-images/slide1.png" alt="Slides" />
+          </ion-slide>
+          <ion-slide>
+            <img src="../../assets/dummy-images/slide3.png" alt="Slides" />
+          </ion-slide>
+        </ion-slides>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <!-- <ion-grid class="t_center">
+    <ion-row class="gridSubCatHeader">
+      <ion-col size="12">
+        <ion-text>BRANDS</ion-text>
+      </ion-col>
+    </ion-row>
+    <ion-row *ngIf="Brands" class="card">
+      <ion-col col-6 *ngFor="let brand of Brands">
+        <app-image-shell
+          animation="gradient"
+          [src]="brand?.imgUrl"
+          [alt]="'Brand'"
+          class="brand"
+        >
+        </app-image-shell>
+      </ion-col>
+    </ion-row>
+  </ion-grid> -->
+  <ion-grid class="t_center">
+    <ion-row class="gridSubCatHeader">
+      <ion-col size="12" style="text-align: left;" class="note_title_bold12Sec">
+        <ion-text class="bold-text">CATEGORIES</ion-text>
+      </ion-col>
+    </ion-row>
+    <ion-row class="card catMenu">
+      <ion-col size="3" (click)="viewSubCategory('5e09ceaa5b359465f1e64a45','Phones & Tablets')">
+        <ion-icon src="/assets/vectors/icons/Agriculture.svg" class="xxx"></ion-icon><br />
+        <ion-text class="catText">Agriculture</ion-text>
+      </ion-col>
+      <ion-col size="3" (click)="viewSubCategory('5e09d21c5b359465f1e64a4d','Computing')">
+        <ion-icon src="/assets/vectors/icons/medical&pharmacy.svg" class="xxx"></ion-icon><br />
+        <ion-text class="catText">Medical & Pharmaceutical</ion-text>
+      </ion-col>
+      <ion-col size="3" (click)="viewSubCategory('5e09d5e05b359465f1e64a5a','Electronics')">
+        <ion-icon src="/assets/vectors/icons/Electronics.svg" class="xxx"></ion-icon><br />
+        <ion-text class="catText">Electrical &
+          Electronics</ion-text>
+      </ion-col>
+      <ion-col size="3" (click)="viewSubCategory('5e09d8b25b359465f1e64a68','Home & Office')">
+        <ion-icon src="/assets/vectors/icons/Art_Crafts.svg" class="xxx"></ion-icon><br />
+        <ion-text class="catText">Arts & Crafts</ion-text>
+      </ion-col>
+    </ion-row>
+    <ion-row class="card catMenu">
+      <ion-col size="3" (click)="viewSubCategory('5e09ddbf5b359465f1e64a81','Fashion')">
+        <ion-icon src="/assets/vectors/icons/Fashion.svg" class="xxx"></ion-icon><br />
+        <ion-text class="catText">Fashion & Accessories</ion-text>
+      </ion-col>
+      <ion-col size="3" (click)="viewSubCategory('5e09e9c924f32d6afe9265d2','Health & Beauty')">
+        <ion-icon src="/assets/vectors/icons/leather.svg" class="xxx"></ion-icon><br />
+        <ion-text class="catText">Leather Goods</ion-text>
+      </ion-col>
+      <ion-col size="3" (click)="viewSubCategory('5e09faeb6a00076b11349871','Groceries')">
+        <ion-icon src="/assets/vectors/icons/Automobile.svg" class="xxx"></ion-icon><br />
+        <ion-text class="catText">Automobile</ion-text>
+      </ion-col>
+      <ion-col size="3" (click)="viewSubCategory('5e2f870c25a2290ed0b668c6','Others')">
+        <ion-icon src="/assets/vectors/icons/All_Categories.svg" class="xxx"></ion-icon><br />
+        <ion-text class="catText">All Categories</ion-text>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-grid class="cards" *ngIf="topProds">
+    <ion-row class="">
+      <ion-col size="12" class="note_title_bold12Sec">
+        <ion-text>
+          <ion-row>
+            <ion-col size="9">
+              <span class="ion-text-left bold-text">TOP PRODUCTS </span>
+            </ion-col>
+            <ion-col size="3">
+              <span class="t_right home-view-all">View all</span>
+            </ion-col>
+          </ion-row>
+        </ion-text>
+      </ion-col>
+    </ion-row>
+    <ion-row class="t_centers">
+      <ion-col col-6 class="productsCol card" routerLink="/">
+        <app-image-shell animation="gradient" src="/assets/vectors/icons/test.svg" [alt]="'Product Image'"
+          class="inner-img" style="padding-bottom: 5px;">
+          <!-- <br><br> -->
+        </app-image-shell>
+        <!-- <app-text-shell animation="gradient" [data]="productName" lines="2" class="note_title10Black text-truncate">
+        </app-text-shell> -->
+        <p class="text-left product-description-height">Cotton socks</p>
+        <app-text-shell animation="gradient" [data]="'$0.07 - $0.09'" lines="1" class="text-left  bold-text note_title_bold10Black"
+          style="padding: 5px 0;">
+        </app-text-shell>
+        <app-text-shell animation="gradient" [data]="'1000 Dozen(s) (Min Order)'" lines="1"
+          class="note_title_bold12Black text-left" style="padding: 5px 0;">
+        </app-text-shell>
+      </ion-col>
+      
+      <ion-col col-6 class="productsCol card" routerLink="/">
+        <app-image-shell animation="gradient" src="/assets/vectors/icons/test1.svg" [alt]="'Product Image'"
+          class="inner-img" style="padding-bottom: 5px;">
+          <!-- <br><br> -->
+        </app-image-shell>
+        <!-- <app-text-shell animation="gradient" [data]="productName" lines="2" class="note_title10Black text-truncate">
+        </app-text-shell> -->
+        <p class="text-left product-description-height">Automatic PET Blowing Machine APF - 3002</p>
+        <app-text-shell animation="gradient" [data]="'$0.07 - $1.22'" lines="1" class="text-left  bold-text note_title_bold10Black"
+          style="padding: 5px 0;">
+        </app-text-shell>
+        <app-text-shell animation="gradient" [data]="'1 Units(s) (Min Order)'" lines="1"
+          class="note_title_bold12Black text-left" style="padding: 5px 0;">
+        </app-text-shell>
+      </ion-col>
+      
+
+      <!-- <ion-col col-6 class="productsCol" routerLink="/products/{{tp._id}}" *ngFor="let tp of topProds"> -->
+      <!-- <app-image-shell animation="gradient" [src]="tp?.gallery[0]" [alt]="'Product Image'" class="inner-img"
+          style="padding-bottom: 5px;">
+        </app-image-shell>
+        <app-text-shell animation="gradient" [data]="tp?.name" lines="2" class="note_title10Black text-truncate">
+        </app-text-shell>
+        <app-text-shell animation="gradient" [data]="tp?.price | currency:'₦':'symbol':'1.2-2'" lines="1"
+          class="note_title_bold12Black" style="padding: 5px 0;">
+        </app-text-shell> -->
+      <!-- </ion-col> -->
+    </ion-row>
+
+    <ion-row class="t_centers">
+      <ion-col col-6 class="productsCol card" routerLink="/">
+        <app-image-shell animation="gradient" src="/assets/vectors/icons/test.svg" [alt]="'Product Image'"
+          class="inner-img" style="padding-bottom: 5px;">
+          <!-- <br><br> -->
+        </app-image-shell>
+        <!-- <app-text-shell animation="gradient" [data]="productName" lines="2" class="note_title10Black text-truncate">
+        </app-text-shell> -->
+        <p class="text-left product-description-height">Cotton socks</p>
+        <app-text-shell animation="gradient" [data]="'$0.07 - $0.09'" lines="1" class="text-left  bold-text note_title_bold10Black"
+          style="padding: 5px 0;">
+        </app-text-shell>
+        <app-text-shell animation="gradient" [data]="'1000 Dozen(s) (Min Order)'" lines="1"
+          class="note_title_bold12Black text-left" style="padding: 5px 0;">
+        </app-text-shell>
+      </ion-col>
+      
+      <ion-col col-6 class="productsCol card" routerLink="/">
+        <app-image-shell animation="gradient" src="/assets/vectors/icons/test1.svg" [alt]="'Product Image'"
+          class="inner-img" style="padding-bottom: 5px;">
+          <!-- <br><br> -->
+        </app-image-shell>
+        <!-- <app-text-shell animation="gradient" [data]="productName" lines="2" class="note_title10Black text-truncate">
+        </app-text-shell> -->
+        <p class="text-left product-description-height">Automatic PET Blowing Machine APF - 3002</p>
+        <app-text-shell animation="gradient" [data]="'$0.07 - $1.22'" lines="1" class="text-left  bold-text note_title_bold10Black"
+          style="padding: 5px 0;">
+        </app-text-shell>
+        <app-text-shell animation="gradient" [data]="'1 Units(s) (Min Order)'" lines="1"
+          class="note_title_bold12Black text-left" style="padding: 5px 0;">
+        </app-text-shell>
+      </ion-col>
+      
+
+      <!-- <ion-col col-6 class="productsCol" routerLink="/products/{{tp._id}}" *ngFor="let tp of topProds"> -->
+      <!-- <app-image-shell animation="gradient" [src]="tp?.gallery[0]" [alt]="'Product Image'" class="inner-img"
+          style="padding-bottom: 5px;">
+        </app-image-shell>
+        <app-text-shell animation="gradient" [data]="tp?.name" lines="2" class="note_title10Black text-truncate">
+        </app-text-shell>
+        <app-text-shell animation="gradient" [data]="tp?.price | currency:'₦':'symbol':'1.2-2'" lines="1"
+          class="note_title_bold12Black" style="padding: 5px 0;">
+        </app-text-shell> -->
+      <!-- </ion-col> -->
+    </ion-row>
+  </ion-grid>
+
+  <ion-grid>
+    <ion-row class="p-t-b-20 card">
+      <ion-col size="12" class="note_title_bold12Sec">
+        <ion-text color="primary">
+          <span class="ion-text-left uppercase bold-text">one request, multiple quotes.</span>
+        </ion-text>
+      </ion-col>
+      <ion-col size="12">
+        <ion-input class="searchFormQoute" type="text" placeholder="What would you like to search for?"
+          clear-input="true"></ion-input>
+      </ion-col>
+      <ion-col>
+        <ion-button expand="block" color="primary" class="capitilize">Request For Quotes <ion-icon
+            style="margin-left: 5px;" src="/assets/vectors/icons/sendIcon.svg"></ion-icon>
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-grid class="cards" *ngIf="dailyProds">
+    <ion-row class="gridSubCatHeader">
+      <ion-col size="12" class="note_title_bold12Sec">
+        <ion-text class="category-header-text">
+          <ion-row>
+            <ion-col size="9">
+              <span class="ion-text-left bold-text">FEATURED pRODUCT </span>
+            </ion-col>
+            <ion-col size="3">
+              <span class="t_right home-view-all">View all</span>
+            </ion-col>
+          </ion-row>
+        </ion-text>
+      </ion-col>
+    </ion-row>
+    <ion-row class="t_center card">
+      <ion-col col-6 class="productsCol" routerLink="/products/{{tp._id}}" *ngFor="let tp of dailyProds">
+        <app-image-shell animation="gradient" [src]="tp?.gallery[0]" [alt]="'Product Image'" class="inner-img"
+          style="padding-bottom: 5px;">
+        </app-image-shell>
+        <app-text-shell animation="gradient" [data]="tp?.name" lines="2" class="note_title10Black text-truncate">
+        </app-text-shell>
+        <app-text-shell animation="gradient" [data]="tp?.price | currency:'₦':'symbol':'1.2-2'" lines="1"
+          class="note_title_bold12Black" style="padding: 5px 0;">
+        </app-text-shell>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-grid class="home_ad" *ngIf="level1Ads">
+    <ion-row>
+      <ion-col col-6 *ngFor="let x of level1Ads" style="margin: 0 5px;">
+        <img [src]="x.imgUrl" alt="EasyMall" style="width: 100%; height: 100px;" (click)="viewCategory(x.imgLink)" />
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-grid class="card" *ngIf="lastestDeals">
+    <ion-row class="gridSubCatHeader">
+      <ion-col size="12" class="note_title_bold12Sec">
+        <ion-text class="category-header-text">
+          <ion-row>
+            <ion-col size="9">
+              <span class="ion-text-left"> LATEST DEALS </span>
+            </ion-col>
+            <ion-col size="3">
+              <span class="t_right home-view-all">View all</span>
+            </ion-col>
+          </ion-row>
+        </ion-text>
+      </ion-col>
+    </ion-row>
+    <ion-row class="t_center">
+      <ion-col col-6 class="productsCol" routerLink="/products/{{tp._id}}" *ngFor="let tp of lastestDeals">
+        <app-image-shell animation="gradient" [src]="tp?.gallery[0]" [alt]="'Product Image'" class="inner-img"
+          style="padding-bottom: 5px;">
+        </app-image-shell>
+        <app-text-shell animation="gradient" [data]="tp?.name" lines="2" class="note_title10Black text-truncate">
+        </app-text-shell>
+        <app-text-shell animation="gradient" [data]="tp?.price | currency:'₦':'symbol':'1.2-2'" lines="1"
+          class="note_title_bold12Black" style="padding: 5px 0;">
+        </app-text-shell>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-grid class="card" *ngIf="recommendedProducts">
+    <ion-row class="gridSubCatHeader">
+      <ion-col size="12" class="note_title_bold12Sec">
+        <ion-text class="category-header-text">
+          <ion-row>
+            <ion-col size="9">
+              <span class="ion-text-left"> RECOMMENDED</span>
+            </ion-col>
+            <ion-col size="3">
+              <span class="t_right home-view-all">View all</span>
+            </ion-col>
+          </ion-row>
+        </ion-text>
+      </ion-col>
+    </ion-row>
+    <ion-row class="t_center">
+      <ion-col col-6 class="productsCol" routerLink="/products/{{tp._id}}" *ngFor="let tp of recommendedProducts">
+        <app-image-shell animation="gradient" [src]="tp?.gallery[0]" [alt]="'Product Image'" class="inner-img"
+          style="padding-bottom: 5px;">
+        </app-image-shell>
+        <app-text-shell animation="gradient" [data]="tp?.name" lines="2" class="note_title10Black text-truncate">
+        </app-text-shell>
+        <app-text-shell animation="gradient" [data]="tp?.price | currency:'₦':'symbol':'1.2-2'" lines="1"
+          class="note_title_bold12Black" style="padding: 5px 0;">
+        </app-text-shell>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-grid class="home_ad" *ngIf="level2Ads">
+    <ion-row>
+      <ion-col col-6 *ngFor="let x of level2Ads" style="margin: 0 5px;">
+        <img [src]="x.imgUrl" alt="EasyMall" style="width: 100%; height: 100px;" (click)="viewCategory(x.imgLink)" />
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-grid class="card" *ngIf="categories">
+    <ion-row class="gridSubCatHeader">
+      <ion-col size="12" class="note_title_bold12Sec">
+        <ion-text class="category-header-text">
+          <ion-row>
+            <ion-col size="9">
+              <span class="ion-text-left"> FEATURED CATEGORIES</span>
+            </ion-col>
+            <ion-col size="3">
+              <span class="t_right home-view-all">View all</span>
+            </ion-col>
+          </ion-row>
+        </ion-text>
+      </ion-col>
+    </ion-row>
+    <ion-row class="card t_center">
+      <ion-col col-6 class="productsColNoBorder" *ngFor="let tp of categories">
+        <app-image-shell animation="gradient" [src]="tp?.value" [alt]="'Category Image'" class="inner-img150"
+          (click)="viewCategory(tp.imgLink)" style="padding-bottom: 5px;">
+        </app-image-shell>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-grid class="card gridSubCat" *ngIf="level1_cats">
+    <ion-row class="gridSubCatHeader">
+      <ion-col size="9" class="note_title_bold12Sec">
+        <ion-text>&nbsp;</ion-text>
+      </ion-col>
+      <ion-col size="3" class="note_title10Pri t_right">
+        <ion-text (click)="viewCategory(level1_cats[0].value)">SEE ALL
+        </ion-text>
+      </ion-col>
+    </ion-row>
+    <ion-row class="t_center">
+      <ion-col col-12 class="">
+        <app-image-shell animation="gradient" [src]="level1_cats?level1_cats[0].imgUrl:'assets/imgs/logo.png'"
+          [alt]="'Product Image'" class="inner-img300" style="padding-bottom: 5px;">
+        </app-image-shell>
+      </ion-col>
+    </ion-row>
+    <ion-row class="t_center">
+      <ion-col col-6 class="productsCol" routerLink="/products/{{prod._id}}" *ngFor="let prod of level1_prods">
+        <app-image-shell animation="gradient" [src]="prod?.gallery[0]" [alt]="'Product Image'" class="inner-img"
+          style="padding-bottom: 5px;">
+        </app-image-shell>
+        <app-text-shell animation="gradient" [data]="prod?.name" lines="2" class="note_title10Black text-truncate">
+        </app-text-shell>
+        <app-text-shell animation="gradient" [data]="prod?.price | currency:'₦':'symbol':'1.2-2'" lines="1"
+          class="note_title_bold12Black" style="padding: 5px 0;">
+        </app-text-shell>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-grid class="card gridSubCat" *ngIf="level2_cats">
+    <ion-row class="gridSubCatHeader">
+      <ion-col size="9" class="note_title_bold12Sec">
+        <ion-text>&nbsp;</ion-text>
+      </ion-col>
+      <ion-col size="3" class="note_title10Pri t_right">
+        <ion-text (click)="viewCategory(level2_cats[0].value)">SEE ALL
+        </ion-text>
+      </ion-col>
+    </ion-row>
+    <ion-row class="t_center">
+      <ion-col col-12 class="">
+        <app-image-shell animation="gradient" [src]="level1_cats?level2_cats[0].imgUrl:'assets/imgs/logo.png'"
+          [alt]="'Product Image'" class="inner-img300" style="padding-bottom: 5px;">
+        </app-image-shell>
+      </ion-col>
+    </ion-row>
+    <ion-row class="t_center">
+      <ion-col col-6 class="productsCol" routerLink="/products/{{prod._id}}" *ngFor="let prod of level2_prods">
+        <app-image-shell animation="gradient" [src]="prod?.gallery[0]" [alt]="'Product Image'" class="inner-img"
+          style="padding-bottom: 5px;">
+        </app-image-shell>
+        <app-text-shell animation="gradient" [data]="prod?.name" lines="2" class="note_title10Black text-truncate">
+        </app-text-shell>
+        <app-text-shell animation="gradient" [data]="prod?.price | currency:'₦':'symbol':'1.2-2'" lines="1"
+          class="note_title_bold12Black" style="padding: 5px 0;">
+        </app-text-shell>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-grid class="card gridSubCat" *ngIf="level3_cats">
+    <ion-row class="gridSubCatHeader">
+      <ion-col size="9" class="note_title_bold12Sec">
+        <ion-text>&nbsp;</ion-text>
+      </ion-col>
+      <ion-col size="3" class="note_title10Pri t_right">
+        <ion-text (click)="viewCategory(level3_cats[0].value)">SEE ALL
+        </ion-text>
+      </ion-col>
+    </ion-row>
+    <ion-row class="t_center">
+      <ion-col col-12 class="">
+        <app-image-shell animation="gradient" [src]="level3_cats?level3_cats[0].imgUrl:'assets/imgs/logo.png'"
+          [alt]="'Product Image'" class="inner-img300" style="padding-bottom: 5px;">
+        </app-image-shell>
+      </ion-col>
+    </ion-row>
+    <ion-row class="t_center">
+      <ion-col col-6 class="productsCol" routerLink="/products/{{prod._id}}" *ngFor="let prod of level3_prods">
+        <app-image-shell animation="gradient" [src]="prod?.gallery[0]" [alt]="'Product Image'" class="inner-img"
+          style="padding-bottom: 5px;">
+        </app-image-shell>
+        <app-text-shell animation="gradient" [data]="prod?.name" lines="2" class="note_title10Black text-truncate">
+        </app-text-shell>
+        <app-text-shell animation="gradient" [data]="prod?.price | currency:'₦':'symbol':'1.2-2'" lines="1"
+          class="note_title_bold12Black" style="padding: 5px 0;">
+        </app-text-shell>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

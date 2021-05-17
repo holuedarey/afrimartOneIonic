@@ -1,0 +1,187 @@
+<app-header
+  [title]="title"
+  [longSearch]="longSearch"
+  [showBackButton]="showBackButton"
+  [isLoading]="loading"
+  [showSearch]="showSearch"
+>
+</app-header>
+<ion-content>
+  <ion-content>
+    <div *ngIf="products.length>0">
+      <section *ngFor="let prod of products; let i=index;">
+        <ion-grid class="card">
+          <ion-row>
+            <ion-col size="4" routerLink="/product-details/{{prod.productId}}">
+              <app-aspect-ratio [ratio]="{w:1, h:1}">
+                <app-image-shell
+                  animation="gradient"
+                  [src]="prod?.imgUrl"
+                  [alt]="'Product Image'"
+                >
+                </app-image-shell>
+              </app-aspect-ratio>
+            </ion-col>
+            <ion-col
+              size="8"
+              class="counter-list"
+              routerLink="/product-details/{{prod.productId}}"
+            >
+              <h3 style="margin-top: 0px;">
+                <app-text-shell
+                  animation="gradient"
+                  [data]="prod?.productName"
+                  lines="3"
+                  class="note_title12Black"
+                >
+                </app-text-shell>
+              </h3>
+              <app-text-shell
+                animation="gradient"
+                [data]="prod?.unitPrice |currency:'₦':'symbol':'1.2-2'"
+                class="note_title12Sec"
+              ></app-text-shell>
+            </ion-col>
+          </ion-row>
+          <ion-row class="grid">
+            <ion-col size="1">
+              <a (click)="addToWishlist(prod)">
+                <ion-icon
+                  *ngIf="!checkIfProdInWishList(prod)"
+                  size="small"
+                  name="heart-outline"
+                  color="primary"
+                ></ion-icon>
+                <ion-icon
+                  *ngIf="checkIfProdInWishList(prod)"
+                  size="small"
+                  name="heart"
+                  color="primary"
+                >
+                </ion-icon>
+              </a>
+            </ion-col>
+            <ion-col size="1">
+              <div class="vl"></div>
+            </ion-col>
+            <ion-col size="1">
+              <a
+                class="note_title14Pri"
+                (click)="presentAlertConfirmDelete(prod)"
+              >
+                <ion-icon
+                  size="small"
+                  name="trash-outline"
+                  color="primary"
+                ></ion-icon>
+              </a>
+            </ion-col>
+            <ion-col size="5">
+              &nbsp;
+            </ion-col>
+
+            <ion-col size="4">
+              <app-counter-input
+                [(ngModel)]="prod.quantity"
+                [counterValue]="prod.quantity"
+                [x]="prod"
+                (change)="countChange($event)"
+              ></app-counter-input>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </section>
+      <section>
+        <ion-grid class="gridCardFlat" style="padding: 0px;">
+          <ion-row>
+            <ion-col size="5" class="note_title_bold12Black">
+              Subtotal
+            </ion-col>
+            <ion-col
+              size="7"
+              style="text-align: right;"
+              class="note_title_bold12Black"
+            >
+              {{fee.subTotal | currency:'₦':'symbol':'1.2-2'}}
+            </ion-col>
+          </ion-row>
+          <ion-row style="background: #e4e1e1;">
+            <ion-col size="5" class="note_title_bold12Black">
+              Total shipping fee
+            </ion-col>
+            <ion-col
+              size="7"
+              style="text-align: right;"
+              class="note_title_bold12Black"
+            >
+              {{fee.totalShipping | currency:'₦':'symbol':'1.2-2'}}
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col size="12"> </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col size="5" class="note_title_bold14Black">
+              Total
+            </ion-col>
+            <ion-col
+              size="7"
+              style="text-align: right;"
+              class="note_title_bold14Sec"
+            >
+              {{fee.total | currency:'₦':'symbol':'1.2-2'}}
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col size="12">
+              <!-- <br> -->
+              <ion-button
+                expand="block"
+                color="secondary"
+                (click)="doCheckOut()"
+              >
+                COMPLETE YOUR ORDER
+              </ion-button>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </section>
+    </div>
+
+    <div *ngIf="products.length==0">
+      <ion-grid class="grid" class="t_center" style="padding-top: 50px;">
+        <ion-row>
+          <ion-col size="12">
+            <!-- <ion-icon size="large" name="cart-sharp" color="primary"></ion-icon> -->
+            <ion-icon
+              src="/assets/vectors/icons/big_cart.svg"
+              class="xxxx"
+            ></ion-icon>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col
+            size="12"
+            class="note_title_bold14Black"
+            style="padding-bottom: 2.5rem;"
+          >
+            <ion-text>
+              There are currently no items in your<br />shopping cart</ion-text
+            >
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="12">
+            <ion-button
+              expand="block"
+              color="primary"
+              [routerLink]="['/app/home']"
+            >
+              CLICK TO SHOP
+            </ion-button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+  </ion-content>
+</ion-content>

@@ -1,0 +1,46 @@
+<app-header [title]="title" [longSearch]="longSearch" [showBackButton]="showBackButton" [isLoading]="loading"
+  [showSearch]="showSearch">
+</app-header>
+<ion-content>
+  <ion-row>
+    <ion-col size="12" class="note_title_bold12Sec">
+      <ion-text>MY ORDER HISTORY</ion-text>
+    </ion-col>
+  </ion-row>
+    <div *ngIf="Prods.length>0">
+      <section *ngFor="let prod of Prods; let i=index;">
+        <ion-grid class="card" routerLink="/order-details/{{prod.order}}">
+          <ion-row>
+            <ion-col size="9" class="note_title_bold12Sec">
+              <ion-text>{{prod.orderTag}}</ion-text>
+            </ion-col>
+            <ion-col size="3" class="t_right">
+              {{prod.statusChangeDate | date : 'mediumDate'}}
+             </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col size="12" class="note_title12Black" >
+              {{prod.unitPrice |currency:'₦':'symbol':'1.2-2'}}
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </section>
+    </div>
+   
+    <div *ngIf="!Prods">
+      <ion-grid class="grid" class="t_center" style="padding-top: 50px;">
+        <ion-row>
+          <ion-col size="12">
+            <ion-icon size="large" name="cart-sharp" color="primary"></ion-icon>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="12">
+            <ion-text> YOU CURRENTLY HAVE NO ORDERS!</ion-text>
+          </ion-col>
+        </ion-row>      
+      </ion-grid>
+    </div>
+
+
+  </ion-content>
