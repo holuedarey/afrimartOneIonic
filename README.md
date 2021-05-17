@@ -1,3 +1,4 @@
-# easycoop_apps
 
-EasyMall Mobile Applications
+# afrimartone-mobile
+
+Afrimartone Mobile Apps
