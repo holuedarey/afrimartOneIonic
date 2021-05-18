@@ -6,7 +6,7 @@ export const environment = {
   production: false,
   // apiUrl: "http://40.121.131.104:4000/api/v1/",
   apiUrl: "http://54.93.155.199:8080/api/v1/",
-  baseUrl: "https://easymall.ng/",
+  baseUrl: "https://afrimartone.ng/",
   socialLoginConfig: {
     facebook: {
       appId: "2504590776291199",

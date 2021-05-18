@@ -12,7 +12,7 @@ gen
 out
 # Gradle build artifacts
 .gradle
-.gradletasknamecaches
+.gradletasknamecache
 /build
 /CordovaLib/build
 /app/build

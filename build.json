@@ -8,9 +8,9 @@
             "keystoreType": ""
         },
         "release": {
-           "keystore": "easymall.keystore",
+           "keystore": "afrimartone.keystore",
            "storePassword": "Domdam@30",
-           "alias": "easymall",
+           "alias": "afrimartone",
            "password": "Domdam@30",
            "keystoreType": ""
        }

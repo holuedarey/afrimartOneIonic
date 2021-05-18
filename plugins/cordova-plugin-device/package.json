@@ -2,7 +2,7 @@
   "_args": [
     [
       "cordova-plugin-device@2.0.2",
-      "/Users/mac/Documents/Ionic/easymall"
+      "/Users/mac/Documents/Ionic/afrimartone"
     ]
   ],
   "_development": true,
@@ -27,7 +27,7 @@
   ],
   "_resolved": "https://registry.npmjs.org/cordova-plugin-device/-/cordova-plugin-device-2.0.2.tgz",
   "_spec": "2.0.2",
-  "_where": "/Users/mac/Documents/Ionic/easymall",
+  "_where": "/Users/mac/Documents/Ionic/afrimartone",
   "author": {
     "name": "Apache Software Foundation"
   },

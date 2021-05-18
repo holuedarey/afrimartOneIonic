@@ -1,28 +1,28 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
-import { ToastController, IonContent } from '@ionic/angular';
-import { NativeStorage } from '@ionic-native/native-storage/ngx';
-import { ProductService } from 'src/app/core/http-services/product.service';
+import { Component, OnInit, ViewChild } from "@angular/core";
+import { Router, ActivatedRoute } from "@angular/router";
+import { ToastController, IonContent } from "@ionic/angular";
+import { NativeStorage } from "@ionic-native/native-storage/ngx";
+import { ProductService } from "src/app/core/http-services/product.service";
 import {
   ProductListModel,
   ProductCategoryModel,
   CartItems,
-} from 'src/app/shared/models/product.model';
-import { StoreListModel } from 'src/app/shared/models/store.model';
-import { StoreService } from 'src/app/core/http-services/store.service';
-import { OrderService } from 'src/app/core/http-services/order.service';
-import { AuthenticationService } from 'src/app/core/authentication/authentication.service';
+} from "src/app/shared/models/product.model";
+import { StoreListModel } from "src/app/shared/models/store.model";
+import { StoreService } from "src/app/core/http-services/store.service";
+import { OrderService } from "src/app/core/http-services/order.service";
+import { AuthenticationService } from "src/app/core/authentication/authentication.service";
 // import { SocialSharing } from '@ionic-native/social-sharing/ngx';
 
 @Component({
-  selector: 'app-products',
-  templateUrl: './products.page.html',
-  styleUrls: ['./products.page.scss'],
+  selector: "app-products",
+  templateUrl: "./products.page.html",
+  styleUrls: ["./products.page.scss"],
 })
 export class ProductsPage implements OnInit {
   @ViewChild(IonContent, { static: false }) ionContent: IonContent;
   ///Inputs
-  title: string = 'Details';
+  title: string = "Details";
   longSearch: boolean = false;
   showBackButton: boolean = true;
   loading: boolean = false;
@@ -43,7 +43,6 @@ export class ProductsPage implements OnInit {
   prod_data: any;
   wishList = new Array();
 
-  
   slideOptsTwo = {
     initialSlide: 1,
     slidesPerView: 1.8,
@@ -54,11 +53,10 @@ export class ProductsPage implements OnInit {
     centeredSlides: true,
     loop: true,
     pagination: {
-      el: '.swiper-pagination',
+      el: ".swiper-pagination",
       clickable: true,
     },
   };
-
 
   slideOpts = {
     slidesPerView: 3,
@@ -111,7 +109,7 @@ export class ProductsPage implements OnInit {
         let $cubeShadowEl;
         if (params.shadow) {
           if (isHorizontal) {
-            $cubeShadowEl = $wrapperEl.find('.swiper-cube-shadow');
+            $cubeShadowEl = $wrapperEl.find(".swiper-cube-shadow");
             if ($cubeShadowEl.length === 0) {
               $cubeShadowEl = swiper.$(
                 '<div class="swiper-cube-shadow"></div>'
@@ -120,7 +118,7 @@ export class ProductsPage implements OnInit {
             }
             $cubeShadowEl.css({ height: `${swiperWidth}px` });
           } else {
-            $cubeShadowEl = $el.find('.swiper-cube-shadow');
+            $cubeShadowEl = $el.find(".swiper-cube-shadow");
             if ($cubeShadowEl.length === 0) {
               $cubeShadowEl = swiper.$(
                 '<div class="swiper-cube-shadow"></div>'
@@ -134,7 +132,7 @@ export class ProductsPage implements OnInit {
           const $slideEl = slides.eq(i);
           let slideIndex = i;
           if (isVirtual) {
-            slideIndex = parseInt($slideEl.attr('data-swiper-slide-index'), 10);
+            slideIndex = parseInt($slideEl.attr("data-swiper-slide-index"), 10);
           }
           let slideAngle = slideIndex * 90;
           let round = Math.floor(slideAngle / 360);
@@ -181,15 +179,15 @@ export class ProductsPage implements OnInit {
           if (params.slideShadows) {
             // Set shadows
             let shadowBefore = isHorizontal
-              ? $slideEl.find('.swiper-slide-shadow-left')
-              : $slideEl.find('.swiper-slide-shadow-top');
+              ? $slideEl.find(".swiper-slide-shadow-left")
+              : $slideEl.find(".swiper-slide-shadow-top");
             let shadowAfter = isHorizontal
-              ? $slideEl.find('.swiper-slide-shadow-right')
-              : $slideEl.find('.swiper-slide-shadow-bottom');
+              ? $slideEl.find(".swiper-slide-shadow-right")
+              : $slideEl.find(".swiper-slide-shadow-bottom");
             if (shadowBefore.length === 0) {
               shadowBefore = swiper.$(
                 `<div class="swiper-slide-shadow-${
-                  isHorizontal ? 'left' : 'top'
+                  isHorizontal ? "left" : "top"
                 }"></div>`
               );
               $slideEl.append(shadowBefore);
@@ -197,7 +195,7 @@ export class ProductsPage implements OnInit {
             if (shadowAfter.length === 0) {
               shadowAfter = swiper.$(
                 `<div class="swiper-slide-shadow-${
-                  isHorizontal ? 'right' : 'bottom'
+                  isHorizontal ? "right" : "bottom"
                 }"></div>`
               );
               $slideEl.append(shadowAfter);
@@ -209,10 +207,10 @@ export class ProductsPage implements OnInit {
           }
         }
         $wrapperEl.css({
-          '-webkit-transform-origin': `50% 50% -${swiperSize / 2}px`,
-          '-moz-transform-origin': `50% 50% -${swiperSize / 2}px`,
-          '-ms-transform-origin': `50% 50% -${swiperSize / 2}px`,
-          'transform-origin': `50% 50% -${swiperSize / 2}px`,
+          "-webkit-transform-origin": `50% 50% -${swiperSize / 2}px`,
+          "-moz-transform-origin": `50% 50% -${swiperSize / 2}px`,
+          "-ms-transform-origin": `50% 50% -${swiperSize / 2}px`,
+          "transform-origin": `50% 50% -${swiperSize / 2}px`,
         });
 
         if (params.shadow) {
@@ -257,11 +255,11 @@ export class ProductsPage implements OnInit {
         slides
           .transition(duration)
           .find(
-            '.swiper-slide-shadow-top, .swiper-slide-shadow-right, .swiper-slide-shadow-bottom, .swiper-slide-shadow-left'
+            ".swiper-slide-shadow-top, .swiper-slide-shadow-right, .swiper-slide-shadow-bottom, .swiper-slide-shadow-left"
           )
           .transition(duration);
         if (swiper.params.cubeEffect.shadow && !swiper.isHorizontal()) {
-          $el.find('.swiper-cube-shadow').transition(duration);
+          $el.find(".swiper-cube-shadow").transition(duration);
         }
       },
     },
@@ -274,24 +272,25 @@ export class ProductsPage implements OnInit {
     private nativeStorage: NativeStorage,
     private storeService: StoreService,
     private orderService: OrderService,
-    private authService: AuthenticationService,
-    // private socialSharing: SocialSharing
-  ) {
+    private authService: AuthenticationService
+  ) // private socialSharing: SocialSharing
+  {
     this.route.params.subscribe((params) => {
       if (params.id) {
-        console.log('params.id: ' + JSON.stringify(params.id));
-        this.loading=true;
+        console.log("params.id: " + JSON.stringify(params.id));
+        this.loading = true;
         this.productService
           .getProductDetail(params.id)
           .subscribe((prod: any) => {
             if (prod.data) {
               this.prod_data = prod.data;
-              this.loading=false;
+              this.loading = false;
               // console.log ( 'this.Product Detail: ' + JSON.stringify(this.prod_data));
               // this.recentlyViewedProducts.indexOf(this.prod_data._id) == -1
-              this.recentlyViewedProducts = this.productService.getLocalRecentlyViewedProducts()
-                ? this.productService.getLocalRecentlyViewedProducts()
-                : [];
+              this.recentlyViewedProducts =
+                this.productService.getLocalRecentlyViewedProducts()
+                  ? this.productService.getLocalRecentlyViewedProducts()
+                  : [];
               // console.log(
               //   'recentlyViewedProducts: ' +
               //     JSON.stringify(this.recentlyViewedProducts)
@@ -323,21 +322,18 @@ export class ProductsPage implements OnInit {
         //Bounce the person
       }
     });
-    this.nativeStorage.getItem('currentUser').then((x) => {
+    this.nativeStorage.getItem("currentUser").then((x) => {
       this.currentUser = x;
-      this.nativeStorage.getItem('WishList').then((x) => {
+      this.nativeStorage.getItem("WishList").then((x) => {
         this.wishList = x;
-        }
-        );
-      }
-      );
-   
+      });
+    });
   }
   ngOnInit() {}
   viewProduct(prod: any) {
     this.prod_data = null;
     this.prod_data = prod;
-    this.prod_data['productId'] = this.prod_data._id;
+    this.prod_data["productId"] = this.prod_data._id;
     this.ionContent.scrollToTop(300);
   }
   async presentToast(
@@ -348,7 +344,7 @@ export class ProductsPage implements OnInit {
   ) {
     const toast = await this.toastController.create({
       header: header,
-      position: 'bottom',
+      position: "bottom",
       message: msg,
       duration: duration,
       // cssClass: 'custom-toast-class',
@@ -357,87 +353,85 @@ export class ProductsPage implements OnInit {
     toast.present();
   }
   addToCart(prod: ProductListModel) {
-          this.orderService.addToCart(this.currentUser.token, prod).subscribe(
+    this.orderService.addToCart(this.currentUser.token, prod).subscribe(
+      (data) => {
+        console.log("addToCart Success: " + JSON.stringify(data));
+        this.productService.getNumberofItemsInCart(data.data);
+        this.presentToast(
+          "GREAT!",
+          "Product successfully added to your cart ",
+          2000,
+          "success"
+        );
+        // this.toastr.success("Item successfuly added to cart");
+      },
+      (err) => {
+        console.log("addToCart Error: " + JSON.stringify(err));
+        this.presentToast(
+          "OOPS!",
+          "An error occurred, Please try again later ",
+          2000,
+          "error"
+        );
+      }
+    );
+  }
+  addToWishlist(prod: any) {
+    if (this.currentUser) {
+      this.loading = true;
+
+      if (this.checkIfProdInWishList(prod)) {
+        this.removeFromWishlist(prod);
+      } else {
+        this.orderService
+          .addToWishlist(this.currentUser.token, {
+            productId: prod._id,
+            quantity: 1,
+          })
+          .subscribe(
             (data) => {
-              console.log('addToCart Success: ' + JSON.stringify(data));
-              this.productService.getNumberofItemsInCart(data.data);
-              this.presentToast(
-                'GREAT!',
-                'Product successfully added to your cart ',
-                2000,
-                'success'
-              );
-              // this.toastr.success("Item successfuly added to cart");
+              console.log("Add to Wishlist Result: " + JSON.stringify(data));
+              if (!data.error) {
+                this.presentToast(
+                  "GREAT!",
+                  "Product successfully added to your wishlist ",
+                  2000,
+                  "success"
+                );
+                this.wishList = data.data;
+                this.nativeStorage.setItem("WishList", this.wishList);
+                this.loading = false;
+              } else {
+                this.loading = false;
+                this.presentToast(
+                  "OOPS!",
+                  "An error occurred, Please try again later ",
+                  2000,
+                  "danger"
+                );
+              }
             },
             (err) => {
-              console.log('addToCart Error: ' + JSON.stringify(err));
+              console.error(err);
+              this.loading = false;
               this.presentToast(
-                'OOPS!',
-                'An error occurred, Please try again later ',
+                "OOPS!",
+                "An error occurred, Please try again later ",
                 2000,
-                'error'
+                "danger"
               );
             }
           );
-  }
-  addToWishlist(prod: any) {
-    
-      if (this.currentUser) {
-        this.loading = true;
-
-        if (this.checkIfProdInWishList(prod)) {
-          this.removeFromWishlist(prod);
-        } else {
-          this.orderService
-            .addToWishlist(this.currentUser.token, {
-              productId: prod._id,
-              quantity: 1,
-            })
-            .subscribe(
-              (data) => {
-                console.log('Add to Wishlist Result: ' + JSON.stringify(data));
-                if (!data.error) {
-                  this.presentToast(
-                    'GREAT!',
-                    'Product successfully added to your wishlist ',
-                    2000,
-                    'success'
-                  );
-                  this.wishList = data.data;
-                  this.nativeStorage.setItem('WishList',this.wishList);
-                  this.loading = false;
-                } else {
-                  this.loading = false;
-                  this.presentToast(
-                    'OOPS!',
-                    'An error occurred, Please try again later ',
-                    2000,
-                    'danger'
-                  );
-                }
-              },
-              (err) => {
-                console.error(err);
-                this.loading = false;
-                this.presentToast(
-                  'OOPS!',
-                  'An error occurred, Please try again later ',
-                  2000,
-                  'danger'
-                );
-              }
-            );
-        }
-      } else {
-        this.presentToast(
-          'ALMOST THERE!',
-          'Please sign in to add the product to your wishlist ',
-          2000,
-          'warning'
-        );
-        this.router.navigate(['/sign-in']);
       }
-   
+    } else {
+      this.presentToast(
+        "ALMOST THERE!",
+        "Please sign in to add the product to your wishlist ",
+        2000,
+        "warning"
+      );
+      this.router.navigate(["/sign-in"]);
+    }
   }
   removeFromWishlist(prod) {
     this.orderService
@@ -448,17 +442,17 @@ export class ProductsPage implements OnInit {
           this.wishList.forEach((w) => {
             if (w.productId === prod._id) {
               this.wishList.splice(this.wishList.indexOf(w.productId), 1);
-              this.nativeStorage.setItem('WishList',this.wishList);
+              this.nativeStorage.setItem("WishList", this.wishList);
             }
           });
           // console.log('Wishlist delete data:' + this.wishList.length);
           // this.checkIfProdInWishList(prod);
           this.loading = false;
           this.presentToast(
-            'GREAT!',
-            'Product successfully removed to your wishlist ',
+            "GREAT!",
+            "Product successfully removed to your wishlist ",
             2000,
-            'success'
+            "success"
           );
         },
         (err) => {
@@ -474,11 +468,11 @@ export class ProductsPage implements OnInit {
   //   let name = prod.name.replace(' ', '-');
   //   this.socialSharing
   //     .share(
-  //       '<a href="https://easymall.ng/view-product/"' +
+  //       '<a href="https://afrimartone.ng/view-product/"' +
   //         name +
-  //         '>https://easymall.ng/view-product/' +
+  //         '>https://afrimartone.ng/view-product/' +
   //         name,
-  //       'EasyMall Product Referral',
+  //       'AfrimartOne Product Referral',
   //       '',
   //       ''
   //     )
