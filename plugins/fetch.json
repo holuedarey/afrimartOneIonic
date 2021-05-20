@@ -88,7 +88,7 @@
     },
     "is_top_level": true,
     "variables": {
-      "REVERSED_CLIENT_ID": "ng.easymall.app",
+      "REVERSED_CLIENT_ID": "com.afrimartone.app",
       "WEB_APPLICATION_CLIENT_ID": "797349031519-3kes2kr3nh4cpltv1abpas0c218d5gbf.apps.googleusercontent.com",
       "PLAY_SERVICES_VERSION": "15.0.1"
     }

@@ -1,12 +1,12 @@
 export const appVersion: string = "1.0";
 export const version = "Version 1.0";
-export const coy: string = "EasyMall";
-export const scheme: string = "EasyMall";
-export const scheme_full: string = "EasyMall";
-export const signInTitle = "EasyMall";
-export const footerText = "www.easymall.ng";
+export const coy: string = "AfrimartOne";
+export const scheme: string = "AfrimartOne";
+export const scheme_full: string = "AfrimartOne";
+export const signInTitle = "AfrimartOne";
+export const footerText = "www.afrimartone.ng";
 
-export const footerURL = "https://www.easymall.ng";
+export const footerURL = "https://www.afrimartone.ng";
 // export const rootURL:string = 'http://localhost:1224/';
 export const rootURL = "http://54.93.155.199:8080/";
 // export const bucket = 'rubikpay.spectrumbucket';

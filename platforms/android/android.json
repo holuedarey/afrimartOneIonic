@@ -72,7 +72,7 @@
           "/manifest/application": [
             {
               "xml": "<application android:networkSecurityConfig=\"@xml/network_security_config\" />",
-              "count": 1,
+              "count": 2,
               "mode": "merge",
               "id": "config.xml",
               "oldAttrib": {
@@ -106,15 +106,13 @@
           "CAMERA_USAGE_DESCRIPTION": [
             {
               "xml": "<string>This App would like to access your camera  for to take photos for your profile. Your photos wont be shared without your permission.</string>",
-              "count": 1,
-              "id": "config.xml"
+              "count": 3
             }
           ],
           "PHOTOLIBRARY_USAGE_DESCRIPTION": [
             {
               "xml": "<string>This App would like to access your photo gallery for your profile photo upload. Your photos wont be shared without your permission.</string>",
-              "count": 1,
-              "id": "config.xml"
+              "count": 3
             }
           ]
         }
@@ -285,67 +283,67 @@
   },
   "installed_plugins": {
     "cordova-custom-config": {
-      "PACKAGE_NAME": "ng.easymall.app"
+      "PACKAGE_NAME": "com.afrimartone.app"
     },
     "cordova-plugin-add-swift-support": {
-      "PACKAGE_NAME": "ng.easymall.app"
+      "PACKAGE_NAME": "com.afrimartone.app"
     },
     "cordova-plugin-android-permissions": {
-      "PACKAGE_NAME": "ng.easymall.app"
+      "PACKAGE_NAME": "com.afrimartone.app"
     },
     "cordova-plugin-camera": {
       "ANDROID_SUPPORT_V4_VERSION": "27.+",
-      "PACKAGE_NAME": "ng.easymall.app"
+      "PACKAGE_NAME": "com.afrimartone.app"
     },
     "cordova-plugin-device": {
-      "PACKAGE_NAME": "ng.easymall.app"
+      "PACKAGE_NAME": "com.afrimartone.app"
     },
     "cordova-plugin-facebook4": {
       "APP_ID": "2504590776291199",
       "APP_NAME": "easycoopWebClient",
       "FACEBOOK_HYBRID_APP_EVENTS": "false",
       "FACEBOOK_ANDROID_SDK_VERSION": "5.5.2",
-      "PACKAGE_NAME": "ng.easymall.app"
+      "PACKAGE_NAME": "com.afrimartone.app"
     },
     "cordova-plugin-file": {
-      "PACKAGE_NAME": "ng.easymall.app"
+      "PACKAGE_NAME": "com.afrimartone.app"
     },
     "cordova-plugin-filechooser": {
-      "PACKAGE_NAME": "ng.easymall.app"
+      "PACKAGE_NAME": "com.afrimartone.app"
     },
     "cordova-plugin-filepath": {
-      "PACKAGE_NAME": "ng.easymall.app"
+      "PACKAGE_NAME": "com.afrimartone.app"
     },
     "cordova-plugin-filepicker": {
-      "PACKAGE_NAME": "ng.easymall.app"
+      "PACKAGE_NAME": "com.afrimartone.app"
     },
     "cordova-plugin-googleplus": {
       "PLAY_SERVICES_VERSION": "15.0.1",
-      "PACKAGE_NAME": "ng.easymall.app"
+      "PACKAGE_NAME": "com.afrimartone.app"
     },
     "cordova-plugin-ionic-keyboard": {
-      "PACKAGE_NAME": "ng.easymall.app"
+      "PACKAGE_NAME": "com.afrimartone.app"
     },
     "cordova-plugin-ionic-webview": {
-      "PACKAGE_NAME": "ng.easymall.app"
+      "PACKAGE_NAME": "com.afrimartone.app"
     },
     "cordova-plugin-nativestorage": {
-      "PACKAGE_NAME": "ng.easymall.app"
+      "PACKAGE_NAME": "com.afrimartone.app"
     },
     "cordova-plugin-network-information": {
-      "PACKAGE_NAME": "ng.easymall.app"
+      "PACKAGE_NAME": "com.afrimartone.app"
     },
     "cordova-plugin-paystack": {
-      "PACKAGE_NAME": "ng.easymall.app"
+      "PACKAGE_NAME": "com.afrimartone.app"
     },
     "cordova-plugin-splashscreen": {
-      "PACKAGE_NAME": "ng.easymall.app"
+      "PACKAGE_NAME": "com.afrimartone.app"
     },
     "cordova-plugin-statusbar": {
-      "PACKAGE_NAME": "ng.easymall.app"
+      "PACKAGE_NAME": "com.afrimartone.app"
     },
     "cordova-plugin-whitelist": {
-      "PACKAGE_NAME": "ng.easymall.app"
+      "PACKAGE_NAME": "com.afrimartone.app"
     }
   },
   "dependent_plugins": {},

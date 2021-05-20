@@ -102,7 +102,7 @@ let HelpPage = class HelpPage {
         this.faqs = [
             {
                 name: 'How can I cancel an order?',
-                description: 'Please call or send a mail to help@easymall.com. Note, if your order has already been shipped, simply reject the item upon delivery.',
+                description: 'Please call or send a mail to help@afrimartone.com. Note, if your order has already been shipped, simply reject the item upon delivery.',
                 image: ''
             },
             {

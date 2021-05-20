@@ -1,8 +1,8 @@
 {
-  "name": "easyMall",
+  "name": "AfrimartOne",
   "version": "0.0.1",
   "author": "3niti-X Korps",
-  "homepage": "https://easymall.com.ng/",
+  "homepage": "https://afrimartone.com.ng/",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -47,7 +47,6 @@
     "@types/intro.js": "^2.4.6",
     "@webcomponents/webcomponentsjs": "^2.4.3",
     "angular-pipes": "^10.0.0",
-    "cordova-android": "^8.1.0",
     "cordova-browser": "^6.0.0",
     "cordova-custom-config": "^5.1.0",
     "cordova-ios": "^6.1.0",
@@ -93,6 +92,7 @@
     "@types/jasminewd2": "~2.0.3",
     "@types/node": "~8.9.4",
     "codelyzer": "^5.0.0",
+    "cordova-android": "^9.1.0",
     "jasmine-core": "~3.4.0",
     "jasmine-spec-reporter": "~4.2.1",
     "karma": "~4.1.0",
@@ -119,7 +119,7 @@
       "cordova-plugin-filepicker": {},
       "cordova-plugin-ionic-keyboard": {},
       "cordova-plugin-googleplus": {
-        "REVERSED_CLIENT_ID": "ng.easymall.app",
+        "REVERSED_CLIENT_ID": "com.afrimartone.app",
         "WEB_APPLICATION_CLIENT_ID": "797349031519-3kes2kr3nh4cpltv1abpas0c218d5gbf.apps.googleusercontent.com",
         "PLAY_SERVICES_VERSION": "15.0.1"
       },
@@ -139,8 +139,8 @@
     },
     "platforms": [
       "browser",
-      "android",
-      "ios"
+      "ios",
+      "android"
     ]
   }
 }

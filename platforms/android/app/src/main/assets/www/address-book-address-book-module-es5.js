@@ -120,7 +120,7 @@
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "ion-icon {\n  font-size: 16px;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvYWRkcmVzcy1ib29rL0M6XFxQcm9qZWN0XFxBbmd1bGFyXFxlYXN5bWFsbF9ub25vZGUgKDEpXFxlYXN5bWFsbF9ub25vZGUvc3JjXFxhcHBcXGFkZHJlc3MtYm9va1xcYWRkcmVzcy1ib29rLnBhZ2Uuc2NzcyIsInNyYy9hcHAvYWRkcmVzcy1ib29rL2FkZHJlc3MtYm9vay5wYWdlLnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDRSxlQUFBO0FDQ0YiLCJmaWxlIjoic3JjL2FwcC9hZGRyZXNzLWJvb2svYWRkcmVzcy1ib29rLnBhZ2Uuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbImlvbi1pY29uIHtcbiAgZm9udC1zaXplOiAxNnB4O1xufSIsImlvbi1pY29uIHtcbiAgZm9udC1zaXplOiAxNnB4O1xufSJdfQ== */";
+    __webpack_exports__["default"] = "ion-icon {\n  font-size: 16px;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9Vc2Vycy9tYWMvRG9jdW1lbnRzL0lvbmljL2FmcmltYXJ0b25lL3NyYy9hcHAvYWRkcmVzcy1ib29rL2FkZHJlc3MtYm9vay5wYWdlLnNjc3MiLCJzcmMvYXBwL2FkZHJlc3MtYm9vay9hZGRyZXNzLWJvb2sucGFnZS5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0UsZUFBQTtBQ0NGIiwiZmlsZSI6InNyYy9hcHAvYWRkcmVzcy1ib29rL2FkZHJlc3MtYm9vay5wYWdlLnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyJpb24taWNvbiB7XG4gIGZvbnQtc2l6ZTogMTZweDtcbn0iLCJpb24taWNvbiB7XG4gIGZvbnQtc2l6ZTogMTZweDtcbn0iXX0= */";
     /***/
   },
 

@@ -7,7 +7,7 @@
     </base-config>
     <domain-config cleartextTrafficPermitted="true">    
         <domain includeSubdomains="true">localhost</domain>
-        <domain includeSubdomains="true">https://www.easymall.ng</domain>
+        <domain includeSubdomains="true">https://www.afrimartone.ng</domain>
          <domain includeSubdomains="true">http://172.105.93.84:8080</domain>
          <domain includeSubdomains="true">http://172.105.93.84</domain>
     </domain-config>

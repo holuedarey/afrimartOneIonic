@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="ng.easymall.app" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:android="http://schemas.android.com/apk/res/android" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="com.afrimartone.app" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:android="http://schemas.android.com/apk/res/android" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <feature name="Permissions">
         <param name="android-package" value="com.android.plugins.Permissions" />
     </feature>
@@ -65,9 +65,9 @@
     <feature name="IonicWebView">
         <param name="android-package" value="com.ionicframework.cordova.webview.IonicWebView" />
     </feature>
-    <name>EasyMall</name>
-    <description>EasyMall E-Commerce Application.</description>
-    <author email="info@easymall.ng" href="https://easymall.ng/">EasyMall Team</author>
+    <name>AfrimartOne</name>
+    <description>AfrimartOne E-Commerce Application.</description>
+    <author email="info@afrimartone.com" href="https://afrimartone.com/">AfrimartOne Team</author>
     <content src="index.html" />
     <access origin="*" />
     <allow-navigation href="*" />

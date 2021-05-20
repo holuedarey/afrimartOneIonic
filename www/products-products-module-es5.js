@@ -15,7 +15,7 @@
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<app-header [title]=\"title\" [longSearch]=\"longSearch\" [showBackButton]=\"showBackButton\" [isLoading]=\"loading\"\n  [showSearch]=\"showSearch\">\n</app-header>\n<ion-content>\n  <div *ngIf=\"prod_data\">\n    <ion-grid class=\"borderBottom card\">\n      <ion-row>\n        <ion-col size=\"7\">\n          SOLD BY:<br />\n          <span class=\"note_title10Sec\">{{prod_data.storeData.name | uppercase}}</span>\n        </ion-col>\n        <ion-col size=\"5\" class=\"viewSeller\" routerLink=\"/company-profile\">\n          <ion-text color=\"primary\" class=\"font-9\">View Company Profile</ion-text>\n        </ion-col>\n      </ion-row>\n    </ion-grid>\n    <ion-grid style=\"max-height: 250px; padding: 0px;\" class=\"card\">\n      <ion-row>\n        <ion-col size=\"12\">\n          <ion-slides direction=\"horizontal\" [options]=\"slideOpts\" pager=\"true\">\n            <ion-slide style=\"height: 200px; width: 200px !important;\" *ngFor=\"let gal of prod_data.gallery\">\n              <ion-row>\n                <ion-col size=\"12\">\n                  <img src=\"../../assets/dummy-images/productView.png\" alt=\"EasyMall\" class=\"img_slider\" />\n                </ion-col>\n              </ion-row>\n            </ion-slide>\n          </ion-slides>\n        </ion-col>\n      </ion-row>\n    </ion-grid>\n    <ion-grid class=\"grid\">\n      <ion-row style=\"padding-left: 10px; padding-right:10px;\">\n        <ion-col size=\"12\">\n          <ion-row>\n            <ion-col size=\"8\">\n              <app-text-shell animation=\"gradient\" [data]=\"'$65.62-$393.70 / Piece(s) '\" lines=\"3\"\n                class=\"note_title14Black font-bold\">\n              </app-text-shell>\n              <app-text-shell animation=\"gradient\" [data]=\"'(₦25,000-₦150,000)'\" lines=\"3\" class=\"note_title14Black\">\n              </app-text-shell>\n              <br><br>\n              <app-text-shell animation=\"gradient\" [data]=\"'1 Piece(s) (Min. Order)'\" lines=\"3\"\n                class=\"note_title14Black\"></app-text-shell>\n\n              <br />\n              <!-- <app-text-shell\n            animation=\"gradient\"\n            [data]=\"prod_data?.price | currency:'₦':'symbol':'1.2-2'\"\n            lines=\"1\"\n            class=\"note_title_bold16Black\"\n          >\n          </app-text-shell> -->\n            </ion-col>\n            <ion-col size=\"4\" style=\"padding-top: 8px;\">\n              <ion-row>\n                <ion-col class=\"t_right\" style=\"padding-right:10px;\">\n                  <a (click)=\"addToWishlist(prod_data)\">\n                    <ion-icon *ngIf=\"!checkIfProdInWishList(prod_data)\" size=\"large\" name=\"heart-outline\"\n                      color=\"primary\">\n                    </ion-icon>\n                    <ion-icon *ngIf=\"checkIfProdInWishList(prod_data)\" size=\"large\" name=\"heart\" color=\"primary\">\n                    </ion-icon>\n                  </a>\n                </ion-col>\n                <ion-col>\n                  <a (click)=\"addToWishlist(prod_data)\">\n                    <ion-icon size=\"large\" name=\"share-social-outline\" color=\"primary\"></ion-icon>\n                  </a>\n                </ion-col>\n              </ion-row>\n            </ion-col>\n          </ion-row>\n\n          <ion-row>\n            <ion-col size=\"5\">\n              <ion-text class=\"note_title14Black\">Seller Support</ion-text>\n            </ion-col>\n            <ion-col size=\"7\">\n              <ion-text class=\"note_title14Black\">Trade Assurance</ion-text>\n              <p style=\"margin-top:2px;\">To protect your orders from payment to delivery </p>\n            </ion-col>\n          </ion-row>\n          <ion-row class=\"no-padding\">\n            <ion-col size=\"12\" class=\"no-padding\">\n              <ion-button expand=\"block\" color=\"primary\" class=\"capitilize\"> Contact Supplier </ion-button>\n            </ion-col>\n            <ion-col size=\"12\" class=\"no-padding\" style=\"margin-top: -10px;\">\n              <ion-button expand=\"block\" color=\"primary\" fill=\"outline\" class=\"capitilize\"> Get Quote </ion-button>\n            </ion-col>\n          </ion-row>\n        </ion-col>\n\n      </ion-row>\n\n      <!-- <ion-row class=\"rating_row\">\n        <ion-col size=\"4\" style=\"padding-left: 10px;\">\n          <app-rating-input max=\"5\" readOnly=\"true\" class=\"button-inner\">\n          </app-rating-input>\n        </ion-col>\n        <ion-col size=\"6\" class=\"ratingText\" *ngIf=\"prod_data.rating>0\" style=\"padding-top: 3px;\">\n          ({{prod_data.rating}} rating(s))\n        </ion-col>\n        <ion-col size=\"6\" class=\"ratingText\" *ngIf=\"prod_data.rating==0\" style=\"padding-top: 3px;\">\n          (No ratings avaialable)\n        </ion-col>\n        \n      </ion-row> -->\n    </ion-grid>\n    <ion-grid class=\"grid\">\n      <ion-row class=\"headerBg\">\n        <ion-col size=\"12\">\n          <ion-text class=\"note_title12Sec uppercase  \">Product details</ion-text>\n        </ion-col>\n      </ion-row>\n      <div style=\"padding:12px;\">\n        <ion-row class=\"zero-height\">\n          <ion-col size=\"12\">Overview</ion-col>\n        </ion-row>\n        <ion-row class=\"zero-height\">\n          <ion-col size=\"5\">Brand Name:</ion-col>\n          <ion-col size=\"7\">follyb men wears</ion-col>\n        </ion-row>\n        \n        <ion-row class=\"zero-height\">\n          <ion-col size=\"5\">Location</ion-col>\n          <ion-col size=\"7\">Nigeria</ion-col>\n        </ion-row>\n        <ion-row class=\"zero-height\">\n          <ion-col size=\"5\">Availability</ion-col>\n          <ion-col size=\"7\">Available</ion-col>\n        </ion-row>\n        <br>\n  \n        <ion-row class=\"zero-height\">\n          <ion-col size=\"6\">Logistics</ion-col>\n        </ion-row>\n        <ion-row class=\"zero-height\">\n          <ion-col size=\"5\"> Pickup Country: </ion-col>\n          <ion-col size=\"7\">NG</ion-col>\n        </ion-row>\n        <br>\n        <ion-row class=\"zero-height\">\n          <ion-col size=\"7\">Description</ion-col>\n        </ion-row>\n        <ion-row>\n          <ion-col size=\"12\"> Agbada is one of oldest fashion dress for men but never run out of fashion.</ion-col>\n        </ion-row>\n      </div>\n     \n\n    </ion-grid>\n    <br>\n    <ion-grid class=\"grid\">\n      <ion-row class=\"headerBg\">\n        <ion-col size=\"12\">\n          <ion-text class=\"note_title12Sec\">REVIEW</ion-text>\n        </ion-col>\n      </ion-row>\n      <ion-row style=\"padding-left: 10px;\">\n        <ion-col size=\"12\">\n          <span class=\"ratingBorder\">5.0/5</span><span class=\"note_title12Black\"> 7 ratings</span>\n        </ion-col>\n      </ion-row>\n      <ion-row class=\"rating_row\" style=\"border-bottom: 1px solid #e5e5e5;\">\n        <ion-col size=\"4\" style=\"padding-left: 10px;\">\n          <app-rating-input max=\"5\" readOnly=\"true\" class=\"button-inner\">\n          </app-rating-input>\n        </ion-col>\n        <ion-col size=\"8\" class=\"t_right note_title12Black\" style=\"padding-right: 10px;\">\n          2020-11-01\n        </ion-col>\n        <div style=\"margin-top: -20px; padding-bottom: 10px;padding-left: 12px;\" class=\"note_title12Black\">\n          I love it\n          <br />\n          By Toyin\n        </div>\n      </ion-row>\n\n      <ion-row class=\"rating_row\" style=\"border-bottom: 1px solid #e5e5e5;\">\n        <ion-col size=\"4\" style=\"padding-left: 10px;\">\n          <app-rating-input max=\"5\" readOnly=\"true\" class=\"button-inner\">\n          </app-rating-input>\n        </ion-col>\n        <ion-col size=\"8\" class=\"t_right note_title12Black\" style=\"padding-right: 10px;\">\n          2020-11-01\n        </ion-col>\n        <div style=\"margin-top: -20px; padding-bottom: 10px;padding-left: 12px;\" class=\"note_title12Black\">\n          100% what I needed\n          <br />\n          By Light\n        </div>\n      </ion-row>\n    </ion-grid>\n  </div>\n  <div *ngIf=\"recommendedProducts\">\n    <ion-grid class=\"grids\">\n      <ion-row class=\"headerBgs\">\n        <ion-col size=\"12\">\n          <ion-text class=\"note_title12Sec\">RECOMMENDED FOR YOU</ion-text>\n        </ion-col>\n      </ion-row>\n      <ion-row>\n        <ion-col size=\"12\" style=\"margin-top: 20px;\">\n          <ion-slides direction=\"horizontal\" [options]=\"slideOptsTwo\">\n            <ion-slide style=\"height: 200px; width: 200px !important;\" *ngFor=\"let rec of recommendedProducts\">\n              <ion-row>\n                <ion-col size=\"12\" (click)=\"viewProduct(rec)\" class=\"card\" style=\"margin-bottom: 33px; margin-top: 5px; box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);\">\n                  <div>\n                    <img src=\"../../assets/dummy-images/productView.png\" alt=\"EasyMall\" class=\"img_slider\" />\n                  </div>\n                  <br />\n                  <app-text-shell animation=\"gradient\" [data]=\"rec?.name\" lines=\"2\"\n                    class=\"note_title14Black text-truncate\" (click)=\"viewProduct(rec)\">\n                  </app-text-shell>\n                  <app-text-shell animation=\"gradient\" [data]=\"rec?.price  | currency:'₦':'symbol':'1.2-2'\" lines=\"1\"\n                    class=\"note_title14Pri\" (click)=\"viewProduct(rec)\">\n                  </app-text-shell>\n                </ion-col>\n              </ion-row>\n            </ion-slide>\n          </ion-slides>\n        </ion-col>\n      </ion-row>\n    </ion-grid>\n  </div>\n  <ion-grid>\n    <ion-row>\n      <ion-col size=\"12\">\n        &nbsp;\n        <br>\n      </ion-col>\n    </ion-row>\n  </ion-grid>\n</ion-content>";
+    __webpack_exports__["default"] = "<app-header\n  [title]=\"title\"\n  [longSearch]=\"longSearch\"\n  [showBackButton]=\"showBackButton\"\n  [isLoading]=\"loading\"\n  [showSearch]=\"showSearch\"\n>\n</app-header>\n<ion-content>\n  <div *ngIf=\"prod_data\">\n    <ion-grid class=\"borderBottom card\">\n      <ion-row>\n        <ion-col size=\"7\">\n          SOLD BY:<br />\n          <span class=\"note_title10Sec\"\n            >{{prod_data.storeData.name | uppercase}}</span\n          >\n        </ion-col>\n        <ion-col size=\"5\" class=\"viewSeller\" routerLink=\"/company-profile\">\n          <ion-text color=\"primary\" class=\"font-9\"\n            >View Company Profile</ion-text\n          >\n        </ion-col>\n      </ion-row>\n    </ion-grid>\n    <ion-grid style=\"max-height: 250px; padding: 0px\" class=\"card\">\n      <ion-row>\n        <ion-col size=\"12\">\n          <ion-slides direction=\"horizontal\" [options]=\"slideOpts\" pager=\"true\">\n            <ion-slide\n              style=\"height: 200px; width: 200px !important\"\n              *ngFor=\"let gal of prod_data.gallery\"\n            >\n              <ion-row>\n                <ion-col size=\"12\">\n                  <img\n                    src=\"../../assets/dummy-images/productView.png\"\n                    alt=\"AfrimartOne\"\n                    class=\"img_slider\"\n                  />\n                </ion-col>\n              </ion-row>\n            </ion-slide>\n          </ion-slides>\n        </ion-col>\n      </ion-row>\n    </ion-grid>\n    <ion-grid class=\"grid\">\n      <ion-row style=\"padding-left: 10px; padding-right: 10px\">\n        <ion-col size=\"12\">\n          <ion-row>\n            <ion-col size=\"8\">\n              <app-text-shell\n                animation=\"gradient\"\n                [data]=\"'$65.62-$393.70 / Piece(s) '\"\n                lines=\"3\"\n                class=\"note_title14Black font-bold\"\n              >\n              </app-text-shell>\n              <app-text-shell\n                animation=\"gradient\"\n                [data]=\"'(₦25,000-₦150,000)'\"\n                lines=\"3\"\n                class=\"note_title14Black\"\n              >\n              </app-text-shell>\n              <br /><br />\n              <app-text-shell\n                animation=\"gradient\"\n                [data]=\"'1 Piece(s) (Min. Order)'\"\n                lines=\"3\"\n                class=\"note_title14Black\"\n              ></app-text-shell>\n\n              <br />\n              <!-- <app-text-shell\n            animation=\"gradient\"\n            [data]=\"prod_data?.price | currency:'₦':'symbol':'1.2-2'\"\n            lines=\"1\"\n            class=\"note_title_bold16Black\"\n          >\n          </app-text-shell> -->\n            </ion-col>\n            <ion-col size=\"4\" style=\"padding-top: 8px\">\n              <ion-row>\n                <ion-col class=\"t_right\" style=\"padding-right: 10px\">\n                  <a (click)=\"addToWishlist(prod_data)\">\n                    <ion-icon\n                      *ngIf=\"!checkIfProdInWishList(prod_data)\"\n                      size=\"large\"\n                      name=\"heart-outline\"\n                      color=\"primary\"\n                    >\n                    </ion-icon>\n                    <ion-icon\n                      *ngIf=\"checkIfProdInWishList(prod_data)\"\n                      size=\"large\"\n                      name=\"heart\"\n                      color=\"primary\"\n                    >\n                    </ion-icon>\n                  </a>\n                </ion-col>\n                <ion-col>\n                  <a (click)=\"addToWishlist(prod_data)\">\n                    <ion-icon\n                      size=\"large\"\n                      name=\"share-social-outline\"\n                      color=\"primary\"\n                    ></ion-icon>\n                  </a>\n                </ion-col>\n              </ion-row>\n            </ion-col>\n          </ion-row>\n\n          <ion-row>\n            <ion-col size=\"5\">\n              <ion-text class=\"note_title14Black\">Seller Support</ion-text>\n            </ion-col>\n            <ion-col size=\"7\">\n              <ion-text class=\"note_title14Black\">Trade Assurance</ion-text>\n              <p style=\"margin-top: 2px\">\n                To protect your orders from payment to delivery\n              </p>\n            </ion-col>\n          </ion-row>\n          <ion-row class=\"no-padding\">\n            <ion-col size=\"12\" class=\"no-padding\">\n              <ion-button expand=\"block\" color=\"primary\" class=\"capitilize\">\n                Contact Supplier\n              </ion-button>\n            </ion-col>\n            <ion-col size=\"12\" class=\"no-padding\" style=\"margin-top: -10px\">\n              <ion-button\n                expand=\"block\"\n                color=\"primary\"\n                fill=\"outline\"\n                class=\"capitilize\"\n              >\n                Get Quote\n              </ion-button>\n            </ion-col>\n          </ion-row>\n        </ion-col>\n      </ion-row>\n\n      <!-- <ion-row class=\"rating_row\">\n        <ion-col size=\"4\" style=\"padding-left: 10px;\">\n          <app-rating-input max=\"5\" readOnly=\"true\" class=\"button-inner\">\n          </app-rating-input>\n        </ion-col>\n        <ion-col size=\"6\" class=\"ratingText\" *ngIf=\"prod_data.rating>0\" style=\"padding-top: 3px;\">\n          ({{prod_data.rating}} rating(s))\n        </ion-col>\n        <ion-col size=\"6\" class=\"ratingText\" *ngIf=\"prod_data.rating==0\" style=\"padding-top: 3px;\">\n          (No ratings avaialable)\n        </ion-col>\n        \n      </ion-row> -->\n    </ion-grid>\n    <ion-grid class=\"grid\">\n      <ion-row class=\"headerBg\">\n        <ion-col size=\"12\">\n          <ion-text class=\"note_title12Sec uppercase\">Product details</ion-text>\n        </ion-col>\n      </ion-row>\n      <div style=\"padding: 12px\">\n        <ion-row class=\"zero-height\">\n          <ion-col size=\"12\">Overview</ion-col>\n        </ion-row>\n        <ion-row class=\"zero-height\">\n          <ion-col size=\"5\">Brand Name:</ion-col>\n          <ion-col size=\"7\">follyb men wears</ion-col>\n        </ion-row>\n\n        <ion-row class=\"zero-height\">\n          <ion-col size=\"5\">Location</ion-col>\n          <ion-col size=\"7\">Nigeria</ion-col>\n        </ion-row>\n        <ion-row class=\"zero-height\">\n          <ion-col size=\"5\">Availability</ion-col>\n          <ion-col size=\"7\">Available</ion-col>\n        </ion-row>\n        <br />\n\n        <ion-row class=\"zero-height\">\n          <ion-col size=\"6\">Logistics</ion-col>\n        </ion-row>\n        <ion-row class=\"zero-height\">\n          <ion-col size=\"5\"> Pickup Country: </ion-col>\n          <ion-col size=\"7\">NG</ion-col>\n        </ion-row>\n        <br />\n        <ion-row class=\"zero-height\">\n          <ion-col size=\"7\">Description</ion-col>\n        </ion-row>\n        <ion-row>\n          <ion-col size=\"12\">\n            Agbada is one of oldest fashion dress for men but never run out of\n            fashion.</ion-col\n          >\n        </ion-row>\n      </div>\n    </ion-grid>\n    <br />\n    <ion-grid class=\"grid\">\n      <ion-row class=\"headerBg\">\n        <ion-col size=\"12\">\n          <ion-text class=\"note_title12Sec\">REVIEW</ion-text>\n        </ion-col>\n      </ion-row>\n      <ion-row style=\"padding-left: 10px\">\n        <ion-col size=\"12\">\n          <span class=\"ratingBorder\">5.0/5</span\n          ><span class=\"note_title12Black\"> 7 ratings</span>\n        </ion-col>\n      </ion-row>\n      <ion-row class=\"rating_row\" style=\"border-bottom: 1px solid #e5e5e5\">\n        <ion-col size=\"4\" style=\"padding-left: 10px\">\n          <app-rating-input max=\"5\" readOnly=\"true\" class=\"button-inner\">\n          </app-rating-input>\n        </ion-col>\n        <ion-col\n          size=\"8\"\n          class=\"t_right note_title12Black\"\n          style=\"padding-right: 10px\"\n        >\n          2020-11-01\n        </ion-col>\n        <div\n          style=\"margin-top: -20px; padding-bottom: 10px; padding-left: 12px\"\n          class=\"note_title12Black\"\n        >\n          I love it\n          <br />\n          By Toyin\n        </div>\n      </ion-row>\n\n      <ion-row class=\"rating_row\" style=\"border-bottom: 1px solid #e5e5e5\">\n        <ion-col size=\"4\" style=\"padding-left: 10px\">\n          <app-rating-input max=\"5\" readOnly=\"true\" class=\"button-inner\">\n          </app-rating-input>\n        </ion-col>\n        <ion-col\n          size=\"8\"\n          class=\"t_right note_title12Black\"\n          style=\"padding-right: 10px\"\n        >\n          2020-11-01\n        </ion-col>\n        <div\n          style=\"margin-top: -20px; padding-bottom: 10px; padding-left: 12px\"\n          class=\"note_title12Black\"\n        >\n          100% what I needed\n          <br />\n          By Light\n        </div>\n      </ion-row>\n    </ion-grid>\n  </div>\n  <div *ngIf=\"recommendedProducts\">\n    <ion-grid class=\"grids\">\n      <ion-row class=\"headerBgs\">\n        <ion-col size=\"12\">\n          <ion-text class=\"note_title12Sec\">RECOMMENDED FOR YOU</ion-text>\n        </ion-col>\n      </ion-row>\n      <ion-row>\n        <ion-col size=\"12\" style=\"margin-top: 20px\">\n          <ion-slides direction=\"horizontal\" [options]=\"slideOptsTwo\">\n            <ion-slide\n              style=\"height: 200px; width: 200px !important\"\n              *ngFor=\"let rec of recommendedProducts\"\n            >\n              <ion-row>\n                <ion-col\n                  size=\"12\"\n                  (click)=\"viewProduct(rec)\"\n                  class=\"card\"\n                  style=\"\n                    margin-bottom: 33px;\n                    margin-top: 5px;\n                    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);\n                  \"\n                >\n                  <div>\n                    <img\n                      src=\"../../assets/dummy-images/productView.png\"\n                      alt=\"AfrimartOne\"\n                      class=\"img_slider\"\n                    />\n                  </div>\n                  <br />\n                  <app-text-shell\n                    animation=\"gradient\"\n                    [data]=\"rec?.name\"\n                    lines=\"2\"\n                    class=\"note_title14Black text-truncate\"\n                    (click)=\"viewProduct(rec)\"\n                  >\n                  </app-text-shell>\n                  <app-text-shell\n                    animation=\"gradient\"\n                    [data]=\"rec?.price  | currency:'₦':'symbol':'1.2-2'\"\n                    lines=\"1\"\n                    class=\"note_title14Pri\"\n                    (click)=\"viewProduct(rec)\"\n                  >\n                  </app-text-shell>\n                </ion-col>\n              </ion-row>\n            </ion-slide>\n          </ion-slides>\n        </ion-col>\n      </ion-row>\n    </ion-grid>\n  </div>\n  <ion-grid>\n    <ion-row>\n      <ion-col size=\"12\">\n        &nbsp;\n        <br />\n      </ion-col>\n    </ion-row>\n  </ion-grid>\n</ion-content>\n";
     /***/
   },
 
@@ -213,7 +213,7 @@
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = ".footer ion-toolbar {\n  --background: #fff;\n}\n\n.zero-height {\n  line-height: 8px !important;\n}\n\n.viewSeller {\n  font-size: 10px;\n  text-align: right;\n}\n\n.slideShow {\n  text-align: center;\n}\n\n.imgHolder {\n  margin: auto;\n  width: 200px;\n  height: 200px;\n  max-width: 200px;\n  max-height: 200px;\n}\n\n.imgHolderRec {\n  width: 100px;\n  height: 100px;\n  max-width: 100px;\n  max-height: 100px;\n}\n\n.img_slider {\n  height: 12.5rem !important;\n  width: 12.5rem !important;\n}\n\n.ratingBorder {\n  border: solid 1px #c8c6c6;\n  padding: 0 2px;\n}\n\n.subSubCatTitle {\n  font-size: 8px;\n}\n\n.subCatHeader {\n  font-size: 10px;\n}\n\n.subCatViewAll {\n  font-size: 8px;\n}\n\n.gridSubCat {\n  padding: 0px;\n}\n\n.gridSubCatHeader {\n  background: var(--ion-color-primary);\n  color: #fff;\n}\n\n.borderRight {\n  border-right: solid 1px #c8c6c6;\n}\n\n.borderBottom {\n  border-bottom: solid 1px #c8c6c6;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvcHJvZHVjdHMvQzpcXFByb2plY3RcXEFuZ3VsYXJcXGVhc3ltYWxsX25vbm9kZSAoMSlcXGVhc3ltYWxsX25vbm9kZS9zcmNcXGFwcFxccHJvZHVjdHNcXHByb2R1Y3RzLnBhZ2Uuc2NzcyIsInNyYy9hcHAvcHJvZHVjdHMvcHJvZHVjdHMucGFnZS5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUNJO0VBQ0osa0JBQUE7QUNBQTs7QURNQTtFQUNFLDJCQUFBO0FDSEY7O0FES0E7RUFDRSxlQUFBO0VBRUEsaUJBQUE7QUNIRjs7QURLQTtFQUNBLGtCQUFBO0FDRkE7O0FESUE7RUFDQSxZQUFBO0VBQ0EsWUFBQTtFQUNBLGFBQUE7RUFDQSxnQkFBQTtFQUNBLGlCQUFBO0FDREE7O0FER0E7RUFFQSxZQUFBO0VBQ0EsYUFBQTtFQUNBLGdCQUFBO0VBQ0EsaUJBQUE7QUNEQTs7QURHQTtFQUVFLDBCQUFBO0VBQ0EseUJBQUE7QUNERjs7QURJQTtFQUNBLHlCQUFBO0VBQ0EsY0FBQTtBQ0RBOztBREdBO0VBQ0ksY0FBQTtBQ0FKOztBREVBO0VBQ0MsZUFBQTtBQ0NEOztBRENBO0VBQ0MsY0FBQTtBQ0VEOztBREFBO0VBQ0EsWUFBQTtBQ0dBOztBRERBO0VBQ0Msb0NBQUE7RUFDQSxXQUFBO0FDSUQ7O0FEREE7RUFDSSwrQkFBQTtBQ0lKOztBREZBO0VBQ0ksZ0NBQUE7QUNLSiIsImZpbGUiOiJzcmMvYXBwL3Byb2R1Y3RzL3Byb2R1Y3RzLnBhZ2Uuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbIi5mb290ZXJ7XG4gICAgaW9uLXRvb2xiYXJ7XG4tLWJhY2tncm91bmQ6ICNmZmY7XG4vLyAtLWNvbG9yOiNmZmYgIWltcG9ydGFudDtcbn1cblxufVxuXG4uemVyby1oZWlnaHR7XG4gIGxpbmUtaGVpZ2h0OiA4cHggIWltcG9ydGFudDtcbn1cbi52aWV3U2VsbGVyIHtcbiAgZm9udC1zaXplOiAxMHB4O1xuLy8gICBwYWRkaW5nOiA1cHggMDtcbiAgdGV4dC1hbGlnbjogcmlnaHQ7XG59XG4uc2xpZGVTaG93e1xudGV4dC1hbGlnbjogY2VudGVyO1xufVxuLmltZ0hvbGRlcntcbm1hcmdpbjogYXV0bztcbndpZHRoOiAyMDBweDtcbmhlaWdodDogMjAwcHg7XG5tYXgtd2lkdGg6IDIwMHB4O1xubWF4LWhlaWdodDogMjAwcHg7XG59XG4uaW1nSG9sZGVyUmVje1xuLy8gbWFyZ2luOiBhdXRvO1xud2lkdGg6IDEwMHB4O1xuaGVpZ2h0OiAxMDBweDtcbm1heC13aWR0aDogMTAwcHg7XG5tYXgtaGVpZ2h0OiAxMDBweDtcbn1cbi5pbWdfc2xpZGVye1xuLy8gICBwb3NpdGlvbjogcmVsYXRpdmUgIWltcG9ydGFudDtcbiAgaGVpZ2h0OiAxMi41cmVtICFpbXBvcnRhbnQ7XG4gIHdpZHRoOiAxMi41cmVtICFpbXBvcnRhbnQ7XG4gIC8vIG1hcmdpbi1ib3R0b206IDIwcHg7XG59XG4ucmF0aW5nQm9yZGVye1xuYm9yZGVyOiBzb2xpZCAxcHggI2M4YzZjNjtcbnBhZGRpbmc6IDAgMnB4O1xufVxuLnN1YlN1YkNhdFRpdGxle1xuICAgIGZvbnQtc2l6ZTogOHB4O1xufVxuLnN1YkNhdEhlYWRlcntcbiBmb250LXNpemU6IDEwcHg7XG59XG4uc3ViQ2F0Vmlld0FsbHtcbiBmb250LXNpemU6IDhweDtcbn1cbi5ncmlkU3ViQ2F0e1xucGFkZGluZzogMHB4O1xufVxuLmdyaWRTdWJDYXRIZWFkZXJ7XG4gYmFja2dyb3VuZDp2YXIoLS1pb24tY29sb3ItcHJpbWFyeSk7ICBcbiBjb2xvcjojZmZmO1xufVxuXG4uYm9yZGVyUmlnaHR7XG4gICAgYm9yZGVyLXJpZ2h0OiBzb2xpZCAxcHggI2M4YzZjNjtcbn1cbi5ib3JkZXJCb3R0b217XG4gICAgYm9yZGVyLWJvdHRvbTogc29saWQgMXB4ICNjOGM2YzY7XG59XG4iLCIuZm9vdGVyIGlvbi10b29sYmFyIHtcbiAgLS1iYWNrZ3JvdW5kOiAjZmZmO1xufVxuXG4uemVyby1oZWlnaHQge1xuICBsaW5lLWhlaWdodDogOHB4ICFpbXBvcnRhbnQ7XG59XG5cbi52aWV3U2VsbGVyIHtcbiAgZm9udC1zaXplOiAxMHB4O1xuICB0ZXh0LWFsaWduOiByaWdodDtcbn1cblxuLnNsaWRlU2hvdyB7XG4gIHRleHQtYWxpZ246IGNlbnRlcjtcbn1cblxuLmltZ0hvbGRlciB7XG4gIG1hcmdpbjogYXV0bztcbiAgd2lkdGg6IDIwMHB4O1xuICBoZWlnaHQ6IDIwMHB4O1xuICBtYXgtd2lkdGg6IDIwMHB4O1xuICBtYXgtaGVpZ2h0OiAyMDBweDtcbn1cblxuLmltZ0hvbGRlclJlYyB7XG4gIHdpZHRoOiAxMDBweDtcbiAgaGVpZ2h0OiAxMDBweDtcbiAgbWF4LXdpZHRoOiAxMDBweDtcbiAgbWF4LWhlaWdodDogMTAwcHg7XG59XG5cbi5pbWdfc2xpZGVyIHtcbiAgaGVpZ2h0OiAxMi41cmVtICFpbXBvcnRhbnQ7XG4gIHdpZHRoOiAxMi41cmVtICFpbXBvcnRhbnQ7XG59XG5cbi5yYXRpbmdCb3JkZXIge1xuICBib3JkZXI6IHNvbGlkIDFweCAjYzhjNmM2O1xuICBwYWRkaW5nOiAwIDJweDtcbn1cblxuLnN1YlN1YkNhdFRpdGxlIHtcbiAgZm9udC1zaXplOiA4cHg7XG59XG5cbi5zdWJDYXRIZWFkZXIge1xuICBmb250LXNpemU6IDEwcHg7XG59XG5cbi5zdWJDYXRWaWV3QWxsIHtcbiAgZm9udC1zaXplOiA4cHg7XG59XG5cbi5ncmlkU3ViQ2F0IHtcbiAgcGFkZGluZzogMHB4O1xufVxuXG4uZ3JpZFN1YkNhdEhlYWRlciB7XG4gIGJhY2tncm91bmQ6IHZhcigtLWlvbi1jb2xvci1wcmltYXJ5KTtcbiAgY29sb3I6ICNmZmY7XG59XG5cbi5ib3JkZXJSaWdodCB7XG4gIGJvcmRlci1yaWdodDogc29saWQgMXB4ICNjOGM2YzY7XG59XG5cbi5ib3JkZXJCb3R0b20ge1xuICBib3JkZXItYm90dG9tOiBzb2xpZCAxcHggI2M4YzZjNjtcbn0iXX0= */";
+    __webpack_exports__["default"] = ".footer ion-toolbar {\n  --background: #fff;\n}\n\n.zero-height {\n  line-height: 8px !important;\n}\n\n.viewSeller {\n  font-size: 10px;\n  text-align: right;\n}\n\n.slideShow {\n  text-align: center;\n}\n\n.imgHolder {\n  margin: auto;\n  width: 200px;\n  height: 200px;\n  max-width: 200px;\n  max-height: 200px;\n}\n\n.imgHolderRec {\n  width: 100px;\n  height: 100px;\n  max-width: 100px;\n  max-height: 100px;\n}\n\n.img_slider {\n  height: 12.5rem !important;\n  width: 12.5rem !important;\n}\n\n.ratingBorder {\n  border: solid 1px #c8c6c6;\n  padding: 0 2px;\n}\n\n.subSubCatTitle {\n  font-size: 8px;\n}\n\n.subCatHeader {\n  font-size: 10px;\n}\n\n.subCatViewAll {\n  font-size: 8px;\n}\n\n.gridSubCat {\n  padding: 0px;\n}\n\n.gridSubCatHeader {\n  background: var(--ion-color-primary);\n  color: #fff;\n}\n\n.borderRight {\n  border-right: solid 1px #c8c6c6;\n}\n\n.borderBottom {\n  border-bottom: solid 1px #c8c6c6;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9Vc2Vycy9tYWMvRG9jdW1lbnRzL0lvbmljL2FmcmltYXJ0b25lL3NyYy9hcHAvcHJvZHVjdHMvcHJvZHVjdHMucGFnZS5zY3NzIiwic3JjL2FwcC9wcm9kdWN0cy9wcm9kdWN0cy5wYWdlLnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQ0k7RUFDSixrQkFBQTtBQ0FBOztBRE1BO0VBQ0UsMkJBQUE7QUNIRjs7QURLQTtFQUNFLGVBQUE7RUFFQSxpQkFBQTtBQ0hGOztBREtBO0VBQ0Esa0JBQUE7QUNGQTs7QURJQTtFQUNBLFlBQUE7RUFDQSxZQUFBO0VBQ0EsYUFBQTtFQUNBLGdCQUFBO0VBQ0EsaUJBQUE7QUNEQTs7QURHQTtFQUVBLFlBQUE7RUFDQSxhQUFBO0VBQ0EsZ0JBQUE7RUFDQSxpQkFBQTtBQ0RBOztBREdBO0VBRUUsMEJBQUE7RUFDQSx5QkFBQTtBQ0RGOztBRElBO0VBQ0EseUJBQUE7RUFDQSxjQUFBO0FDREE7O0FER0E7RUFDSSxjQUFBO0FDQUo7O0FERUE7RUFDQyxlQUFBO0FDQ0Q7O0FEQ0E7RUFDQyxjQUFBO0FDRUQ7O0FEQUE7RUFDQSxZQUFBO0FDR0E7O0FEREE7RUFDQyxvQ0FBQTtFQUNBLFdBQUE7QUNJRDs7QUREQTtFQUNJLCtCQUFBO0FDSUo7O0FERkE7RUFDSSxnQ0FBQTtBQ0tKIiwiZmlsZSI6InNyYy9hcHAvcHJvZHVjdHMvcHJvZHVjdHMucGFnZS5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLmZvb3RlcntcbiAgICBpb24tdG9vbGJhcntcbi0tYmFja2dyb3VuZDogI2ZmZjtcbi8vIC0tY29sb3I6I2ZmZiAhaW1wb3J0YW50O1xufVxuXG59XG5cbi56ZXJvLWhlaWdodHtcbiAgbGluZS1oZWlnaHQ6IDhweCAhaW1wb3J0YW50O1xufVxuLnZpZXdTZWxsZXIge1xuICBmb250LXNpemU6IDEwcHg7XG4vLyAgIHBhZGRpbmc6IDVweCAwO1xuICB0ZXh0LWFsaWduOiByaWdodDtcbn1cbi5zbGlkZVNob3d7XG50ZXh0LWFsaWduOiBjZW50ZXI7XG59XG4uaW1nSG9sZGVye1xubWFyZ2luOiBhdXRvO1xud2lkdGg6IDIwMHB4O1xuaGVpZ2h0OiAyMDBweDtcbm1heC13aWR0aDogMjAwcHg7XG5tYXgtaGVpZ2h0OiAyMDBweDtcbn1cbi5pbWdIb2xkZXJSZWN7XG4vLyBtYXJnaW46IGF1dG87XG53aWR0aDogMTAwcHg7XG5oZWlnaHQ6IDEwMHB4O1xubWF4LXdpZHRoOiAxMDBweDtcbm1heC1oZWlnaHQ6IDEwMHB4O1xufVxuLmltZ19zbGlkZXJ7XG4vLyAgIHBvc2l0aW9uOiByZWxhdGl2ZSAhaW1wb3J0YW50O1xuICBoZWlnaHQ6IDEyLjVyZW0gIWltcG9ydGFudDtcbiAgd2lkdGg6IDEyLjVyZW0gIWltcG9ydGFudDtcbiAgLy8gbWFyZ2luLWJvdHRvbTogMjBweDtcbn1cbi5yYXRpbmdCb3JkZXJ7XG5ib3JkZXI6IHNvbGlkIDFweCAjYzhjNmM2O1xucGFkZGluZzogMCAycHg7XG59XG4uc3ViU3ViQ2F0VGl0bGV7XG4gICAgZm9udC1zaXplOiA4cHg7XG59XG4uc3ViQ2F0SGVhZGVye1xuIGZvbnQtc2l6ZTogMTBweDtcbn1cbi5zdWJDYXRWaWV3QWxse1xuIGZvbnQtc2l6ZTogOHB4O1xufVxuLmdyaWRTdWJDYXR7XG5wYWRkaW5nOiAwcHg7XG59XG4uZ3JpZFN1YkNhdEhlYWRlcntcbiBiYWNrZ3JvdW5kOnZhcigtLWlvbi1jb2xvci1wcmltYXJ5KTsgIFxuIGNvbG9yOiNmZmY7XG59XG5cbi5ib3JkZXJSaWdodHtcbiAgICBib3JkZXItcmlnaHQ6IHNvbGlkIDFweCAjYzhjNmM2O1xufVxuLmJvcmRlckJvdHRvbXtcbiAgICBib3JkZXItYm90dG9tOiBzb2xpZCAxcHggI2M4YzZjNjtcbn1cbiIsIi5mb290ZXIgaW9uLXRvb2xiYXIge1xuICAtLWJhY2tncm91bmQ6ICNmZmY7XG59XG5cbi56ZXJvLWhlaWdodCB7XG4gIGxpbmUtaGVpZ2h0OiA4cHggIWltcG9ydGFudDtcbn1cblxuLnZpZXdTZWxsZXIge1xuICBmb250LXNpemU6IDEwcHg7XG4gIHRleHQtYWxpZ246IHJpZ2h0O1xufVxuXG4uc2xpZGVTaG93IHtcbiAgdGV4dC1hbGlnbjogY2VudGVyO1xufVxuXG4uaW1nSG9sZGVyIHtcbiAgbWFyZ2luOiBhdXRvO1xuICB3aWR0aDogMjAwcHg7XG4gIGhlaWdodDogMjAwcHg7XG4gIG1heC13aWR0aDogMjAwcHg7XG4gIG1heC1oZWlnaHQ6IDIwMHB4O1xufVxuXG4uaW1nSG9sZGVyUmVjIHtcbiAgd2lkdGg6IDEwMHB4O1xuICBoZWlnaHQ6IDEwMHB4O1xuICBtYXgtd2lkdGg6IDEwMHB4O1xuICBtYXgtaGVpZ2h0OiAxMDBweDtcbn1cblxuLmltZ19zbGlkZXIge1xuICBoZWlnaHQ6IDEyLjVyZW0gIWltcG9ydGFudDtcbiAgd2lkdGg6IDEyLjVyZW0gIWltcG9ydGFudDtcbn1cblxuLnJhdGluZ0JvcmRlciB7XG4gIGJvcmRlcjogc29saWQgMXB4ICNjOGM2YzY7XG4gIHBhZGRpbmc6IDAgMnB4O1xufVxuXG4uc3ViU3ViQ2F0VGl0bGUge1xuICBmb250LXNpemU6IDhweDtcbn1cblxuLnN1YkNhdEhlYWRlciB7XG4gIGZvbnQtc2l6ZTogMTBweDtcbn1cblxuLnN1YkNhdFZpZXdBbGwge1xuICBmb250LXNpemU6IDhweDtcbn1cblxuLmdyaWRTdWJDYXQge1xuICBwYWRkaW5nOiAwcHg7XG59XG5cbi5ncmlkU3ViQ2F0SGVhZGVyIHtcbiAgYmFja2dyb3VuZDogdmFyKC0taW9uLWNvbG9yLXByaW1hcnkpO1xuICBjb2xvcjogI2ZmZjtcbn1cblxuLmJvcmRlclJpZ2h0IHtcbiAgYm9yZGVyLXJpZ2h0OiBzb2xpZCAxcHggI2M4YzZjNjtcbn1cblxuLmJvcmRlckJvdHRvbSB7XG4gIGJvcmRlci1ib3R0b206IHNvbGlkIDFweCAjYzhjNmM2O1xufSJdfQ== */";
     /***/
   },
 
@@ -303,7 +303,7 @@
         this.orderService = orderService;
         this.authService = authService; ///Inputs
 
-        this.title = 'Details';
+        this.title = "Details";
         this.longSearch = false;
         this.showBackButton = true;
         this.loading = false;
@@ -323,7 +323,7 @@
           centeredSlides: true,
           loop: true,
           pagination: {
-            el: '.swiper-pagination',
+            el: ".swiper-pagination",
             clickable: true
           }
         };
@@ -374,7 +374,7 @@
 
               if (params.shadow) {
                 if (isHorizontal) {
-                  $cubeShadowEl = $wrapperEl.find('.swiper-cube-shadow');
+                  $cubeShadowEl = $wrapperEl.find(".swiper-cube-shadow");
 
                   if ($cubeShadowEl.length === 0) {
                     $cubeShadowEl = swiper.$('<div class="swiper-cube-shadow"></div>');
@@ -385,7 +385,7 @@
                     height: "".concat(swiperWidth, "px")
                   });
                 } else {
-                  $cubeShadowEl = $el.find('.swiper-cube-shadow');
+                  $cubeShadowEl = $el.find(".swiper-cube-shadow");
 
                   if ($cubeShadowEl.length === 0) {
                     $cubeShadowEl = swiper.$('<div class="swiper-cube-shadow"></div>');
@@ -399,7 +399,7 @@
                 let slideIndex = i;
 
                 if (isVirtual) {
-                  slideIndex = parseInt($slideEl.attr('data-swiper-slide-index'), 10);
+                  slideIndex = parseInt($slideEl.attr("data-swiper-slide-index"), 10);
                 }
 
                 let slideAngle = slideIndex * 90;
@@ -449,16 +449,16 @@
 
                 if (params.slideShadows) {
                   // Set shadows
-                  let shadowBefore = isHorizontal ? $slideEl.find('.swiper-slide-shadow-left') : $slideEl.find('.swiper-slide-shadow-top');
-                  let shadowAfter = isHorizontal ? $slideEl.find('.swiper-slide-shadow-right') : $slideEl.find('.swiper-slide-shadow-bottom');
+                  let shadowBefore = isHorizontal ? $slideEl.find(".swiper-slide-shadow-left") : $slideEl.find(".swiper-slide-shadow-top");
+                  let shadowAfter = isHorizontal ? $slideEl.find(".swiper-slide-shadow-right") : $slideEl.find(".swiper-slide-shadow-bottom");
 
                   if (shadowBefore.length === 0) {
-                    shadowBefore = swiper.$("<div class=\"swiper-slide-shadow-".concat(isHorizontal ? 'left' : 'top', "\"></div>"));
+                    shadowBefore = swiper.$("<div class=\"swiper-slide-shadow-".concat(isHorizontal ? "left" : "top", "\"></div>"));
                     $slideEl.append(shadowBefore);
                   }
 
                   if (shadowAfter.length === 0) {
-                    shadowAfter = swiper.$("<div class=\"swiper-slide-shadow-".concat(isHorizontal ? 'right' : 'bottom', "\"></div>"));
+                    shadowAfter = swiper.$("<div class=\"swiper-slide-shadow-".concat(isHorizontal ? "right" : "bottom", "\"></div>"));
                     $slideEl.append(shadowAfter);
                   }
 
@@ -468,10 +468,10 @@
               }
 
               $wrapperEl.css({
-                '-webkit-transform-origin': "50% 50% -".concat(swiperSize / 2, "px"),
-                '-moz-transform-origin': "50% 50% -".concat(swiperSize / 2, "px"),
-                '-ms-transform-origin': "50% 50% -".concat(swiperSize / 2, "px"),
-                'transform-origin': "50% 50% -".concat(swiperSize / 2, "px")
+                "-webkit-transform-origin": "50% 50% -".concat(swiperSize / 2, "px"),
+                "-moz-transform-origin": "50% 50% -".concat(swiperSize / 2, "px"),
+                "-ms-transform-origin": "50% 50% -".concat(swiperSize / 2, "px"),
+                "transform-origin": "50% 50% -".concat(swiperSize / 2, "px")
               });
 
               if (params.shadow) {
@@ -496,17 +496,17 @@
                 $el,
                 slides
               } = swiper;
-              slides.transition(duration).find('.swiper-slide-shadow-top, .swiper-slide-shadow-right, .swiper-slide-shadow-bottom, .swiper-slide-shadow-left').transition(duration);
+              slides.transition(duration).find(".swiper-slide-shadow-top, .swiper-slide-shadow-right, .swiper-slide-shadow-bottom, .swiper-slide-shadow-left").transition(duration);
 
               if (swiper.params.cubeEffect.shadow && !swiper.isHorizontal()) {
-                $el.find('.swiper-cube-shadow').transition(duration);
+                $el.find(".swiper-cube-shadow").transition(duration);
               }
             }
           }
         };
         this.route.params.subscribe(params => {
           if (params.id) {
-            console.log('params.id: ' + JSON.stringify(params.id));
+            console.log("params.id: " + JSON.stringify(params.id));
             this.loading = true;
             this.productService.getProductDetail(params.id).subscribe(prod => {
               if (prod.data) {
@@ -537,9 +537,9 @@
           } else {//Bounce the person
           }
         });
-        this.nativeStorage.getItem('currentUser').then(x => {
+        this.nativeStorage.getItem("currentUser").then(x => {
           this.currentUser = x;
-          this.nativeStorage.getItem('WishList').then(x => {
+          this.nativeStorage.getItem("WishList").then(x => {
             this.wishList = x;
           });
         });
@@ -550,7 +550,7 @@
       viewProduct(prod) {
         this.prod_data = null;
         this.prod_data = prod;
-        this.prod_data['productId'] = this.prod_data._id;
+        this.prod_data["productId"] = this.prod_data._id;
         this.ionContent.scrollToTop(300);
       }
 
@@ -558,7 +558,7 @@
         return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function* () {
           const toast = yield this.toastController.create({
             header: header,
-            position: 'bottom',
+            position: "bottom",
             message: msg,
             duration: duration,
             // cssClass: 'custom-toast-class',
@@ -570,12 +570,12 @@
 
       addToCart(prod) {
         this.orderService.addToCart(this.currentUser.token, prod).subscribe(data => {
-          console.log('addToCart Success: ' + JSON.stringify(data));
+          console.log("addToCart Success: " + JSON.stringify(data));
           this.productService.getNumberofItemsInCart(data.data);
-          this.presentToast('GREAT!', 'Product successfully added to your cart ', 2000, 'success'); // this.toastr.success("Item successfuly added to cart");
+          this.presentToast("GREAT!", "Product successfully added to your cart ", 2000, "success"); // this.toastr.success("Item successfuly added to cart");
         }, err => {
-          console.log('addToCart Error: ' + JSON.stringify(err));
-          this.presentToast('OOPS!', 'An error occurred, Please try again later ', 2000, 'error');
+          console.log("addToCart Error: " + JSON.stringify(err));
+          this.presentToast("OOPS!", "An error occurred, Please try again later ", 2000, "error");
         });
       }
 
@@ -590,26 +590,26 @@
               productId: prod._id,
               quantity: 1
             }).subscribe(data => {
-              console.log('Add to Wishlist Result: ' + JSON.stringify(data));
+              console.log("Add to Wishlist Result: " + JSON.stringify(data));
 
               if (!data.error) {
-                this.presentToast('GREAT!', 'Product successfully added to your wishlist ', 2000, 'success');
+                this.presentToast("GREAT!", "Product successfully added to your wishlist ", 2000, "success");
                 this.wishList = data.data;
-                this.nativeStorage.setItem('WishList', this.wishList);
+                this.nativeStorage.setItem("WishList", this.wishList);
                 this.loading = false;
               } else {
                 this.loading = false;
-                this.presentToast('OOPS!', 'An error occurred, Please try again later ', 2000, 'danger');
+                this.presentToast("OOPS!", "An error occurred, Please try again later ", 2000, "danger");
               }
             }, err => {
               console.error(err);
               this.loading = false;
-              this.presentToast('OOPS!', 'An error occurred, Please try again later ', 2000, 'danger');
+              this.presentToast("OOPS!", "An error occurred, Please try again later ", 2000, "danger");
             });
           }
         } else {
-          this.presentToast('ALMOST THERE!', 'Please sign in to add the product to your wishlist ', 2000, 'warning');
-          this.router.navigate(['/sign-in']);
+          this.presentToast("ALMOST THERE!", "Please sign in to add the product to your wishlist ", 2000, "warning");
+          this.router.navigate(["/sign-in"]);
         }
       }
 
@@ -619,13 +619,13 @@
           this.wishList.forEach(w => {
             if (w.productId === prod._id) {
               this.wishList.splice(this.wishList.indexOf(w.productId), 1);
-              this.nativeStorage.setItem('WishList', this.wishList);
+              this.nativeStorage.setItem("WishList", this.wishList);
             }
           }); // console.log('Wishlist delete data:' + this.wishList.length);
           // this.checkIfProdInWishList(prod);
 
           this.loading = false;
-          this.presentToast('GREAT!', 'Product successfully removed to your wishlist ', 2000, 'success');
+          this.presentToast("GREAT!", "Product successfully removed to your wishlist ", 2000, "success");
         }, err => {
           console.error(err); // this.toastr.error(err.errors.join(","), "Error!");
         });
@@ -637,11 +637,11 @@
       //   let name = prod.name.replace(' ', '-');
       //   this.socialSharing
       //     .share(
-      //       '<a href="https://easymall.ng/view-product/"' +
+      //       '<a href="https://afrimartone.ng/view-product/"' +
       //         name +
-      //         '>https://easymall.ng/view-product/' +
+      //         '>https://afrimartone.ng/view-product/' +
       //         name,
-      //       'EasyMall Product Referral',
+      //       'AfrimartOne Product Referral',
       //       '',
       //       ''
       //     )
@@ -700,7 +700,7 @@
       static: false
     }), tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["IonContent"])], ProductsPage.prototype, "ionContent", void 0);
     ProductsPage = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
-      selector: 'app-products',
+      selector: "app-products",
       template: tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(
       /*! raw-loader!./products.page.html */
       "./node_modules/raw-loader/dist/cjs.js!./src/app/products/products.page.html")).default,
