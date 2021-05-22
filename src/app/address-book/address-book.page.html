@@ -69,7 +69,7 @@
               </app-text-shell>
               <app-text-shell
                 animation="gradient"
-                [data]="address.city+', ' +address.state+', ' +address.country"
+                [data]="address.city+', ' +address.states+', ' +address.country"
               ></app-text-shell>
               <br />
               <app-text-shell
@@ -172,7 +172,7 @@
             <ion-item lines="none">
               <ion-label color="dark">State</ion-label>
               <ion-select
-                [value]="state"
+                [value]="states"
                 (ionChange)="changeState($event)"
                 okText="Okay"
                 cancelText="Dismiss"
@@ -197,7 +197,7 @@
             <ion-item lines="none">
               <ion-label color="dark">City</ion-label>
               <ion-select
-                [value]="city"
+                [value]="lgas"
                 (ionChange)="changeCity($event)"
                 okText="Okay"
                 cancelText="Dismiss"

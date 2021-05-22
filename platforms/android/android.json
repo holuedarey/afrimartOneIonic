@@ -72,7 +72,7 @@
           "/manifest/application": [
             {
               "xml": "<application android:networkSecurityConfig=\"@xml/network_security_config\" />",
-              "count": 2,
+              "count": 1,
               "mode": "merge",
               "id": "config.xml",
               "oldAttrib": {
@@ -106,13 +106,15 @@
           "CAMERA_USAGE_DESCRIPTION": [
             {
               "xml": "<string>This App would like to access your camera  for to take photos for your profile. Your photos wont be shared without your permission.</string>",
-              "count": 3
+              "count": 1,
+              "id": "config.xml"
             }
           ],
           "PHOTOLIBRARY_USAGE_DESCRIPTION": [
             {
               "xml": "<string>This App would like to access your photo gallery for your profile photo upload. Your photos wont be shared without your permission.</string>",
-              "count": 3
+              "count": 1,
+              "id": "config.xml"
             }
           ]
         }
