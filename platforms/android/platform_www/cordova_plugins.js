@@ -49,14 +49,6 @@ cordova.define('cordova/plugin_list', function(require, exports, module) {
       ]
     },
     {
-      "id": "cordova-plugin-facebook4.FacebookConnectPlugin",
-      "file": "plugins/cordova-plugin-facebook4/www/facebook-native.js",
-      "pluginId": "cordova-plugin-facebook4",
-      "clobbers": [
-        "facebookConnectPlugin"
-      ]
-    },
-    {
       "id": "cordova-plugin-file.DirectoryEntry",
       "file": "plugins/cordova-plugin-file/www/DirectoryEntry.js",
       "pluginId": "cordova-plugin-file",
@@ -343,7 +335,6 @@ cordova.define('cordova/plugin_list', function(require, exports, module) {
     "cordova-plugin-android-permissions": "1.0.2",
     "cordova-plugin-camera": "4.1.0",
     "cordova-plugin-device": "2.0.2",
-    "cordova-plugin-facebook4": "6.2.0",
     "cordova-plugin-file": "6.0.2",
     "cordova-plugin-filechooser": "1.2.0",
     "cordova-plugin-filepath": "1.5.8",

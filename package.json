@@ -28,7 +28,6 @@
     "@ionic-native/android-permissions": "^5.23.0",
     "@ionic-native/camera": "^5.23.0",
     "@ionic-native/core": "^5.0.0",
-    "@ionic-native/facebook": "^5.33.0",
     "@ionic-native/file": "^5.23.0",
     "@ionic-native/file-chooser": "^5.23.0",
     "@ionic-native/file-path": "^5.23.0",
@@ -54,7 +53,6 @@
     "cordova-plugin-add-swift-support": "^2.0.2",
     "cordova-plugin-android-permissions": "^1.0.2",
     "cordova-plugin-camera": "^4.1.0",
-    "cordova-plugin-facebook4": "^6.2.0",
     "cordova-plugin-file": "^6.0.2",
     "cordova-plugin-filechooser": "^1.2.0",
     "cordova-plugin-filepath": "^1.5.8",
@@ -121,10 +119,6 @@
         "REVERSED_CLIENT_ID": "com.afrimartone.app",
         "WEB_APPLICATION_CLIENT_ID": "797349031519-3kes2kr3nh4cpltv1abpas0c218d5gbf.apps.googleusercontent.com",
         "PLAY_SERVICES_VERSION": "15.0.1"
-      },
-      "cordova-plugin-facebook4": {
-        "APP_ID": "2504590776291199",
-        "APP_NAME": "easycoopWebClient"
       },
       "cordova-plugin-network-information": {},
       "cordova-custom-config": {},

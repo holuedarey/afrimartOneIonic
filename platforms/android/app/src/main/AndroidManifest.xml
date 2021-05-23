@@ -13,8 +13,6 @@
             <meta-data android:name="android.support.FILE_PROVIDER_PATHS" android:resource="@xml/camera_provider_paths" />
         </provider>
         <meta-data android:name="co.paystack.android.PublicKey" android:value="pk_test_6bff14bb35b87f431f3a8420380d7289162961c4" />
-        <meta-data android:name="com.facebook.sdk.ApplicationName" android:value="@string/fb_app_name" />
-        <activity android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation" android:label="@string/fb_app_name" android:name="com.facebook.FacebookActivity" />
     </application>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
