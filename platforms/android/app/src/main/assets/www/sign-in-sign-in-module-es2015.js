@@ -98,10 +98,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _ionic_native_native_storage_ngx__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @ionic-native/native-storage/ngx */ "./node_modules/@ionic-native/native-storage/ngx/index.js");
 /* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm2015/forms.js");
 /* harmony import */ var _ionic_native_google_plus_ngx__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @ionic-native/google-plus/ngx */ "./node_modules/@ionic-native/google-plus/ngx/index.js");
-/* harmony import */ var _ionic_native_facebook_ngx__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @ionic-native/facebook/ngx */ "./node_modules/@ionic-native/facebook/ngx/index.js");
-/* harmony import */ var src_app_core_authentication_authentication_service__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! src/app/core/authentication/authentication.service */ "./src/app/core/authentication/authentication.service.ts");
-/* harmony import */ var src_app_core_http_services_order_service__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! src/app/core/http-services/order.service */ "./src/app/core/http-services/order.service.ts");
-/* harmony import */ var src_app_shared_models_user_model__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! src/app/shared/models/user.model */ "./src/app/shared/models/user.model.ts");
+/* harmony import */ var src_app_core_authentication_authentication_service__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! src/app/core/authentication/authentication.service */ "./src/app/core/authentication/authentication.service.ts");
+/* harmony import */ var src_app_core_http_services_order_service__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! src/app/core/http-services/order.service */ "./src/app/core/http-services/order.service.ts");
+/* harmony import */ var src_app_shared_models_user_model__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! src/app/shared/models/user.model */ "./src/app/shared/models/user.model.ts");
 
 
 
@@ -109,12 +108,12 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-
+// import { Facebook } from '@ionic-native/facebook/ngx';
 
 
 
 let SignInPage = class SignInPage {
-    constructor(authService, orderService, router, loadingCtrl, navCtrl, toastController, formBuilder, nativeStorage, googlePlus, fb) {
+    constructor(authService, orderService, router, loadingCtrl, navCtrl, toastController, formBuilder, nativeStorage, googlePlus) {
         this.authService = authService;
         this.orderService = orderService;
         this.router = router;
@@ -124,7 +123,6 @@ let SignInPage = class SignInPage {
         this.formBuilder = formBuilder;
         this.nativeStorage = nativeStorage;
         this.googlePlus = googlePlus;
-        this.fb = fb;
         ///Inputs
         this.title = 'Sign In';
         this.longSearch = false;
@@ -136,7 +134,7 @@ let SignInPage = class SignInPage {
         this.isloadingSettings = false;
         this.loadingText = '';
         this.userData = {};
-        this.loginModel = new src_app_shared_models_user_model__WEBPACK_IMPORTED_MODULE_10__["LoginModel"]();
+        this.loginModel = new src_app_shared_models_user_model__WEBPACK_IMPORTED_MODULE_9__["LoginModel"]();
         this.users = { id: '', name: '', email: '', picture: { data: { url: '' } } };
         // this.loginForm = this.formBuilder.group({
         //   email: new FormControl(
@@ -255,65 +253,17 @@ let SignInPage = class SignInPage {
             alert('Err: ' + JSON.stringify(this.userData));
         });
     }
-    faceBookSignIn() {
-        this.fb.getLoginStatus()
-            .then((res) => {
-            console.log(res.status);
-            if (res.status === 'connect') {
-                this.isLoggedIn = true;
-            }
-            else {
-                // this.isLoggedIn = false;
-                this.fb
-                    .login(['public_profile', 'email'])
-                    .then((res) => {
-                    if (res.status === 'connected') {
-                        this.isLoggedIn = true;
-                        console.log('this.userData: ' + JSON.stringify(res));
-                        alert('this.userData: ' + JSON.stringify(res));
-                        this.getUserDetail(res.authResponse.userID);
-                    }
-                    else {
-                        this.isLoggedIn = false;
-                    }
-                })
-                    .catch((e) => {
-                    console.log('Error logging into Facebook', e);
-                    alert('Error logging into Facebook: ' + e);
-                });
-            }
-        })
-            .catch((e) => console.log(e));
-    }
-    getUserDetail(userid) {
-        this.fb
-            .api('/' + userid + '/?fields=id,email,name,picture', ['public_profile'])
-            .then((res) => {
-            console.log(res);
-            this.users = res;
-        })
-            .catch((e) => {
-            console.log(e);
-        });
-    }
-    fbLogout() {
-        this.fb
-            .logout()
-            .then((res) => (this.isLoggedIn = false))
-            .catch((e) => console.log('Error logout from Facebook', e));
-    }
 };
 SignInPage.ctorParameters = () => [
-    { type: src_app_core_authentication_authentication_service__WEBPACK_IMPORTED_MODULE_8__["AuthenticationService"] },
-    { type: src_app_core_http_services_order_service__WEBPACK_IMPORTED_MODULE_9__["OrderService"] },
+    { type: src_app_core_authentication_authentication_service__WEBPACK_IMPORTED_MODULE_7__["AuthenticationService"] },
+    { type: src_app_core_http_services_order_service__WEBPACK_IMPORTED_MODULE_8__["OrderService"] },
     { type: _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"] },
     { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["LoadingController"] },
     { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["NavController"] },
     { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["ToastController"] },
     { type: _angular_forms__WEBPACK_IMPORTED_MODULE_5__["FormBuilder"] },
     { type: _ionic_native_native_storage_ngx__WEBPACK_IMPORTED_MODULE_4__["NativeStorage"] },
-    { type: _ionic_native_google_plus_ngx__WEBPACK_IMPORTED_MODULE_6__["GooglePlus"] },
-    { type: _ionic_native_facebook_ngx__WEBPACK_IMPORTED_MODULE_7__["Facebook"] }
+    { type: _ionic_native_google_plus_ngx__WEBPACK_IMPORTED_MODULE_6__["GooglePlus"] }
 ];
 SignInPage = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -321,16 +271,15 @@ SignInPage = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         template: tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(/*! raw-loader!./sign-in.page.html */ "./node_modules/raw-loader/dist/cjs.js!./src/app/sign-in/sign-in.page.html")).default,
         styles: [tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(/*! ./sign-in.page.scss */ "./src/app/sign-in/sign-in.page.scss")).default]
     }),
-    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [src_app_core_authentication_authentication_service__WEBPACK_IMPORTED_MODULE_8__["AuthenticationService"],
-        src_app_core_http_services_order_service__WEBPACK_IMPORTED_MODULE_9__["OrderService"],
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [src_app_core_authentication_authentication_service__WEBPACK_IMPORTED_MODULE_7__["AuthenticationService"],
+        src_app_core_http_services_order_service__WEBPACK_IMPORTED_MODULE_8__["OrderService"],
         _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"],
         _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["LoadingController"],
         _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["NavController"],
         _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["ToastController"],
         _angular_forms__WEBPACK_IMPORTED_MODULE_5__["FormBuilder"],
         _ionic_native_native_storage_ngx__WEBPACK_IMPORTED_MODULE_4__["NativeStorage"],
-        _ionic_native_google_plus_ngx__WEBPACK_IMPORTED_MODULE_6__["GooglePlus"],
-        _ionic_native_facebook_ngx__WEBPACK_IMPORTED_MODULE_7__["Facebook"]])
+        _ionic_native_google_plus_ngx__WEBPACK_IMPORTED_MODULE_6__["GooglePlus"]])
 ], SignInPage);
 
 

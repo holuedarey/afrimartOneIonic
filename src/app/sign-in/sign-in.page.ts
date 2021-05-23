@@ -9,7 +9,7 @@ import {
   FormControl,
 } from '@angular/forms';
 import { GooglePlus } from '@ionic-native/google-plus/ngx';
-import { Facebook } from '@ionic-native/facebook/ngx';
+// import { Facebook } from '@ionic-native/facebook/ngx';
 import { AuthenticationService } from 'src/app/core/authentication/authentication.service';
 import { OrderService } from 'src/app/core/http-services/order.service';
 import { LoginModel } from 'src/app/shared/models/user.model';
@@ -47,7 +47,7 @@ export class SignInPage implements OnInit {
     public formBuilder: FormBuilder,
     private nativeStorage: NativeStorage,
     private googlePlus: GooglePlus,
-    private fb: Facebook
+    // private fb: Facebook
   ) {
     // this.loginForm = this.formBuilder.group({
     //   email: new FormControl(
@@ -202,50 +202,50 @@ export class SignInPage implements OnInit {
         alert('Err: ' + JSON.stringify(this.userData));
       });
   }
-  faceBookSignIn() {
-    this.fb.getLoginStatus()
-      .then((res) => {
-        console.log(res.status);
-        if (res.status === 'connect') {
-          this.isLoggedIn = true;
-        } else {
-          // this.isLoggedIn = false;
-          this.fb
-          .login(['public_profile', 'email'])
-          .then((res) => {
-            if (res.status === 'connected') {
-              this.isLoggedIn = true;
-              console.log('this.userData: ' + JSON.stringify(res));
-              alert('this.userData: ' + JSON.stringify(res));
-              this.getUserDetail(res.authResponse.userID);
-            } else {
-              this.isLoggedIn = false;
-            }
-          })
-          .catch((e) => {
-            console.log('Error logging into Facebook', e);
-            alert('Error logging into Facebook: ' + e);
-          });
-        }
-      })
-      .catch((e) => console.log(e));
+  // faceBookSignIn() {
+  //   this.fb.getLoginStatus()
+  //     .then((res) => {
+  //       console.log(res.status);
+  //       if (res.status === 'connect') {
+  //         this.isLoggedIn = true;
+  //       } else {
+  //         // this.isLoggedIn = false;
+  //         this.fb
+  //         .login(['public_profile', 'email'])
+  //         .then((res) => {
+  //           if (res.status === 'connected') {
+  //             this.isLoggedIn = true;
+  //             console.log('this.userData: ' + JSON.stringify(res));
+  //             alert('this.userData: ' + JSON.stringify(res));
+  //             this.getUserDetail(res.authResponse.userID);
+  //           } else {
+  //             this.isLoggedIn = false;
+  //           }
+  //         })
+  //         .catch((e) => {
+  //           console.log('Error logging into Facebook', e);
+  //           alert('Error logging into Facebook: ' + e);
+  //         });
+  //       }
+  //     })
+  //     .catch((e) => console.log(e));
     
-  }
-  getUserDetail(userid: any) {
-    this.fb
-      .api('/' + userid + '/?fields=id,email,name,picture', ['public_profile'])
-      .then((res) => {
-        console.log(res);
-        this.users = res;
-      })
-      .catch((e) => {
-        console.log(e);
-      });
-  }
-  fbLogout() {
-    this.fb
-      .logout()
-      .then((res) => (this.isLoggedIn = false))
-      .catch((e) => console.log('Error logout from Facebook', e));
-  }
+  // }
+  // getUserDetail(userid: any) {
+  //   this.fb
+  //     .api('/' + userid + '/?fields=id,email,name,picture', ['public_profile'])
+  //     .then((res) => {
+  //       console.log(res);
+  //       this.users = res;
+  //     })
+  //     .catch((e) => {
+  //       console.log(e);
+  //     });
+  // }
+  // fbLogout() {
+  //   this.fb
+  //     .logout()
+  //     .then((res) => (this.isLoggedIn = false))
+  //     .catch((e) => console.log('Error logout from Facebook', e));
+  // }
 }

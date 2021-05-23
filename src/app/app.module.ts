@@ -8,7 +8,7 @@ import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { GooglePlus } from '@ionic-native/google-plus/ngx';
-import { Facebook } from '@ionic-native/facebook/ngx';
+// import { Facebook } from '@ionic-native/facebook/ngx';
 import { Network } from '@ionic-native/network/ngx';
 import { NativeStorage } from '@ionic-native/native-storage/ngx';
 import { AndroidPermissions } from '@ionic-native/android-permissions/ngx';
@@ -49,7 +49,7 @@ import { CardModalPageModule } from '../app/card-modal/card-modal.module';
     NetworkService,
     EventsServiceService,
     GooglePlus,
-    Facebook,
+    // Facebook,
     Network,
     NativeStorage,
     AndroidPermissions,
