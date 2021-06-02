@@ -17,6 +17,9 @@ import {
   getStorageName,
 } from "src/app/shared/models/storage.model";
 import { UtilityService } from "../utility.service";
+import { Constants } from "../common/constant";
+import { StorageService } from "../storage.service";
+import { JwtHelperService } from "@auth0/angular-jwt";
 
 @Injectable({
   providedIn: "root",
@@ -31,10 +34,13 @@ export class AuthenticationService {
   private apiUrl: string = `${environment.apiUrl}auth/`;
   loggedIn: EventEmitter<any> = new EventEmitter();
 
+
+  jwtHelper = new JwtHelperService();
   constructor(
     private nativeStorage: NativeStorage,
     private http: HttpClient,
-    private utilityService: UtilityService
+    private utilityService: UtilityService,
+    private storageService: StorageService,
   ) {
     this.currentUserSubject = new BehaviorSubject<UserDataModel>(
       // this.nativeStorage.getItem('currentUser');
@@ -44,12 +50,24 @@ export class AuthenticationService {
     );
     this.currentUser = this.currentUserSubject.asObservable();
   }
+  
   headerSt() {
     return new HttpHeaders({
       channel: "mobile",
       "Content-Type": "application/json"
     });
   }
+
+  isAuthenticated(): boolean {
+    if (!this.jwtHelper.isTokenExpired(this.storageService.get(Constants.STORAGE_VARIABLES.TOKEN))) {
+        return true;
+    }
+    //clear th regiser message
+    this.storageService.clear(Constants.STORAGE_VARIABLES.TOKEN);
+    this.storageService.clear(Constants.STORAGE_VARIABLES.USER);
+    return false;
+  }
+  
   public currentUserValue(): UserDataModel {
     // return this.currentUserSubject.value;
     try {
@@ -63,7 +81,7 @@ export class AuthenticationService {
 
   login(body: LoginModel) {
     return this.http
-      .post<AccountSetupResponseModel>(`${this.apiUrl}login`, body, {
+      .post<AccountSetupResponseModel>(`${this.apiUrl}sign-in`, body, {
         headers: this.headerSt()
       })
       .pipe(

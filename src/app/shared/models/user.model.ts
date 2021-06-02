@@ -39,12 +39,16 @@ export class SliderModel {
 }
 
 export class RegisterModel {
-	fName: string;
-	sName: string;
-	phone: string;
-	email: string;
-	password: string;
-	callback: string;
+	organisation:string;
+	firstname:string;
+	lastname:string;
+	username:string;
+	email:string;
+	// phone:string;	
+	role:string;
+	country:string;
+	preferredLanguage:string;
+	password:string;
 }
 
 export class ProfileModel {
@@ -60,6 +64,7 @@ export interface AccountSetupResponseModel {
 	error: boolean;
 	message: string;
 	data: UserDataModel;
+	status:boolean;
 }
 
 export class SocialLoginDataModel {
@@ -110,15 +115,15 @@ export interface AccountSettingResponseModel {
 	error: boolean;
 	message: string;
 	data: any;
+	status:boolean;
 }
 
 export class SendEmailVerificationCodeModel {
 	email: string;
-	callback: string;
+	organisation: string;
 }
 
 export class EmailVerificationModel {
-	email: string;
 	token: string;
 }
 
@@ -134,8 +139,13 @@ export class ResetPasswordModel {
 }
 
 export class LoginModel {
-	email: string;
+	user: string;
 	password: string;
+	organisation:string;
+}
+
+export class ActivateAccModel {
+	token: string;
 }
 
 export interface SocialLoginModel {

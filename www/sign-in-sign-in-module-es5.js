@@ -15,7 +15,7 @@
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<!-- <app-header [title]=\"title\" [longSearch]=\"longSearch\" [showBackButton]=\"showBackButton\" [isLoading]=\"loading\"\n  [showSearch]=\"showSearch\">\n</app-header> -->\n<ion-content>\n  <div class=\"topFadedLogo\"> </div>\n  <form [formGroup]=\"loginForm\">\n    <ion-grid style=\"padding-top:75px;\">\n      <ion-row>\n        <ion-col text-center>\n          <div class=\"ion-text-center header-title\">Sign in</div>\n        </ion-col>\n\n        <ion-col size=\"12\">\n          <ion-row>\n            <ion-col size=\"12\" class=\"colForm\">\n                <ion-label color=\"dark\" position=\"floating\">Email Address</ion-label>\n              <ion-item lines=\"none\">\n                <!-- <ion-icon name=\"mail-outline\" color=\"dark\" slot=\"start\"></ion-icon> -->\n                <ion-input formControlName=\"email\" type=\"email\" placeholder=\"Enter your Email Address\" clear-input=\"true\">\n                </ion-input>\n              </ion-item>\n            </ion-col>\n            <div *ngIf=\"!loginForm.controls.email.valid && loginForm.controls.email.dirty\">\n              <p style=\"color:#330501!important;text-align:center;\">Please enter a VALID email Address</p>\n            </div>\n          </ion-row>\n          <br>\n          <ion-row>\n            <ion-col col-12 class=\"colForm\">\n                <ion-label color=\"dark\" position=\"floating\">Password</ion-label>\n\n              <ion-item lines=\"none\">\n                <!-- <ion-icon name=\"lock-open-outline\" color=\"dark\" slot=\"start\"></ion-icon> -->\n                <ion-input formControlName=\"password\" [type]=\"showPassword? 'text':'password'\" placeholder=\"Enter your Password\"\n                  clear-input=\"true\">\n                </ion-input>\n                <ion-icon [name]=\"passwordToggleIcon\" color=\"primary\" class=\"iconEyeSize\" slot=\"end\"\n                  (click)=\"togglePassword()\"></ion-icon>\n              </ion-item>\n            </ion-col>\n          </ion-row>\n\n          <ion-row>\n            <ion-col col-12 class=\"t_right\" style=\"padding-right:20px;\">\n              <a class=\"note_title12Pri\" [routerLink]=\"['/forgot-password']\"> Forgot Password?\n              </a>\n            </ion-col>\n          </ion-row>\n          <ion-row>\n            <ion-col size=\"12\" style=\"padding: 0px;\">\n              <div style=\"padding-top: 10px;\">\n                <ion-button expand=\"block\" color=\"primary\" (click)=\"loginUser()\" [disabled]=\"!loginForm.valid\"> SIGN IN\n                </ion-button>\n                <br>\n                <div color=\"success\" class=\"t_center legal-stuff\">OR</div>\n              </div>\n            </ion-col>\n          </ion-row>\n          <ion-row class=\"t_center\">\n            <ion-col size=\"12\">\n              <div class=\"note_title14Black\">\n                SIGN IN WITH<br>\n                <a color=\"primary\" (click)=\"faceBookSignIn()\">\n                  <img src=\"../../assets/vectors/icons/facebook.svg\" class=\"pre_social_icons\">\n                </a>\n                <a color=\"primary\" (click)=\"googleSignIn()\">\n                  <img src=\"../../assets/vectors/icons/google.svg\" class=\"pre_social_icons\">\n                </a>\n              </div>\n            </ion-col>\n          </ion-row>\n          <ion-row class=\"t_center\">\n            <ion-col size=\"12\" style=\"padding: 0px;\">\n              <div class=\"legal-stuff note_title14Black\" style=\"padding-top: 10px;\">\n                DON'T HAVE AN <br> ACCOUNT?\n                <a [routerLink]=\"['/sign-up']\" class=\"legal-action\"> SIGN UP</a>\n              </div>\n            </ion-col>\n          </ion-row>\n          <hr class=\"preload\">\n          <ion-row class=\"t_center\">\n            <ion-col size=\"12\" style=\"padding: 0px;\">\n              <div class=\"legal-stuffs note_title14Black\" style=\"padding-top: 10px;\">\n                DIDN'T GET AN ACTIVATION <br> LINK?\n                <!-- <a color=\"primary\" [routerLink]=\"['/sign-up']\" class=\"legal-action note_title14Pri\"> REQUEST LINK</a> -->\n                <a color=\"primary\" [routerLink]=\"['/app/home']\" class=\" note_title14Pris\"> REQUEST LINK</a>\n              </div>\n            </ion-col>\n          </ion-row>\n\n        </ion-col>\n      </ion-row>\n    </ion-grid>\n\n  </form>\n  <ion-grid>\n    <ion-row>\n      <ion-col size=\"12\" *ngIf=\"isloadingSettings\">\n        <ion-note color=\"primary\">{{loadingText}}</ion-note>\n        <ion-progress-bar color=\"primary\" type=\"indeterminate\"></ion-progress-bar>\n      </ion-col>\n    </ion-row>\n  </ion-grid>\n</ion-content>";
+    __webpack_exports__["default"] = "<!-- <app-header [title]=\"title\" [longSearch]=\"longSearch\" [showBackButton]=\"showBackButton\" [isLoading]=\"loading\"\n  [showSearch]=\"showSearch\">\n</app-header> -->\n<ion-content>\n  <div class=\"topFadedLogo\"> </div>\n  <form [formGroup]=\"loginForm\">\n    <ion-grid style=\"padding-top:75px;\">\n      <ion-row>\n        <ion-col text-center>\n          <div class=\"ion-text-center header-title\">Sign in</div>\n        </ion-col>\n\n        <ion-col size=\"12\">\n          <ion-row>\n            <ion-col size=\"12\" class=\"colForm\">\n                <ion-label color=\"dark\" position=\"floating\">Username</ion-label>\n                <ion-input class=\"qouteForm\" formControlName=\"user\" type=\"text\" placeholder=\"Enter your Email Address\" clear-input=\"true\">\n                </ion-input> \n            </ion-col>\n            <div *ngIf=\"!loginForm.controls.user.valid && loginForm.controls.user.dirty\">\n              <p style=\"color:#330501!important;text-align:center;\">Please enter a VALID email Address</p>\n            </div>\n          </ion-row>\n          <br>\n          <ion-row>\n            <ion-col col-12 class=\"colForm\">\n                <ion-label color=\"dark\" position=\"floating\">Password</ion-label>\n\n              <ion-item lines=\"none\" class=\"qouteForm\">\n                <ion-input formControlName=\"password\" [type]=\"showPassword? 'text':'password'\" placeholder=\"Enter your Password\"\n                  clear-input=\"true\">\n                </ion-input>\n                <ion-icon [name]=\"passwordToggleIcon\" color=\"primary\" class=\"iconEyeSize\" slot=\"end\"\n                  (click)=\"togglePassword()\"></ion-icon>\n              </ion-item>\n            </ion-col>\n          </ion-row>\n\n          <ion-row>\n            <ion-col col-12 class=\"t_right\" style=\"padding-right:20px;\">\n              <a class=\"note_title12Pri\" [routerLink]=\"['/forgot-password']\"> Forgot Password?\n              </a>\n            </ion-col>\n          </ion-row>\n          <ion-row>\n            <ion-col size=\"12\" style=\"padding: 0px;\">\n              <div style=\"padding-top: 10px;\">\n                <ion-button expand=\"block\" color=\"primary\" (click)=\"loginUser()\" [disabled]=\"!loginForm.valid\"> SIGN IN\n                </ion-button>\n                <br>\n                <div class=\"t_center\">\n                  <ion-text color=\"medium\">OR</ion-text>\n                </div>\n              </div>\n            </ion-col>\n          </ion-row>\n          <ion-row class=\"t_center\">\n            <ion-col size=\"12\">\n              <div class=\"note_title14Black\">\n                SIGN IN WITH<br>\n                <a color=\"primary\" (click)=\"faceBookSignIn()\">\n                  <img src=\"../../assets/vectors/icons/facebook.svg\" class=\"pre_social_icons\">\n                </a>\n                <a color=\"primary\" (click)=\"googleSignIn()\">\n                  <img src=\"../../assets/vectors/icons/google.svg\" class=\"pre_social_icons\">\n                </a>\n              </div>\n            </ion-col>\n          </ion-row>\n          <ion-row class=\"t_center\">\n            <ion-col size=\"12\" style=\"padding: 0px;\">\n              <div class=\"legal-stuff note_title14Black\" style=\"padding-top: 10px;\">\n                DON'T HAVE AN <br> ACCOUNT?\n                <a [routerLink]=\"['/sign-up']\" class=\"legal-action\"> SIGN UP</a>\n              </div>\n            </ion-col>\n          </ion-row>\n          <hr class=\"preload\">\n          <ion-row class=\"t_center\">\n            <ion-col size=\"12\" style=\"padding: 0px;\">\n              <div class=\"legal-stuffs note_title14Black\" style=\"padding-top: 10px;\">\n                DIDN'T GET AN ACTIVATION <br> LINK?\n                <!-- <a color=\"primary\" [routerLink]=\"['/sign-up']\" class=\"legal-action note_title14Pri\"> REQUEST LINK</a> -->\n                <a color=\"primary\" [routerLink]=\"['/app/home']\" class=\" note_title14Pris\"> REQUEST LINK</a>\n              </div>\n            </ion-col>\n          </ion-row>\n\n        </ion-col>\n      </ion-row>\n    </ion-grid>\n\n  </form>\n  <ion-grid>\n    <ion-row>\n      <ion-col size=\"12\" *ngIf=\"isloadingSettings\">\n        <ion-note color=\"primary\">{{loadingText}}</ion-note>\n        <ion-progress-bar color=\"primary\" type=\"indeterminate\"></ion-progress-bar>\n      </ion-col>\n    </ion-row>\n  </ion-grid>\n</ion-content>";
     /***/
   },
 
@@ -202,11 +202,23 @@
 
     var src_app_shared_models_user_model__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(
     /*! src/app/shared/models/user.model */
-    "./src/app/shared/models/user.model.ts"); // import { Facebook } from '@ionic-native/facebook/ngx';
+    "./src/app/shared/models/user.model.ts");
+    /* harmony import */
+
+
+    var _core_storage_service__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(
+    /*! ../core/storage.service */
+    "./src/app/core/storage.service.ts");
+    /* harmony import */
+
+
+    var _core_common_constant__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(
+    /*! ../core/common/constant */
+    "./src/app/core/common/constant.ts"); // import { Facebook } from '@ionic-native/facebook/ngx';
 
 
     let SignInPage = class SignInPage {
-      constructor(authService, orderService, router, loadingCtrl, navCtrl, toastController, formBuilder, nativeStorage, googlePlus) {
+      constructor(authService, orderService, router, loadingCtrl, navCtrl, toastController, formBuilder, nativeStorage, googlePlus, storageService) {
         this.authService = authService;
         this.orderService = orderService;
         this.router = router;
@@ -215,7 +227,8 @@
         this.toastController = toastController;
         this.formBuilder = formBuilder;
         this.nativeStorage = nativeStorage;
-        this.googlePlus = googlePlus; ///Inputs
+        this.googlePlus = googlePlus;
+        this.storageService = storageService; ///Inputs
 
         this.title = 'Sign In';
         this.longSearch = false;
@@ -249,8 +262,8 @@
         // });
 
         this.loginForm = this.formBuilder.group({
-          email: new _angular_forms__WEBPACK_IMPORTED_MODULE_5__["FormControl"](this.loginModel.email = 'tony@rubikpay.tech', _angular_forms__WEBPACK_IMPORTED_MODULE_5__["Validators"].compose([_angular_forms__WEBPACK_IMPORTED_MODULE_5__["Validators"].required, _angular_forms__WEBPACK_IMPORTED_MODULE_5__["Validators"].email])),
-          password: new _angular_forms__WEBPACK_IMPORTED_MODULE_5__["FormControl"](this.loginModel.password = 'Domdam@30', _angular_forms__WEBPACK_IMPORTED_MODULE_5__["Validators"].compose([_angular_forms__WEBPACK_IMPORTED_MODULE_5__["Validators"].required]))
+          user: new _angular_forms__WEBPACK_IMPORTED_MODULE_5__["FormControl"](this.loginModel.user = 'merchant', _angular_forms__WEBPACK_IMPORTED_MODULE_5__["Validators"].compose([_angular_forms__WEBPACK_IMPORTED_MODULE_5__["Validators"].required])),
+          password: new _angular_forms__WEBPACK_IMPORTED_MODULE_5__["FormControl"](this.loginModel.password = 'Merchant123', _angular_forms__WEBPACK_IMPORTED_MODULE_5__["Validators"].compose([_angular_forms__WEBPACK_IMPORTED_MODULE_5__["Validators"].required]))
         }); // fb.getLoginStatus()
         //   .then((res) => {
         //     console.log(res.status);
@@ -274,6 +287,17 @@
       }
 
       ngOnInit() {}
+
+      ionViewDidEnter() {
+        console.log('view about to enter');
+
+        if (this.authService.isAuthenticated()) {
+          this.navCtrl.navigateForward('app/profile');
+          console.log('user logged in');
+        } else {
+          this.currentUser = null;
+        }
+      }
 
       presentToast(header, msg, duration, color) {
         return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function* () {
@@ -311,27 +335,22 @@
           res.present();
           res.onDidDismiss().then(dis => {});
         });
+        this.loginForm.value['organisation'] = 'test-org';
         this.authService.login(this.loginForm.value).subscribe(data => {
-          this.loginForm.reset();
+          this.loginForm.reset(); // console.log('loginUser:' + JSON.stringify(data.data));
 
-          if (!data.error) {
-            // console.log('loginUser:' + JSON.stringify(data.data));
-            this.nativeStorage.setItem('currentUser', data.data).then(() => {
-              // console.log('loginUser:' + JSON.stringify(this.nativeStorage.getItem('currentUser')));
-              this.orderService.getWishlist(data.data.token).subscribe(w_data => {
-                // console.log('loginUgetWishlistser:' + JSON.stringify(w_data.data));
-                if (!w_data.error) {
-                  this.nativeStorage.setItem('WishList', w_data.data);
-                  this.loadingCtrl.dismiss();
-                  this.navCtrl.navigateForward('/app/profile');
-                  this.presentToast('', 'WELCOME ' + data.data.user.fName.toUpperCase(), 2000, 'success'); // this.eventService.publishCartQty(50);
-                }
-              }, err => {
-                console.error('Wishlist err: ' + err);
-                this.loadingCtrl.dismiss();
-                this.presentToast('Sign In Error', 'An error occurred. Please try again!', 4000, 'error');
-              });
-            });
+          if (data.status) {
+            console.log('loginUser:' + JSON.stringify(data.data));
+            this.loadingCtrl.dismiss();
+            this.storageService.set(_core_common_constant__WEBPACK_IMPORTED_MODULE_11__["Constants"].STORAGE_VARIABLES.TOKEN, data.data.token);
+            this.storageService.set(_core_common_constant__WEBPACK_IMPORTED_MODULE_11__["Constants"].STORAGE_VARIABLES.USER, JSON.stringify(data.data));
+            this.presentToast('', 'WELCOME ' + data.data['firstname'], 2000, 'success'); // this.nativeStorage.setItem('currentUser', data.data).then(() => {
+            //   this.navCtrl.navigateForward('/app/profile');
+            //   this.presentToast('', 'WELCOME ' + data.data['message'], 2000, 'success');
+            // })
+
+            this.router.navigate(['/app/profile']);
+            console.log('page navigated');
           } else {
             this.loadingCtrl.dismiss();
             this.presentToast('Invalid Details', 'Please confirm your details', 2000, 'warning');
@@ -374,6 +393,8 @@
       type: _ionic_native_native_storage_ngx__WEBPACK_IMPORTED_MODULE_4__["NativeStorage"]
     }, {
       type: _ionic_native_google_plus_ngx__WEBPACK_IMPORTED_MODULE_6__["GooglePlus"]
+    }, {
+      type: _core_storage_service__WEBPACK_IMPORTED_MODULE_10__["StorageService"]
     }];
 
     SignInPage = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -384,7 +405,7 @@
       styles: [tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(
       /*! ./sign-in.page.scss */
       "./src/app/sign-in/sign-in.page.scss")).default]
-    }), tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [src_app_core_authentication_authentication_service__WEBPACK_IMPORTED_MODULE_7__["AuthenticationService"], src_app_core_http_services_order_service__WEBPACK_IMPORTED_MODULE_8__["OrderService"], _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"], _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["LoadingController"], _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["NavController"], _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["ToastController"], _angular_forms__WEBPACK_IMPORTED_MODULE_5__["FormBuilder"], _ionic_native_native_storage_ngx__WEBPACK_IMPORTED_MODULE_4__["NativeStorage"], _ionic_native_google_plus_ngx__WEBPACK_IMPORTED_MODULE_6__["GooglePlus"]])], SignInPage);
+    }), tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [src_app_core_authentication_authentication_service__WEBPACK_IMPORTED_MODULE_7__["AuthenticationService"], src_app_core_http_services_order_service__WEBPACK_IMPORTED_MODULE_8__["OrderService"], _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"], _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["LoadingController"], _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["NavController"], _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["ToastController"], _angular_forms__WEBPACK_IMPORTED_MODULE_5__["FormBuilder"], _ionic_native_native_storage_ngx__WEBPACK_IMPORTED_MODULE_4__["NativeStorage"], _ionic_native_google_plus_ngx__WEBPACK_IMPORTED_MODULE_6__["GooglePlus"], _core_storage_service__WEBPACK_IMPORTED_MODULE_10__["StorageService"]])], SignInPage);
     /***/
   }
 }]);

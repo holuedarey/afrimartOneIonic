@@ -110,7 +110,7 @@ export class ProfileDetailsPage implements OnInit {
         });
     return new Promise((res, rej) => {
       console.log('profileForm.value:' + JSON.stringify(this.profileForm.value));
-      this.userService.updateProfile(this.currentUser.token,this.profileForm.value).subscribe(
+      this.userService.updateProfile(this.profileForm.value).subscribe(
         (data) => {
           this.loadingCtrl.dismiss();
           console.log("Updated: " + JSON.stringify(data))

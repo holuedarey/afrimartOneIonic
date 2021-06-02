@@ -292,7 +292,7 @@
         console.log('Signup User:' + JSON.stringify(this.changePasswordForm.value));
         this.loadingCtrl.create({
           spinner: 'dots',
-          message: 'Signing up! Please wait...',
+          message: 'Changing Passowrd! Please wait...',
           duration: 5000,
           cssClass: 'custom-loader-class'
         }).then(res => {
@@ -300,7 +300,7 @@
           res.onDidDismiss().then(dis => {});
         });
         this.loading = true;
-        this.userService.changePassword(this.currentUser.token, this.changePasswordForm.value).subscribe(data => {
+        this.userService.changePassword(this.changePasswordForm.value).subscribe(data => {
           this.changePasswordForm.reset();
 
           if (!data.error) {
@@ -354,6 +354,69 @@
       /*! ./change-password.page.scss */
       "./src/app/change-password/change-password.page.scss")).default]
     }), tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [src_app_core_authentication_authentication_service__WEBPACK_IMPORTED_MODULE_8__["AuthenticationService"], src_app_core_http_services_user_service__WEBPACK_IMPORTED_MODULE_7__["UserService"], _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"], _ionic_native_native_storage_ngx__WEBPACK_IMPORTED_MODULE_5__["NativeStorage"], _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["LoadingController"], _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["ToastController"], _angular_forms__WEBPACK_IMPORTED_MODULE_6__["FormBuilder"], _angular_common__WEBPACK_IMPORTED_MODULE_2__["Location"]])], ChangePasswordPage);
+    /***/
+  },
+
+  /***/
+  "./src/app/core/common/endpoints.ts":
+  /*!******************************************!*\
+    !*** ./src/app/core/common/endpoints.ts ***!
+    \******************************************/
+
+  /*! exports provided: Endpoint */
+
+  /***/
+  function srcAppCoreCommonEndpointsTs(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony export (binding) */
+
+
+    __webpack_require__.d(__webpack_exports__, "Endpoint", function () {
+      return Endpoint;
+    });
+    /* harmony import */
+
+
+    var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+    /*! tslib */
+    "./node_modules/tslib/tslib.es6.js");
+    /* harmony import */
+
+
+    var _environments_environment__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+    /*! ../../../environments/environment */
+    "./src/environments/environment.ts");
+
+    const BASE_URL = _environments_environment__WEBPACK_IMPORTED_MODULE_1__["environment"] ? "https://afrimart-evibu.ondigitalocean.app/" : "https://afrimart-evibu.ondigitalocean.app/";
+    const Endpoint = {
+      AUTH: {
+        login: "".concat(BASE_URL, "/auth/sign-in"),
+        register: "".concat(BASE_URL, "/auth/sign-up"),
+        verify: "".concat(BASE_URL, "/auth/verify"),
+        initiatePasswordReset: "".concat(BASE_URL, "/auth/initiate-reset"),
+        verifyPasswordReset: "".concat(BASE_URL, "/auth/verify-reset")
+      },
+      USER: {
+        editProfile: "".concat(BASE_URL, "/user/edit-profile"),
+        changePassword: "".concat(BASE_URL, "/user/change-password"),
+        profile: "".concat(BASE_URL, "/user")
+      },
+      STORES: {
+        contribution: "".concat(BASE_URL, "/reports/contributions?"),
+        recent_contribution: "".concat(BASE_URL, "/reports/contributions/recent?membershipCode="),
+        member_contribution: "".concat(BASE_URL, "/contributions/member/")
+      },
+      PRODUCT: {
+        loan: "".concat(BASE_URL, "/reports/loans?"),
+        create_loan: "".concat(BASE_URL, "/loans/requestloan"),
+        loan_repayment: "".concat(BASE_URL, "/reports/loanrepayments?")
+      },
+      CATEGORY: {
+        create_contriution: "".concat(BASE_URL, "/contributions")
+      }
+    };
     /***/
   },
 
@@ -424,13 +487,19 @@
     var _authentication_authentication_service__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(
     /*! ../authentication/authentication.service */
     "./src/app/core/authentication/authentication.service.ts");
+    /* harmony import */
+
+
+    var _common_endpoints__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(
+    /*! ../common/endpoints */
+    "./src/app/core/common/endpoints.ts");
 
     let UserService = class UserService {
       constructor(http, nativeStorage, authService) {
         this.http = http;
         this.nativeStorage = nativeStorage;
         this.authService = authService;
-        this.apiUrl = "".concat(src_environments_environment__WEBPACK_IMPORTED_MODULE_3__["environment"].apiUrl, "accounts/");
+        this.apiUrl = "".concat(src_environments_environment__WEBPACK_IMPORTED_MODULE_3__["environment"].apiUrl, "auth/");
 
         this.getUser = () => {
           return this.nativeStorage.getItem('currentUser').then(dt => {
@@ -477,45 +546,31 @@
       }
 
       register(body) {
-        return this.http.post("".concat(this.apiUrl, "register"), body, {
-          headers: this.headerSt()
-        });
+        return this.http.post(_common_endpoints__WEBPACK_IMPORTED_MODULE_8__["Endpoint"].AUTH.register, body);
       }
 
-      changePassword(token, body) {
-        return this.http.post("".concat(this.apiUrl, "change-password"), body, {
-          headers: this.headerSetter(token)
-        });
+      changePassword(body) {
+        return this.http.post(_common_endpoints__WEBPACK_IMPORTED_MODULE_8__["Endpoint"].USER.changePassword, body);
       }
 
       sendEmailVerificationCode(body) {
-        return this.http.post("".concat(this.apiUrl, "send-email-verification-token"), body, {
-          headers: this.headerSt()
-        });
+        return this.http.post("".concat(this.apiUrl, "initiate-reset"), body);
       }
 
-      verifyEmailCode(body) {
-        return this.http.post("".concat(this.apiUrl, "email-verification"), body, {
-          headers: this.headerSt()
-        });
+      verifyEmailCode(token) {
+        return this.http.get("".concat(_common_endpoints__WEBPACK_IMPORTED_MODULE_8__["Endpoint"].AUTH.verify, "?token=").concat(token));
       }
 
       requestForPasswordResetLink(body) {
-        return this.http.post("".concat(this.apiUrl, "send-reset-password"), body, {
-          headers: this.headerSt()
-        });
+        return this.http.post(_common_endpoints__WEBPACK_IMPORTED_MODULE_8__["Endpoint"].AUTH.initiatePasswordReset, body);
       }
 
-      resetPassword(body) {
-        return this.http.post("".concat(this.apiUrl, "reset-password"), body, {
-          headers: this.headerSt()
-        });
+      resetPassword(token) {
+        return this.http.get("".concat(_common_endpoints__WEBPACK_IMPORTED_MODULE_8__["Endpoint"].AUTH.verifyPasswordReset, "?token=").concat(token));
       }
 
-      updateProfile(token, body) {
-        return this.http.put("".concat(this.apiUrl, "profile"), body, {
-          headers: this.headerSetter(token)
-        }).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_5__["map"])(res => {
+      updateProfile(body) {
+        return this.http.put(_common_endpoints__WEBPACK_IMPORTED_MODULE_8__["Endpoint"].USER.editProfile, body).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_5__["map"])(res => {
           if (!res.error) {
             const user = this.authService.currentUserValue();
             user.user = res.data;
@@ -528,9 +583,7 @@
       }
 
       getProfile(token) {
-        return this.http.get("".concat(this.apiUrl, "profile"), {
-          headers: this.headerSetter(token)
-        });
+        return this.http.get(_common_endpoints__WEBPACK_IMPORTED_MODULE_8__["Endpoint"].USER.profile);
       }
 
       getAddresses(token) {

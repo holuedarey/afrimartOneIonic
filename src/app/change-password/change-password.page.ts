@@ -104,11 +104,11 @@ export class ChangePasswordPage implements OnInit {
   }
   doChangePassword(){
     console.log('Signup User:' + JSON.stringify(this.changePasswordForm.value));
-    this.loadingCtrl.create({ spinner: 'dots', message: 'Signing up! Please wait...', duration: 5000, cssClass: 'custom-loader-class' }).then((res) => {
+    this.loadingCtrl.create({ spinner: 'dots', message: 'Changing Passowrd! Please wait...', duration: 5000, cssClass: 'custom-loader-class' }).then((res) => {
       res.present(); res.onDidDismiss().then((dis) => { });
     });
     this.loading = true;  
-    this.userService.changePassword(this.currentUser.token,this.changePasswordForm.value).subscribe(
+    this.userService.changePassword(this.changePasswordForm.value).subscribe(
         (data) => {
           this.changePasswordForm.reset();
           if (!data.error) {

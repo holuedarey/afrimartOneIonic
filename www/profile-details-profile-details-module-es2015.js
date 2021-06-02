@@ -13,6 +13,52 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./src/app/core/common/endpoints.ts":
+/*!******************************************!*\
+  !*** ./src/app/core/common/endpoints.ts ***!
+  \******************************************/
+/*! exports provided: Endpoint */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Endpoint", function() { return Endpoint; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _environments_environment__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../environments/environment */ "./src/environments/environment.ts");
+
+
+const BASE_URL = _environments_environment__WEBPACK_IMPORTED_MODULE_1__["environment"] ? "https://afrimart-evibu.ondigitalocean.app/" : "https://afrimart-evibu.ondigitalocean.app/";
+const Endpoint = {
+    AUTH: {
+        login: `${BASE_URL}/auth/sign-in`,
+        register: `${BASE_URL}/auth/sign-up`,
+        verify: `${BASE_URL}/auth/verify`,
+        initiatePasswordReset: `${BASE_URL}/auth/initiate-reset`,
+        verifyPasswordReset: `${BASE_URL}/auth/verify-reset`,
+    },
+    USER: {
+        editProfile: `${BASE_URL}/user/edit-profile`,
+        changePassword: `${BASE_URL}/user/change-password`,
+        profile: `${BASE_URL}/user`,
+    },
+    STORES: {
+        contribution: `${BASE_URL}/reports/contributions?`,
+        recent_contribution: `${BASE_URL}/reports/contributions/recent?membershipCode=`,
+        member_contribution: `${BASE_URL}/contributions/member/`,
+    },
+    PRODUCT: {
+        loan: `${BASE_URL}/reports/loans?`,
+        create_loan: `${BASE_URL}/loans/requestloan`,
+        loan_repayment: `${BASE_URL}/reports/loanrepayments?`,
+    },
+    CATEGORY: {
+        create_contriution: `${BASE_URL}/contributions`
+    },
+};
+
+
+/***/ }),
+
 /***/ "./src/app/core/http-services/user.service.ts":
 /*!****************************************************!*\
   !*** ./src/app/core/http-services/user.service.ts ***!
@@ -31,6 +77,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm2015/operators/index.js");
 /* harmony import */ var src_app_shared_models_storage_model__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! src/app/shared/models/storage.model */ "./src/app/shared/models/storage.model.ts");
 /* harmony import */ var _authentication_authentication_service__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../authentication/authentication.service */ "./src/app/core/authentication/authentication.service.ts");
+/* harmony import */ var _common_endpoints__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../common/endpoints */ "./src/app/core/common/endpoints.ts");
+
 
 
 
@@ -44,7 +92,7 @@ let UserService = class UserService {
         this.http = http;
         this.nativeStorage = nativeStorage;
         this.authService = authService;
-        this.apiUrl = `${src_environments_environment__WEBPACK_IMPORTED_MODULE_3__["environment"].apiUrl}accounts/`;
+        this.apiUrl = `${src_environments_environment__WEBPACK_IMPORTED_MODULE_3__["environment"].apiUrl}auth/`;
         this.getUser = () => {
             return this.nativeStorage.getItem('currentUser').then((dt) => {
                 if (dt) {
@@ -87,40 +135,26 @@ let UserService = class UserService {
         return this.http.get(`${this.apiUrl}resources/slide`);
     }
     register(body) {
-        return this.http.post(`${this.apiUrl}register`, body, {
-            headers: this.headerSt(),
-        });
+        return this.http.post(_common_endpoints__WEBPACK_IMPORTED_MODULE_8__["Endpoint"].AUTH.register, body);
     }
-    changePassword(token, body) {
-        return this.http.post(`${this.apiUrl}change-password`, body, {
-            headers: this.headerSetter(token),
-        });
+    changePassword(body) {
+        return this.http.post(_common_endpoints__WEBPACK_IMPORTED_MODULE_8__["Endpoint"].USER.changePassword, body);
     }
     sendEmailVerificationCode(body) {
-        return this.http.post(`${this.apiUrl}send-email-verification-token`, body, {
-            headers: this.headerSt(),
-        });
+        return this.http.post(`${this.apiUrl}initiate-reset`, body);
     }
-    verifyEmailCode(body) {
-        return this.http.post(`${this.apiUrl}email-verification`, body, {
-            headers: this.headerSt(),
-        });
+    verifyEmailCode(token) {
+        return this.http.get(`${_common_endpoints__WEBPACK_IMPORTED_MODULE_8__["Endpoint"].AUTH.verify}?token=${token}`);
     }
     requestForPasswordResetLink(body) {
-        return this.http.post(`${this.apiUrl}send-reset-password`, body, {
-            headers: this.headerSt(),
-        });
+        return this.http.post(_common_endpoints__WEBPACK_IMPORTED_MODULE_8__["Endpoint"].AUTH.initiatePasswordReset, body);
     }
-    resetPassword(body) {
-        return this.http.post(`${this.apiUrl}reset-password`, body, {
-            headers: this.headerSt(),
-        });
+    resetPassword(token) {
+        return this.http.get(`${_common_endpoints__WEBPACK_IMPORTED_MODULE_8__["Endpoint"].AUTH.verifyPasswordReset}?token=${token}`);
     }
-    updateProfile(token, body) {
+    updateProfile(body) {
         return this.http
-            .put(`${this.apiUrl}profile`, body, {
-            headers: this.headerSetter(token),
-        })
+            .put(_common_endpoints__WEBPACK_IMPORTED_MODULE_8__["Endpoint"].USER.editProfile, body)
             .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_5__["map"])((res) => {
             if (!res.error) {
                 const user = this.authService.currentUserValue();
@@ -132,9 +166,7 @@ let UserService = class UserService {
         }));
     }
     getProfile(token) {
-        return this.http.get(`${this.apiUrl}profile`, {
-            headers: this.headerSetter(token),
-        });
+        return this.http.get(_common_endpoints__WEBPACK_IMPORTED_MODULE_8__["Endpoint"].USER.profile);
     }
     getAddresses(token) {
         return this.http.get(`${this.apiUrl}addresses`, {
@@ -369,7 +401,7 @@ let ProfileDetailsPage = class ProfileDetailsPage {
         });
         return new Promise((res, rej) => {
             console.log('profileForm.value:' + JSON.stringify(this.profileForm.value));
-            this.userService.updateProfile(this.currentUser.token, this.profileForm.value).subscribe((data) => {
+            this.userService.updateProfile(this.profileForm.value).subscribe((data) => {
                 this.loadingCtrl.dismiss();
                 console.log("Updated: " + JSON.stringify(data));
                 res(data);

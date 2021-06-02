@@ -13,14 +13,11 @@
         <ion-col size="12">
           <ion-row>
             <ion-col size="12" class="colForm">
-                <ion-label color="dark" position="floating">Email Address</ion-label>
-              <ion-item lines="none">
-                <!-- <ion-icon name="mail-outline" color="dark" slot="start"></ion-icon> -->
-                <ion-input formControlName="email" type="email" placeholder="Enter your Email Address" clear-input="true">
-                </ion-input>
-              </ion-item>
+                <ion-label color="dark" position="floating">Username</ion-label>
+                <ion-input class="qouteForm" formControlName="user" type="text" placeholder="Enter your Email Address" clear-input="true">
+                </ion-input> 
             </ion-col>
-            <div *ngIf="!loginForm.controls.email.valid && loginForm.controls.email.dirty">
+            <div *ngIf="!loginForm.controls.user.valid && loginForm.controls.user.dirty">
               <p style="color:#330501!important;text-align:center;">Please enter a VALID email Address</p>
             </div>
           </ion-row>
@@ -29,8 +26,7 @@
             <ion-col col-12 class="colForm">
                 <ion-label color="dark" position="floating">Password</ion-label>
 
-              <ion-item lines="none">
-                <!-- <ion-icon name="lock-open-outline" color="dark" slot="start"></ion-icon> -->
+              <ion-item lines="none" class="qouteForm">
                 <ion-input formControlName="password" [type]="showPassword? 'text':'password'" placeholder="Enter your Password"
                   clear-input="true">
                 </ion-input>
@@ -52,7 +48,9 @@
                 <ion-button expand="block" color="primary" (click)="loginUser()" [disabled]="!loginForm.valid"> SIGN IN
                 </ion-button>
                 <br>
-                <div color="success" class="t_center legal-stuff">OR</div>
+                <div class="t_center">
+                  <ion-text color="medium">OR</ion-text>
+                </div>
               </div>
             </ion-col>
           </ion-row>

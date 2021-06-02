@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouteReuseStrategy } from '@angular/router';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
@@ -23,6 +23,7 @@ import { EventsServiceService } from './providers/events-service.service';
 import { SplashComponentsModule } from './splash-components/splash-components.module';
 import { FilterModalPageModule } from '../app/filter-modal/filter-modal.module';
 import { CardModalPageModule } from '../app/card-modal/card-modal.module';
+import { RequestInterceptorService } from './core/request-interceptor.service';
 // import { SuperTabsModule } from 'ionic2-super-tabs';
 
 @NgModule({
@@ -45,6 +46,8 @@ import { CardModalPageModule } from '../app/card-modal/card-modal.module';
     StatusBar,
     SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+    { provide: HTTP_INTERCEPTORS, useClass: RequestInterceptorService, multi: true },
+    RequestInterceptorService,
     DummyService,
     NetworkService,
     EventsServiceService,

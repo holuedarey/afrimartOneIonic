@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { LoadingController, ToastController,NavController } from '@ionic/angular';
+import { LoadingController, ToastController, NavController } from '@ionic/angular';
 import { NativeStorage } from '@ionic-native/native-storage/ngx';
 import {
   FormBuilder,
@@ -13,6 +13,8 @@ import { GooglePlus } from '@ionic-native/google-plus/ngx';
 import { AuthenticationService } from 'src/app/core/authentication/authentication.service';
 import { OrderService } from 'src/app/core/http-services/order.service';
 import { LoginModel } from 'src/app/shared/models/user.model';
+import { StorageService } from '../core/storage.service';
+import { Constants } from '../core/common/constant';
 
 @Component({
   selector: 'app-sign-in',
@@ -36,17 +38,19 @@ export class SignInPage implements OnInit {
   isLoggedIn: boolean;
   loginModel: LoginModel = new LoginModel();
   users = { id: '', name: '', email: '', picture: { data: { url: '' } } };
+  currentUser: any;
 
   constructor(
     private authService: AuthenticationService,
     private orderService: OrderService,
     public router: Router,
     public loadingCtrl: LoadingController,
-    private navCtrl:NavController,
+    private navCtrl: NavController,
     private toastController: ToastController,
     public formBuilder: FormBuilder,
     private nativeStorage: NativeStorage,
     private googlePlus: GooglePlus,
+    private storageService: StorageService,
     // private fb: Facebook
   ) {
     // this.loginForm = this.formBuilder.group({
@@ -60,16 +64,16 @@ export class SignInPage implements OnInit {
     //   ),
     // });
     this.loginForm = this.formBuilder.group({
-      email: new FormControl(
-        (this.loginModel.email = 'tony@rubikpay.tech'),
-        Validators.compose([Validators.required, Validators.email])
+      user: new FormControl(
+        (this.loginModel.user = 'merchant'),
+        Validators.compose([Validators.required])
       ),
       password: new FormControl(
-        (this.loginModel.password = 'Domdam@30'),
+        (this.loginModel.password = 'Merchant123'),
         Validators.compose([Validators.required])
       ),
     });
-    
+
     // fb.getLoginStatus()
     //   .then((res) => {
     //     console.log(res.status);
@@ -89,8 +93,19 @@ export class SignInPage implements OnInit {
       this.passwordToggleIcon = 'eye-outline';
     }
   }
-  ngOnInit() {}
+  ngOnInit() {
 
+  }
+
+  ionViewDidEnter() {
+    console.log('view about to enter');
+    if (this.authService.isAuthenticated()) {
+      this.navCtrl.navigateForward('app/profile');
+      console.log('user logged in');
+    } else {
+      this.currentUser = null;
+    }
+  }
   async presentToast(
     header: string,
     msg: string,
@@ -129,44 +144,26 @@ export class SignInPage implements OnInit {
       })
       .then((res) => {
         res.present();
-        res.onDidDismiss().then((dis) => {});
+        res.onDidDismiss().then((dis) => { });
       });
+    this.loginForm.value['organisation'] = 'test-org';
     this.authService.login(this.loginForm.value).subscribe(
       (data) => {
         this.loginForm.reset();
-        if (!data.error) {
-          // console.log('loginUser:' + JSON.stringify(data.data));
-          this.nativeStorage.setItem('currentUser',data.data).then(()=>{
-            // console.log('loginUser:' + JSON.stringify(this.nativeStorage.getItem('currentUser')));
-            this.orderService.getWishlist(data.data.token).subscribe(
-              (w_data) => {
-                // console.log('loginUgetWishlistser:' + JSON.stringify(w_data.data));
-                if (!w_data.error) {
-                  this.nativeStorage.setItem('WishList',w_data.data)
-                  this.loadingCtrl.dismiss();
-                  this.navCtrl.navigateForward('/app/profile');
-                  this.presentToast(
-                    '',
-                    'WELCOME ' + data.data.user.fName.toUpperCase(),
-                    2000,
-                    'success'
-                  );
-                  // this.eventService.publishCartQty(50);
-                }
-              },
-              (err) => {
-                console.error('Wishlist err: ' + err);
-                this.loadingCtrl.dismiss();
-                this.presentToast(
-                  'Sign In Error',
-                  'An error occurred. Please try again!',
-                  4000,
-                  'error'
-                );
-              }
-            );
-          })
-         
+        this.loadingCtrl.dismiss();
+
+        // console.log('loginUser:' + JSON.stringify(data.data));
+        if (data.status) {
+          console.log('loginUser:' + JSON.stringify(data.data));
+          this.storageService.set(Constants.STORAGE_VARIABLES.TOKEN, data.data.token);
+          this.storageService.set(Constants.STORAGE_VARIABLES.USER, JSON.stringify(data.data));
+          console.log('set data :',this.storageService.get(Constants.STORAGE_VARIABLES.USER), this.storageService.get(Constants.STORAGE_VARIABLES.TOKEN));
+          // this.presentToast('', 'WELCOME ' + data.data['firstname'], 2000, 'success');
+          this.navCtrl.navigateForward('/app/home');
+          // this.nativeStorage.setItem('currentUser', data.data).then(() => {
+          //   this.navCtrl.navigateForward('/app/profile');
+          //   this.presentToast('', 'WELCOME ' + data.data['message'], 2000, 'success');
+          // })
         } else {
           this.loadingCtrl.dismiss();
           this.presentToast(
@@ -229,7 +226,7 @@ export class SignInPage implements OnInit {
   //       }
   //     })
   //     .catch((e) => console.log(e));
-    
+
   // }
   // getUserDetail(userid: any) {
   //   this.fb

@@ -840,7 +840,7 @@ CategoryService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
 /*!*********************************************!*\
   !*** ./src/app/shared/models/user.model.ts ***!
   \*********************************************/
-/*! exports provided: UserDataModel, User, SliderModel, RegisterModel, ProfileModel, SocialLoginDataModel, ChangePasswordModel, AddressModel, SendEmailVerificationCodeModel, EmailVerificationModel, SendResetPasswordLinkModel, ResetPasswordModel, LoginModel */
+/*! exports provided: UserDataModel, User, SliderModel, RegisterModel, ProfileModel, SocialLoginDataModel, ChangePasswordModel, AddressModel, SendEmailVerificationCodeModel, EmailVerificationModel, SendResetPasswordLinkModel, ResetPasswordModel, LoginModel, ActivateAccModel */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -858,6 +858,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SendResetPasswordLinkModel", function() { return SendResetPasswordLinkModel; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ResetPasswordModel", function() { return ResetPasswordModel; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LoginModel", function() { return LoginModel; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ActivateAccModel", function() { return ActivateAccModel; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 
 class UserDataModel {
@@ -889,6 +890,8 @@ class SendResetPasswordLinkModel {
 class ResetPasswordModel {
 }
 class LoginModel {
+}
+class ActivateAccModel {
 }
 
 

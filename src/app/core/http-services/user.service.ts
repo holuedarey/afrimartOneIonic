@@ -23,12 +23,13 @@ import {
 } from "src/app/shared/models/storage.model";
 import { AuthenticationService } from "../authentication/authentication.service";
 import { BecomeSellerModel } from "src/app/shared/models/seller.model";
+import { Endpoint } from "../common/endpoints";
 
 @Injectable({
   providedIn: "root",
 })
 export class UserService {
-  apiUrl: string = `${environment.apiUrl}accounts/`;
+  apiUrl: string = `${environment.apiUrl}auth/`;
 
   headerSetter(token) {
     return new HttpHeaders({
@@ -55,69 +56,32 @@ export class UserService {
   }
 
   register(body: RegisterModel) {
-    return this.http.post<AccountSetupResponseModel>(
-      `${this.apiUrl}register`,
-      body,
-      {
-        headers: this.headerSt(),
-      }
-    );
+    return this.http.post<AccountSetupResponseModel>(Endpoint.AUTH.register, body );
   }
 
-  changePassword(token,body: ChangePasswordModel) {
-    return this.http.post<AccountSettingResponseModel>(
-      `${this.apiUrl}change-password`,
-      body, {
-      headers: this.headerSetter(token),
-    }
-    );
+  changePassword(body: ChangePasswordModel) {
+    return this.http.post<AccountSettingResponseModel>(Endpoint.USER.changePassword, body);
   }
 
   sendEmailVerificationCode(body: SendEmailVerificationCodeModel) {
-    return this.http.post<AccountSettingResponseModel>(
-      `${this.apiUrl}send-email-verification-token`,
-      body,
-      {
-        headers: this.headerSt(),
-      }
-    );
+    return this.http.post<AccountSettingResponseModel>(`${this.apiUrl}initiate-reset`,body);
   }
 
-  verifyEmailCode(body: EmailVerificationModel) {
-    return this.http.post<AccountSetupResponseModel>(
-      `${this.apiUrl}email-verification`,
-      body,
-      {
-        headers: this.headerSt(),
-      }
-    );
+  verifyEmailCode(token: string) {
+    return this.http.get<AccountSetupResponseModel>(`${Endpoint.AUTH.verify}?token=${token}`);
   }
 
   requestForPasswordResetLink(body: SendResetPasswordLinkModel) {
-    return this.http.post<AccountSettingResponseModel>(
-      `${this.apiUrl}send-reset-password`,
-      body,
-      {
-        headers: this.headerSt(),
-      }
-    );
+    return this.http.post<AccountSettingResponseModel>(Endpoint.AUTH.initiatePasswordReset, body);
   }
 
-  resetPassword(body: ResetPasswordModel) {
-    return this.http.post<AccountSettingResponseModel>(
-      `${this.apiUrl}reset-password`,
-      body,
-      {
-        headers: this.headerSt(),
-      }
-    );
+  resetPassword(token: ResetPasswordModel) {
+    return this.http.get<AccountSettingResponseModel>(`${Endpoint.AUTH.verifyPasswordReset}?token=${token}`);
   }
 
-  updateProfile(token,body: ProfileModel) {
+  updateProfile(body: ProfileModel) {
     return this.http
-      .put<AccountSettingResponseModel>(`${this.apiUrl}profile`, body, {
-        headers: this.headerSetter(token),
-      })
+      .put<AccountSettingResponseModel>(Endpoint.USER.editProfile, body)
       .pipe(
         map((res) => {
           if (!res.error) {
@@ -135,10 +99,7 @@ export class UserService {
   }
 
   getProfile(token:any) {
-    return this.http.get<AccountSettingResponseModel>(`${this.apiUrl}profile`,
-      {
-        headers: this.headerSetter(token),
-      });
+    return this.http.get<AccountSettingResponseModel>(Endpoint.USER.profile);
   }
 
   getUser = () => {

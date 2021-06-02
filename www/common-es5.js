@@ -1130,7 +1130,7 @@
     !*** ./src/app/shared/models/user.model.ts ***!
     \*********************************************/
 
-  /*! exports provided: UserDataModel, User, SliderModel, RegisterModel, ProfileModel, SocialLoginDataModel, ChangePasswordModel, AddressModel, SendEmailVerificationCodeModel, EmailVerificationModel, SendResetPasswordLinkModel, ResetPasswordModel, LoginModel */
+  /*! exports provided: UserDataModel, User, SliderModel, RegisterModel, ProfileModel, SocialLoginDataModel, ChangePasswordModel, AddressModel, SendEmailVerificationCodeModel, EmailVerificationModel, SendResetPasswordLinkModel, ResetPasswordModel, LoginModel, ActivateAccModel */
 
   /***/
   function srcAppSharedModelsUserModelTs(module, __webpack_exports__, __webpack_require__) {
@@ -1215,6 +1215,12 @@
     __webpack_require__.d(__webpack_exports__, "LoginModel", function () {
       return LoginModel;
     });
+    /* harmony export (binding) */
+
+
+    __webpack_require__.d(__webpack_exports__, "ActivateAccModel", function () {
+      return ActivateAccModel;
+    });
     /* harmony import */
 
 
@@ -1253,6 +1259,8 @@
     class ResetPasswordModel {}
 
     class LoginModel {}
+
+    class ActivateAccModel {}
     /***/
 
   }

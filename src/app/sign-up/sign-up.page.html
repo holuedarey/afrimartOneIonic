@@ -13,11 +13,8 @@
         </ion-col>
         <ion-col size="6" class="">
           <ion-label color="dark" position="floating">First Name</ion-label>
-          <ion-item lines="none">
-            <!-- <ion-icon name="person-outline" color="dark" slot="start"></ion-icon> -->
-            <ion-input formControlName="fName" type="text" placeholder="First Name" clear-input="true">
-            </ion-input>
-          </ion-item>
+          <ion-input class="qouteForm" formControlName="fName" type="text" placeholder="First Name" clear-input="true">
+          </ion-input>
           <div *ngIf="!registerForm.controls.fName.valid && registerForm.controls.fName.dirty">
             <p style="color:#330501!important;text-align:center;">Please enter a VALID First Name</p>
           </div>
@@ -25,11 +22,8 @@
 
         <ion-col size="6" class="">
           <ion-label color="dark" position="floating">Last Name</ion-label>
-          <ion-item lines="none">
-            <!-- <ion-icon name="person-outline" color="dark" slot="start"></ion-icon> -->
-            <ion-input formControlName="sName" type="text" placeholder="Last Name" clear-input="true">
-            </ion-input>
-          </ion-item>
+          <ion-input class="qouteForm" formControlName="sName" type="text" placeholder="Last Name" clear-input="true">
+          </ion-input>
           <div *ngIf="!registerForm.controls.sName.valid && registerForm.controls.sName.dirty">
             <p style="color:#330501!important;text-align:center;">Please enter a VALID Last Name</p>
           </div>
@@ -41,11 +35,9 @@
       <ion-row>
         <ion-col size="12" class="">
           <ion-label color="dark" position="floating">Email Address</ion-label>
-          <ion-item lines="none">
-            <!-- <ion-icon name="mail-outline" color="dark" slot="start"></ion-icon> -->
-            <ion-input formControlName="email" type="email" placeholder="Email Address" clear-input="true">
-            </ion-input>
-          </ion-item>
+          <ion-input class="qouteForm" formControlName="email" type="email" placeholder="Email Address"
+            clear-input="true">
+          </ion-input>
         </ion-col>
         <div *ngIf="!registerForm.controls.email.valid && registerForm.controls.email.dirty">
           <p style="color:#330501!important;text-align:center;">Please enter a VALID email Address</p>
@@ -53,11 +45,9 @@
       </ion-row>
       <ion-row>
         <ion-col col-12 size="6">
-          <ion-label color="dark" position="floating">Password</ion-label>
-          <ion-item lines="none">
-            <!-- <ion-icon name="lock-open-outline" color="dark" slot="start"></ion-icon> -->
-            <!-- <ion-icon [name]="passwordToggleIcon" color="dark" class="iconEyeSize" slot="end" (click)="togglePassword()"></ion-icon>  -->
-            <ion-input formControlName="password" [type]="showPassword? 'text':'password'"
+          <!-- <ion-label color="dark" position="floating">Password</ion-label> -->
+          <ion-item>
+            <ion-input class="qouteForms" formControlName="password" [type]="showPassword? 'text':'password'"
               placeholder="Enter your Password" clear-input="true">
             </ion-input>
             <ion-icon [name]="passwordToggleIcon" color="primary" class="iconEyeSize" slot="end"
@@ -65,79 +55,88 @@
           </ion-item>
         </ion-col>
         <ion-col col-12 size="6">
-          <ion-label color="dark" position="floating">Confirm Password</ion-label>
-          <ion-item lines="none">
-            <!-- <ion-icon name="lock-open-outline" color="dark" slot="start"></ion-icon> -->
-            <!-- <ion-icon [name]="passwordToggleIcon" color="dark" class="iconEyeSize" slot="end" (click)="togglePassword()"></ion-icon>  -->
-            <ion-input formControlName="confirmPassword" [type]="showPassword? 'text':'password'"
+          <!-- <ion-label color="dark" position="floating">Confirm Password</ion-label> -->
+          <ion-item>
+            <ion-input class="qouteForms" formControlName="confirmPassword" [type]="showPassword? 'text':'password'"
               placeholder="Enter your Password" clear-input="true">
             </ion-input>
             <ion-icon [name]="passwordToggleIcon" color="primary" class="iconEyeSize" slot="end"
               (click)="togglePassword()"></ion-icon>
           </ion-item>
         </ion-col>
+        <div *ngIf="registerForm.get('confirmPassword').hasError('notSame')">
+          <p style="color:#330501!important;text-align:center;"> Password did not match</p>
+          {{ registerForm.controls.confirmPassword.errors.notSame }}
+        </div>
       </ion-row>
-      
+
       <ion-row>
         <ion-col size="12" class="">
           <ion-label color="dark" position="floating">Country Operation</ion-label>
-          <ion-item lines="none">
-            <ion-input formControlName="countryOperation" type="text" clear-input="true" placeholder="Country Operation"
-              maxlength="10"></ion-input>
-          </ion-item>
+          <ion-input class="qouteForm" formControlName="countryOperation" type="text" clear-input="true"
+            placeholder="Country Operation" maxlength="10"></ion-input>
         </ion-col>
       </ion-row>
 
       <ion-row>
         <ion-col size="12" class="">
           <ion-label color="dark" position="floating">Preffered Langauge </ion-label>
-          <ion-item lines="none">
-            <ion-input formControlName="prefferedLangauge" type="text" clear-input="true" placeholder="Preffered Langauge"
-              maxlength="10"></ion-input>
-          </ion-item>
+          <ion-input class="qouteForm" formControlName="prefferedLangauge" type="text" clear-input="true"
+            placeholder="Preffered Langauge" maxlength="10"></ion-input>
         </ion-col>
       </ion-row>
 
-      <ion-row>
-        <ion-col size="12" class="">
-          <ion-label color="dark" position="floating">Preffered Langauge </ion-label>
-          <ion-item lines="none">
-            <ion-input formControlName="affliateBank" type="text" clear-input="true" placeholder="Affliate Bank"
-              maxlength="10"></ion-input>
-          </ion-item>
-        </ion-col>
-      </ion-row>
-      
       <ion-row>
         <ion-col size="12" class="">
           <ion-label color="dark" position="floating">Phone Number</ion-label>
-          <ion-item lines="none">
-            <ion-input formControlName="phone" type="text" clear-input="true" placeholder="Mobile phone number"
-              maxlength="10"></ion-input>
-          </ion-item>
+          <ion-input class="qouteForm" formControlName="phone" type="text" clear-input="true"
+            placeholder="Mobile phone number" maxlength="11"></ion-input>
         </ion-col>
       </ion-row>
-     
-    
+
+      <!-- <ion-row>
+        <ion-col size="12" class="">
+          <ion-label color="dark" position="floating">Affliate Bank </ion-label>
+          <ion-input class="qouteForm" formControlName="affliateBank" type="text" clear-input="true"
+            placeholder="Affliate Bank" maxlength="10"></ion-input>
+        </ion-col>
+      </ion-row> -->
+
       <ion-row>
-        <ion-item lines="none" style="border: none  !important; height: 47px  !important;">
-          <ion-col size="1" class="t_left">
-            <ion-checkbox formControlName="isChecked"></ion-checkbox>
-          </ion-col>
-          <ion-col size="11" class="t_left label14">
-            <div  style="text-align: left!important;">
-              By Signing up you Accept Our <a class="legal-actions" (click)="showPrivacyModal()"><ion-text color="primary">Terms And Conditions</ion-text></a>
-              <!-- <a class="legal-action" (click)="showTermsModal()">Terms of use</a>. -->
-            </div>
-          </ion-col>
-        </ion-item>
+        <ion-col size="1" class="t_left">
+          <ion-checkbox formControlName="isChecked"></ion-checkbox>
+        </ion-col>
+        <ion-col size="11" class="t_left label14">
+          <div style="text-align: left!important; margin-top: 3px;">
+            By Signing up you Accept Our <a class="legal-actions" (click)="showPrivacyModal()">
+              <ion-text color="primary">Terms And Conditions</ion-text>
+            </a>
+          </div>
+        </ion-col>
       </ion-row>
       <ion-row>
         <ion-col size="12" style="padding: 0px;">
           <div style="padding-top: 10px;">
-            <ion-button expand="full" color="primary" (click)="signUp()" [disabled]="!registerForm.valid  || loading">
+            <ion-button expand="full" color="primary" (click)="signUp()">
               SIGN UP
             </ion-button>
+            <br>
+            <div class="t_center">
+              <ion-text color="medium">OR</ion-text>
+            </div>
+          </div>
+        </ion-col>
+      </ion-row>
+      <ion-row class="t_center">
+        <ion-col size="12">
+          <div class="note_title14Black">
+            SIGN UP WITH<br>
+            <a color="primary" (click)="faceBookSignIn()">
+              <img src="../../assets/vectors/icons/facebook.svg" class="pre_social_icons">
+            </a>
+            <a color="primary" (click)="googleSignIn()">
+              <img src="../../assets/vectors/icons/google.svg" class="pre_social_icons">
+            </a>
           </div>
         </ion-col>
       </ion-row>

@@ -31,9 +31,6 @@ ion-tab-button {
   // --color:#7a7203;
   --color-selected: #6a2673;
 }
-ion-item {
-  --background: #fff;
-}
 
 .header-title{
   // font-family: 'Red Hat Display';
@@ -124,7 +121,7 @@ ion-searchbar ion-icon {
 }
 a {
   text-decoration: none;
-  color: var(--ion-color-warning) !important;
+  color: var(--ion-color-warning);
 }
 hr.preload {
   max-width: 40%;
@@ -205,18 +202,27 @@ ion-input {
   text-align: left !important;
   --padding-top: 1px !important;
   --padding-bottom: 1px !important;
-  --padding-start: 1px !important;
+  --padding-start: 10px !important;
   --padding-end: 1px !important;
+  // margin-top: -15px !important;
 }
 
 ion-item {
   font-size: 12px;
 }
+
 form ion-item{
   border: 1px solid #a6a6a6 !important;
   border-bottom: 1px solid transparent;
   height: 39px !important;
+  background: #f9f9f9 !important;
+  
+  .item-native{
+    background-color: #F9F9F9 !important;
+  }
+
 }
+
 .gridForm {
   background: #fff;
   //  border-radius: 5px;

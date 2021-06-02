@@ -1,11 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { AlertController, ToastController ,NavController} from '@ionic/angular';
+import { AlertController, ToastController, NavController, LoadingController } from '@ionic/angular';
 import { NativeStorage } from '@ionic-native/native-storage/ngx';
 import { AuthenticationService } from 'src/app/core/authentication/authentication.service';
 import { Router } from '@angular/router';
 import { UserDataModel } from 'src/app/shared/models/user.model';
 import { UserService } from 'src/app/core/http-services/user.service';
 import { ProductService } from 'src/app/core/http-services/product.service';
+import { Constants } from '../core/common/constant';
+import { StorageService } from '../core/storage.service';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-profile',
@@ -20,8 +23,12 @@ export class ProfilePage implements OnInit {
   loading: boolean = false;
   showSearch: boolean = true;
   ////////////////////
-  currentUser: UserDataModel=null;
+  currentUser: any =  null;
+  isAuthenticated: boolean = false;
   // currentUser: UserDataModel = this.authService.currentUserValue();
+
+  profileForm: FormGroup;
+
   constructor(
     private nativeStorage: NativeStorage,
     private authService: AuthenticationService,
@@ -30,42 +37,15 @@ export class ProfilePage implements OnInit {
     public router: Router,
     public alertController: AlertController,
     private toastController: ToastController,
-    private navCtrl:NavController
+    private navCtrl: NavController,
+    private storageService: StorageService,
+    private formBuilder: FormBuilder,
+    private loadingCtrl: LoadingController,
   ) {
     console.log('Cons')
-    this.nativeStorage.getItem('currentUser').then((value) => {
-      if (value !== null) {
-        this.currentUser = value;
-        console.log('Profile Page:' + JSON.stringify(this.currentUser));
-        this.userService.getProfile(this.currentUser.token).subscribe(
-          (data) => {
-            if (!data.error) {
-              // console.log('this.profile:' + JSON.stringify(data.data));
-              if (data.data.cards) {
-                this.nativeStorage.setItem('MyCards',data.data.cards)
-                
-                // console.log('nativeStorage.MyCards:' + this.nativeStorage.getItem('MyCards'));
-              }
-            } else {
-              this.presentToast(
-                'Oops',
-                'There was an error getting your profile, Please try again',
-                4000,
-                'warning'
-              );
-            }
-          },
-          (err) => {
-            this.presentToast(err.message, err.errors, 4000, 'error');
-          }
-        );
-        // console.log('Profile Page:' + JSON.stringify(this.currentUser));
-      }
-    });
-  }
-  
-  ngOnInit() {
-    console.log('Init')
+    console.log('constructor :: ', JSON.parse(localStorage.getItem(Constants.STORAGE_VARIABLES.USER)))
+    
+    
     // this.nativeStorage.getItem('currentUser').then((value) => {
     //   if (value !== null) {
     //     this.currentUser = value;
@@ -76,7 +56,69 @@ export class ProfilePage implements OnInit {
     //           // console.log('this.profile:' + JSON.stringify(data.data));
     //           if (data.data.cards) {
     //             this.nativeStorage.setItem('MyCards',data.data.cards)
-                
+
+    //             // console.log('nativeStorage.MyCards:' + this.nativeStorage.getItem('MyCards'));
+    //           }
+    //         } else {
+    //           this.presentToast(
+    //             'Oops',
+    //             'There was an error getting your profile, Please try again',
+    //             4000,
+    //             'warning'
+    //           );
+    //         }
+    //       },
+    //       (err) => {
+    //         this.presentToast(err.message, err.errors, 4000, 'error');
+    //       }
+    //     );
+    //     // console.log('Profile Page:' + JSON.stringify(this.currentUser));
+    //   }
+    // });
+  }
+
+  ionViewWillEnter() {
+    console.log('view about to enter');
+    // console.log('constructor :: ', JSON.parse(localStorage.getItem(Constants.STORAGE_VARIABLES.USER)))
+    if (this.authService.isAuthenticated()) {
+      this.currentUser = JSON.parse(localStorage.getItem(Constants.STORAGE_VARIABLES.USER));
+      console.log('user authenticated :: -> ');
+    } else {
+      this.currentUser = null;
+    }
+  }
+
+
+
+  ngOnInit() {
+    console.log('Init check:: ', this.authService.isAuthenticated())
+    if (this.authService.isAuthenticated()) {
+      this.currentUser = JSON.parse(localStorage.getItem(Constants.STORAGE_VARIABLES.USER));
+      console.log('user authenticated :: -> ');
+    } else {
+      this.currentUser = null;
+    }
+
+    this.profileForm = this.formBuilder.group({
+      fName: new FormControl('', Validators.compose([Validators.required, Validators.minLength(2)])),
+      lName: new FormControl('', Validators.compose([Validators.required, Validators.minLength(2)])),
+      email: new FormControl('', Validators.compose([Validators.required, Validators.email])),
+      phone: new FormControl('', Validators.compose([Validators.required, Validators.pattern("[0-9]{11}")])),
+      countryOperation: new FormControl('', Validators.compose([Validators.required])),
+      prefferedLangauge: new FormControl('', Validators.compose([Validators.required])),
+      // affliateBank: new FormControl(false, Validators.compose([Validators.required])),
+    });
+    // this.nativeStorage.getItem('currentUser').then((value) => {
+    //   if (value !== null) {
+    //     this.currentUser = value;
+    //     console.log('Profile Page:' + JSON.stringify(this.currentUser));
+    //     this.userService.getProfile(this.currentUser.token).subscribe(
+    //       (data) => {
+    //         if (!data.error) {
+    //           // console.log('this.profile:' + JSON.stringify(data.data));
+    //           if (data.data.cards) {
+    //             this.nativeStorage.setItem('MyCards',data.data.cards)
+
     //             console.log('nativeStorage.MyCards:' + this.nativeStorage.getItem('MyCards'));
     //           }
     //         } else {
@@ -98,8 +140,32 @@ export class ProfilePage implements OnInit {
   }
 
 
-  getImage(){
-    
+  getImage() {
+
+  }
+
+  editProfile() {
+    this.loadingCtrl
+      .create({
+        spinner: 'dots',
+        message: 'Signing in! Please wait...',
+        duration: 5000,
+        cssClass: 'custom-loader-class',
+      })
+      .then((res) => {
+        res.present();
+        res.onDidDismiss().then((dis) => { });
+      });
+
+      console.log('payload ', this.profileForm.value)
+    this.authService.login(this.profileForm.value).subscribe((data) => {
+      this.loadingCtrl.dismiss();
+      console.log(data.message);
+      this.presentToast( 'Success',  `${data.message}`,   4000,  'success'  );
+    }, error => {
+      this.loadingCtrl.dismiss();
+      this.presentToast( 'Sign In Error',  'An error occurred. Please try again!',   4000,  'error'  );
+    });
   }
   async presentToast(
     header: string,
@@ -144,12 +210,17 @@ export class ProfilePage implements OnInit {
     await alert.present();
   }
   logOut() {
-    this.nativeStorage.clear().then((isDone) => {
-      this.currentUser=null;
-      this.productService.logOutCart('0');
-      this.navCtrl.navigateBack('/app/home');
-      // console.log('Profile Page:' + JSON.stringify(this.currentUser));
-      this.presentToast('', 'Signed out successfully!', 2000, 'success');
-    });
+    this.storageService.clear_all();
+    this.navCtrl.navigateBack('/app/home');
+    // console.log('Profile Page:' + JSON.stringify(this.currentUser));
+    this.presentToast('', 'Signed out successfully!', 2000, 'success');
+
+    // this.nativeStorage.clear().then((isDone) => {
+    //   this.currentUser=null;
+    //   this.productService.logOutCart('0');
+    //   this.navCtrl.navigateBack('/app/home');
+    //   // console.log('Profile Page:' + JSON.stringify(this.currentUser));
+    //   this.presentToast('', 'Signed out successfully!', 2000, 'success');
+    // });
   }
 }

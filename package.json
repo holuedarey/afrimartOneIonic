@@ -24,6 +24,7 @@
     "@angular/pwa": "^0.901.0",
     "@angular/router": "~8.2.14",
     "@angular/service-worker": "^9.1.0",
+    "@auth0/angular-jwt": "^5.0.2",
     "@babel/compat-data": "^7.8.0",
     "@ionic-native/android-permissions": "^5.23.0",
     "@ionic-native/camera": "^5.23.0",

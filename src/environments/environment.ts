@@ -3,7 +3,9 @@ export const environment = {
   // apiUrl: "http://40.121.131.104:4000/api/v1/",
   baseUrl: 'https://afrimartone.ng/',
   // apiUrl: "http://54.93.155.199:8080/api/v1/",
-  apiUrl : 'https://afrimart-old-lezjv.ondigitalocean.app/api/v1/',
+  // apiUrl : 'https://afrimart-old-lezjv.ondigitalocean.app/api/v1/',
+  apiUrl : 'https://afrimart-evibu.ondigitalocean.app/',
+  
   socialLoginConfig: {
     facebook: {
       appId: '2504590776291199',
