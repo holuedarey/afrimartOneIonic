@@ -10,7 +10,6 @@ import { TermsOfServicePage } from '../terms-of-service/terms-of-service.page';
 import { PrivacyPolicyPage } from '../privacy-policy/privacy-policy.page';
 import { StorageService } from '../core/storage.service';
 import { Constants } from '../core/common/constant';
-import { log } from 'console';
 
 @Component({
   selector: 'app-sign-up',
