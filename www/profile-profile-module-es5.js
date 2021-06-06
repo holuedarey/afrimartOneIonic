@@ -508,14 +508,9 @@
         this.showSearch = true; ////////////////////
 
         this.currentUser = null;
-        console.log('Cons'); // console.log('constructor :: ', JSON.parse(localStorage.getItem(Constants.STORAGE_VARIABLES.USER)))
-
-        if (this.authService.isAuthenticated()) {
-          this.currentUser = JSON.parse(localStorage.getItem(_core_common_constant__WEBPACK_IMPORTED_MODULE_8__["Constants"].STORAGE_VARIABLES.USER));
-          console.log('user authenticated :: -> ');
-        } else {
-          this.currentUser = null;
-        } // this.nativeStorage.getItem('currentUser').then((value) => {
+        this.isAuthenticated = false;
+        console.log('Cons');
+        console.log('constructor :: ', JSON.parse(localStorage.getItem(_core_common_constant__WEBPACK_IMPORTED_MODULE_8__["Constants"].STORAGE_VARIABLES.USER))); // this.nativeStorage.getItem('currentUser').then((value) => {
         //   if (value !== null) {
         //     this.currentUser = value;
         //     console.log('Profile Page:' + JSON.stringify(this.currentUser));
@@ -543,7 +538,6 @@
         //     // console.log('Profile Page:' + JSON.stringify(this.currentUser));
         //   }
         // });
-
       }
 
       ionViewWillEnter() {
@@ -565,16 +559,16 @@
           console.log('user authenticated :: -> ');
         } else {
           this.currentUser = null;
-        } // this.profileForm = this.formBuilder.group({
-        //   fName: new FormControl('', Validators.compose([Validators.required, Validators.minLength(2)])),
-        //   lName: new FormControl('', Validators.compose([Validators.required, Validators.minLength(2)])),
-        //   email: new FormControl('', Validators.compose([Validators.required, Validators.email])),
-        //   phone: new FormControl('', Validators.compose([Validators.required, Validators.pattern("[0-9]{11}")])),
-        //   countryOperation: new FormControl('', Validators.compose([Validators.required])),
-        //   prefferedLangauge: new FormControl('', Validators.compose([Validators.required])),
-        //   // affliateBank: new FormControl(false, Validators.compose([Validators.required])),
-        // });
-        // this.nativeStorage.getItem('currentUser').then((value) => {
+        }
+
+        this.profileForm = this.formBuilder.group({
+          fName: new _angular_forms__WEBPACK_IMPORTED_MODULE_10__["FormControl"]('', _angular_forms__WEBPACK_IMPORTED_MODULE_10__["Validators"].compose([_angular_forms__WEBPACK_IMPORTED_MODULE_10__["Validators"].required, _angular_forms__WEBPACK_IMPORTED_MODULE_10__["Validators"].minLength(2)])),
+          lName: new _angular_forms__WEBPACK_IMPORTED_MODULE_10__["FormControl"]('', _angular_forms__WEBPACK_IMPORTED_MODULE_10__["Validators"].compose([_angular_forms__WEBPACK_IMPORTED_MODULE_10__["Validators"].required, _angular_forms__WEBPACK_IMPORTED_MODULE_10__["Validators"].minLength(2)])),
+          email: new _angular_forms__WEBPACK_IMPORTED_MODULE_10__["FormControl"]('', _angular_forms__WEBPACK_IMPORTED_MODULE_10__["Validators"].compose([_angular_forms__WEBPACK_IMPORTED_MODULE_10__["Validators"].required, _angular_forms__WEBPACK_IMPORTED_MODULE_10__["Validators"].email])),
+          phone: new _angular_forms__WEBPACK_IMPORTED_MODULE_10__["FormControl"]('', _angular_forms__WEBPACK_IMPORTED_MODULE_10__["Validators"].compose([_angular_forms__WEBPACK_IMPORTED_MODULE_10__["Validators"].required, _angular_forms__WEBPACK_IMPORTED_MODULE_10__["Validators"].pattern("[0-9]{11}")])),
+          countryOperation: new _angular_forms__WEBPACK_IMPORTED_MODULE_10__["FormControl"]('', _angular_forms__WEBPACK_IMPORTED_MODULE_10__["Validators"].compose([_angular_forms__WEBPACK_IMPORTED_MODULE_10__["Validators"].required])),
+          prefferedLangauge: new _angular_forms__WEBPACK_IMPORTED_MODULE_10__["FormControl"]('', _angular_forms__WEBPACK_IMPORTED_MODULE_10__["Validators"].compose([_angular_forms__WEBPACK_IMPORTED_MODULE_10__["Validators"].required]))
+        }); // this.nativeStorage.getItem('currentUser').then((value) => {
         //   if (value !== null) {
         //     this.currentUser = value;
         //     console.log('Profile Page:' + JSON.stringify(this.currentUser));
@@ -602,7 +596,6 @@
         //     // console.log('Profile Page:' + JSON.stringify(this.currentUser));
         //   }
         // });
-
       }
 
       getImage() {}
@@ -617,6 +610,7 @@
           res.present();
           res.onDidDismiss().then(dis => {});
         });
+        console.log('payload ', this.profileForm.value);
         this.authService.login(this.profileForm.value).subscribe(data => {
           this.loadingCtrl.dismiss();
           console.log(data.message);

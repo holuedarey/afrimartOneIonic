@@ -227,19 +227,19 @@ let SignInPage = class SignInPage {
         this.loginForm.value['organisation'] = 'test-org';
         this.authService.login(this.loginForm.value).subscribe((data) => {
             this.loginForm.reset();
+            this.loadingCtrl.dismiss();
             // console.log('loginUser:' + JSON.stringify(data.data));
             if (data.status) {
                 console.log('loginUser:' + JSON.stringify(data.data));
-                this.loadingCtrl.dismiss();
                 this.storageService.set(_core_common_constant__WEBPACK_IMPORTED_MODULE_11__["Constants"].STORAGE_VARIABLES.TOKEN, data.data.token);
                 this.storageService.set(_core_common_constant__WEBPACK_IMPORTED_MODULE_11__["Constants"].STORAGE_VARIABLES.USER, JSON.stringify(data.data));
-                this.presentToast('', 'WELCOME ' + data.data['firstname'], 2000, 'success');
+                console.log('set data :', this.storageService.get(_core_common_constant__WEBPACK_IMPORTED_MODULE_11__["Constants"].STORAGE_VARIABLES.USER), this.storageService.get(_core_common_constant__WEBPACK_IMPORTED_MODULE_11__["Constants"].STORAGE_VARIABLES.TOKEN));
+                // this.presentToast('', 'WELCOME ' + data.data['firstname'], 2000, 'success');
+                this.navCtrl.navigateForward('/app/home');
                 // this.nativeStorage.setItem('currentUser', data.data).then(() => {
                 //   this.navCtrl.navigateForward('/app/profile');
                 //   this.presentToast('', 'WELCOME ' + data.data['message'], 2000, 'success');
                 // })
-                this.router.navigate(['/app/profile']);
-                console.log('page navigated');
             }
             else {
                 this.loadingCtrl.dismiss();

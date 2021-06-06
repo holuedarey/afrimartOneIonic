@@ -44,7 +44,7 @@ export class RegisterModel {
 	lastname:string;
 	username:string;
 	email:string;
-	// phone:string;	
+	phone:string;	
 	role:string;
 	country:string;
 	preferredLanguage:string;
@@ -120,7 +120,7 @@ export interface AccountSettingResponseModel {
 
 export class SendEmailVerificationCodeModel {
 	email: string;
-	organisation: string;
+	// organisation: string;
 }
 
 export class EmailVerificationModel {

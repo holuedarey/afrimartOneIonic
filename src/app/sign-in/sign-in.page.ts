@@ -139,7 +139,7 @@ export class SignInPage implements OnInit {
       .create({
         spinner: 'dots',
         message: 'Signing in! Please wait...',
-        duration: 5000,
+        // duration: 5000,
         cssClass: 'custom-loader-class',
       })
       .then((res) => {

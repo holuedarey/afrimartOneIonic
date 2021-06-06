@@ -32,7 +32,7 @@ export class ForgotPasswordPage implements OnInit {
   ) {
     this.sendEmailVerificationCodeForm = new FormGroup({
       email: new FormControl(this.sendEmailVerificationCode.email, [Validators.required, Validators.email]),
-      callback: new FormControl(`${this.utilityService.getBaseUrl()}/auth/verify-email/`)
+      // callback: new FormControl(`${this.utilityService.getBaseUrl()}/auth/verify-email/`)
     });
    }
 
@@ -52,15 +52,16 @@ export class ForgotPasswordPage implements OnInit {
   }
   sendResetLink() {
     this.loading = true;
-    this.loadingCtrl.create({ spinner: 'dots', message: 'Signing in! Please wait...', duration: 5000, cssClass: 'custom-loader-class' }).then((res) => {
+    this.loadingCtrl.create({ spinner: 'dots', message: 'Signing in! Please wait...', duration:5000, cssClass: 'custom-loader-class' }).then((res) => {
       res.present(); res.onDidDismiss().then((dis) => { });
     });
     this.userService.sendEmailVerificationCode(this.sendEmailVerificationCodeForm.value).subscribe(
       (data) => {
         this.sendEmailVerificationCodeForm.reset();
-        if (!data.error) {
+        if (!data.status) {
           // console.log('loginUser:'+JSON.stringify(data.data));
-          this.loadingCtrl.dismiss(); this.loading = false;
+          this.loadingCtrl.dismiss(); 
+          this.loading = false;
           this.router.navigate(['/sign-in'])
           this.presentToast('Congratulations', 'Your reset link has been sent. Please check your email for details', 2000, 'success');
         } else {

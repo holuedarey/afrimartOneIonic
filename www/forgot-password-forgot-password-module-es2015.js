@@ -9,7 +9,7 @@
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<app-header [title]=\"title\" [longSearch]=\"longSearch\" [showBackButton]=\"showBackButton\" [isLoading]=\"loading\"\n  [showSearch]=\"showSearch\">\n</app-header>\n<ion-content>  \n  <div class=\"topFadedLogo\"> </div>\n  <form [formGroup]=\"sendEmailVerificationCodeForm\">\n    <ion-grid  style=\"padding-top:75px;\">\n    \n    <ion-row>\n      <ion-col size=\"12\">\n          <ion-text class=\"\">\n            Please type in your email.<br>\n            We will send you a link to change the password.\n          </ion-text>\n          <br><br>        \n        <ion-item lines=\"none\" >\n          <ion-label color=\"dark\" position=\"floating\">E-Mail</ion-label>\n          <ion-icon name=\"mail-outline\" color=\"primary\" slot=\"start\"></ion-icon>\n          <ion-input formControlName=\"email\" type=\"email\" clear-input=\"true\" placeholder=\"E-Mail\">\n          </ion-input>\n        </ion-item>\n      </ion-col>\n      <div *ngIf=\"!sendEmailVerificationCodeForm.controls.email.valid && sendEmailVerificationCodeForm.controls.email.dirty\">\n        <p style=\"color:#330501!important;text-align:center;\">Please enter a VALID email Address</p>\n      </div>\n    </ion-row>\n    <ion-row>\n      <ion-col size=\"12\" style=\"padding: 0px;\">\n        <div style=\"padding-top: 10px;\">\n          <ion-button expand=\"full\" color=\"primary\" (click)=\"sendResetLink()\" [disabled]=\"!sendEmailVerificationCodeForm.valid || loading\"> SUBMIT\n          </ion-button>        \n        </div>\n      </ion-col>\n    </ion-row>\n    </ion-grid>\n  </form> \n</ion-content>\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<!-- <app-header [title]=\"title\" [longSearch]=\"longSearch\" [showBackButton]=\"showBackButton\" [isLoading]=\"loading\"\n  [showSearch]=\"showSearch\">\n</app-header> -->\n<ion-content>\n  <!-- <div class=\"topFadedLogo\"> </div> -->\n  <form [formGroup]=\"sendEmailVerificationCodeForm\">\n    <ion-grid style=\"padding-top:75px;\">\n\n      <ion-row>\n        <ion-col text-center>\n          <div class=\"ion-text-center header-title bold-text\">FORGOT PASSWORD</div>\n          <p class=\"ion-text-center\">Provide registered email below to <br>reset your password</p>\n        </ion-col>\n\n\n        <ion-col size=\"12\">\n          <ion-row>\n            <ion-col size=\"12\" class=\"colForm\">\n              <ion-label color=\"dark\" position=\"floating\">Email Address</ion-label>\n              <ion-input class=\"qouteForm\" formControlName=\"email\" type=\"email\" clear-input=\"true\" placeholder=\"Enter your Email Address\">\n              </ion-input>\n            </ion-col>\n            <div\n              *ngIf=\"!sendEmailVerificationCodeForm.controls.email.valid && sendEmailVerificationCodeForm.controls.email.dirty\">\n              <p style=\"color:#330501!important;text-align:center;\">Please enter a VALID email Address</p>\n            </div>\n          </ion-row>\n        </ion-col>\n\n      </ion-row>\n      <ion-row>\n        <ion-col size=\"12\" style=\"padding: 0px;\">\n          <div style=\"padding-top: 10px;\">\n            <ion-button expand=\"full\" color=\"primary\" (click)=\"sendResetLink()\"\n              [disabled]=\"!sendEmailVerificationCodeForm.valid || loading\"> SUBMIT\n            </ion-button>\n          </div>\n        </ion-col>\n      </ion-row>\n    </ion-grid>\n  </form>\n</ion-content>");
 
 /***/ }),
 
@@ -325,7 +325,6 @@ let ForgotPasswordPage = class ForgotPasswordPage {
         this.sendEmailVerificationCode = new src_app_shared_models_user_model__WEBPACK_IMPORTED_MODULE_7__["SendEmailVerificationCodeModel"]();
         this.sendEmailVerificationCodeForm = new _angular_forms__WEBPACK_IMPORTED_MODULE_4__["FormGroup"]({
             email: new _angular_forms__WEBPACK_IMPORTED_MODULE_4__["FormControl"](this.sendEmailVerificationCode.email, [_angular_forms__WEBPACK_IMPORTED_MODULE_4__["Validators"].required, _angular_forms__WEBPACK_IMPORTED_MODULE_4__["Validators"].email]),
-            callback: new _angular_forms__WEBPACK_IMPORTED_MODULE_4__["FormControl"](`${this.utilityService.getBaseUrl()}/auth/verify-email/`)
         });
     }
     ngOnInit() {
@@ -351,7 +350,7 @@ let ForgotPasswordPage = class ForgotPasswordPage {
         });
         this.userService.sendEmailVerificationCode(this.sendEmailVerificationCodeForm.value).subscribe((data) => {
             this.sendEmailVerificationCodeForm.reset();
-            if (!data.error) {
+            if (!data.status) {
                 // console.log('loginUser:'+JSON.stringify(data.data));
                 this.loadingCtrl.dismiss();
                 this.loading = false;
@@ -397,4 +396,3 @@ ForgotPasswordPage = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
 /***/ })
 
 }]);
-//# sourceMappingURL=forgot-password-forgot-password-module-es2015.js.map

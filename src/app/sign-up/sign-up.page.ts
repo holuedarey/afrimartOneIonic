@@ -85,7 +85,7 @@ export class SignUpPage implements OnInit {
     console.log('onCountryChange: ' + $event.value)
   }
   changeMobileCountry($event) {
-    // console.log('changeMobileCountry: ' + $event.value)
+    console.log('changeMobileCountry: ' + $event.value)
   }
   togglePassword(): void {
     this.showPassword = !this.showPassword;
@@ -118,7 +118,7 @@ export class SignUpPage implements OnInit {
       "username": this.registerForm.value.email.split('@')[0],
       "email": this.registerForm.value.email,
       "role": "user",
-      // "phone":this.registerForm.value.phone ,
+      "phone":this.registerForm.value.phone ,
       "country": this.registerForm.value.countryOperation,
       "preferredLanguage": this.registerForm.value.prefferedLangauge,
       "password": this.registerForm.value.password
