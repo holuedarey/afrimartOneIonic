@@ -64,30 +64,39 @@
               (click)="togglePassword()"></ion-icon>
           </ion-item>
         </ion-col>
-        <div *ngIf="registerForm.get('confirmPassword').hasError('notSame')">
+        <div *ngIf="registerForm.get('confirmPassword').errors?.notSame">
           <p style="color:#330501!important;text-align:center;"> Password did not match</p>
-          {{ registerForm.controls.confirmPassword.errors.notSame }}
+          {{ registerForm.controls.confirmPassword.errors }}
         </div>
+
+        <!-- <ion-label *ngIf="registerForm.get('confirmPassword').errors?.notSame" style="color: red">
+          New password and Confirm password did not match
+        </ion-label> -->
       </ion-row>
 
       <ion-row>
         <ion-col size="12" class="">
           <ion-label color="dark" position="floating">Country Operation</ion-label>
-            <ion-select class="qouteForm" placeholder="Country Operation" (ionChange)="onCountryChange($event)">
+            <ion-select class="qouteForm" formControlName="countryOperation" placeholder="Country Operation" (ionChange)="onCountryChange($event)">
               <ion-select-option value="Nigeria">Nigeria</ion-select-option>
               <ion-select-option value="Gnana">Ghana</ion-select-option>
             </ion-select>
-        
+            <div *ngIf="!registerForm.controls.countryOperation.valid && registerForm.controls.countryOperation.dirty">
+              <p style="color:#330501!important;text-align:center;">Please Select a Country</p>
+            </div>
         </ion-col>
       </ion-row>
 
       <ion-row>
         <ion-col size="12" class="">
           <ion-label color="dark" position="floating">Preffered Langauge </ion-label>
-            <ion-select class="qouteForm" placeholder="Preffered Langauge" (ionChange)="changeMobileCountry($event)">
+            <ion-select class="qouteForm" value="english" formControlName="prefferedLangauge" (ionChange)="changeMobileCountry($event)"  placeholder="Preffered Langauge" >
               <ion-select-option value="English">English</ion-select-option>
-              <ion-select-option value="French">French</ion-select-option>
+              <!-- <ion-select-option value="French">French</ion-select-option> -->
             </ion-select>
+            <div *ngIf="!registerForm.controls.prefferedLangauge.valid && registerForm.controls.prefferedLangauge.dirty">
+              <p style="color:#330501!important;text-align:center;">Please Select a Langauge</p>
+            </div>
         </ion-col>
       </ion-row>
 
@@ -95,8 +104,11 @@
         <ion-col size="12" class="">
           <ion-label color="dark" position="floating">Phone Number</ion-label>
           <ion-input class="qouteForm" formControlName="phone" type="text" clear-input="true"
-            placeholder="Mobile phone number" maxlength="11"></ion-input>
+            placeholder="Mobile phone number" maxlength="16"></ion-input>
         </ion-col>
+        <div *ngIf="!registerForm.controls.phone.valid && registerForm.controls.phone.dirty">
+          <p style="color:#330501!important;text-align:center;">Please Select a Langauge</p>
+        </div>
       </ion-row>
 
       <!-- <ion-row>
@@ -122,7 +134,7 @@
       <ion-row>
         <ion-col size="12" style="padding: 0px;">
           <div style="padding-top: 10px;">
-            <ion-button expand="full" color="primary" (click)="signUp()">
+            <ion-button expand="full" color="primary" (click)="signUp()"  [disabled]="!registerForm.valid">
               SIGN UP
             </ion-button>
             <br>

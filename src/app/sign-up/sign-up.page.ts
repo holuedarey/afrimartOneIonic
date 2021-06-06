@@ -10,6 +10,7 @@ import { TermsOfServicePage } from '../terms-of-service/terms-of-service.page';
 import { PrivacyPolicyPage } from '../privacy-policy/privacy-policy.page';
 import { StorageService } from '../core/storage.service';
 import { Constants } from '../core/common/constant';
+import { log } from 'console';
 
 @Component({
   selector: 'app-sign-up',
@@ -30,6 +31,7 @@ export class SignUpPage implements OnInit {
   passwordToggleIcon = 'lock-open-outline';
   isloadingSettings = false;
   loadingText: string = "";
+  passwordNotMatch = false;
 
   constructor(
     private authService: AuthenticationService,
@@ -49,9 +51,9 @@ export class SignUpPage implements OnInit {
       // email: new FormControl(this.register.email = 'tony@rubikpay.tech', Validators.compose([Validators.required, Validators.email])),
       // phone: new FormControl(this.register.phone = '+2348098367527', Validators.compose([Validators.required, Validators.pattern("[+]{1}[2-4]{3}[0-9]{10}")])),
       // ext: new FormControl('+234', [Validators.required]),
-      phone: new FormControl('', Validators.compose([Validators.required, Validators.pattern("[0-9]{11}")])),
-      password: new FormControl('', Validators.compose([Validators.required, Validators.minLength(4)])),
-      confirmPassword: new FormControl('', Validators.compose([Validators.required, Validators.requiredTrue])),
+      phone: new FormControl('', Validators.compose([Validators.required, ])),
+      password: ['', Validators.compose([Validators.required])],
+      confirmPassword: ['', Validators.compose([Validators.required])],
       isChecked: new FormControl(false, Validators.compose([Validators.required])),
       countryOperation: new FormControl('', Validators.compose([Validators.required])),
       prefferedLangauge: new FormControl('', Validators.compose([Validators.required])),
@@ -64,12 +66,18 @@ export class SignUpPage implements OnInit {
   }
 
 
-  checkPasswords(group: FormGroup) { // here we have the 'passwords' group
+  checkPasswords(group: FormGroup) { 
+    // here we have the 'passwords' group
     let pass = group.get('password').value;
     let confirmPass = group.get('confirmPassword').value;
-    return pass === confirmPass ? null : { notSame: true }
+    if(pass != confirmPass) {
+      console.log('password not match');
+      return { notSame: true };
+    }else{
+      return null
+    }
+    // return pass === confirmPass ? null : { notSame: true }
   }
-
   async presentToast(header: string, msg: string, duration: number, color: string) {
     const toast = await this.toastController.create({
       header: header,
@@ -81,11 +89,12 @@ export class SignUpPage implements OnInit {
     });
     toast.present();
   }
-  onCountryChange($event) {
-    console.log('onCountryChange: ' + $event.value)
+  onCountryChange(event) {
+    console.log('value',  event.detail.value);
+    // console.log('onCountryChange: ' + $event.value)
   }
-  changeMobileCountry($event) {
-    console.log('changeMobileCountry: ' + $event.value)
+  changeMobileCountry(event) {
+    console.log('changeMobileCountry: ' + event.detail.value)
   }
   togglePassword(): void {
     this.showPassword = !this.showPassword;
