@@ -43,6 +43,18 @@
           <p style="color:#330501!important;text-align:center;">Please enter a VALID email Address</p>
         </div>
       </ion-row>
+
+      <ion-row>
+        <ion-col size="12" class="">
+          <ion-label color="dark" position="floating">Username</ion-label>
+          <ion-input class="qouteForm" formControlName="username" type="text" placeholder="Username" clear-input="true">
+          </ion-input>
+        </ion-col>
+        <div *ngIf="!registerForm.controls.email.valid && registerForm.controls.email.dirty">
+          <p style="color:#330501!important;text-align:center;">Please enter a VALID email Address</p>
+        </div>
+      </ion-row>
+
       <ion-row>
         <ion-col col-12 size="6">
           <!-- <ion-label color="dark" position="floating">Password</ion-label> -->

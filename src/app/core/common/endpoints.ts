@@ -7,6 +7,7 @@ export const Endpoint = {
         login: `${BASE_URL}/auth/sign-in`,
         register: `${BASE_URL}/auth/sign-up`,
         verify: `${BASE_URL}/auth/verify`,
+        resendVerify: `${BASE_URL}/auth/resend-verification`,
         initiatePasswordReset: `${BASE_URL}/auth/initiate-reset`,
         verifyPasswordReset: `${BASE_URL}/auth/verify-reset`,
     },
@@ -25,8 +26,8 @@ export const Endpoint = {
     },
 
     PRODUCT : {
-        loan:  `${BASE_URL}/reports/loans?`,
-        create_loan:  `${BASE_URL}/loans/requestloan`,
+        topProduct:  `${BASE_URL}/organisations/details`,
+        viewProduct:  `${BASE_URL}/products?productId=`,
         loan_repayment:  `${BASE_URL}/reports/loanrepayments?`,
     },
 

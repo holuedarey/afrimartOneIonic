@@ -1,10 +1,5 @@
-<app-header
-  [title]="title"
-  [longSearch]="longSearch"
-  [showBackButton]="showBackButton"
-  [isLoading]="loading"
-  [showSearch]="showSearch"
->
+<app-header [title]="title" [longSearch]="longSearch" [showBackButton]="showBackButton" [isLoading]="loading"
+  [showSearch]="showSearch">
 </app-header>
 <ion-content>
   <div *ngIf="prod_data">
@@ -12,14 +7,10 @@
       <ion-row>
         <ion-col size="7">
           SOLD BY:<br />
-          <span class="note_title10Sec"
-            >{{prod_data.storeData.name | uppercase}}</span
-          >
+          <span class="note_title10Sec">{{prod_data.store.name | uppercase}}</span>
         </ion-col>
         <ion-col size="5" class="viewSeller" routerLink="/company-profile">
-          <ion-text color="primary" class="font-9"
-            >View Company Profile</ion-text
-          >
+          <ion-text color="primary" class="font-9">View Company Profile</ion-text>
         </ion-col>
       </ion-row>
     </ion-grid>
@@ -27,17 +18,21 @@
       <ion-row>
         <ion-col size="12">
           <ion-slides direction="horizontal" [options]="slideOpts" pager="true">
-            <ion-slide
-              style="height: 200px; width: 200px !important"
-              *ngFor="let gal of prod_data.gallery"
-            >
+            <ion-slide style="height: 200px; width: 200px !important">
+              <!-- to be use later for iage gallery -->
+              <!-- *ngFor="let gal of prod_data.gallery" -->
               <ion-row>
                 <ion-col size="12">
-                  <img
-                    src="../../assets/dummy-images/productView.png"
-                    alt="AfrimartOne"
-                    class="img_slider"
-                  />
+                  <img src="../../assets/dummy-images/productView.png" alt="AfrimartOne" class="img_slider" />
+                </ion-col>
+              </ion-row>
+            </ion-slide>
+            <ion-slide style="height: 200px; width: 200px !important">
+              <!-- to be use later for iage gallery -->
+              <!-- *ngFor="let gal of prod_data.gallery" -->
+              <ion-row>
+                <ion-col size="12">
+                  <img src="../../assets/dummy-images/productView.png" alt="AfrimartOne" class="img_slider" />
                 </ion-col>
               </ion-row>
             </ion-slide>
@@ -50,27 +45,43 @@
         <ion-col size="12">
           <ion-row>
             <ion-col size="8">
-              <app-text-shell
-                animation="gradient"
-                [data]="'$65.62-$393.70 / Piece(s) '"
-                lines="3"
-                class="note_title14Black font-bold"
-              >
-              </app-text-shell>
-              <app-text-shell
-                animation="gradient"
-                [data]="'(₦25,000-₦150,000)'"
-                lines="3"
-                class="note_title14Black"
-              >
-              </app-text-shell>
+              <ion-row>
+                <app-text-shell animation="gradient" [data]="prod_data?.minPrice | currency:'$':'symbol':'1.0'"
+                  lines="3" class="text-left  bold-text note_title14Black" style="padding: 5px 0; float: left;">
+                </app-text-shell>
+                <app-text-shell animation="gradient" [data]="' - '" lines="3"
+                  class="text-left  bold-text note_title14Black" style="padding: 5px 0; float: left; margin-left: 5px;">
+                </app-text-shell>
+                <app-text-shell animation="gradient" [data]="prod_data?.maxPrice  | currency:'$':'symbol':'1.0'"
+                  lines="3" class="text-left  bold-text note_title14Black"
+                  style="padding: 5px 0; float: left;  margin-left: 5px;">
+                </app-text-shell>
+                <app-text-shell animation="gradient" [data]="'/ Piece(s)'" lines="3"
+                  class="text-left  bold-text note_title14Black" style="padding: 5px 0; float: left; margin-left: 5px;">
+                </app-text-shell>
+              </ion-row>
+              <ion-row>
+                <app-text-shell animation="gradient" [data]="'('" lines="3" class="text-left  note_title14Black"
+                  style="padding: 5px 0; float: left; margin-left: 5px;">
+                </app-text-shell>
+                <app-text-shell animation="gradient" [data]="prod_data?.minPrice | currency:'$':'symbol':'1.0'"
+                  lines="3" class="text-left  note_title14Black" style="padding: 5px 0; float: left;">
+                </app-text-shell>
+                <app-text-shell animation="gradient" [data]="' - '" lines="3" class="text-left  note_title14Black"
+                  style="padding: 5px 0; float: left; margin-left: 5px;">
+                </app-text-shell>
+                <app-text-shell animation="gradient" [data]="prod_data?.maxPrice  | currency:'$':'symbol':'1.0'"
+                  lines="3" class="text-left  note_title14Black"
+                  style="padding: 5px 0; float: left;  margin-left: 5px;">
+                </app-text-shell>
+                <app-text-shell animation="gradient" [data]="')'" lines="3" class="text-left  note_title14Black"
+                  style="padding: 5px 0; float: left; margin-left: 5px;">
+                </app-text-shell>
+              </ion-row>
+
               <br /><br />
-              <app-text-shell
-                animation="gradient"
-                [data]="'1 Piece(s) (Min. Order)'"
-                lines="3"
-                class="note_title14Black"
-              ></app-text-shell>
+              <app-text-shell animation="gradient" [data]="'1 Piece(s) (Min. Order)'" lines="3"
+                class="note_title14Black"></app-text-shell>
 
               <br />
               <!-- <app-text-shell
@@ -85,29 +96,16 @@
               <ion-row>
                 <ion-col class="t_right" style="padding-right: 10px">
                   <a (click)="addToWishlist(prod_data)">
-                    <ion-icon
-                      *ngIf="!checkIfProdInWishList(prod_data)"
-                      size="large"
-                      name="heart-outline"
-                      color="primary"
-                    >
+                    <ion-icon *ngIf="!checkIfProdInWishList(prod_data)" size="large" name="heart-outline"
+                      color="primary">
                     </ion-icon>
-                    <ion-icon
-                      *ngIf="checkIfProdInWishList(prod_data)"
-                      size="large"
-                      name="heart"
-                      color="primary"
-                    >
+                    <ion-icon *ngIf="checkIfProdInWishList(prod_data)" size="large" name="heart" color="primary">
                     </ion-icon>
                   </a>
                 </ion-col>
                 <ion-col>
                   <a (click)="addToWishlist(prod_data)">
-                    <ion-icon
-                      size="large"
-                      name="share-social-outline"
-                      color="primary"
-                    ></ion-icon>
+                    <ion-icon size="large" name="share-social-outline" color="primary"></ion-icon>
                   </a>
                 </ion-col>
               </ion-row>
@@ -132,12 +130,7 @@
               </ion-button>
             </ion-col>
             <ion-col size="12" class="no-padding" style="margin-top: -10px">
-              <ion-button
-                expand="block"
-                color="primary"
-                fill="outline"
-                class="capitilize"
-              >
+              <ion-button expand="block" color="primary" fill="outline" class="capitilize">
                 Get Quote
               </ion-button>
             </ion-col>
@@ -196,10 +189,7 @@
           <ion-col size="7">Description</ion-col>
         </ion-row>
         <ion-row>
-          <ion-col size="12">
-            Agbada is one of oldest fashion dress for men but never run out of
-            fashion.</ion-col
-          >
+          <ion-col size="12">{{ prod_data.description}} </ion-col>
         </ion-row>
       </div>
     </ion-grid>
@@ -210,54 +200,30 @@
           <ion-text class="note_title12Sec">REVIEW</ion-text>
         </ion-col>
       </ion-row>
-      <ion-row style="padding-left: 10px">
-        <ion-col size="12">
-          <span class="ratingBorder">5.0/5</span
-          ><span class="note_title12Black"> 7 ratings</span>
-        </ion-col>
-      </ion-row>
-      <ion-row class="rating_row" style="border-bottom: 1px solid #e5e5e5">
-        <ion-col size="4" style="padding-left: 10px">
-          <app-rating-input max="5" readOnly="true" class="button-inner">
-          </app-rating-input>
-        </ion-col>
-        <ion-col
-          size="8"
-          class="t_right note_title12Black"
-          style="padding-right: 10px"
-        >
-          2020-11-01
-        </ion-col>
-        <div
-          style="margin-top: -20px; padding-bottom: 10px; padding-left: 12px"
-          class="note_title12Black"
-        >
-          I love it
-          <br />
-          By Toyin
-        </div>
-      </ion-row>
 
-      <ion-row class="rating_row" style="border-bottom: 1px solid #e5e5e5">
-        <ion-col size="4" style="padding-left: 10px">
-          <app-rating-input max="5" readOnly="true" class="button-inner">
-          </app-rating-input>
+      <ion-row style="padding-left: 10px">
+        <ion-col size="12"  *ngIf="!ratings">
+          <span class="ratingBorder">5.0/5</span><span class="note_title12Black"> 7 ratings</span>
         </ion-col>
-        <ion-col
-          size="8"
-          class="t_right note_title12Black"
-          style="padding-right: 10px"
-        >
-          2020-11-01
+      </ion-row>
+      <ion-col *ngIf="!ratings.length">
+        No Review Available
+      </ion-col>
+      <ion-row class="rating_row" style="border-bottom: 1px solid #e5e5e5" *ngIf="!ratings">
+        <ion-col *ngFor="let rec of ratings">
+          <ion-col size="4" style="padding-left: 10px">
+            <app-rating-input max="5" readOnly="true" class="button-inner">
+            </app-rating-input>
+          </ion-col>
+          <ion-col size="8" class="t_right note_title12Black" style="padding-right: 10px">
+            2020-11-01
+          </ion-col>
+          <div style="margin-top: -20px; padding-bottom: 10px; padding-left: 12px" class="note_title12Black">
+            I love it
+            <br />
+            By Toyin
+          </div>
         </ion-col>
-        <div
-          style="margin-top: -20px; padding-bottom: 10px; padding-left: 12px"
-          class="note_title12Black"
-        >
-          100% what I needed
-          <br />
-          By Light
-        </div>
       </ion-row>
     </ion-grid>
   </div>
@@ -271,44 +237,22 @@
       <ion-row>
         <ion-col size="12" style="margin-top: 20px">
           <ion-slides direction="horizontal" [options]="slideOptsTwo">
-            <ion-slide
-              style="height: 200px; width: 200px !important"
-              *ngFor="let rec of recommendedProducts"
-            >
+            <ion-slide style="height: 200px; width: 200px !important" *ngFor="let rec of recommendedProducts">
               <ion-row>
-                <ion-col
-                  size="12"
-                  (click)="viewProduct(rec)"
-                  class="card"
-                  style="
+                <ion-col size="12" (click)="viewProduct(rec)" class="card" style="
                     margin-bottom: 33px;
                     margin-top: 5px;
                     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
-                  "
-                >
+                  ">
                   <div>
-                    <img
-                      src="../../assets/dummy-images/productView.png"
-                      alt="AfrimartOne"
-                      class="img_slider"
-                    />
+                    <img src="../../assets/dummy-images/productView.png" alt="AfrimartOne" class="img_slider" />
                   </div>
                   <br />
-                  <app-text-shell
-                    animation="gradient"
-                    [data]="rec?.name"
-                    lines="2"
-                    class="note_title14Black text-truncate"
-                    (click)="viewProduct(rec)"
-                  >
+                  <app-text-shell animation="gradient" [data]="rec?.name" lines="2"
+                    class="note_title14Black text-truncate" (click)="viewProduct(rec)">
                   </app-text-shell>
-                  <app-text-shell
-                    animation="gradient"
-                    [data]="rec?.price  | currency:'₦':'symbol':'1.2-2'"
-                    lines="1"
-                    class="note_title14Pri"
-                    (click)="viewProduct(rec)"
-                  >
+                  <app-text-shell animation="gradient" [data]="rec?.price  | currency:'₦':'symbol':'1.2-2'" lines="1"
+                    class="note_title14Pri" (click)="viewProduct(rec)">
                   </app-text-shell>
                 </ion-col>
               </ion-row>

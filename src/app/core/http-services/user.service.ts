@@ -63,10 +63,10 @@ export class UserService {
     return this.http.post<AccountSettingResponseModel>(Endpoint.USER.changePassword, body);
   }
 
-  sendEmailVerificationCode(body: SendEmailVerificationCodeModel) {
-    return this.http.post<AccountSettingResponseModel>(`${this.apiUrl}initiate-reset`,body);
+  ResendEmailVerificationCode(email: string) {
+    return this.http.get<AccountSettingResponseModel>(`${Endpoint.AUTH.resendVerify}?email=${email}`);
   }
-
+  
   verifyEmailCode(token: string) {
     return this.http.get<AccountSetupResponseModel>(`${Endpoint.AUTH.verify}?token=${token}`);
   }
@@ -75,6 +75,7 @@ export class UserService {
     return this.http.post<AccountSettingResponseModel>(Endpoint.AUTH.initiatePasswordReset, body);
   }
 
+   
   resetPassword(token: ResetPasswordModel) {
     return this.http.get<AccountSettingResponseModel>(`${Endpoint.AUTH.verifyPasswordReset}?token=${token}`);
   }

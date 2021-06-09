@@ -62,7 +62,7 @@ export class ForgotPasswordPage implements OnInit {
           // console.log('loginUser:'+JSON.stringify(data.data));
           this.loadingCtrl.dismiss(); 
           this.loading = false;
-          this.router.navigate(['/sign-in'])
+          this.router.navigate(['/forget-verify'])
           this.presentToast('Congratulations', 'Your reset link has been sent. Please check your email for details', 2000, 'success');
         } else {
           this.loadingCtrl.dismiss(); this.loading = false;

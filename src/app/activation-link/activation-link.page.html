@@ -1,6 +1,6 @@
-<ion-content >
+<ion-content>
   <!-- <div class="topFadedLogo"> </div> -->
-  <form [formGroup]="activateForm" >
+  <form [formGroup]="activateForm">
     <ion-grid style="padding-top:75px;" class="card">
       <ion-row>
         <ion-col text-center>
@@ -11,9 +11,10 @@
         <ion-col size="12">
           <ion-row>
             <ion-col size="12" class="colForm">
-                <ion-label color="dark" position="floating">Activation Code</ion-label>
-                <ion-input class="qouteForm" formControlName="token" type="text" placeholder="Enter your Email Address" clear-input="true">
-                </ion-input> 
+              <ion-label color="dark" position="floating">Activation Code</ion-label>
+              <ion-input class="qouteForm" formControlName="token" type="text" placeholder="Enter your Activation Code"
+                clear-input="true">
+              </ion-input>
             </ion-col>
             <div *ngIf="!activateForm.controls.token.valid && activateForm.controls.token.dirty">
               <p style="color:#330501!important;text-align:center;">Please enter a VALID Activation Code</p>
@@ -21,16 +22,21 @@
           </ion-row>
           <ion-row>
             <ion-col col-12 class="t_right">
-              <a color="secondary" (click)="resendActivationLink()">Didn’t get activation link? Request
-              </a>
+              <p *ngIf="showResend" class="t_center">
+                If you don’t receive the code? Resend in <b>{{ countdown }}</b> seconds it
+              </p>
+              <ion-button [disabled]="!time" fill="clear"  color="warning" class="timer-link" (click)="resendActivationLink()">
+                Didn’t get activation link? Request
+              </ion-button> 
             </ion-col>
           </ion-row>
           <br>
-         
+
           <ion-row>
             <ion-col size="12" style="padding: 0px;">
               <div style="padding-top: 10px;">
-                <ion-button expand="block" color="primary" (click)="activateUser()" [disabled]="!activateForm.valid"> Activate
+                <ion-button expand="block" color="primary" (click)="activateUser()" [disabled]="!activateForm.valid">
+                  Activate
                 </ion-button>
               </div>
             </ion-col>
@@ -45,8 +51,9 @@
       </ion-row>
       <br>
       <ion-row>
-        <ion-col col-12 class="t_center" >
-          <a style="font-size: 18px; font-family: 'RedHatDisplayBold'; color: #CB982F !important;" [routerLink]="['/sign-in']">Sign In Here</a>
+        <ion-col col-12 class="t_center">
+          <a style="font-size: 18px; font-family: 'RedHatDisplayBold'; color: #CB982F !important;"
+            [routerLink]="['/sign-in']">Sign In Here</a>
         </ion-col>
       </ion-row>
     </ion-grid>

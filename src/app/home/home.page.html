@@ -1,12 +1,8 @@
 <app-header [title]="title" [longSearch]="longSearch" [showBackButton]="showBackButton" [isLoading]="loading"
   [showSearch]="showSearch">
 </app-header>
-<ion-content
-[scrollEvents]="true"
-  (ionScrollStart)="logScrollStart()"
-  (ionScroll)="logScrolling($event)"
-  (ionScrollEnd)="logScrollEnd()"
->
+<ion-content [scrollEvents]="true" (ionScrollStart)="logScrollStart()" (ionScroll)="logScrolling($event)"
+  (ionScrollEnd)="logScrollEnd()">
 
   <ion-grid class="card">
     <ion-row>
@@ -120,81 +116,30 @@
       </ion-col>
     </ion-row>
     <ion-row class="t_centers">
-      <ion-col col-6 class="productsCol card" routerLink="/">
+      <ion-col col-6 class="productsCol card" routerLink="/products/{{tp.id}}" *ngFor="let tp of topProds"> 
         <app-image-shell animation="gradient" src="/assets/vectors/icons/test.svg" [alt]="'Product Image'"
           class="inner-img" style="padding-bottom: 5px;">
           <!-- <br><br> -->
         </app-image-shell>
-        <!-- <app-text-shell animation="gradient" [data]="productName" lines="2" class="note_title10Black text-truncate">
-        </app-text-shell> -->
-        <p class="text-left product-description-height">Cotton socks</p>
-        <app-text-shell animation="gradient" [data]="'$0.07 - $0.09'" lines="1"
-          class="text-left  bold-text note_title_bold10Black" style="padding: 5px 0;">
+        <app-text-shell animation="gradient" [data]="tp?.name" lines="2"
+          class="text-left product-description-height text-truncate">
         </app-text-shell>
-        <app-text-shell animation="gradient" [data]="'1000 Dozen(s) (Min Order)'" lines="1"
-          class="note_title_bold12Black text-left" style="padding: 5px 0;">
+        <!-- <p class="">Cotton socks</p> -->
+        <ion-row>
+          <app-text-shell animation="gradient" [data]="tp?.minPrice | currency:'$':'symbol':'1.0'" lines="1"
+            class="text-left  bold-text note_title_bold10Black" style="padding: 5px 0; float: left;">
+          </app-text-shell>
+          <app-text-shell animation="gradient" [data]="' - '" lines="1"
+          class="text-left  bold-text note_title_bold10Black" style="padding: 5px 0; float: left; margin-left: 5px;">
         </app-text-shell>
-      </ion-col>
-
-      <ion-col col-6 class="productsCol card" routerLink="/">
-        <app-image-shell animation="gradient" src="/assets/vectors/icons/test1.svg" [alt]="'Product Image'"
-          class="inner-img" style="padding-bottom: 5px;">
-          <!-- <br><br> -->
-        </app-image-shell>
-        <!-- <app-text-shell animation="gradient" [data]="productName" lines="2" class="note_title10Black text-truncate">
-        </app-text-shell> -->
-        <p class="text-left product-description-height">Automatic PET Blowing Machine APF - 3002</p>
-        <app-text-shell animation="gradient" [data]="'$0.07 - $1.22'" lines="1"
-          class="text-left  bold-text note_title_bold10Black" style="padding: 5px 0;">
-        </app-text-shell>
-        <app-text-shell animation="gradient" [data]="'1 Units(s) (Min Order)'" lines="1"
-          class="note_title_bold12Black text-left" style="padding: 5px 0;">
-        </app-text-shell>
-      </ion-col>
+          <app-text-shell animation="gradient" [data]="tp?.maxPrice  | currency:'$':'symbol':'1.0'" lines="1"
+            class="text-left  bold-text note_title_bold10Black" style="padding: 5px 0; float: left;  margin-left: 5px;">
+          </app-text-shell>
+        </ion-row>
 
 
-      <!-- <ion-col col-6 class="productsCol" routerLink="/products/{{tp._id}}" *ngFor="let tp of topProds"> -->
-      <!-- <app-image-shell animation="gradient" [src]="tp?.gallery[0]" [alt]="'Product Image'" class="inner-img"
-          style="padding-bottom: 5px;">
-        </app-image-shell>
-        <app-text-shell animation="gradient" [data]="tp?.name" lines="2" class="note_title10Black text-truncate">
-        </app-text-shell>
-        <app-text-shell animation="gradient" [data]="tp?.price | currency:'₦':'symbol':'1.2-2'" lines="1"
-          class="note_title_bold12Black" style="padding: 5px 0;">
-        </app-text-shell> -->
-      <!-- </ion-col> -->
-    </ion-row>
-
-    <ion-row class="t_centers">
-      <ion-col col-6 class="productsCol card" routerLink="/">
-        <app-image-shell animation="gradient" src="/assets/vectors/icons/test.svg" [alt]="'Product Image'"
-          class="inner-img" style="padding-bottom: 5px;">
-          <!-- <br><br> -->
-        </app-image-shell>
-        <!-- <app-text-shell animation="gradient" [data]="productName" lines="2" class="note_title10Black text-truncate">
-        </app-text-shell> -->
-        <p class="text-left product-description-height">Cotton socks</p>
-        <app-text-shell animation="gradient" [data]="'$0.07 - $0.09'" lines="1"
-          class="text-left  bold-text note_title_bold10Black" style="padding: 5px 0;">
-        </app-text-shell>
-        <app-text-shell animation="gradient" [data]="'1000 Dozen(s) (Min Order)'" lines="1"
-          class="note_title_bold12Black text-left" style="padding: 5px 0;">
-        </app-text-shell>
-      </ion-col>
-
-      <ion-col col-6 class="productsCol card" routerLink="/">
-        <app-image-shell animation="gradient" src="/assets/vectors/icons/test1.svg" [alt]="'Product Image'"
-          class="inner-img" style="padding-bottom: 5px;">
-          <!-- <br><br> -->
-        </app-image-shell>
-        <!-- <app-text-shell animation="gradient" [data]="productName" lines="2" class="note_title10Black text-truncate">
-        </app-text-shell> -->
-        <p class="text-left product-description-height">Automatic PET Blowing Machine APF - 3002</p>
-        <app-text-shell animation="gradient" [data]="'$0.07 - $1.22'" lines="1"
-          class="text-left  bold-text note_title_bold10Black" style="padding: 5px 0;">
-        </app-text-shell>
-        <app-text-shell animation="gradient" [data]="'1 Units(s) (Min Order)'" lines="1"
-          class="note_title_bold12Black text-left" style="padding: 5px 0;">
+        <app-text-shell animation="gradient" [data]="tp?.description" lines="1" class="note_title_bold12Black text-left"
+          style="padding: 5px 0;">
         </app-text-shell>
       </ion-col>
 
@@ -281,194 +226,30 @@
       </ion-col>
     </ion-row>
     <ion-row class="t_centers">
-      <ion-col col-6 class="productsCol card" routerLink="/">
+      <ion-col col-6 class="productsCol card" routerLink="/products/{{tp.id}}" *ngFor="let tp of topProds">
         <app-image-shell animation="gradient" src="/assets/vectors/icons/test.svg" [alt]="'Product Image'"
           class="inner-img" style="padding-bottom: 5px;">
           <!-- <br><br> -->
         </app-image-shell>
-        <!-- <app-text-shell animation="gradient" [data]="productName" lines="2" class="note_title10Black text-truncate">
-        </app-text-shell> -->
-        <p class="text-left product-description-height">Cotton socks</p>
-        <app-text-shell animation="gradient" [data]="'$0.07 - $0.09'" lines="1"
-          class="text-left  bold-text note_title_bold10Black" style="padding: 5px 0;">
+        <app-text-shell animation="gradient" [data]="tp?.name" lines="2"
+          class="text-left product-description-height text-truncate">
         </app-text-shell>
-        <app-text-shell animation="gradient" [data]="'1000 Dozen(s) (Min Order)'" lines="1"
-          class="note_title_bold12Black text-left" style="padding: 5px 0;">
-
+        <ion-row>
+          <app-text-shell animation="gradient" [data]="tp?.minPrice | currency:'$':'symbol':'1.0'" lines="1"
+            class="text-left  bold-text note_title_bold10Black" style="padding: 5px 0; float: left;">
+          </app-text-shell>
+          <app-text-shell animation="gradient" [data]="' - '" lines="1"
+          class="text-left  bold-text note_title_bold10Black" style="padding: 5px 0; float: left; margin-left: 5px;">
         </app-text-shell>
-        <ion-button color="primary"  expand="block" class="contat-supplier-btn">Contact Supplier</ion-button>
-      </ion-col>
-
-      <ion-col col-6 class="productsCol card" routerLink="/">
-        <app-image-shell animation="gradient" src="/assets/vectors/icons/test1.svg" [alt]="'Product Image'"
-          class="inner-img" style="padding-bottom: 5px;">
-          <!-- <br><br> -->
-        </app-image-shell>
-        <!-- <app-text-shell animation="gradient" [data]="productName" lines="2" class="note_title10Black text-truncate">
-        </app-text-shell> -->
-        <p class="text-left product-description-height">Automatic PET Blowing Machine APF - 3002</p>
-        <app-text-shell animation="gradient" [data]="'$0.07 - $1.22'" lines="1"
-          class="text-left  bold-text note_title_bold10Black" style="padding: 5px 0;">
-        </app-text-shell>
-        <app-text-shell animation="gradient" [data]="'1 Units(s) (Min Order)'" lines="1"
-          class="note_title_bold12Black text-left" style="padding: 5px 0;">
+          <app-text-shell animation="gradient" [data]="tp?.maxPrice  | currency:'$':'symbol':'1.0'" lines="1"
+            class="text-left  bold-text note_title_bold10Black" style="padding: 5px 0; float: left;  margin-left: 5px;">
+          </app-text-shell>
+        </ion-row>
+        <app-text-shell animation="gradient" [data]="tp?.description" lines="1" class="note_title_bold12Black text-left"
+          style="padding: 5px 0;">
         </app-text-shell>
         <ion-button color="primary" expand="block" class="contat-supplier-btn">Contact Supplier</ion-button>
       </ion-col>
-
-
-      <!-- <ion-col col-6 class="productsCol" routerLink="/products/{{tp._id}}" *ngFor="let tp of topProds"> -->
-      <!-- <app-image-shell animation="gradient" [src]="tp?.gallery[0]" [alt]="'Product Image'" class="inner-img"
-          style="padding-bottom: 5px;">
-        </app-image-shell>
-        <app-text-shell animation="gradient" [data]="tp?.name" lines="2" class="note_title10Black text-truncate">
-        </app-text-shell>
-        <app-text-shell animation="gradient" [data]="tp?.price | currency:'₦':'symbol':'1.2-2'" lines="1"
-          class="note_title_bold12Black" style="padding: 5px 0;">
-        </app-text-shell> -->
-      <!-- </ion-col> -->
-    </ion-row>
-
-    <ion-row class="t_centers">
-      <ion-col col-6 class="productsCol card" routerLink="/">
-        <app-image-shell animation="gradient" src="/assets/vectors/icons/test.svg" [alt]="'Product Image'"
-          class="inner-img" style="padding-bottom: 5px;">
-          <!-- <br><br> -->
-        </app-image-shell>
-        <!-- <app-text-shell animation="gradient" [data]="productName" lines="2" class="note_title10Black text-truncate">
-        </app-text-shell> -->
-        <p class="text-left product-description-height">Cotton socks</p>
-        <app-text-shell animation="gradient" [data]="'$0.07 - $0.09'" lines="1"
-          class="text-left  bold-text note_title_bold10Black" style="padding: 5px 0;">
-        </app-text-shell>
-        <app-text-shell animation="gradient" [data]="'1000 Dozen(s) (Min Order)'" lines="1"
-          class="note_title_bold12Black text-left" style="padding: 5px 0;">
-        </app-text-shell>
-        <ion-button color="primary" expand="block" class="contat-supplier-btn">Contact Supplier</ion-button>
-      </ion-col>
-
-      <ion-col col-6 class="productsCol card" routerLink="/">
-        <app-image-shell animation="gradient" src="/assets/vectors/icons/test1.svg" [alt]="'Product Image'"
-          class="inner-img" style="padding-bottom: 5px;">
-          <!-- <br><br> -->
-        </app-image-shell>
-        <!-- <app-text-shell animation="gradient" [data]="productName" lines="2" class="note_title10Black text-truncate">
-        </app-text-shell> -->
-        <p class="text-left product-description-height">Automatic PET Blowing Machine APF - 3002</p>
-        <app-text-shell animation="gradient" [data]="'$0.07 - $1.22'" lines="1"
-          class="text-left  bold-text note_title_bold10Black" style="padding: 5px 0;">
-        </app-text-shell>
-        <app-text-shell animation="gradient" [data]="'1 Units(s) (Min Order)'" lines="1"
-          class="note_title_bold12Black text-left" style="padding: 5px 0;">
-        </app-text-shell>
-        <ion-button color="primary" expand="block" class="contat-supplier-btn">Contact Supplier</ion-button>
-      </ion-col>
-
-
-      <!-- <ion-col col-6 class="productsCol" routerLink="/products/{{tp._id}}" *ngFor="let tp of topProds"> -->
-      <!-- <app-image-shell animation="gradient" [src]="tp?.gallery[0]" [alt]="'Product Image'" class="inner-img"
-          style="padding-bottom: 5px;">
-        </app-image-shell>
-        <app-text-shell animation="gradient" [data]="tp?.name" lines="2" class="note_title10Black text-truncate">
-        </app-text-shell>
-        <app-text-shell animation="gradient" [data]="tp?.price | currency:'₦':'symbol':'1.2-2'" lines="1"
-          class="note_title_bold12Black" style="padding: 5px 0;">
-        </app-text-shell> -->
-      <!-- </ion-col> -->
-    </ion-row>
-    <ion-row class="t_centers">
-      <ion-col col-6 class="productsCol card" routerLink="/">
-        <app-image-shell animation="gradient" src="/assets/vectors/icons/test.svg" [alt]="'Product Image'"
-          class="inner-img" style="padding-bottom: 5px;">
-          <!-- <br><br> -->
-        </app-image-shell>
-        <!-- <app-text-shell animation="gradient" [data]="productName" lines="2" class="note_title10Black text-truncate">
-        </app-text-shell> -->
-        <p class="text-left product-description-height">Cotton socks</p>
-        <app-text-shell animation="gradient" [data]="'$0.07 - $0.09'" lines="1"
-          class="text-left  bold-text note_title_bold10Black" style="padding: 5px 0;">
-        </app-text-shell>
-        <app-text-shell animation="gradient" [data]="'1000 Dozen(s) (Min Order)'" lines="1"
-          class="note_title_bold12Black text-left" style="padding: 5px 0;">
-        </app-text-shell>
-        <ion-button color="primary" expand="block" class="contat-supplier-btn">Contact Supplier</ion-button>
-      </ion-col>
-
-      <ion-col col-6 class="productsCol card" routerLink="/">
-        <app-image-shell animation="gradient" src="/assets/vectors/icons/test1.svg" [alt]="'Product Image'"
-          class="inner-img" style="padding-bottom: 5px;">
-          <!-- <br><br> -->
-        </app-image-shell>
-        <!-- <app-text-shell animation="gradient" [data]="productName" lines="2" class="note_title10Black text-truncate">
-        </app-text-shell> -->
-        <p class="text-left product-description-height">Automatic PET Blowing Machine APF - 3002</p>
-        <app-text-shell animation="gradient" [data]="'$0.07 - $1.22'" lines="1"
-          class="text-left  bold-text note_title_bold10Black" style="padding: 5px 0;">
-        </app-text-shell>
-        <app-text-shell animation="gradient" [data]="'1 Units(s) (Min Order)'" lines="1"
-          class="note_title_bold12Black text-left" style="padding: 5px 0;">
-        </app-text-shell>
-        <ion-button color="primary" expand="block" class="contat-supplier-btn">Contact Supplier</ion-button>
-      </ion-col>
-
-
-      <!-- <ion-col col-6 class="productsCol" routerLink="/products/{{tp._id}}" *ngFor="let tp of topProds"> -->
-      <!-- <app-image-shell animation="gradient" [src]="tp?.gallery[0]" [alt]="'Product Image'" class="inner-img"
-          style="padding-bottom: 5px;">
-        </app-image-shell>
-        <app-text-shell animation="gradient" [data]="tp?.name" lines="2" class="note_title10Black text-truncate">
-        </app-text-shell>
-        <app-text-shell animation="gradient" [data]="tp?.price | currency:'₦':'symbol':'1.2-2'" lines="1"
-          class="note_title_bold12Black" style="padding: 5px 0;">
-        </app-text-shell> -->
-      <!-- </ion-col> -->
-    </ion-row>
-    <ion-row class="t_centers">
-      <ion-col col-6 class="productsCol card" routerLink="/">
-        <app-image-shell animation="gradient" src="/assets/vectors/icons/test.svg" [alt]="'Product Image'"
-          class="inner-img" style="padding-bottom: 5px;">
-          <!-- <br><br> -->
-        </app-image-shell>
-        <!-- <app-text-shell animation="gradient" [data]="productName" lines="2" class="note_title10Black text-truncate">
-        </app-text-shell> -->
-        <p class="text-left product-description-height">Cotton socks</p>
-        <app-text-shell animation="gradient" [data]="'$0.07 - $0.09'" lines="1"
-          class="text-left  bold-text note_title_bold10Black" style="padding: 5px 0;">
-        </app-text-shell>
-        <app-text-shell animation="gradient" [data]="'1000 Dozen(s) (Min Order)'" lines="1"
-          class="note_title_bold12Black text-left" style="padding: 5px 0;">
-        </app-text-shell>
-        <ion-button color="primary" expand="block" class="contat-supplier-btn">Contact Supplier</ion-button>
-      </ion-col>
-
-      <ion-col col-6 class="productsCol card" routerLink="/">
-        <app-image-shell animation="gradient" src="/assets/vectors/icons/test1.svg" [alt]="'Product Image'"
-          class="inner-img" style="padding-bottom: 5px;">
-          <!-- <br><br> -->
-        </app-image-shell>
-        <!-- <app-text-shell animation="gradient" [data]="productName" lines="2" class="note_title10Black text-truncate">
-        </app-text-shell> -->
-        <p class="text-left product-description-height">Automatic PET Blowing Machine APF - 3002</p>
-        <app-text-shell animation="gradient" [data]="'$0.07 - $1.22'" lines="1"
-          class="text-left  bold-text note_title_bold10Black" style="padding: 5px 0;">
-        </app-text-shell>
-        <app-text-shell animation="gradient" [data]="'1 Units(s) (Min Order)'" lines="1"
-          class="note_title_bold12Black text-left" style="padding: 5px 0;">
-        </app-text-shell>
-        <ion-button color="primary" expand="block" class="contat-supplier-btn">Contact Supplier</ion-button>
-      </ion-col>
-
-
-      <!-- <ion-col col-6 class="productsCol" routerLink="/products/{{tp._id}}" *ngFor="let tp of topProds"> -->
-      <!-- <app-image-shell animation="gradient" [src]="tp?.gallery[0]" [alt]="'Product Image'" class="inner-img"
-          style="padding-bottom: 5px;">
-        </app-image-shell>
-        <app-text-shell animation="gradient" [data]="tp?.name" lines="2" class="note_title10Black text-truncate">
-        </app-text-shell>
-        <app-text-shell animation="gradient" [data]="tp?.price | currency:'₦':'symbol':'1.2-2'" lines="1"
-          class="note_title_bold12Black" style="padding: 5px 0;">
-        </app-text-shell> -->
-      <!-- </ion-col> -->
     </ion-row>
   </ion-grid>
   <ion-row *ngIf="showUpArrow">

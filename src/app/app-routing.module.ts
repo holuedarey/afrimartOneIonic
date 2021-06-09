@@ -177,6 +177,10 @@ const routes: Routes = [
     path: 'become-supplier',
     loadChildren: () => import('./become-supplier/become-supplier.module').then( m => m.BecomeSupplierPageModule)
   },
+  {
+    path: 'forget-verify',
+    loadChildren: () => import('./forget-verify/forget-verify.module').then( m => m.ForgetVerifyPageModule)
+  },
 ];
 
 @NgModule({

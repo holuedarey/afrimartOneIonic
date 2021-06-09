@@ -16,6 +16,7 @@ import {
 import { OrderService } from './order.service';
 // import { ToastrService } from "ngx-toastr";
 import { AuthenticationService } from '../authentication/authentication.service';
+import { Endpoint } from '../common/endpoints';
 
 @Injectable({
   providedIn: 'root',
@@ -65,8 +66,8 @@ export class ProductService {
     this.wishListItem = this.wishList.asObservable();
     this.getcartProducts = new BehaviorSubject<any>('');
     this.cartProducts = this.getcartProducts.asObservable();
-    this.orderService.getcartProducts.subscribe((data) => {});
-   
+    this.orderService.getcartProducts.subscribe((data) => { });
+
     this.getCartProducts();
   }
   headerSt() {
@@ -157,7 +158,7 @@ export class ProductService {
     });
     this.calCartQty.next(quantity);
   }
-  logOutCart(count:string){
+  logOutCart(count: string) {
     this.calCartQty.next(count);
   }
   searchBar(searchString: string) {
@@ -214,29 +215,19 @@ export class ProductService {
       );
   }
   getProductDetail(id: string) {
-    const url = `${this.apiUrl}products/${id}`;
-    return this.http
-      .get<{ error: boolean; message: string; data: ProductListModel }>(url, {
-        headers: this.headerSt(),
-      })
-      .pipe(
-        map(
-          (dt) => {
-            // if (!dt.error) {
-            //   this.setLocalRecentlyViewedProducts(dt.data);
-            // }
-            return dt;
-          },
-          (err) => {}
-        )
-      );
+    const url = `${Endpoint.PRODUCT.viewProduct}${id}`;
+    return this.http.get<any>(url).pipe(map((dt) => {
+      // if (!dt.error) {
+      //   this.setLocalRecentlyViewedProducts(dt.data);
+      // }
+      return dt;
+    },
+      (err) => { }
+    ));
   }
-  getTopProducts(size: number = 8) {
-    var url = `${this.apiUrl}products/pupolar?top`;
-
-    return this.http.get<ProductListResponseModel>(url, {
-      headers: this.headerSt(),
-    });
+  getTopProducts(slug: string) {
+    const url = `${Endpoint.PRODUCT.topProduct}?organisation=${slug}`;
+    return this.http.get<ProductListResponseModel>(url);
   }
   getTopProd() {
     var url = `${this.apiUrl}resources/top-products`;

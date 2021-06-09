@@ -166,22 +166,24 @@ export class HomePage implements OnInit {
     this.router.navigate([`sub-category/${id}`]);
   }
   getTopProducts(): any {
-    this.util.getDynamicProds('top-products').subscribe((res: any) => {
-      res.data.forEach((e) => {
-        let prod_id = e.value;
-        if (prod_id !== null) {
-          this.productService
-            .getProductDetail(prod_id)
-            .subscribe((prod: any) => {
-              if (prod.data) {
-                this.topProds.push(prod.data);
-                console.log('this.topProds: ' + JSON.stringify(this.topProds));
-              } else {
-                return;
-              }
-            });
-        }
-      });
+    this.productService.getTopProducts('test-org').subscribe((res: any) => {
+      console.log('rspo ::', res.data.stores[0].products);
+      this.topProds = res.data.stores[0].products;
+      // res.data.forEach((e) => {
+      //   let prod_id = e.value;
+      //   if (prod_id !== null) {
+      //     this.productService
+      //       .getProductDetail(prod_id)
+      //       .subscribe((prod: any) => {
+      //         if (prod.data) {
+      //           this.topProds.push(prod.data);
+      //           console.log('this.topProds: ' + JSON.stringify(this.topProds));
+      //         } else {
+      //           return;
+      //         }
+      //       });
+      //   }
+      // });
     });
   }
   getFeaturedProducts(): any {

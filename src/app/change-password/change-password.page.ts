@@ -7,6 +7,7 @@ import { FormBuilder, FormGroup, Validators,FormControl} from '@angular/forms';
 import { UserService } from "src/app/core/http-services/user.service";
 import { AuthenticationService } from "src/app/core/authentication/authentication.service";
 import { ChangePasswordModel } from 'src/app/shared/models/user.model';
+import { LoaderService } from '../core/loader.service';
 
 @Component({
   selector: 'app-change-password',
@@ -41,7 +42,8 @@ export class ChangePasswordPage implements OnInit {
     public loadingCtrl: LoadingController,
     private toastController: ToastController,
     public formBuilder: FormBuilder,
-    private location: Location
+    private location: Location,
+    public LoaderService: LoaderService,
     ) {
       this.changePasswordForm = this.formBuilder.group({ 
         oldPassword: new FormControl(this.changePassword.oldPassword, Validators.compose([Validators.required])),
@@ -64,17 +66,7 @@ export class ChangePasswordPage implements OnInit {
       );
    
   }
-  async presentToast(header: string, msg: string, duration: number, color: string) {
-    const toast = await this.toastController.create({
-      header: header,
-      position: 'bottom',
-      message: msg,
-      duration: duration,
-      // cssClass: 'custom-toast-class',
-      color: color
-    });
-    toast.present();
-  }
+  
   toggleCurrentPassword():void{
     this.showCurrentPassword = !this.showCurrentPassword;
     if(this.passwordToggleIconCur=='eye'){
@@ -104,9 +96,7 @@ export class ChangePasswordPage implements OnInit {
   }
   doChangePassword(){
     console.log('Signup User:' + JSON.stringify(this.changePasswordForm.value));
-    this.loadingCtrl.create({ spinner: 'dots', message: 'Changing Passowrd! Please wait...', duration: 5000, cssClass: 'custom-loader-class' }).then((res) => {
-      res.present(); res.onDidDismiss().then((dis) => { });
-    });
+    this.LoaderService.showLoader('Changing Passowrd! Please wait...',  5000,  'custom-loader-class' )
     this.loading = true;  
     this.userService.changePassword(this.changePasswordForm.value).subscribe(
         (data) => {
@@ -114,21 +104,23 @@ export class ChangePasswordPage implements OnInit {
           if (!data.error) {
             console.log('changePassword Success:' + JSON.stringify(data));
             this.authService.logout().then(isDone => {
-              this.loadingCtrl.dismiss(); this.loading = false;
+              this.LoaderService.hideLoader();
+              this.loading = false;
               this.router.navigate(['/sign-in'])
-              this.presentToast('Congratulations', 'Password change was successful!', 2000, 'success');
+              this.LoaderService.presentToast('Congratulations', 'Password change was successful!', 2000, 'success');
             })    
             
           } else {
-            this.loadingCtrl.dismiss(); this.loading = false;  
+            this.LoaderService.hideLoader(); 
+            this.loading = false;  
             console.log('changePassword Else:' + JSON.stringify(data));
-            this.presentToast('Apologies', 'Password change was unsuccessful, Please try again', 2000, 'warning')
+            this.LoaderService.presentToast('Apologies', 'Password change was unsuccessful, Please try again', 2000, 'warning')
           }
         },
         (err) => {
           this.loadingCtrl.dismiss(); this.loading = false; 
           console.log('changePassword Error:' + JSON.stringify(err));
-          this.presentToast('Sign up Error', 'An error occurred. Please try again!', 4000, 'error')
+          this.LoaderService.presentToast('Sign up Error', 'An error occurred. Please try again!', 4000, 'error')
         }
       );
   }

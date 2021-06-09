@@ -42,6 +42,7 @@ export class ProductsPage implements OnInit {
   currentUser: any;
   prod_data: any;
   wishList = new Array();
+  ratings:any[] = [];
 
   slideOptsTwo = {
     initialSlide: 1,
@@ -285,37 +286,39 @@ export class ProductsPage implements OnInit {
             if (prod.data) {
               this.prod_data = prod.data;
               this.loading = false;
-              // console.log ( 'this.Product Detail: ' + JSON.stringify(this.prod_data));
+              this.ratings = prod.data.ratings;
+              console.log ( 'this.Product Detail: ' + JSON.stringify(prod.data.ratings));
+
               // this.recentlyViewedProducts.indexOf(this.prod_data._id) == -1
-              this.recentlyViewedProducts =
-                this.productService.getLocalRecentlyViewedProducts()
-                  ? this.productService.getLocalRecentlyViewedProducts()
-                  : [];
-              // console.log(
-              //   'recentlyViewedProducts: ' +
-              //     JSON.stringify(this.recentlyViewedProducts)
-              // );
-              if (this.recentlyViewedProducts.length > 0) {
-                if (
-                  !this.recentlyViewedProducts.some((r) =>
-                    r._id.includes(this.prod_data._id)
-                  )
-                ) {
-                  let arr_prod = this.recentlyViewedProducts;
-                  arr_prod.push(this.prod_data);
-                  this.productService.setLocalRecentlyViewedProducts(
-                    JSON.stringify(arr_prod)
-                  );
-                } else {
-                }
-              } else {
-                let arr_prod = new Array();
-                arr_prod.push(this.prod_data);
-                this.productService.setLocalRecentlyViewedProducts(
-                  JSON.stringify(arr_prod)
-                );
-              }
-              this.getSimilarProducts();
+              // this.recentlyViewedProducts =
+              //   this.productService.getLocalRecentlyViewedProducts()
+              //     ? this.productService.getLocalRecentlyViewedProducts()
+              //     : [];
+              // // console.log(
+              // //   'recentlyViewedProducts: ' +
+              // //     JSON.stringify(this.recentlyViewedProducts)
+              // // );
+              // if (this.recentlyViewedProducts.length > 0) {
+              //   if (
+              //     !this.recentlyViewedProducts.some((r) =>
+              //       r._id.includes(this.prod_data._id)
+              //     )
+              //   ) {
+              //     let arr_prod = this.recentlyViewedProducts;
+              //     arr_prod.push(this.prod_data);
+              //     this.productService.setLocalRecentlyViewedProducts(
+              //       JSON.stringify(arr_prod)
+              //     );
+              //   } else {
+              //   }
+              // } else {
+              //   let arr_prod = new Array();
+              //   arr_prod.push(this.prod_data);
+              //   this.productService.setLocalRecentlyViewedProducts(
+              //     JSON.stringify(arr_prod)
+              //   );
+              // }
+              // this.getSimilarProducts();
             }
           });
       } else {

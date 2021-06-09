@@ -15,6 +15,7 @@ import { OrderService } from 'src/app/core/http-services/order.service';
 import { LoginModel } from 'src/app/shared/models/user.model';
 import { StorageService } from '../core/storage.service';
 import { Constants } from '../core/common/constant';
+import { LoaderService } from '../core/loader.service';
 
 @Component({
   selector: 'app-sign-in',
@@ -44,13 +45,12 @@ export class SignInPage implements OnInit {
     private authService: AuthenticationService,
     private orderService: OrderService,
     public router: Router,
-    public loadingCtrl: LoadingController,
     private navCtrl: NavController,
-    private toastController: ToastController,
     public formBuilder: FormBuilder,
     private nativeStorage: NativeStorage,
     private googlePlus: GooglePlus,
     private storageService: StorageService,
+    public LoaderService:LoaderService,
     // private fb: Facebook
   ) {
     // this.loginForm = this.formBuilder.group({
@@ -64,14 +64,8 @@ export class SignInPage implements OnInit {
     //   ),
     // });
     this.loginForm = this.formBuilder.group({
-      user: new FormControl(
-        (this.loginModel.user = 'merchant'),
-        Validators.compose([Validators.required])
-      ),
-      password: new FormControl(
-        (this.loginModel.password = 'Merchant123'),
-        Validators.compose([Validators.required])
-      ),
+      user: new FormControl('', Validators.compose([Validators.required])),
+      password: new FormControl('',  Validators.compose([Validators.required])),
     });
 
     // fb.getLoginStatus()
@@ -106,22 +100,7 @@ export class SignInPage implements OnInit {
       this.currentUser = null;
     }
   }
-  async presentToast(
-    header: string,
-    msg: string,
-    duration: number,
-    color: string
-  ) {
-    const toast = await this.toastController.create({
-      header: header,
-      position: 'bottom',
-      message: msg,
-      duration: duration,
-      // cssClass: 'custom-toast-class',
-      color: color,
-    });
-    toast.present();
-  }
+  
   // getWishListItems(token) {
   //   this.orderService.getWishlist(token).subscribe(
   //     (data) => {
@@ -135,22 +114,12 @@ export class SignInPage implements OnInit {
   //   );
   // }
   loginUser() {
-    this.loadingCtrl
-      .create({
-        spinner: 'dots',
-        message: 'Signing in! Please wait...',
-        // duration: 5000,
-        cssClass: 'custom-loader-class',
-      })
-      .then((res) => {
-        res.present();
-        res.onDidDismiss().then((dis) => { });
-      });
+    this.LoaderService.showLoader('Signing in! Please wait...',5000,'custom-loader-class');
     this.loginForm.value['organisation'] = 'test-org';
     this.authService.login(this.loginForm.value).subscribe(
       (data) => {
         this.loginForm.reset();
-        this.loadingCtrl.dismiss();
+        this.LoaderService.hideLoader();
 
         // console.log('loginUser:' + JSON.stringify(data.data));
         if (data.status) {
@@ -165,24 +134,14 @@ export class SignInPage implements OnInit {
           //   this.presentToast('', 'WELCOME ' + data.data['message'], 2000, 'success');
           // })
         } else {
-          this.loadingCtrl.dismiss();
-          this.presentToast(
-            'Invalid Details',
-            'Please confirm your details',
-            2000,
-            'warning'
-          );
+          this.LoaderService.hideLoader();
+          this.LoaderService.presentToast( 'Invalid Details', 'Please confirm your details',  2000, 'warning'  );
         }
       },
       (err) => {
         console.error('Sign In err: ' + err);
-        this.loadingCtrl.dismiss();
-        this.presentToast(
-          'Sign In Error',
-          'An error occurred. Please try again!',
-          4000,
-          'error'
-        );
+        this.LoaderService.hideLoader();
+        this.LoaderService.presentToast( 'Sign In Error', 'An error occurred. Please try again!', 4000,  'error'  );
       }
     );
   }

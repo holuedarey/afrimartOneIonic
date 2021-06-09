@@ -10,6 +10,7 @@ import { TermsOfServicePage } from '../terms-of-service/terms-of-service.page';
 import { PrivacyPolicyPage } from '../privacy-policy/privacy-policy.page';
 import { StorageService } from '../core/storage.service';
 import { Constants } from '../core/common/constant';
+import { LoaderService } from '../core/loader.service';
 
 @Component({
   selector: 'app-sign-up',
@@ -37,20 +38,19 @@ export class SignUpPage implements OnInit {
     private userService: UserService,
     private utilityService: UtilityService,
     public router: Router,
-    public loadingCtrl: LoadingController,
     public modalController: ModalController,
-    private toastController: ToastController,
     public formBuilder: FormBuilder,
-    public storageService:StorageService,
+    public storageService: StorageService,
+    public LoaderService: LoaderService,
   ) {
     this.registerForm = this.formBuilder.group({
       fName: new FormControl(this.register.firstname = '', Validators.compose([Validators.required, Validators.minLength(2)])),
       sName: new FormControl(this.register.lastname = '', Validators.compose([Validators.required, Validators.minLength(2)])),
       email: new FormControl(this.register.email = '', Validators.compose([Validators.required, Validators.email])),
       // email: new FormControl(this.register.email = 'tony@rubikpay.tech', Validators.compose([Validators.required, Validators.email])),
-      // phone: new FormControl(this.register.phone = '+2348098367527', Validators.compose([Validators.required, Validators.pattern("[+]{1}[2-4]{3}[0-9]{10}")])),
+      username: new FormControl('', Validators.compose([Validators.required])),
       // ext: new FormControl('+234', [Validators.required]),
-      phone: new FormControl('', Validators.compose([Validators.required, ])),
+      phone: new FormControl('', Validators.compose([Validators.required,])),
       password: ['', Validators.compose([Validators.required])],
       confirmPassword: ['', Validators.compose([Validators.required])],
       isChecked: new FormControl(false, Validators.compose([Validators.required])),
@@ -65,31 +65,21 @@ export class SignUpPage implements OnInit {
   }
 
 
-  checkPasswords(group: FormGroup) { 
+  checkPasswords(group: FormGroup) {
     // here we have the 'passwords' group
     let pass = group.get('password').value;
     let confirmPass = group.get('confirmPassword').value;
-    if(pass != confirmPass) {
+    if (pass != confirmPass) {
       console.log('password not match');
       return { notSame: true };
-    }else{
+    } else {
       return null
     }
     // return pass === confirmPass ? null : { notSame: true }
   }
-  async presentToast(header: string, msg: string, duration: number, color: string) {
-    const toast = await this.toastController.create({
-      header: header,
-      position: 'bottom',
-      message: msg,
-      duration: duration,
-      // cssClass: 'custom-toast-class',
-      color: color
-    });
-    toast.present();
-  }
+  
   onCountryChange(event) {
-    console.log('value',  event.detail.value);
+    console.log('value', event.detail.value);
     // console.log('onCountryChange: ' + $event.value)
   }
   changeMobileCountry(event) {
@@ -121,50 +111,49 @@ export class SignUpPage implements OnInit {
     // console.log('Edited SignUp User ' + JSON.stringify(this.registerForm.value));
     const payload = {
       "organisation": "test-org",
-      "firstname":this.registerForm.value.fName,
+      "firstname": this.registerForm.value.fName,
       "lastname": this.registerForm.value.sName,
-      "username": this.registerForm.value.email.split('@')[0],
+      "username": this.registerForm.value.username,
       "email": this.registerForm.value.email,
       "role": "user",
-      "phone":this.registerForm.value.phone ,
+      "phone": this.registerForm.value.phone,
       "country": this.registerForm.value.countryOperation,
       "preferredLanguage": this.registerForm.value.prefferedLangauge,
       "password": this.registerForm.value.password
     }
     console.log('Signup User:' + JSON.stringify(payload));
-    this.loadingCtrl.create({ spinner: 'dots', message: 'Signing up! Please wait...', duration: 10000, cssClass: 'custom-loader-class' }).then((res) => {
-      res.present(); res.onDidDismiss().then((dis) => { });
-    });
+    this.LoaderService.showLoader('Signing up! Please wait...', 10000, 'custom-loader-class');
     this.loading = true;
     this.authService.logout().then(isDone => {
       this.storageService.set(Constants.STORAGE_VARIABLES.REGISTER_EMAIL, this.registerForm.value.email)
       this.userService.register(payload).subscribe(
-        
+
         (data) => {
           console.log('Signup User Success:' + JSON.stringify(data));
           // this.registerForm.reset();
           if (data.status == true) {
             console.log('Signup User Success:' + JSON.stringify(data));
-            this.loadingCtrl.dismiss(); 
+            this.LoaderService.hideLoader();
             this.loading = false;
             this.router.navigate(['/activation-link'])
-            this.presentToast('Congratulations', 'Your sign up was successful. Please check your email for verification details', 2000, 'success');
+            this.LoaderService.presentToast('Congratulations', 'Your sign up was successful. Please check your email for verification details', 2000, 'success');
           } else {
-            this.loadingCtrl.dismiss(); this.loading = false;
+            this.LoaderService.hideLoader();
+            this.loading = false;
             // console.log('Signup User Else:' + JSON.stringify(data));
-            this.presentToast('Invalid Details', `${data.message}`||  `Please confirm your details`, 5000, 'warning')
+            this.LoaderService.presentToast('Invalid Details', `${data.message}` || `Please confirm your details`, 5000, 'warning')
           }
         },
         (err) => {
           // this.registerForm.patchValue({ phone: this.registerForm.value.phone.replace(this.registerForm.value.ext, '') })
-          this.loadingCtrl.dismiss(); 
+          this.LoaderService.hideLoader(); 
           this.loading = false;
           console.log('Signup User Error:' + JSON.stringify(err));
           if (err.error.errors[0] == 'email, Email already exist') {
-            this.presentToast('Sign up Error', 'An email already exists. Please sign in or use another email!', 4000, 'error')
+            this.LoaderService.presentToast('Sign up Error', 'An email already exists. Please sign in or use another email!', 4000, 'error')
           }
           else {
-            this.presentToast('Sign up Error', 'An error occurred. Please try again!', 4000, 'error')
+            this.LoaderService.presentToast('Sign up Error', 'An error occurred. Please try again!', 4000, 'error')
           }
         }
       );

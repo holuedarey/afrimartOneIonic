@@ -21,7 +21,7 @@ export interface ProductListModel {
 }
 
 export class ProductListResponseModel {
-  error: boolean;
+  status: boolean;
   message: string;
   data: ProductListModel[];
 }
