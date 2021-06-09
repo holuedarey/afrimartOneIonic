@@ -53,7 +53,7 @@ export class SignUpPage implements OnInit {
       phone: new FormControl('', Validators.compose([Validators.required,])),
       password: ['', Validators.compose([Validators.required])],
       confirmPassword: ['', Validators.compose([Validators.required])],
-      isChecked: new FormControl(false, Validators.compose([Validators.required])),
+      isChecked: new FormControl(false, Validators.compose([Validators.required, Validators.requiredTrue])),
       countryOperation: new FormControl('', Validators.compose([Validators.required])),
       prefferedLangauge: new FormControl('', Validators.compose([Validators.required])),
       // affliateBank: new FormControl(false, Validators.compose([Validators.required])),
