@@ -32,7 +32,7 @@ export class ProductDetailsPage implements OnInit {
   wishList = new Array();
   sortStatus: string = 'asc';
   searchString: string = '';
-
+  org:string = 'test-org';
   constructor(
     private toastController: ToastController,
     public router: Router,
@@ -133,12 +133,15 @@ export class ProductDetailsPage implements OnInit {
     this.productService
       .searchBarInfinite(
         this.searchString,
+        this.org,
         this.pageSize,
         this.page,
         this.sortStatus
       )
       .subscribe(
         (data) => {
+          console.log('data ::', data.data);
+          
           data.data.forEach((prod) => {
             this.Products.push(prod);
           });

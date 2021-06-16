@@ -333,6 +333,10 @@ export class ProductsPage implements OnInit {
     });
   }
   ngOnInit() {}
+  viewCompanyProfile(prod_data){
+    // console.log('prod data :: ', prod_data);
+    this.router.navigate(["/company-profile", {data: JSON.stringify(prod_data) } ]);
+  }
   viewProduct(prod: any) {
     this.prod_data = null;
     this.prod_data = prod;

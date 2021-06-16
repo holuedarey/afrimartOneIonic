@@ -90,28 +90,29 @@ export class HomePage implements OnInit {
     //   this.Brands = val.data;
     //   this.Brands.sort(this.compare);
     // });
-    this.util.getLevel1Adds().subscribe((val: any) => {
-      this.level1Ads = val.data;
-      this.level1Ads.sort(this.compare);
-      // console.log('level1Ads: ' + JSON.stringify(this.level1Ads));
-    });
-    this.util.getLevel2Adds().subscribe((val: any) => {
-      this.level2Ads = val.data;
-      this.level2Ads.sort(this.compare);
-      // console.log('level2Ads: ' + JSON.stringify(this.level2Ads))
-    });
+    // this.util.getLevel1Adds().subscribe((val: any) => {
+    //   this.level1Ads = val.data;
+    //   this.level1Ads.sort(this.compare);
+    //   // console.log('level1Ads: ' + JSON.stringify(this.level1Ads));
+    // });
+    // this.util.getLevel2Adds().subscribe((val: any) => {
+    //   this.level2Ads = val.data;
+    //   this.level2Ads.sort(this.compare);
+    //   // console.log('level2Ads: ' + JSON.stringify(this.level2Ads))
+    // });
   }
 
   ngOnInit() {
     this.getTopProducts();
-    this.getDailyDealsProducts();
-    this.getLatestDealsProducts();
-    this.getRecommendedProducts();
-    this.getFeaturedProducts();
     this.getFeaturedCatgeories();
-    this.getLevel1Cats();
-    this.getLevel2Cats();
-    this.getLevel3Cats();
+
+    // this.getDailyDealsProducts();
+    // this.getLatestDealsProducts();
+    // this.getRecommendedProducts();
+    // this.getFeaturedProducts();
+    // this.getLevel1Cats();
+    // this.getLevel2Cats();
+    // this.getLevel3Cats();
     this.util.getSlides().subscribe((val: any) => {
       // console.log('am here', val);
       // console.log('this.Slides: ' + JSON.stringify(val));
@@ -121,15 +122,15 @@ export class HomePage implements OnInit {
 
   logScrollEnd(){
     this.showUpArrow = true;
-    console.log('scroll end');
+    // console.log('scroll end');
     
   }
   logScrollStart(){
-    console.log('start scrolling : ->');
+    // console.log('start scrolling : ->');
     
   }
   logScrolling($event){
-    console.log('scrolling event', $event.detail);
+    // console.log('scrolling event', $event.detail);
     
   }
 
@@ -256,12 +257,12 @@ export class HomePage implements OnInit {
     });
   }
   getFeaturedCatgeories() {
-    this.categoryService.getFeaturedCategories().subscribe(
+    this.categoryService.getTopCategories().subscribe(
       (data) => {
-        this.categories = data.data;
-        // console.log(
-        //   'getFeaturedCatgeories: ' + JSON.stringify(this.categories)
-        // );
+        this.categories = data.data.slice(0,4);
+        console.log(
+          'getFeaturedCatgeories: ' + JSON.stringify(this.categories)
+        );
       },
       (err) => {
         console.error(err);

@@ -214,21 +214,26 @@
 
     var _core_common_constant__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(
     /*! ../core/common/constant */
-    "./src/app/core/common/constant.ts"); // import { Facebook } from '@ionic-native/facebook/ngx';
+    "./src/app/core/common/constant.ts");
+    /* harmony import */
+
+
+    var _core_loader_service__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(
+    /*! ../core/loader.service */
+    "./src/app/core/loader.service.ts"); // import { Facebook } from '@ionic-native/facebook/ngx';
 
 
     let SignInPage = class SignInPage {
-      constructor(authService, orderService, router, loadingCtrl, navCtrl, toastController, formBuilder, nativeStorage, googlePlus, storageService) {
+      constructor(authService, orderService, router, navCtrl, formBuilder, nativeStorage, googlePlus, storageService, LoaderService) {
         this.authService = authService;
         this.orderService = orderService;
         this.router = router;
-        this.loadingCtrl = loadingCtrl;
         this.navCtrl = navCtrl;
-        this.toastController = toastController;
         this.formBuilder = formBuilder;
         this.nativeStorage = nativeStorage;
         this.googlePlus = googlePlus;
-        this.storageService = storageService; ///Inputs
+        this.storageService = storageService;
+        this.LoaderService = LoaderService; ///Inputs
 
         this.title = 'Sign In';
         this.longSearch = false;
@@ -262,8 +267,8 @@
         // });
 
         this.loginForm = this.formBuilder.group({
-          user: new _angular_forms__WEBPACK_IMPORTED_MODULE_5__["FormControl"](this.loginModel.user = 'merchant', _angular_forms__WEBPACK_IMPORTED_MODULE_5__["Validators"].compose([_angular_forms__WEBPACK_IMPORTED_MODULE_5__["Validators"].required])),
-          password: new _angular_forms__WEBPACK_IMPORTED_MODULE_5__["FormControl"](this.loginModel.password = 'Merchant123', _angular_forms__WEBPACK_IMPORTED_MODULE_5__["Validators"].compose([_angular_forms__WEBPACK_IMPORTED_MODULE_5__["Validators"].required]))
+          user: new _angular_forms__WEBPACK_IMPORTED_MODULE_5__["FormControl"]('', _angular_forms__WEBPACK_IMPORTED_MODULE_5__["Validators"].compose([_angular_forms__WEBPACK_IMPORTED_MODULE_5__["Validators"].required])),
+          password: new _angular_forms__WEBPACK_IMPORTED_MODULE_5__["FormControl"]('', _angular_forms__WEBPACK_IMPORTED_MODULE_5__["Validators"].compose([_angular_forms__WEBPACK_IMPORTED_MODULE_5__["Validators"].required]))
         }); // fb.getLoginStatus()
         //   .then((res) => {
         //     console.log(res.status);
@@ -297,20 +302,6 @@
         } else {
           this.currentUser = null;
         }
-      }
-
-      presentToast(header, msg, duration, color) {
-        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function* () {
-          const toast = yield this.toastController.create({
-            header: header,
-            position: 'bottom',
-            message: msg,
-            duration: duration,
-            // cssClass: 'custom-toast-class',
-            color: color
-          });
-          toast.present();
-        });
       } // getWishListItems(token) {
       //   this.orderService.getWishlist(token).subscribe(
       //     (data) => {
@@ -326,19 +317,11 @@
 
 
       loginUser() {
-        this.loadingCtrl.create({
-          spinner: 'dots',
-          message: 'Signing in! Please wait...',
-          // duration: 5000,
-          cssClass: 'custom-loader-class'
-        }).then(res => {
-          res.present();
-          res.onDidDismiss().then(dis => {});
-        });
+        this.LoaderService.showLoader('Signing in! Please wait...', 5000, 'custom-loader-class');
         this.loginForm.value['organisation'] = 'test-org';
         this.authService.login(this.loginForm.value).subscribe(data => {
           this.loginForm.reset();
-          this.loadingCtrl.dismiss(); // console.log('loginUser:' + JSON.stringify(data.data));
+          this.LoaderService.hideLoader(); // console.log('loginUser:' + JSON.stringify(data.data));
 
           if (data.status) {
             console.log('loginUser:' + JSON.stringify(data.data));
@@ -351,13 +334,13 @@
             //   this.presentToast('', 'WELCOME ' + data.data['message'], 2000, 'success');
             // })
           } else {
-            this.loadingCtrl.dismiss();
-            this.presentToast('Invalid Details', 'Please confirm your details', 2000, 'warning');
+            this.LoaderService.hideLoader();
+            this.LoaderService.presentToast('Invalid Details', 'Please confirm your details', 2000, 'warning');
           }
         }, err => {
           console.error('Sign In err: ' + err);
-          this.loadingCtrl.dismiss();
-          this.presentToast('Sign In Error', 'An error occurred. Please try again!', 4000, 'error');
+          this.LoaderService.hideLoader();
+          this.LoaderService.presentToast('Sign In Error', 'An error occurred. Please try again!', 4000, 'error');
         });
       }
 
@@ -381,11 +364,7 @@
     }, {
       type: _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"]
     }, {
-      type: _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["LoadingController"]
-    }, {
       type: _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["NavController"]
-    }, {
-      type: _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["ToastController"]
     }, {
       type: _angular_forms__WEBPACK_IMPORTED_MODULE_5__["FormBuilder"]
     }, {
@@ -394,6 +373,8 @@
       type: _ionic_native_google_plus_ngx__WEBPACK_IMPORTED_MODULE_6__["GooglePlus"]
     }, {
       type: _core_storage_service__WEBPACK_IMPORTED_MODULE_10__["StorageService"]
+    }, {
+      type: _core_loader_service__WEBPACK_IMPORTED_MODULE_12__["LoaderService"]
     }];
 
     SignInPage = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -404,7 +385,7 @@
       styles: [tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(
       /*! ./sign-in.page.scss */
       "./src/app/sign-in/sign-in.page.scss")).default]
-    }), tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [src_app_core_authentication_authentication_service__WEBPACK_IMPORTED_MODULE_7__["AuthenticationService"], src_app_core_http_services_order_service__WEBPACK_IMPORTED_MODULE_8__["OrderService"], _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"], _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["LoadingController"], _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["NavController"], _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["ToastController"], _angular_forms__WEBPACK_IMPORTED_MODULE_5__["FormBuilder"], _ionic_native_native_storage_ngx__WEBPACK_IMPORTED_MODULE_4__["NativeStorage"], _ionic_native_google_plus_ngx__WEBPACK_IMPORTED_MODULE_6__["GooglePlus"], _core_storage_service__WEBPACK_IMPORTED_MODULE_10__["StorageService"]])], SignInPage);
+    }), tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [src_app_core_authentication_authentication_service__WEBPACK_IMPORTED_MODULE_7__["AuthenticationService"], src_app_core_http_services_order_service__WEBPACK_IMPORTED_MODULE_8__["OrderService"], _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"], _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["NavController"], _angular_forms__WEBPACK_IMPORTED_MODULE_5__["FormBuilder"], _ionic_native_native_storage_ngx__WEBPACK_IMPORTED_MODULE_4__["NativeStorage"], _ionic_native_google_plus_ngx__WEBPACK_IMPORTED_MODULE_6__["GooglePlus"], _core_storage_service__WEBPACK_IMPORTED_MODULE_10__["StorageService"], _core_loader_service__WEBPACK_IMPORTED_MODULE_12__["LoaderService"]])], SignInPage);
     /***/
   }
 }]);

@@ -71,7 +71,7 @@ export class SearchModalPage implements OnInit {
     if (this.searchString && this.searchString.trim() != '') {
       this.isLoading=true;
       this.isItemAvailable = true;
-      this.prodService.searchBar(this.searchString).subscribe((data) => {
+      this.prodService.searchBar(this.searchString, 'test-org', 10, 1).subscribe((data) => {
         // console.log('searchCnt length;'+ this.searchCnt)
         this.searchCnt = data.data.length;
         this.Products = data.data.slice(

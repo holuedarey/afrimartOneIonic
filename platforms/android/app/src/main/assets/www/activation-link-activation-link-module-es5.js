@@ -15,7 +15,7 @@
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<ion-content >\n  <!-- <div class=\"topFadedLogo\"> </div> -->\n  <form [formGroup]=\"activateForm\" >\n    <ion-grid style=\"padding-top:75px;\" class=\"card\">\n      <ion-row>\n        <ion-col text-center>\n          <div class=\"ion-text-center header-title\">ACTIVATE</div>\n          <p class=\"t_center\">Kindly enter activation code sent to your email</p>\n        </ion-col>\n\n        <ion-col size=\"12\">\n          <ion-row>\n            <ion-col size=\"12\" class=\"colForm\">\n                <ion-label color=\"dark\" position=\"floating\">Activation Code</ion-label>\n                <ion-input class=\"qouteForm\" formControlName=\"token\" type=\"text\" placeholder=\"Enter your Email Address\" clear-input=\"true\">\n                </ion-input> \n            </ion-col>\n            <div *ngIf=\"!activateForm.controls.token.valid && activateForm.controls.token.dirty\">\n              <p style=\"color:#330501!important;text-align:center;\">Please enter a VALID Activation Code</p>\n            </div>\n          </ion-row>\n          <ion-row>\n            <ion-col col-12 class=\"t_right\">\n              <a color=\"secondary\" (click)=\"resendActivationLink()\">Didn’t get activation link? Request\n              </a>\n            </ion-col>\n          </ion-row>\n          <br>\n         \n          <ion-row>\n            <ion-col size=\"12\" style=\"padding: 0px;\">\n              <div style=\"padding-top: 10px;\">\n                <ion-button expand=\"block\" color=\"primary\" (click)=\"activateUser()\" [disabled]=\"!activateForm.valid\"> Activate\n                </ion-button>\n              </div>\n            </ion-col>\n          </ion-row>\n        </ion-col>\n      </ion-row>\n\n      <ion-row>\n        <ion-col col-12 class=\"t_center\" style=\"margin-top:50px;\">\n          <p class=\"font-14\">Already have an Account?</p>\n        </ion-col>\n      </ion-row>\n      <br>\n      <ion-row>\n        <ion-col col-12 class=\"t_center\" >\n          <a style=\"font-size: 18px; font-family: 'RedHatDisplayBold'; color: #CB982F !important;\" [routerLink]=\"['/sign-in']\">Sign In Here</a>\n        </ion-col>\n      </ion-row>\n    </ion-grid>\n\n  </form>\n  <ion-grid>\n    <ion-row>\n      <ion-col size=\"12\" *ngIf=\"isloadingSettings\">\n        <ion-note color=\"primary\">{{loadingText}}</ion-note>\n        <ion-progress-bar color=\"primary\" type=\"indeterminate\"></ion-progress-bar>\n      </ion-col>\n    </ion-row>\n  </ion-grid>\n</ion-content>";
+    __webpack_exports__["default"] = "<ion-content>\n  <!-- <div class=\"topFadedLogo\"> </div> -->\n  <form [formGroup]=\"activateForm\">\n    <ion-grid style=\"padding-top:75px;\" class=\"card\">\n      <ion-row>\n        <ion-col text-center>\n          <div class=\"ion-text-center header-title\">ACTIVATE</div>\n          <p class=\"t_center\">Kindly enter activation code sent to your email</p>\n        </ion-col>\n\n        <ion-col size=\"12\">\n          <ion-row>\n            <ion-col size=\"12\" class=\"colForm\">\n              <ion-label color=\"dark\" position=\"floating\">Activation Code</ion-label>\n              <ion-input class=\"qouteForm\" formControlName=\"token\" type=\"text\" placeholder=\"Enter your Activation Code\"\n                clear-input=\"true\">\n              </ion-input>\n            </ion-col>\n            <div *ngIf=\"!activateForm.controls.token.valid && activateForm.controls.token.dirty\">\n              <p style=\"color:#330501!important;text-align:center;\">Please enter a VALID Activation Code</p>\n            </div>\n          </ion-row>\n          <ion-row>\n            <ion-col col-12 class=\"t_right\">\n              <p *ngIf=\"showResend\" class=\"t_center\">\n                If you don’t receive the code? Resend in <b>{{ countdown }}</b> seconds it\n              </p>\n              <ion-button [disabled]=\"!time\" fill=\"clear\"  color=\"warning\" class=\"timer-link\" (click)=\"resendActivationLink()\">\n                Didn’t get activation link? Request\n              </ion-button> \n            </ion-col>\n          </ion-row>\n          <br>\n\n          <ion-row>\n            <ion-col size=\"12\" style=\"padding: 0px;\">\n              <div style=\"padding-top: 10px;\">\n                <ion-button expand=\"block\" color=\"primary\" (click)=\"activateUser()\" [disabled]=\"!activateForm.valid\">\n                  Activate\n                </ion-button>\n              </div>\n            </ion-col>\n          </ion-row>\n        </ion-col>\n      </ion-row>\n\n      <ion-row>\n        <ion-col col-12 class=\"t_center\" style=\"margin-top:50px;\">\n          <p class=\"font-14\">Already have an Account?</p>\n        </ion-col>\n      </ion-row>\n      <br>\n      <ion-row>\n        <ion-col col-12 class=\"t_center\">\n          <a style=\"font-size: 18px; font-family: 'RedHatDisplayBold'; color: #CB982F !important;\"\n            [routerLink]=\"['/sign-in']\">Sign In Here</a>\n        </ion-col>\n      </ion-row>\n    </ion-grid>\n\n  </form>\n  <ion-grid>\n    <ion-row>\n      <ion-col size=\"12\" *ngIf=\"isloadingSettings\">\n        <ion-note color=\"primary\">{{loadingText}}</ion-note>\n        <ion-progress-bar color=\"primary\" type=\"indeterminate\"></ion-progress-bar>\n      </ion-col>\n    </ion-row>\n  </ion-grid>\n</ion-content>";
     /***/
   },
 
@@ -161,7 +161,7 @@
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2FjdGl2YXRpb24tbGluay9hY3RpdmF0aW9uLWxpbmsucGFnZS5zY3NzIn0= */";
+    __webpack_exports__["default"] = ".timer-link {\n  font-size: 11px;\n  color: #CA7529;\n  text-transform: capitalize;\n  position: relative;\n  top: -12px;\n  right: -19px;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvYWN0aXZhdGlvbi1saW5rL0M6XFxQcm9qZWN0XFxBbmd1bGFyXFxlYXN5bWFsbF9ub25vZGUgKDEpXFxlYXN5bWFsbF9ub25vZGUvc3JjXFxhcHBcXGFjdGl2YXRpb24tbGlua1xcYWN0aXZhdGlvbi1saW5rLnBhZ2Uuc2NzcyIsInNyYy9hcHAvYWN0aXZhdGlvbi1saW5rL2FjdGl2YXRpb24tbGluay5wYWdlLnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDSSxlQUFBO0VBQ0EsY0FBQTtFQUNBLDBCQUFBO0VBQ0Esa0JBQUE7RUFDQSxVQUFBO0VBQ0EsWUFBQTtBQ0NKIiwiZmlsZSI6InNyYy9hcHAvYWN0aXZhdGlvbi1saW5rL2FjdGl2YXRpb24tbGluay5wYWdlLnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyIudGltZXItbGlua3tcclxuICAgIGZvbnQtc2l6ZTogMTFweDsgXHJcbiAgICBjb2xvcjogI0NBNzUyOTsgXHJcbiAgICB0ZXh0LXRyYW5zZm9ybTogY2FwaXRhbGl6ZTtcclxuICAgIHBvc2l0aW9uOiByZWxhdGl2ZTtcclxuICAgIHRvcDogLTEycHg7XHJcbiAgICByaWdodDogLTE5cHg7XHJcbn0iLCIudGltZXItbGluayB7XG4gIGZvbnQtc2l6ZTogMTFweDtcbiAgY29sb3I6ICNDQTc1Mjk7XG4gIHRleHQtdHJhbnNmb3JtOiBjYXBpdGFsaXplO1xuICBwb3NpdGlvbjogcmVsYXRpdmU7XG4gIHRvcDogLTEycHg7XG4gIHJpZ2h0OiAtMTlweDtcbn0iXX0= */";
     /***/
   },
 
@@ -211,27 +211,27 @@
     /* harmony import */
 
 
-    var _ionic_angular__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
-    /*! @ionic/angular */
-    "./node_modules/@ionic/angular/fesm2015/ionic-angular.js");
-    /* harmony import */
-
-
-    var src_app_shared_models_user_model__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(
+    var src_app_shared_models_user_model__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
     /*! src/app/shared/models/user.model */
     "./src/app/shared/models/user.model.ts");
     /* harmony import */
 
 
-    var _core_common_constant__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(
+    var _core_common_constant__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(
     /*! ../core/common/constant */
     "./src/app/core/common/constant.ts");
     /* harmony import */
 
 
-    var _core_http_services_user_service__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(
+    var _core_http_services_user_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(
     /*! ../core/http-services/user.service */
     "./src/app/core/http-services/user.service.ts");
+    /* harmony import */
+
+
+    var _core_loader_service__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(
+    /*! ../core/loader.service */
+    "./src/app/core/loader.service.ts");
     /* harmony import */
 
 
@@ -240,16 +240,18 @@
     "./src/app/core/storage.service.ts");
 
     let ActivationLinkPage = class ActivationLinkPage {
-      constructor(formBuilder, storageService, userService, loadingCtrl, toastController, router) {
+      constructor(formBuilder, storageService, userService, router, LoaderService) {
         this.formBuilder = formBuilder;
         this.storageService = storageService;
         this.userService = userService;
-        this.loadingCtrl = loadingCtrl;
-        this.toastController = toastController;
         this.router = router;
+        this.LoaderService = LoaderService;
         this.isloadingSettings = false;
         this.loadingText = '';
-        this.ActivateAccModel = new src_app_shared_models_user_model__WEBPACK_IMPORTED_MODULE_5__["ActivateAccModel"]();
+        this.ActivateAccModel = new src_app_shared_models_user_model__WEBPACK_IMPORTED_MODULE_4__["ActivateAccModel"]();
+        this.time = true;
+        this.countdown = 60;
+        this.showResend = false;
         this.activateForm = this.formBuilder.group({
           token: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"](this.ActivateAccModel.token = '', _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].compose([_angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required]))
         });
@@ -259,27 +261,19 @@
 
       activateUser() {
         const token = this.activateForm.value.token;
-        this.loadingCtrl.create({
-          spinner: 'dots',
-          message: 'Activating Account! Please wait...',
-          duration: 10000,
-          cssClass: 'custom-loader-class'
-        }).then(res => {
-          res.present();
-          res.onDidDismiss().then(dis => {});
-        });
+        this.LoaderService.showLoader('Activating Account! Please wait...', 10000, 'custom-loader-class');
         this.userService.verifyEmailCode(token).subscribe(data => {
           if (data.status == true) {
             console.log('Activate User Success:' + JSON.stringify(data));
-            this.loadingCtrl.dismiss();
+            this.LoaderService.hideLoader();
             this.loading = false;
             this.router.navigate(['/sign-in']);
-            this.presentToast('Congratulations', "".concat(data.message, " Please Login"), 5000, 'success');
+            this.LoaderService.presentToast('Congratulations', "".concat(data.message, " Please Login"), 5000, 'success');
           } else {
-            this.loadingCtrl.dismiss();
+            this.LoaderService.hideLoader();
             this.loading = false; // console.log('Signup User Else:' + JSON.stringify(data));
 
-            this.presentToast('Invalid Details', "".concat(data.message) || "Please confirm your details", 5000, 'warning');
+            this.LoaderService.presentToast('Invalid Details', "".concat(data.message) || "Please confirm your details", 5000, 'warning');
           }
         }, error => {
           console.log(error);
@@ -287,51 +281,42 @@
       }
 
       resendActivationLink() {
-        const emailAddres = this.storageService.get(_core_common_constant__WEBPACK_IMPORTED_MODULE_6__["Constants"].STORAGE_VARIABLES.REGISTER_EMAIL);
+        this.showResend = true;
+        this.time = false;
+        var interval = setInterval(() => {
+          this.countdown = --this.countdown <= 0 ? 60 : this.countdown;
 
-        if (emailAddres) {
-          const payload = {
-            email: "".concat(emailAddres),
-            organisation: 'test-org'
-          };
-          this.loadingCtrl.create({
-            spinner: 'dots',
-            message: 'Resending, Please wait...',
-            duration: 10000,
-            cssClass: 'custom-loader-class'
-          }).then(res => {
-            res.present();
-            res.onDidDismiss().then(dis => {});
-          });
-          this.userService.sendEmailVerificationCode(payload).subscribe(data => {
-            if (data.status == true) {
-              console.log('Signup User Success:' + JSON.stringify(data));
-              this.loadingCtrl.dismiss();
-              this.loading = false;
-              this.presentToast('Congratulations', "".concat(data.message), 2000, 'success');
-            } else {
-              this.loadingCtrl.dismiss();
-              this.loading = false; // console.log('Signup User Else:' + JSON.stringify(data));
+          if (this.countdown == 1) {
+            this.time = true;
+            console.log('last element');
+            clearInterval(interval);
+            this.showResend = false;
+          } // this.time = false;
 
-              this.presentToast('Invalid Details', "".concat(data.message) || "Please confirm your details", 5000, 'warning');
-            }
-          }, error => {
-            console.log(error);
-          });
+
+          console.log('k :', this.countdown);
+        }, 1000);
+        const emailAddres = "".concat(this.storageService.get(_core_common_constant__WEBPACK_IMPORTED_MODULE_5__["Constants"].STORAGE_VARIABLES.REGISTER_EMAIL));
+
+        if (!emailAddres) {
+          console.log('email not found');
         }
-      }
 
-      presentToast(header, msg, duration, color) {
-        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function* () {
-          const toast = yield this.toastController.create({
-            header: header,
-            position: 'bottom',
-            message: msg,
-            duration: duration,
-            // cssClass: 'custom-toast-class',
-            color: color
-          });
-          toast.present();
+        this.LoaderService.showLoader('Resending Account! Please wait...', 10000, 'custom-loader-class');
+        this.userService.ResendEmailVerificationCode(emailAddres).subscribe(data => {
+          if (data.status == true) {
+            console.log('Signup User Success:' + JSON.stringify(data));
+            this.LoaderService.hideLoader();
+            this.loading = false;
+            this.LoaderService.presentToast('Congratulations', "".concat(data.message), 2000, 'success');
+          } else {
+            this.LoaderService.hideLoader();
+            this.loading = false; // console.log('Signup User Else:' + JSON.stringify(data));
+
+            this.LoaderService.presentToast('Invalid Details', "".concat(data.message) || "Please confirm your details", 5000, 'warning');
+          }
+        }, error => {
+          console.log(error);
         });
       }
 
@@ -342,13 +327,11 @@
     }, {
       type: _core_storage_service__WEBPACK_IMPORTED_MODULE_8__["StorageService"]
     }, {
-      type: _core_http_services_user_service__WEBPACK_IMPORTED_MODULE_7__["UserService"]
-    }, {
-      type: _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["LoadingController"]
-    }, {
-      type: _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["ToastController"]
+      type: _core_http_services_user_service__WEBPACK_IMPORTED_MODULE_6__["UserService"]
     }, {
       type: _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"]
+    }, {
+      type: _core_loader_service__WEBPACK_IMPORTED_MODULE_7__["LoaderService"]
     }];
 
     ActivationLinkPage = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -359,70 +342,7 @@
       styles: [tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(
       /*! ./activation-link.page.scss */
       "./src/app/activation-link/activation-link.page.scss")).default]
-    }), tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormBuilder"], _core_storage_service__WEBPACK_IMPORTED_MODULE_8__["StorageService"], _core_http_services_user_service__WEBPACK_IMPORTED_MODULE_7__["UserService"], _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["LoadingController"], _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["ToastController"], _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"]])], ActivationLinkPage);
-    /***/
-  },
-
-  /***/
-  "./src/app/core/common/endpoints.ts":
-  /*!******************************************!*\
-    !*** ./src/app/core/common/endpoints.ts ***!
-    \******************************************/
-
-  /*! exports provided: Endpoint */
-
-  /***/
-  function srcAppCoreCommonEndpointsTs(module, __webpack_exports__, __webpack_require__) {
-    "use strict";
-
-    __webpack_require__.r(__webpack_exports__);
-    /* harmony export (binding) */
-
-
-    __webpack_require__.d(__webpack_exports__, "Endpoint", function () {
-      return Endpoint;
-    });
-    /* harmony import */
-
-
-    var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
-    /*! tslib */
-    "./node_modules/tslib/tslib.es6.js");
-    /* harmony import */
-
-
-    var _environments_environment__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
-    /*! ../../../environments/environment */
-    "./src/environments/environment.ts");
-
-    const BASE_URL = _environments_environment__WEBPACK_IMPORTED_MODULE_1__["environment"] ? "https://afrimart-evibu.ondigitalocean.app/" : "https://afrimart-evibu.ondigitalocean.app/";
-    const Endpoint = {
-      AUTH: {
-        login: "".concat(BASE_URL, "/auth/sign-in"),
-        register: "".concat(BASE_URL, "/auth/sign-up"),
-        verify: "".concat(BASE_URL, "/auth/verify"),
-        initiatePasswordReset: "".concat(BASE_URL, "/auth/initiate-reset"),
-        verifyPasswordReset: "".concat(BASE_URL, "/auth/verify-reset")
-      },
-      USER: {
-        editProfile: "".concat(BASE_URL, "/user/edit-profile"),
-        changePassword: "".concat(BASE_URL, "/user/change-password"),
-        profile: "".concat(BASE_URL, "/user")
-      },
-      STORES: {
-        contribution: "".concat(BASE_URL, "/reports/contributions?"),
-        recent_contribution: "".concat(BASE_URL, "/reports/contributions/recent?membershipCode="),
-        member_contribution: "".concat(BASE_URL, "/contributions/member/")
-      },
-      PRODUCT: {
-        loan: "".concat(BASE_URL, "/reports/loans?"),
-        create_loan: "".concat(BASE_URL, "/loans/requestloan"),
-        loan_repayment: "".concat(BASE_URL, "/reports/loanrepayments?")
-      },
-      CATEGORY: {
-        create_contriution: "".concat(BASE_URL, "/contributions")
-      }
-    };
+    }), tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormBuilder"], _core_storage_service__WEBPACK_IMPORTED_MODULE_8__["StorageService"], _core_http_services_user_service__WEBPACK_IMPORTED_MODULE_6__["UserService"], _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"], _core_loader_service__WEBPACK_IMPORTED_MODULE_7__["LoaderService"]])], ActivationLinkPage);
     /***/
   },
 
@@ -559,8 +479,8 @@
         return this.http.post(_common_endpoints__WEBPACK_IMPORTED_MODULE_8__["Endpoint"].USER.changePassword, body);
       }
 
-      sendEmailVerificationCode(body) {
-        return this.http.post("".concat(this.apiUrl, "initiate-reset"), body);
+      ResendEmailVerificationCode(email) {
+        return this.http.get("".concat(_common_endpoints__WEBPACK_IMPORTED_MODULE_8__["Endpoint"].AUTH.resendVerify, "?email=").concat(email));
       }
 
       verifyEmailCode(token) {

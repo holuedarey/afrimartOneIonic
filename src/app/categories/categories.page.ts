@@ -8,6 +8,7 @@ import { RootCategoriesListModel } from 'src/app/shared/models/category.model';
   templateUrl: './categories.page.html',
   styleUrls: ['./categories.page.scss'],
 })
+
 export class CategoriesPage implements OnInit {
   ///Inputs
   title: string = '';
@@ -52,13 +53,13 @@ export class CategoriesPage implements OnInit {
   }
   getTopCategories() {
     this.loading=true;
-    this.categoryService.getTopCategories().subscribe(
-      (data) => {
+    this.categoryService.getTopCategories().subscribe((data) => {
         this.topCategories = data.data;
-        console.log('topCategories: ' + JSON.stringify(this.topCategories));
+        // console.log('topCategories: ' + JSON.stringify(data));
         if (this.topCategories && this.paramId != '') {
           this.topCategories.forEach((cat) => {
-            if (cat._id === this.paramId) {
+            console.log('topCategories: ' + JSON.stringify(cat.id));
+            if (cat.id === this.paramId) {
               this.loadLevel1SubCats(cat);
               this.loading=false;
             } else {
@@ -86,8 +87,8 @@ export class CategoriesPage implements OnInit {
     });
   }
   getSubCat(data) {
-    // console.log("getSubCat :" + data._id)
-    this.router.navigateByUrl(`/sub-category/${data._id}`);
+    console.log("getSubCat :" + data.slug)
+    this.router.navigateByUrl(`/sub-category/${data.slug}`);
     localStorage.SetTitle = data.name;
   }
   viewSubCategory(id: any,title:string) {

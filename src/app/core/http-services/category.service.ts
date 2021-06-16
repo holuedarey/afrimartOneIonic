@@ -10,6 +10,7 @@ import {
 } from "src/app/shared/models/category.model";
 import { ProductListResponseModel } from "src/app/shared/models/product.model";
 import { SliderModel } from "src/app/shared/models/user.model";
+import { Endpoint } from "../common/endpoints";
 
 @Injectable({
   providedIn: "root"
@@ -40,12 +41,9 @@ export class CategoryService {
   }
 
   getTopCategories(pageSize: number = 10) {
-    return this.http.get<RootCategoriesListResponseModel>(
-      `${this.apiUrl}categories/root/top`, {
-      headers: this.headerSt()
-    }
-    );
+    return this.http.get<RootCategoriesListResponseModel>(`${Endpoint.CATEGORY.topCategories}?page=1&pageSize=${pageSize}`);
   }
+
   getFeaturedCategories(pageSize: number = 10) {
     return this.http.get<RootCategoriesListResponseModel>(
       `${this.apiUrl}resources/featured-categories`, {

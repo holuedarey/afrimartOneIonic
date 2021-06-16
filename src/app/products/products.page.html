@@ -9,8 +9,8 @@
           SOLD BY:<br />
           <span class="note_title10Sec">{{prod_data.store.name | uppercase}}</span>
         </ion-col>
-        <ion-col size="5" class="viewSeller" routerLink="/company-profile">
-          <ion-text color="primary" class="font-9">View Company Profile</ion-text>
+        <ion-col size="5" class="viewSeller" (click)="viewCompanyProfile(prod_data.store.slug)">
+          <ion-text color="primary" class="font-11">View Company Profile</ion-text>
         </ion-col>
       </ion-row>
     </ion-grid>
@@ -164,16 +164,16 @@
         </ion-row>
         <ion-row class="zero-height">
           <ion-col size="5">Brand Name:</ion-col>
-          <ion-col size="7">follyb men wears</ion-col>
+          <ion-col size="7">{{ prod_data?.location ? prod_data?.brandName  : 'Nil'}}</ion-col>
         </ion-row>
 
         <ion-row class="zero-height">
           <ion-col size="5">Location</ion-col>
-          <ion-col size="7">Nigeria</ion-col>
+          <ion-col size="7">{{ prod_data?.brandName ? prod_data?.location  : 'Nil'}}</ion-col>
         </ion-row>
         <ion-row class="zero-height">
           <ion-col size="5">Availability</ion-col>
-          <ion-col size="7">Available</ion-col>
+          <ion-col size="7">{{ prod_data?.available ? 'Available' : 'Not Available'}} </ion-col>
         </ion-row>
         <br />
 
@@ -189,7 +189,7 @@
           <ion-col size="7">Description</ion-col>
         </ion-row>
         <ion-row>
-          <ion-col size="12">{{ prod_data.description}} </ion-col>
+          <ion-col size="12">{{ prod_data?.description}} </ion-col>
         </ion-row>
       </div>
     </ion-grid>

@@ -1,26 +1,14 @@
-<app-header
-  [title]="title"
-  [longSearch]="longSearch"
-  [showBackButton]="showBackButton"
-  [isLoading]="loading"
-  [showSearch]="showSearch"
->
+<app-header [title]="title" [longSearch]="longSearch" [showBackButton]="showBackButton" [isLoading]="loading"
+  [showSearch]="showSearch">
 </app-header>
 <ion-content>
   <ion-grid class="zero">
     <ion-row class="zero">
       <ion-col size="3" class="zero">
         <ion-row class="leftSec zero">
-          <ion-col
-            size="12"
-            class="zero catMenu"
-            *ngFor="let topCat of topCategories"
-            (click)="loadLevel1SubCats(topCat)"
-          >
-            <div
-              [className]="topCat.name==isActive ? 'catMenuActive' : ''"
-              class="zero"
-            >
+          <ion-col size="12" class="zero catMenu" *ngFor="let topCat of topCategories"
+            (click)="loadLevel1SubCats(topCat)">
+            <div [className]="topCat.name==isActive ? 'catMenuActive' : ''" class="zero">
               {{topCat?.name | titlecase}}
             </div>
           </ion-col>
@@ -30,31 +18,33 @@
       <ion-col size="9" class="zero">
         <ion-row class="rightSec zero">
           <ion-col size="12" class="zero">
-            <ion-grid
-              class="gridSubCat"
-              *ngFor="let subCat of subCat1Category"
-              class="zero"
-            >
+            <ion-grid class="gridSubCat" *ngFor="let subCat of subCat1Category" class="zero">
               <ion-row class="zero sub-categories-head">
                 <ion-col size="9" class="note_title12White">
-                  <ion-text >{{subCat?.name | uppercase}}</ion-text>
+                  <ion-text>{{subCat?.name | uppercase}}</ion-text>
                 </ion-col>
                 <ion-col size="3" class="note_title12White">
-                  <ion-text  (click)="viewSubCategory(subCat._id,subCat.name)">SEE ALL</ion-text>
+                  <ion-text (click)="viewSubCategory(subCat.slug, subCat.name)">SEE ALL</ion-text>
                 </ion-col>
               </ion-row>
-              <ion-row class="card zero">
+              <ion-row class="zero">
                 <ion-col size="12">
-                  <ion-list class="zero" lines="full">
-                    <ion-item
-                      *ngFor="let subsubCat of subCat.children"
-                      (click)="getSubCat(subsubCat)"
-                      class="note_title_bold10Black"
-                      detail
-                    >
-                      <ion-label>{{subsubCat?.name | uppercase}}</ion-label>
-                    </ion-item>
-                  </ion-list>
+                  <!-- <ion-list class="zero" lines="full"></ion-list> -->
+                  <ion-row class="card">
+                    <ion-col size="4" *ngFor="let subsubCat of subCat.children" (click)="getSubCat(subsubCat)">
+                      <!-- <ion-item  detail> -->
+                      <ion-row >
+                        <app-image-shell animation="gradient" src="/assets/vectors/icons/test.svg"
+                          [alt]="'Product Image'" class="inner-img" style="padding-bottom: 5px;">
+                        </app-image-shell>
+                        <app-text-shell animation="gradient" color="medium" [data]="subsubCat?.name" lines="3"
+                        class="t_center capitilize font-9" style="padding: 5px 0;">
+                      </app-text-shell>
+                      </ion-row>
+                    </ion-col>
+                  </ion-row>
+
+                  <!-- </ion-list> -->
                 </ion-col>
               </ion-row>
 

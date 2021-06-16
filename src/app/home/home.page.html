@@ -63,34 +63,33 @@
       </ion-col>
     </ion-row>
     <ion-row class="card catMenu">
-      <ion-col size="3" (click)="viewSubCategory('5e09ceaa5b359465f1e64a45','Phones & Tablets')">
+      <ion-col size="3" (click)="viewSubCategory('agriculture','Agriculture')">
         <ion-icon src="/assets/vectors/icons/Agriculture.svg" class="xxx"></ion-icon><br />
         <ion-text class="catText">Agriculture</ion-text>
       </ion-col>
-      <ion-col size="3" (click)="viewSubCategory('5e09d21c5b359465f1e64a4d','Computing')">
+      <ion-col size="3" (click)="viewSubCategory('5e09d21c5b359465f1e64a4d','Medical & Pharmaceutical')">
         <ion-icon src="/assets/vectors/icons/medical&pharmacy.svg" class="xxx"></ion-icon><br />
         <ion-text class="catText">Medical & Pharmaceutical</ion-text>
       </ion-col>
-      <ion-col size="3" (click)="viewSubCategory('5e09d5e05b359465f1e64a5a','Electronics')">
+      <ion-col size="3" (click)="viewSubCategory('5e09d5e05b359465f1e64a5a','Electrical &  Electronics')">
         <ion-icon src="/assets/vectors/icons/Electronics.svg" class="xxx"></ion-icon><br />
-        <ion-text class="catText">Electrical &
-          Electronics</ion-text>
+        <ion-text class="catText">Electrical &  Electronics</ion-text>
       </ion-col>
-      <ion-col size="3" (click)="viewSubCategory('5e09d8b25b359465f1e64a68','Home & Office')">
+      <ion-col size="3" (click)="viewSubCategory('arts-crafts','Arts & Crafts')">
         <ion-icon src="/assets/vectors/icons/Art_Crafts.svg" class="xxx"></ion-icon><br />
         <ion-text class="catText">Arts & Crafts</ion-text>
       </ion-col>
     </ion-row>
     <ion-row class="card catMenu">
-      <ion-col size="3" (click)="viewSubCategory('5e09ddbf5b359465f1e64a81','Fashion')">
+      <ion-col size="3" (click)="viewSubCategory('fashion-accessories','Fashion & Accessories')">
         <ion-icon src="/assets/vectors/icons/Fashion.svg" class="xxx"></ion-icon><br />
         <ion-text class="catText">Fashion & Accessories</ion-text>
       </ion-col>
-      <ion-col size="3" (click)="viewSubCategory('5e09e9c924f32d6afe9265d2','Health & Beauty')">
+      <ion-col size="3" (click)="viewSubCategory('5e09e9c924f32d6afe9265d2','Leather Goods')">
         <ion-icon src="/assets/vectors/icons/leather.svg" class="xxx"></ion-icon><br />
         <ion-text class="catText">Leather Goods</ion-text>
       </ion-col>
-      <ion-col size="3" (click)="viewSubCategory('5e09faeb6a00076b11349871','Groceries')">
+      <ion-col size="3" (click)="viewSubCategory('5e09faeb6a00076b11349871','Automobile')">
         <ion-icon src="/assets/vectors/icons/Automobile.svg" class="xxx"></ion-icon><br />
         <ion-text class="catText">Automobile</ion-text>
       </ion-col>
@@ -189,16 +188,16 @@
       </ion-col>
     </ion-row>
     <ion-row class="t_center card">
-      <ion-col col-6 class="productsCol card feature-categories" routerLink="/"
-        style="background-image:url('/assets/vectors/icons/test2.svg')">
-        <div class="feature-top-desc">Fashion & Acessories</div>
+      <ion-col size="6" col-6 class="productsCol card feature-categories" routerLink="/"
+        style="background-image:url('/assets/vectors/icons/test2.svg')" *ngFor="let cat of categories; let index = index">
+        <div class="feature-top-desc">{{ cat.name }}</div>
       </ion-col>
-      <ion-col col-6 class="productsCol card feature-categories" routerLink="/"
+      <!-- <ion-col col-6 class="productsCol card feature-categories" routerLink="/"
         style="background-image:url('/assets/vectors/icons/test3.svg')">
         <div class="feature-top-desc">Agriculture</div>
-      </ion-col>
+      </ion-col> -->
     </ion-row>
-    <ion-row>
+    <!-- <ion-row>
       <ion-col col-6 class="productsCol card feature-categories" routerLink="/"
         style="background-image:url('/assets/vectors/icons/test4.svg')">
         <div class="feature-top-desc">Food & Beverages</div>
@@ -207,7 +206,7 @@
         style="background-image:url('/assets/vectors/icons/test5.svg')">
         <div class="feature-top-desc">Business services</div>
       </ion-col>
-    </ion-row>
+    </ion-row> -->
   </ion-grid>
 
   <ion-grid class="cards" *ngIf="topProds">

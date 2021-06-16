@@ -55,7 +55,7 @@ export class ForgotPasswordPage implements OnInit {
     this.loadingCtrl.create({ spinner: 'dots', message: 'Signing in! Please wait...', duration:5000, cssClass: 'custom-loader-class' }).then((res) => {
       res.present(); res.onDidDismiss().then((dis) => { });
     });
-    this.userService.sendEmailVerificationCode(this.sendEmailVerificationCodeForm.value).subscribe(
+    this.userService.ResendEmailVerificationCode(this.sendEmailVerificationCodeForm.value).subscribe(
       (data) => {
         this.sendEmailVerificationCodeForm.reset();
         if (!data.status) {

@@ -98,6 +98,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var src_app_core_http_services_user_service__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! src/app/core/http-services/user.service */ "./src/app/core/http-services/user.service.ts");
 /* harmony import */ var src_app_core_authentication_authentication_service__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! src/app/core/authentication/authentication.service */ "./src/app/core/authentication/authentication.service.ts");
 /* harmony import */ var src_app_shared_models_user_model__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! src/app/shared/models/user.model */ "./src/app/shared/models/user.model.ts");
+/* harmony import */ var _core_loader_service__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../core/loader.service */ "./src/app/core/loader.service.ts");
+
 
 
 
@@ -109,7 +111,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 let ChangePasswordPage = class ChangePasswordPage {
-    constructor(authService, userService, router, nativeStorage, loadingCtrl, toastController, formBuilder, location) {
+    constructor(authService, userService, router, nativeStorage, loadingCtrl, toastController, formBuilder, location, LoaderService) {
         this.authService = authService;
         this.userService = userService;
         this.router = router;
@@ -118,6 +120,7 @@ let ChangePasswordPage = class ChangePasswordPage {
         this.toastController = toastController;
         this.formBuilder = formBuilder;
         this.location = location;
+        this.LoaderService = LoaderService;
         this.showCurrentPassword = false;
         this.showNewPassword = false;
         this.showConfirmNewPassword = false;
@@ -151,19 +154,6 @@ let ChangePasswordPage = class ChangePasswordPage {
             this.currentUser = x;
         });
     }
-    presentToast(header, msg, duration, color) {
-        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function* () {
-            const toast = yield this.toastController.create({
-                header: header,
-                position: 'bottom',
-                message: msg,
-                duration: duration,
-                // cssClass: 'custom-toast-class',
-                color: color
-            });
-            toast.present();
-        });
-    }
     toggleCurrentPassword() {
         this.showCurrentPassword = !this.showCurrentPassword;
         if (this.passwordToggleIconCur == 'eye') {
@@ -193,33 +183,30 @@ let ChangePasswordPage = class ChangePasswordPage {
     }
     doChangePassword() {
         console.log('Signup User:' + JSON.stringify(this.changePasswordForm.value));
-        this.loadingCtrl.create({ spinner: 'dots', message: 'Changing Passowrd! Please wait...', duration: 5000, cssClass: 'custom-loader-class' }).then((res) => {
-            res.present();
-            res.onDidDismiss().then((dis) => { });
-        });
+        this.LoaderService.showLoader('Changing Passowrd! Please wait...', 5000, 'custom-loader-class');
         this.loading = true;
         this.userService.changePassword(this.changePasswordForm.value).subscribe((data) => {
             this.changePasswordForm.reset();
             if (!data.error) {
                 console.log('changePassword Success:' + JSON.stringify(data));
                 this.authService.logout().then(isDone => {
-                    this.loadingCtrl.dismiss();
+                    this.LoaderService.hideLoader();
                     this.loading = false;
                     this.router.navigate(['/sign-in']);
-                    this.presentToast('Congratulations', 'Password change was successful!', 2000, 'success');
+                    this.LoaderService.presentToast('Congratulations', 'Password change was successful!', 2000, 'success');
                 });
             }
             else {
-                this.loadingCtrl.dismiss();
+                this.LoaderService.hideLoader();
                 this.loading = false;
                 console.log('changePassword Else:' + JSON.stringify(data));
-                this.presentToast('Apologies', 'Password change was unsuccessful, Please try again', 2000, 'warning');
+                this.LoaderService.presentToast('Apologies', 'Password change was unsuccessful, Please try again', 2000, 'warning');
             }
         }, (err) => {
             this.loadingCtrl.dismiss();
             this.loading = false;
             console.log('changePassword Error:' + JSON.stringify(err));
-            this.presentToast('Sign up Error', 'An error occurred. Please try again!', 4000, 'error');
+            this.LoaderService.presentToast('Sign up Error', 'An error occurred. Please try again!', 4000, 'error');
         });
     }
 };
@@ -231,7 +218,8 @@ ChangePasswordPage.ctorParameters = () => [
     { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["LoadingController"] },
     { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["ToastController"] },
     { type: _angular_forms__WEBPACK_IMPORTED_MODULE_6__["FormBuilder"] },
-    { type: _angular_common__WEBPACK_IMPORTED_MODULE_2__["Location"] }
+    { type: _angular_common__WEBPACK_IMPORTED_MODULE_2__["Location"] },
+    { type: _core_loader_service__WEBPACK_IMPORTED_MODULE_10__["LoaderService"] }
 ];
 ChangePasswordPage = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -246,55 +234,10 @@ ChangePasswordPage = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["LoadingController"],
         _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["ToastController"],
         _angular_forms__WEBPACK_IMPORTED_MODULE_6__["FormBuilder"],
-        _angular_common__WEBPACK_IMPORTED_MODULE_2__["Location"]])
+        _angular_common__WEBPACK_IMPORTED_MODULE_2__["Location"],
+        _core_loader_service__WEBPACK_IMPORTED_MODULE_10__["LoaderService"]])
 ], ChangePasswordPage);
 
-
-
-/***/ }),
-
-/***/ "./src/app/core/common/endpoints.ts":
-/*!******************************************!*\
-  !*** ./src/app/core/common/endpoints.ts ***!
-  \******************************************/
-/*! exports provided: Endpoint */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Endpoint", function() { return Endpoint; });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
-/* harmony import */ var _environments_environment__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../environments/environment */ "./src/environments/environment.ts");
-
-
-const BASE_URL = _environments_environment__WEBPACK_IMPORTED_MODULE_1__["environment"] ? "https://afrimart-evibu.ondigitalocean.app/" : "https://afrimart-evibu.ondigitalocean.app/";
-const Endpoint = {
-    AUTH: {
-        login: `${BASE_URL}/auth/sign-in`,
-        register: `${BASE_URL}/auth/sign-up`,
-        verify: `${BASE_URL}/auth/verify`,
-        initiatePasswordReset: `${BASE_URL}/auth/initiate-reset`,
-        verifyPasswordReset: `${BASE_URL}/auth/verify-reset`,
-    },
-    USER: {
-        editProfile: `${BASE_URL}/user/edit-profile`,
-        changePassword: `${BASE_URL}/user/change-password`,
-        profile: `${BASE_URL}/user`,
-    },
-    STORES: {
-        contribution: `${BASE_URL}/reports/contributions?`,
-        recent_contribution: `${BASE_URL}/reports/contributions/recent?membershipCode=`,
-        member_contribution: `${BASE_URL}/contributions/member/`,
-    },
-    PRODUCT: {
-        loan: `${BASE_URL}/reports/loans?`,
-        create_loan: `${BASE_URL}/loans/requestloan`,
-        loan_repayment: `${BASE_URL}/reports/loanrepayments?`,
-    },
-    CATEGORY: {
-        create_contriution: `${BASE_URL}/contributions`
-    },
-};
 
 
 /***/ }),
@@ -380,8 +323,8 @@ let UserService = class UserService {
     changePassword(body) {
         return this.http.post(_common_endpoints__WEBPACK_IMPORTED_MODULE_8__["Endpoint"].USER.changePassword, body);
     }
-    sendEmailVerificationCode(body) {
-        return this.http.post(`${this.apiUrl}initiate-reset`, body);
+    ResendEmailVerificationCode(email) {
+        return this.http.get(`${_common_endpoints__WEBPACK_IMPORTED_MODULE_8__["Endpoint"].AUTH.resendVerify}?email=${email}`);
     }
     verifyEmailCode(token) {
         return this.http.get(`${_common_endpoints__WEBPACK_IMPORTED_MODULE_8__["Endpoint"].AUTH.verify}?token=${token}`);

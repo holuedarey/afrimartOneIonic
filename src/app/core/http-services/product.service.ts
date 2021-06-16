@@ -161,23 +161,21 @@ export class ProductService {
   logOutCart(count: string) {
     this.calCartQty.next(count);
   }
-  searchBar(searchString: string) {
-    var url = `${this.apiUrl}products?name=` + searchString;
-
-    return this.http.get<any>(url, {
-      headers: this.headerSt(),
-    });
+  searchBar(searchString: string, org:string, size: number = 12,  page: number = 1,) {
+    var url = `${Endpoint.PRODUCT.searchProduct}query=${searchString}&organisation=${org}&page=${page}&pageSize=${size}`;
+    return this.http.get<any>(url);
   }
+
   searchBarInfinite(
     searchString: string,
+    org:string = 'test-org',
     size: number = 12,
     page: number = 1,
     sort?: string
   ) {
-    var url = `${this.apiUrl}products?name=${searchString}&page=${page}&pageSize=${size}&sort=${sort}`;
-    return this.http.get<any>(url, {
-      headers: this.headerSt(),
-    });
+    // var url = `${this.apiUrl}products?name=${searchString}&page=${page}&pageSize=${size}&sort=${sort}`;
+    var url = `${Endpoint.PRODUCT.searchProduct}query=${searchString}&organisation=${org}&page=${page}&pageSize=${size}`;
+    return this.http.get<any>(url);
   }
   searchProducts(catid: string, searchString: string) {
     if (searchString === '') {
@@ -190,25 +188,23 @@ export class ProductService {
       headers: this.headerSt(),
     });
   }
+
   getCategoryProducts(id: string, size: number, page: number) {
     var url = `${this.apiUrl}/products?category=${id}&page=${page}&pageSize=${size}`;
-
     return this.http.get<ProductListResponseModel>(url, {
       headers: this.headerSt(),
     });
   }
+  
   getCategoryProductsInfinite(
     id: string,
-    size: number = 12,
+    size: number = 10,
     page: number = 1,
     sort?: string
   ) {
-    var url = `${this.apiUrl}/products?category=${id}&page=${page}&pageSize=${size}&sort=${sort}`;
-    return this.http
-      .get<ProductListResponseModel>(url, {
-        headers: this.headerSt(),
-      })
-      .pipe(
+    var url = `${Endpoint.PRODUCT.productSubCategory}${id}&page=${page}&pageSize=${size}`;
+    console.log('url ::', url);
+    return this.http.get<ProductListResponseModel>(url).pipe(
         map((data) => {
           return data;
         })

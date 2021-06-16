@@ -1,6 +1,6 @@
 import { environment } from "../../../environments/environment";
 
-const  BASE_URL = environment ? "https://afrimart-evibu.ondigitalocean.app/" : "https://afrimart-evibu.ondigitalocean.app/";
+const  BASE_URL = environment ? "https://afrimart-evibu.ondigitalocean.app" : "https://afrimart-evibu.ondigitalocean.app";
 
 export const Endpoint = {
     AUTH: {
@@ -19,7 +19,7 @@ export const Endpoint = {
     },
 
     STORES: {
-        contribution: `${BASE_URL}/reports/contributions?`,
+        storeDetails: `${BASE_URL}/stores/details?store=`,
         recent_contribution: `${BASE_URL}/reports/contributions/recent?membershipCode=`,
         member_contribution: `${BASE_URL}/contributions/member/`,
         
@@ -28,11 +28,12 @@ export const Endpoint = {
     PRODUCT : {
         topProduct:  `${BASE_URL}/organisations/details`,
         viewProduct:  `${BASE_URL}/products?productId=`,
-        loan_repayment:  `${BASE_URL}/reports/loanrepayments?`,
+        productSubCategory:  `${BASE_URL}/products/category-products?category=`,
+        searchProduct: `${BASE_URL}/products/search?`
     },
 
     CATEGORY: {
-        create_contriution : `${BASE_URL}/contributions`
+        topCategories : `${BASE_URL}/categories`
     },
    
 }

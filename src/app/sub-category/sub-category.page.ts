@@ -121,7 +121,7 @@ export class SubCategoryPage implements OnInit {
   }
   ngOnInit() {
     this.route.params.subscribe((params) => {
-      // console.log("this.params: " + JSON.stringify(params))
+      console.log("this.params: " + JSON.stringify(params.id))
       this.catId = params.id;
       this.title = localStorage.SetTitle;
       this.getCategoryProducts();
@@ -146,8 +146,11 @@ export class SubCategoryPage implements OnInit {
   changeListType() {
     this.isGrid = !this.isGrid;
   }
+
   getCategoryProducts(infiniteScroll?) {
     this.loading=true;
+    console.log(' this.catId, ::',  this.catId);
+    
     this.productService
       .getCategoryProductsInfinite(
         this.catId,
@@ -157,13 +160,17 @@ export class SubCategoryPage implements OnInit {
       )
       .subscribe(
         (data) => {
-          if (!data.error && data.data.length > 0) {
+          console.log('data ::', data.data);
+          
+          if (!data && data.data.length > 0) {
             data.data.forEach((prod) => {
               this.Products.push(prod);
               this.loading=false;
             });
           } else {
-            // console.log("No more data this.Products Count: " + JSON.stringify(this.Products.length))
+            this.loading=false;
+            this.Products = data.data;
+            console.log("No more data this.Products Count: " + JSON.stringify(this.Products.length))
           }
           if (infiniteScroll) {
             infiniteScroll.target.complete();

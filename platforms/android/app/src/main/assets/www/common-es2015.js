@@ -767,6 +767,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm2015/index.js");
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm2015/http.js");
 /* harmony import */ var src_environments_environment__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! src/environments/environment */ "./src/environments/environment.ts");
+/* harmony import */ var _common_endpoints__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../common/endpoints */ "./src/app/core/common/endpoints.ts");
+
 
 
 
@@ -792,9 +794,7 @@ let CategoryService = class CategoryService {
         });
     }
     getTopCategories(pageSize = 10) {
-        return this.http.get(`${this.apiUrl}categories/root/top`, {
-            headers: this.headerSt()
-        });
+        return this.http.get(`${_common_endpoints__WEBPACK_IMPORTED_MODULE_5__["Endpoint"].CATEGORY.topCategories}?page=1&pageSize=${pageSize}`);
     }
     getFeaturedCategories(pageSize = 10) {
         return this.http.get(`${this.apiUrl}resources/featured-categories`, {
@@ -831,6 +831,131 @@ CategoryService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     }),
     tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpClient"]])
 ], CategoryService);
+
+
+
+/***/ }),
+
+/***/ "./src/app/core/http-services/store.service.ts":
+/*!*****************************************************!*\
+  !*** ./src/app/core/http-services/store.service.ts ***!
+  \*****************************************************/
+/*! exports provided: StoreService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "StoreService", function() { return StoreService; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm2015/index.js");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm2015/http.js");
+/* harmony import */ var src_environments_environment__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! src/environments/environment */ "./src/environments/environment.ts");
+/* harmony import */ var _common_endpoints__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../common/endpoints */ "./src/app/core/common/endpoints.ts");
+
+
+
+
+
+
+let StoreService = class StoreService {
+    constructor(http) {
+        this.http = http;
+        this.apiUrl = src_environments_environment__WEBPACK_IMPORTED_MODULE_4__["environment"].apiUrl;
+    }
+    searchStores(searchString, size = 5) {
+        if (!searchString.trim()) {
+            // if not search string, return empty array.
+            return Object(rxjs__WEBPACK_IMPORTED_MODULE_2__["of"])([]);
+        }
+        return this.http.get(`${this.apiUrl}Store/Names?search=${searchString}&size=${size}`);
+    }
+    getStoreDetail(id) {
+        const url = `${_common_endpoints__WEBPACK_IMPORTED_MODULE_5__["Endpoint"].STORES.storeDetails}${id}`;
+        return this.http.get(url);
+    }
+    getStoreProducts(id, size = 10, page = 0) {
+        var url = `${this.apiUrl}products?pagesize=${size}&page=${page}`;
+        return this.http.get(url);
+    }
+};
+StoreService.ctorParameters = () => [
+    { type: _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpClient"] }
+];
+StoreService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
+        providedIn: "root",
+    }),
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpClient"]])
+], StoreService);
+
+
+
+/***/ }),
+
+/***/ "./src/app/core/loader.service.ts":
+/*!****************************************!*\
+  !*** ./src/app/core/loader.service.ts ***!
+  \****************************************/
+/*! exports provided: LoaderService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LoaderService", function() { return LoaderService; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/fesm2015/ionic-angular.js");
+
+
+
+let LoaderService = class LoaderService {
+    constructor(loadingController, toast) {
+        this.loadingController = loadingController;
+        this.toast = toast;
+    }
+    showLoader(message, duration, cssClass) {
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function* () {
+            this.loaderToShow = yield this.loadingController.create({
+                message: message,
+                spinner: 'dots',
+                duration: duration || 10000,
+                cssClass: cssClass || "custom-loader-class"
+                // showBackdrop:false
+            });
+            yield this.loaderToShow.present();
+        });
+    }
+    hideLoader() {
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function* () {
+            yield this.loadingController.dismiss(true);
+        });
+    }
+    presentToast(header, msg, duration, color) {
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function* () {
+            const toast = yield this.toast.create({
+                header: header,
+                position: 'bottom',
+                message: msg,
+                duration: duration,
+                // cssClass: 'custom-toast-class',
+                color: color
+            });
+            toast.present();
+        });
+    }
+};
+LoaderService.ctorParameters = () => [
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["LoadingController"] },
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["ToastController"] }
+];
+LoaderService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
+        providedIn: 'root'
+    }),
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_ionic_angular__WEBPACK_IMPORTED_MODULE_2__["LoadingController"],
+        _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["ToastController"]])
+], LoaderService);
 
 
 

@@ -78,21 +78,36 @@
               [data]="prod?.name"
               lines="2"
               class="note_title12Black text-truncate"
-              routerLink="/products/{{prod._id}}"
+              routerLink="/products/{{prod.id}}"
             >
             </app-text-shell>
           </ion-col>
         </ion-row>
         <ion-row>
           <ion-col size="12">
-            <app-text-shell
+            <!-- <app-text-shell
               animation="gradient"
-              [data]="prod?.price | currency:'₦':'symbol':'1.2-2'"
+              [data]="prod?.minPrice | currency:'₦':'symbol':'1.2-2'"
               lines="2"
               class="note_title14Sec"
               routerLink="/products/{{prod._id}}"
             >
-            </app-text-shell>
+            </app-text-shell> -->
+            <ion-row>
+              <app-text-shell animation="gradient" [data]="prod?.minPrice | currency:'$':'symbol':'1.0'"
+                lines="3" class="text-left  bold-text note_title14Black" style="padding: 5px 0; float: left;">
+              </app-text-shell>
+              <app-text-shell animation="gradient" [data]="' - '" lines="3"
+                class="text-left  bold-text note_title14Black" style="padding: 5px 0; float: left; margin-left: 5px;">
+              </app-text-shell>
+              <app-text-shell animation="gradient" [data]="prod?.maxPrice  | currency:'$':'symbol':'1.0'"
+                lines="3" class="text-left  bold-text note_title14Black"
+                style="padding: 5px 0; float: left;  margin-left: 5px;">
+              </app-text-shell>
+              <app-text-shell animation="gradient" [data]="'/ Piece(s)'" lines="3"
+                class="text-left  bold-text note_title14Black" style="padding: 5px 0; float: left; margin-left: 5px;">
+              </app-text-shell>
+            </ion-row>
           </ion-col>
         </ion-row>
         <ion-row class="rating_row" *ngIf="prod.rating>0">

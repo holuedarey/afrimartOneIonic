@@ -5,6 +5,7 @@ import { environment } from "src/environments/environment";
 
 import { StoreListModel } from "src/app/shared/models/store.model";
 import { ProductListResponseModel } from "src/app/shared/models/product.model";
+import { Endpoint } from "../common/endpoints";
 
 @Injectable({
   providedIn: "root",
@@ -25,11 +26,11 @@ export class StoreService {
   }
 
   getStoreDetail(id: string): Observable<any> {
-    const url = `${this.apiUrl}stores/${id}`;
+    const url = `${Endpoint.STORES.storeDetails}${id}`;
     return this.http.get<{
       error: boolean;
       message: string;
-      data: StoreListModel;
+      data: any;
     }>(url);
   }
 

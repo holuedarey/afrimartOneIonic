@@ -22,7 +22,7 @@ export interface CategoryListResponseModel {
 export interface RootCategoriesListModel {
     imgUrl: string
     children: RootCategoriesListModel[],
-    _id: string
+    id: string
     name: string
 }
 

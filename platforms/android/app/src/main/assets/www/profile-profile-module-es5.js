@@ -20,69 +20,6 @@
   },
 
   /***/
-  "./src/app/core/common/endpoints.ts":
-  /*!******************************************!*\
-    !*** ./src/app/core/common/endpoints.ts ***!
-    \******************************************/
-
-  /*! exports provided: Endpoint */
-
-  /***/
-  function srcAppCoreCommonEndpointsTs(module, __webpack_exports__, __webpack_require__) {
-    "use strict";
-
-    __webpack_require__.r(__webpack_exports__);
-    /* harmony export (binding) */
-
-
-    __webpack_require__.d(__webpack_exports__, "Endpoint", function () {
-      return Endpoint;
-    });
-    /* harmony import */
-
-
-    var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
-    /*! tslib */
-    "./node_modules/tslib/tslib.es6.js");
-    /* harmony import */
-
-
-    var _environments_environment__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
-    /*! ../../../environments/environment */
-    "./src/environments/environment.ts");
-
-    const BASE_URL = _environments_environment__WEBPACK_IMPORTED_MODULE_1__["environment"] ? "https://afrimart-evibu.ondigitalocean.app/" : "https://afrimart-evibu.ondigitalocean.app/";
-    const Endpoint = {
-      AUTH: {
-        login: "".concat(BASE_URL, "/auth/sign-in"),
-        register: "".concat(BASE_URL, "/auth/sign-up"),
-        verify: "".concat(BASE_URL, "/auth/verify"),
-        initiatePasswordReset: "".concat(BASE_URL, "/auth/initiate-reset"),
-        verifyPasswordReset: "".concat(BASE_URL, "/auth/verify-reset")
-      },
-      USER: {
-        editProfile: "".concat(BASE_URL, "/user/edit-profile"),
-        changePassword: "".concat(BASE_URL, "/user/change-password"),
-        profile: "".concat(BASE_URL, "/user")
-      },
-      STORES: {
-        contribution: "".concat(BASE_URL, "/reports/contributions?"),
-        recent_contribution: "".concat(BASE_URL, "/reports/contributions/recent?membershipCode="),
-        member_contribution: "".concat(BASE_URL, "/contributions/member/")
-      },
-      PRODUCT: {
-        loan: "".concat(BASE_URL, "/reports/loans?"),
-        create_loan: "".concat(BASE_URL, "/loans/requestloan"),
-        loan_repayment: "".concat(BASE_URL, "/reports/loanrepayments?")
-      },
-      CATEGORY: {
-        create_contriution: "".concat(BASE_URL, "/contributions")
-      }
-    };
-    /***/
-  },
-
-  /***/
   "./src/app/core/http-services/user.service.ts":
   /*!****************************************************!*\
     !*** ./src/app/core/http-services/user.service.ts ***!
@@ -215,8 +152,8 @@
         return this.http.post(_common_endpoints__WEBPACK_IMPORTED_MODULE_8__["Endpoint"].USER.changePassword, body);
       }
 
-      sendEmailVerificationCode(body) {
-        return this.http.post("".concat(this.apiUrl, "initiate-reset"), body);
+      ResendEmailVerificationCode(email) {
+        return this.http.get("".concat(_common_endpoints__WEBPACK_IMPORTED_MODULE_8__["Endpoint"].AUTH.resendVerify, "?email=").concat(email));
       }
 
       verifyEmailCode(token) {
