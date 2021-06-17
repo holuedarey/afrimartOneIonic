@@ -61,10 +61,16 @@ export class HomePage implements OnInit {
   };
 
   //show scroll button for end of page
-    showUpArrow:boolean = false;
-    @ViewChild(IonContent, {static: true}) content: IonContent;
+  showUpArrow: boolean = false;
+  @ViewChild(IonContent, { static: true }) content: IonContent;
 
+  feautureCategoriesImage = [
+    '/assets/vectors/icons/test2.svg',
+    '/assets/vectors/icons/test3.svg',
+    '/assets/vectors/icons/test4.svg',
+    '/assets/vectors/icons/test5.svg',
 
+  ]
   constructor(
     private categoryService: CategoryService,
     private productService: ProductService,
@@ -72,7 +78,7 @@ export class HomePage implements OnInit {
     private auth: AuthenticationService,
     public router: Router
   ) {
-    
+
     // this.auth.currentUser.subscribe((data) => {
     //   if (data) {
     //     // console.log('auth.currentUser: ' + JSON.stringify(data))
@@ -120,18 +126,18 @@ export class HomePage implements OnInit {
     });
   }
 
-  logScrollEnd(){
+  logScrollEnd() {
     this.showUpArrow = true;
     // console.log('scroll end');
-    
+
   }
-  logScrollStart(){
+  logScrollStart() {
     // console.log('start scrolling : ->');
-    
+
   }
-  logScrolling($event){
+  logScrolling($event) {
     // console.log('scrolling event', $event.detail);
-    
+
   }
 
   scrollToTop() {
@@ -259,7 +265,7 @@ export class HomePage implements OnInit {
   getFeaturedCatgeories() {
     this.categoryService.getTopCategories().subscribe(
       (data) => {
-        this.categories = data.data.slice(0,4);
+        this.categories = data.data.slice(0, 4);
         console.log(
           'getFeaturedCatgeories: ' + JSON.stringify(this.categories)
         );
