@@ -1,34 +1,28 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[60], {
   /***/
-  "./node_modules/@ionic/core/dist/esm/ion-select_3-md.entry.js":
-  /*!********************************************************************!*\
-    !*** ./node_modules/@ionic/core/dist/esm/ion-select_3-md.entry.js ***!
-    \********************************************************************/
+  "./node_modules/@ionic/core/dist/esm/ion-segment_2-ios.entry.js":
+  /*!**********************************************************************!*\
+    !*** ./node_modules/@ionic/core/dist/esm/ion-segment_2-ios.entry.js ***!
+    \**********************************************************************/
 
-  /*! exports provided: ion_select, ion_select_option, ion_select_popover */
+  /*! exports provided: ion_segment, ion_segment_button */
 
   /***/
-  function node_modulesIonicCoreDistEsmIonSelect_3MdEntryJs(module, __webpack_exports__, __webpack_require__) {
+  function node_modulesIonicCoreDistEsmIonSegment_2IosEntryJs(module, __webpack_exports__, __webpack_require__) {
     "use strict";
 
     __webpack_require__.r(__webpack_exports__);
     /* harmony export (binding) */
 
 
-    __webpack_require__.d(__webpack_exports__, "ion_select", function () {
-      return Select;
+    __webpack_require__.d(__webpack_exports__, "ion_segment", function () {
+      return Segment;
     });
     /* harmony export (binding) */
 
 
-    __webpack_require__.d(__webpack_exports__, "ion_select_option", function () {
-      return SelectOption;
-    });
-    /* harmony export (binding) */
-
-
-    __webpack_require__.d(__webpack_exports__, "ion_select_popover", function () {
-      return SelectPopover;
+    __webpack_require__.d(__webpack_exports__, "ion_segment_button", function () {
+      return SegmentButton;
     });
     /* harmony import */
 
@@ -51,454 +45,356 @@
     /* harmony import */
 
 
-    var _hardware_back_button_1ed0083a_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
-    /*! ./hardware-back-button-1ed0083a.js */
-    "./node_modules/@ionic/core/dist/esm/hardware-back-button-1ed0083a.js");
-    /* harmony import */
-
-
-    var _overlays_e336664a_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
-    /*! ./overlays-e336664a.js */
-    "./node_modules/@ionic/core/dist/esm/overlays-e336664a.js");
-    /* harmony import */
-
-
-    var _theme_18cbe2cc_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(
+    var _theme_18cbe2cc_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
     /*! ./theme-18cbe2cc.js */
     "./node_modules/@ionic/core/dist/esm/theme-18cbe2cc.js");
 
-    const watchForOptions = (containerEl, tagName, onChange) => {
-      const mutation = new MutationObserver(mutationList => {
-        onChange(getSelectedOption(mutationList, tagName));
-      });
-      mutation.observe(containerEl, {
-        childList: true,
-        subtree: true
-      });
-      return mutation;
-    };
-
-    const getSelectedOption = (mutationList, tagName) => {
-      let newOption;
-      mutationList.forEach(mut => {
-        // tslint:disable-next-line: prefer-for-of
-        for (let i = 0; i < mut.addedNodes.length; i++) {
-          newOption = findCheckedOption(mut.addedNodes[i], tagName) || newOption;
-        }
-      });
-      return newOption;
-    };
-
-    const findCheckedOption = (el, tagName) => {
-      if (el.nodeType !== 1) {
-        return undefined;
-      }
-
-      const options = el.tagName === tagName.toUpperCase() ? [el] : Array.from(el.querySelectorAll(tagName));
-      return options.find(o => o.value === el.value);
-    };
-
-    const Select = class {
+    const Segment = class {
       constructor(hostRef) {
         Object(_core_0a8d4d2e_js__WEBPACK_IMPORTED_MODULE_0__["r"])(this, hostRef);
-        this.inputId = "ion-sel-".concat(selectIds++);
         this.didInit = false;
-        this.isExpanded = false;
+        this.activated = false;
         /**
-         * If `true`, the user cannot interact with the select.
+         * If `true`, the user cannot interact with the segment.
          */
 
         this.disabled = false;
         /**
-         * The text to display on the cancel button.
+         * If `true`, the segment buttons will overflow and the user can swipe to see them.
+         * In addition, this will disable the gesture to drag the indicator between the buttons
+         * in order to swipe to see hidden buttons.
          */
 
-        this.cancelText = 'Cancel';
-        /**
-         * The text to display on the ok button.
-         */
-
-        this.okText = 'OK';
-        /**
-         * The name of the control, which is submitted with the form data.
-         */
-
-        this.name = this.inputId;
-        /**
-         * If `true`, the select can accept multiple values.
-         */
-
-        this.multiple = false;
-        /**
-         * The interface the select should use: `action-sheet`, `popover` or `alert`.
-         */
-
-        this.interface = 'alert';
-        /**
-         * Any additional options that the `alert`, `action-sheet` or `popover` interface
-         * can take. See the [AlertController API docs](../../alert/AlertController/#create), the
-         * [ActionSheetController API docs](../../action-sheet/ActionSheetController/#create) and the
-         * [PopoverController API docs](../../popover/PopoverController/#create) for the
-         * create options for each interface.
-         */
-
-        this.interfaceOptions = {};
+        this.scrollable = false;
 
         this.onClick = ev => {
-          this.setFocus();
-          this.open(ev);
-        };
+          const current = ev.target;
+          const previous = this.checked;
+          this.value = current.value;
 
-        this.onFocus = () => {
-          this.ionFocus.emit();
-        };
+          if (previous && this.scrollable) {
+            this.checkButton(previous, current);
+          }
 
-        this.onBlur = () => {
-          this.ionBlur.emit();
+          this.checked = current;
         };
 
         this.ionChange = Object(_core_0a8d4d2e_js__WEBPACK_IMPORTED_MODULE_0__["d"])(this, "ionChange", 7);
-        this.ionCancel = Object(_core_0a8d4d2e_js__WEBPACK_IMPORTED_MODULE_0__["d"])(this, "ionCancel", 7);
-        this.ionFocus = Object(_core_0a8d4d2e_js__WEBPACK_IMPORTED_MODULE_0__["d"])(this, "ionFocus", 7);
-        this.ionBlur = Object(_core_0a8d4d2e_js__WEBPACK_IMPORTED_MODULE_0__["d"])(this, "ionBlur", 7);
+        this.ionSelect = Object(_core_0a8d4d2e_js__WEBPACK_IMPORTED_MODULE_0__["d"])(this, "ionSelect", 7);
         this.ionStyle = Object(_core_0a8d4d2e_js__WEBPACK_IMPORTED_MODULE_0__["d"])(this, "ionStyle", 7);
       }
 
-      disabledChanged() {
-        this.emitStyle();
-      }
-
-      valueChanged() {
-        this.emitStyle();
-
-        if (this.didInit) {
-          this.ionChange.emit({
-            value: this.value
-          });
-        }
-      }
-
-      async connectedCallback() {
-        this.updateOverlayOptions();
-        this.emitStyle();
-        this.mutationO = watchForOptions(this.el, 'ion-select-option', async () => {
-          this.updateOverlayOptions();
+      valueChanged(value, oldValue) {
+        this.ionSelect.emit({
+          value
         });
-      }
 
-      disconnectedCallback() {
-        if (this.mutationO) {
-          this.mutationO.disconnect();
-          this.mutationO = undefined;
+        if (oldValue !== '' || this.didInit) {
+          if (!this.activated) {
+            this.ionChange.emit({
+              value
+            });
+          } else {
+            this.valueAfterGesture = value;
+          }
         }
       }
 
-      componentDidLoad() {
+      disabledChanged() {
+        this.gestureChanged();
+        const buttons = this.getButtons();
+
+        for (const button of buttons) {
+          button.disabled = this.disabled;
+        }
+      }
+
+      gestureChanged() {
+        if (this.gesture && !this.scrollable) {
+          this.gesture.enable(!this.disabled);
+        }
+      }
+
+      connectedCallback() {
+        this.emitStyle();
+      }
+
+      componentWillLoad() {
+        this.emitStyle();
+      }
+
+      async componentDidLoad() {
+        this.setCheckedClasses();
+        this.gesture = (await Promise.resolve().then(__webpack_require__.bind(null,
+        /*! ./index-c38df685.js */
+        "./node_modules/@ionic/core/dist/esm/index-c38df685.js"))).createGesture({
+          el: this.el,
+          gestureName: 'segment',
+          gesturePriority: 100,
+          threshold: 0,
+          passive: false,
+          onStart: ev => this.onStart(ev),
+          onMove: ev => this.onMove(ev),
+          onEnd: ev => this.onEnd(ev)
+        });
+        this.gesture.enable(!this.scrollable);
+        this.gestureChanged();
+
+        if (this.disabled) {
+          this.disabledChanged();
+        }
+
         this.didInit = true;
       }
+
+      onStart(detail) {
+        this.activate(detail);
+      }
+
+      onMove(detail) {
+        this.setNextIndex(detail);
+      }
+
+      onEnd(detail) {
+        this.setActivated(false);
+        const checkedValidButton = this.setNextIndex(detail, true);
+        detail.event.stopImmediatePropagation();
+
+        if (checkedValidButton) {
+          this.addRipple(detail);
+        }
+
+        const value = this.valueAfterGesture;
+
+        if (value !== undefined) {
+          this.ionChange.emit({
+            value
+          });
+          this.valueAfterGesture = undefined;
+        }
+      }
+
+      getButtons() {
+        return Array.from(this.el.querySelectorAll('ion-segment-button'));
+      }
       /**
-       * Open the select overlay. The overlay is either an alert, action sheet, or popover,
-       * depending on the `interface` property on the `ion-select`.
-       *
-       * @param event The user interface event that called the open.
+       * The gesture blocks the segment button ripple. This
+       * function adds the ripple based on the checked segment
+       * and where the cursor ended.
        */
 
 
-      async open(event) {
-        if (this.disabled || this.isExpanded) {
-          return undefined;
-        }
+      addRipple(detail) {
+        const useRippleEffect = _config_3c7f3790_js__WEBPACK_IMPORTED_MODULE_1__["b"].getBoolean('animated', true) && _config_3c7f3790_js__WEBPACK_IMPORTED_MODULE_1__["b"].getBoolean('rippleEffect', true);
 
-        const overlay = this.overlay = await this.createOverlay(event);
-        this.isExpanded = true;
-        overlay.onDidDismiss().then(() => {
-          this.overlay = undefined;
-          this.isExpanded = false;
-          this.setFocus();
-        });
-        await overlay.present();
-        return overlay;
-      }
-
-      createOverlay(ev) {
-        let selectInterface = this.interface;
-
-        if ((selectInterface === 'action-sheet' || selectInterface === 'popover') && this.multiple) {
-          console.warn("Select interface cannot be \"".concat(selectInterface, "\" with a multi-value select. Using the \"alert\" interface instead."));
-          selectInterface = 'alert';
-        }
-
-        if (selectInterface === 'popover' && !ev) {
-          console.warn('Select interface cannot be a "popover" without passing an event. Using the "alert" interface instead.');
-          selectInterface = 'alert';
-        }
-
-        if (selectInterface === 'popover') {
-          return this.openPopover(ev);
-        }
-
-        if (selectInterface === 'action-sheet') {
-          return this.openActionSheet();
-        }
-
-        return this.openAlert();
-      }
-
-      updateOverlayOptions() {
-        const overlay = this.overlay;
-
-        if (!overlay) {
+        if (!useRippleEffect) {
           return;
         }
 
-        const childOpts = this.childOpts;
-        const value = this.value;
+        const buttons = this.getButtons();
+        const checked = buttons.find(button => button.value === this.value);
+        const root = checked.shadowRoot || checked;
+        const ripple = root.querySelector('ion-ripple-effect');
 
-        switch (this.interface) {
-          case 'action-sheet':
-            overlay.buttons = this.createActionSheetButtons(childOpts, value);
-            break;
-
-          case 'popover':
-            const popover = overlay.querySelector('ion-select-popover');
-
-            if (popover) {
-              popover.options = this.createPopoverOptions(childOpts, value);
-            }
-
-            break;
-
-          case 'alert':
-            const inputType = this.multiple ? 'checkbox' : 'radio';
-            overlay.inputs = this.createAlertInputs(childOpts, inputType, value);
-            break;
+        if (!ripple) {
+          return;
         }
-      }
 
-      createActionSheetButtons(data, selectValue) {
-        const actionSheetButtons = data.map(option => {
-          const value = getOptionValue(option);
-          return {
-            role: isOptionSelected(value, selectValue, this.compareWith) ? 'selected' : '',
-            text: option.textContent,
-            handler: () => {
-              this.value = value;
-            }
-          };
-        }); // Add "cancel" button
-
-        actionSheetButtons.push({
-          text: this.cancelText,
-          role: 'cancel',
-          handler: () => {
-            this.ionCancel.emit();
-          }
-        });
-        return actionSheetButtons;
+        const {
+          x,
+          y
+        } = Object(_helpers_46f4a262_js__WEBPACK_IMPORTED_MODULE_2__["p"])(detail.event);
+        ripple.addRipple(x, y).then(remove => remove());
       }
-
-      createAlertInputs(data, inputType, selectValue) {
-        return data.map(o => {
-          const value = getOptionValue(o);
-          return {
-            type: inputType,
-            label: o.textContent || '',
-            value,
-            checked: isOptionSelected(value, selectValue, this.compareWith),
-            disabled: o.disabled
-          };
-        });
-      }
-
-      createPopoverOptions(data, selectValue) {
-        return data.map(o => {
-          const value = getOptionValue(o);
-          return {
-            text: o.textContent || '',
-            value,
-            checked: isOptionSelected(value, selectValue, this.compareWith),
-            disabled: o.disabled,
-            handler: () => {
-              this.value = value;
-              this.close();
-            }
-          };
-        });
-      }
-
-      async openPopover(ev) {
-        const interfaceOptions = this.interfaceOptions;
-        const mode = Object(_core_0a8d4d2e_js__WEBPACK_IMPORTED_MODULE_0__["c"])(this);
-        const value = this.value;
-        const popoverOpts = Object.assign(Object.assign({
-          mode
-        }, interfaceOptions), {
-          component: 'ion-select-popover',
-          cssClass: ['select-popover', interfaceOptions.cssClass],
-          event: ev,
-          componentProps: {
-            header: interfaceOptions.header,
-            subHeader: interfaceOptions.subHeader,
-            message: interfaceOptions.message,
-            value,
-            options: this.createPopoverOptions(this.childOpts, value)
-          }
-        });
-        return _overlays_e336664a_js__WEBPACK_IMPORTED_MODULE_4__["c"].create(popoverOpts);
-      }
-
-      async openActionSheet() {
-        const mode = Object(_core_0a8d4d2e_js__WEBPACK_IMPORTED_MODULE_0__["c"])(this);
-        const interfaceOptions = this.interfaceOptions;
-        const actionSheetOpts = Object.assign(Object.assign({
-          mode
-        }, interfaceOptions), {
-          buttons: this.createActionSheetButtons(this.childOpts, this.value),
-          cssClass: ['select-action-sheet', interfaceOptions.cssClass]
-        });
-        return _overlays_e336664a_js__WEBPACK_IMPORTED_MODULE_4__["b"].create(actionSheetOpts);
-      }
-
-      async openAlert() {
-        const label = this.getLabel();
-        const labelText = label ? label.textContent : null;
-        const interfaceOptions = this.interfaceOptions;
-        const inputType = this.multiple ? 'checkbox' : 'radio';
-        const mode = Object(_core_0a8d4d2e_js__WEBPACK_IMPORTED_MODULE_0__["c"])(this);
-        const alertOpts = Object.assign(Object.assign({
-          mode
-        }, interfaceOptions), {
-          header: interfaceOptions.header ? interfaceOptions.header : labelText,
-          inputs: this.createAlertInputs(this.childOpts, inputType, this.value),
-          buttons: [{
-            text: this.cancelText,
-            role: 'cancel',
-            handler: () => {
-              this.ionCancel.emit();
-            }
-          }, {
-            text: this.okText,
-            handler: selectedValues => {
-              this.value = selectedValues;
-            }
-          }],
-          cssClass: ['select-alert', interfaceOptions.cssClass, this.multiple ? 'multiple-select-alert' : 'single-select-alert']
-        });
-        return _overlays_e336664a_js__WEBPACK_IMPORTED_MODULE_4__["a"].create(alertOpts);
-      }
-      /**
-       * Close the select interface.
+      /*
+       * Activate both the segment and the buttons
+       * due to a bug with ::slotted in Safari
        */
 
 
-      close() {
-        // TODO check !this.overlay || !this.isFocus()
-        if (!this.overlay) {
-          return Promise.resolve(false);
+      setActivated(activated) {
+        const buttons = this.getButtons();
+        buttons.forEach(button => {
+          if (activated) {
+            button.classList.add('segment-button-activated');
+          } else {
+            button.classList.remove('segment-button-activated');
+          }
+        });
+        this.activated = activated;
+      }
+
+      activate(detail) {
+        const clicked = detail.event.target;
+        const buttons = this.getButtons();
+        const checked = buttons.find(button => button.value === this.value); // Make sure we are only checking for activation on a segment button
+        // since disabled buttons will get the click on the segment
+
+        if (clicked.tagName !== 'ION-SEGMENT-BUTTON') {
+          return;
+        } // If there are no checked buttons, set the current button to checked
+
+
+        if (!checked) {
+          this.value = clicked.value;
+        } // If the gesture began on the clicked button with the indicator
+        // then we should activate the indicator
+
+
+        if (this.value === clicked.value) {
+          this.setActivated(true);
+        }
+      }
+
+      getIndicator(button) {
+        const root = button.shadowRoot || button;
+        return root.querySelector('.segment-button-indicator');
+      }
+
+      checkButton(previous, current) {
+        const previousIndicator = this.getIndicator(previous);
+        const currentIndicator = this.getIndicator(current);
+
+        if (previousIndicator === null || currentIndicator === null) {
+          return;
         }
 
-        return this.overlay.dismiss();
+        const previousClientRect = previousIndicator.getBoundingClientRect();
+        const currentClientRect = currentIndicator.getBoundingClientRect();
+        const widthDelta = previousClientRect.width / currentClientRect.width;
+        const xPosition = previousClientRect.left - currentClientRect.left; // Scale the indicator width to match the previous indicator width
+        // and translate it on top of the previous indicator
+
+        const transform = "translate3d(".concat(xPosition, "px, 0, 0) scaleX(").concat(widthDelta, ")");
+        Object(_core_0a8d4d2e_js__WEBPACK_IMPORTED_MODULE_0__["w"])(() => {
+          // Remove the transition before positioning on top of the previous indicator
+          currentIndicator.classList.remove('segment-button-indicator-animated');
+          currentIndicator.style.setProperty('transform', transform); // Force a repaint to ensure the transform happens
+
+          currentIndicator.getBoundingClientRect(); // Add the transition to move the indicator into place
+
+          currentIndicator.classList.add('segment-button-indicator-animated'); // Remove the transform to slide the indicator back to the button clicked
+
+          currentIndicator.style.setProperty('transform', '');
+        });
+        this.value = current.value;
+        this.setCheckedClasses();
       }
 
-      getLabel() {
-        return Object(_helpers_46f4a262_js__WEBPACK_IMPORTED_MODULE_2__["f"])(this.el);
-      }
+      setCheckedClasses() {
+        const buttons = this.getButtons();
+        const index = buttons.findIndex(button => button.value === this.value);
+        const next = index + 1; // Keep track of the currently checked button
 
-      hasValue() {
-        return this.getText() !== '';
-      }
+        this.checked = buttons.find(button => button.value === this.value);
 
-      get childOpts() {
-        return Array.from(this.el.querySelectorAll('ion-select-option'));
-      }
-
-      getText() {
-        const selectedText = this.selectedText;
-
-        if (selectedText != null && selectedText !== '') {
-          return selectedText;
+        for (const button of buttons) {
+          button.classList.remove('segment-button-after-checked');
         }
 
-        return generateText(this.childOpts, this.value, this.compareWith);
+        if (next < buttons.length) {
+          buttons[next].classList.add('segment-button-after-checked');
+        }
       }
 
-      setFocus() {
-        if (this.buttonEl) {
-          this.buttonEl.focus();
+      setNextIndex(detail, isEnd = false) {
+        const isRTL = document.dir === 'rtl';
+        const activated = this.activated;
+        const buttons = this.getButtons();
+        const index = buttons.findIndex(button => button.value === this.value);
+        const previous = buttons[index];
+        let current;
+        let nextIndex;
+
+        if (index === -1) {
+          return;
+        } // Get the element that the touch event started on in case
+        // it was the checked button, then we will move the indicator
+
+
+        const rect = previous.getBoundingClientRect();
+        const left = rect.left;
+        const width = rect.width; // Get the element that the gesture is on top of based on the currentX of the
+        // gesture event and the Y coordinate of the starting element, since the gesture
+        // can move up and down off of the segment
+
+        const currentX = detail.currentX;
+        const previousY = rect.top + rect.height / 2;
+        const nextEl = document.elementFromPoint(currentX, previousY);
+        const decreaseIndex = isRTL ? currentX > left + width : currentX < left;
+        const increaseIndex = isRTL ? currentX < left : currentX > left + width; // If the indicator is currently activated then we have started the gesture
+        // on top of the checked button so we need to slide the indicator
+        // by checking the button next to it as we move
+
+        if (activated && !isEnd) {
+          // Decrease index, move left in LTR & right in RTL
+          if (decreaseIndex) {
+            const newIndex = index - 1;
+
+            if (newIndex >= 0) {
+              nextIndex = newIndex;
+            } // Increase index, moves right in LTR & left in RTL
+
+          } else if (increaseIndex) {
+            if (activated && !isEnd) {
+              const newIndex = index + 1;
+
+              if (newIndex < buttons.length) {
+                nextIndex = newIndex;
+              }
+            }
+          }
+
+          if (nextIndex !== undefined && !buttons[nextIndex].disabled) {
+            current = buttons[nextIndex];
+          }
+        } // If the indicator is not activated then we will just set the indicator
+        // to the element where the gesture ended
+
+
+        if (!activated && isEnd) {
+          current = nextEl;
         }
+        /* tslint:disable-next-line */
+
+
+        if (current != null) {
+          /**
+           * If current element is ion-segment then that means
+           * user tried to select a disabled ion-segment-button,
+           * and we should not update the ripple.
+           */
+          if (current.tagName === 'ION-SEGMENT') {
+            return false;
+          }
+
+          if (previous !== current) {
+            this.checkButton(previous, current);
+          }
+        }
+
+        return true;
       }
 
       emitStyle() {
         this.ionStyle.emit({
-          'interactive': true,
-          'select': true,
-          'has-placeholder': this.placeholder != null,
-          'has-value': this.hasValue(),
-          'interactive-disabled': this.disabled,
-          'select-disabled': this.disabled
+          'segment': true
         });
       }
 
       render() {
-        const {
-          placeholder,
-          name,
-          disabled,
-          isExpanded,
-          value,
-          el
-        } = this;
         const mode = Object(_core_0a8d4d2e_js__WEBPACK_IMPORTED_MODULE_0__["c"])(this);
-        const labelId = this.inputId + '-lbl';
-        const label = Object(_helpers_46f4a262_js__WEBPACK_IMPORTED_MODULE_2__["f"])(el);
-
-        if (label) {
-          label.id = labelId;
-        }
-
-        let addPlaceholderClass = false;
-        let selectText = this.getText();
-
-        if (selectText === '' && placeholder != null) {
-          selectText = placeholder;
-          addPlaceholderClass = true;
-        }
-
-        Object(_helpers_46f4a262_js__WEBPACK_IMPORTED_MODULE_2__["a"])(true, el, name, parseValue(value), disabled);
-        const selectTextClasses = {
-          'select-text': true,
-          'select-placeholder': addPlaceholderClass
-        };
-        const textPart = addPlaceholderClass ? 'placeholder' : 'text';
         return Object(_core_0a8d4d2e_js__WEBPACK_IMPORTED_MODULE_0__["h"])(_core_0a8d4d2e_js__WEBPACK_IMPORTED_MODULE_0__["H"], {
           onClick: this.onClick,
-          role: "combobox",
-          "aria-haspopup": "dialog",
-          "aria-disabled": disabled ? 'true' : null,
-          "aria-expanded": "".concat(isExpanded),
-          "aria-labelledby": labelId,
-          class: {
+          class: Object.assign(Object.assign({}, Object(_theme_18cbe2cc_js__WEBPACK_IMPORTED_MODULE_3__["c"])(this.color)), {
             [mode]: true,
-            'in-item': Object(_theme_18cbe2cc_js__WEBPACK_IMPORTED_MODULE_5__["h"])('ion-item', el),
-            'select-disabled': disabled
-          }
-        }, Object(_core_0a8d4d2e_js__WEBPACK_IMPORTED_MODULE_0__["h"])("div", {
-          class: selectTextClasses,
-          part: textPart
-        }, selectText), Object(_core_0a8d4d2e_js__WEBPACK_IMPORTED_MODULE_0__["h"])("div", {
-          class: "select-icon",
-          role: "presentation",
-          part: "icon"
-        }, Object(_core_0a8d4d2e_js__WEBPACK_IMPORTED_MODULE_0__["h"])("div", {
-          class: "select-icon-inner",
-          part: "icon-inner"
-        })), Object(_core_0a8d4d2e_js__WEBPACK_IMPORTED_MODULE_0__["h"])("button", {
-          type: "button",
-          onFocus: this.onFocus,
-          onBlur: this.onBlur,
-          disabled: disabled,
-          ref: btnEl => this.buttonEl = btnEl
-        }));
+            'in-toolbar': Object(_theme_18cbe2cc_js__WEBPACK_IMPORTED_MODULE_3__["h"])('ion-toolbar', this.el),
+            'in-toolbar-color': Object(_theme_18cbe2cc_js__WEBPACK_IMPORTED_MODULE_3__["h"])('ion-toolbar[color]', this.el),
+            'segment-activated': this.activated,
+            'segment-disabled': this.disabled,
+            'segment-scrollable': this.scrollable
+          })
+        }, Object(_core_0a8d4d2e_js__WEBPACK_IMPORTED_MODULE_0__["h"])("slot", null));
       }
 
       get el() {
@@ -507,94 +403,122 @@
 
       static get watchers() {
         return {
-          "disabled": ["disabledChanged"],
-          "placeholder": ["disabledChanged"],
-          "value": ["valueChanged"]
+          "value": ["valueChanged"],
+          "disabled": ["disabledChanged"]
         };
       }
 
       static get style() {
-        return ":host{--placeholder-color:currentColor;--placeholder-opacity:0.33;padding-left:var(--padding-start);padding-right:var(--padding-end);padding-top:var(--padding-top);padding-bottom:var(--padding-bottom);display:-ms-flexbox;display:flex;position:relative;-ms-flex-align:center;align-items:center;font-family:var(--ion-font-family,inherit);overflow:hidden;z-index:2}\@supports ((-webkit-margin-start:0) or (margin-inline-start:0)) or (-webkit-margin-start:0){:host{padding-left:unset;padding-right:unset;-webkit-padding-start:var(--padding-start);padding-inline-start:var(--padding-start);-webkit-padding-end:var(--padding-end);padding-inline-end:var(--padding-end)}}:host(.in-item){position:static;max-width:45%}:host(.select-disabled){opacity:.4;pointer-events:none}:host(.ion-focused) button{border:2px solid #5e9ed6}.select-placeholder{color:var(--placeholder-color);opacity:var(--placeholder-opacity)}button{left:0;top:0;margin-left:0;margin-right:0;margin-top:0;margin-bottom:0;position:absolute;width:100%;height:100%;border:0;background:transparent;cursor:pointer;-webkit-appearance:none;-moz-appearance:none;appearance:none;outline:none}:host-context([dir=rtl]) button,[dir=rtl] button{left:unset;right:unset;right:0}button::-moz-focus-inner{border:0}.select-icon{position:relative;opacity:.33}.select-text{-ms-flex:1;flex:1;min-width:16px;font-size:inherit;text-overflow:ellipsis;white-space:nowrap;overflow:hidden}.select-icon-inner{left:5px;top:50%;margin-top:-3px;position:absolute;width:0;height:0;border-top:5px solid;border-right:5px solid transparent;border-left:5px solid transparent;color:currentColor;pointer-events:none}:host-context([dir=rtl]) .select-icon-inner,[dir=rtl] .select-icon-inner{left:unset;right:unset;right:5px}:host{--padding-top:10px;--padding-end:0;--padding-bottom:11px;--padding-start:16px}.select-icon{width:19px;height:19px}";
+        return ":host{--ripple-color:currentColor;-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased;display:-ms-flexbox;display:flex;position:relative;-ms-flex-align:stretch;align-items:stretch;-ms-flex-pack:center;justify-content:center;width:100%;background:var(--background);font-family:var(--ion-font-family,inherit);text-align:center;contain:paint}:host(.segment-scrollable){-ms-flex-pack:start;justify-content:start;width:auto;overflow-x:scroll}:host(.segment-scrollable::-webkit-scrollbar){display:none}:host{--background:rgba(var(--ion-text-color-rgb,0,0,0),0.065);border-radius:8px;overflow:hidden;z-index:0}:host(.ion-color){background:rgba(var(--ion-color-base-rgb),.065)}:host(.in-toolbar){margin-left:auto;margin-right:auto;margin-top:0;margin-bottom:0;width:auto}\@supports ((-webkit-margin-start:0) or (margin-inline-start:0)) or (-webkit-margin-start:0){:host(.in-toolbar){margin-left:unset;margin-right:unset;-webkit-margin-start:auto;margin-inline-start:auto;-webkit-margin-end:auto;margin-inline-end:auto}}:host(.in-toolbar:not(.ion-color)){background:var(--ion-toolbar-segment-background,var(--background))}:host(.in-toolbar-color:not(.ion-color)){background:rgba(var(--ion-color-contrast-rgb),.11)}";
       }
 
     };
-
-    const isOptionSelected = (currentValue, compareValue, compareWith) => {
-      if (currentValue === undefined) {
-        return false;
-      }
-
-      if (Array.isArray(currentValue)) {
-        return currentValue.some(val => compareOptions(val, compareValue, compareWith));
-      } else {
-        return compareOptions(currentValue, compareValue, compareWith);
-      }
-    };
-
-    const getOptionValue = el => {
-      const value = el.value;
-      return value === undefined ? el.textContent || '' : value;
-    };
-
-    const parseValue = value => {
-      if (value == null) {
-        return undefined;
-      }
-
-      if (Array.isArray(value)) {
-        return value.join(',');
-      }
-
-      return value.toString();
-    };
-
-    const compareOptions = (currentValue, compareValue, compareWith) => {
-      if (typeof compareWith === 'function') {
-        return compareWith(currentValue, compareValue);
-      } else if (typeof compareWith === 'string') {
-        return currentValue[compareWith] === compareValue[compareWith];
-      } else {
-        return Array.isArray(compareValue) ? compareValue.includes(currentValue) : currentValue === compareValue;
-      }
-    };
-
-    const generateText = (opts, value, compareWith) => {
-      if (value === undefined) {
-        return '';
-      }
-
-      if (Array.isArray(value)) {
-        return value.map(v => textForValue(opts, v, compareWith)).filter(opt => opt !== null).join(', ');
-      } else {
-        return textForValue(opts, value, compareWith) || '';
-      }
-    };
-
-    const textForValue = (opts, value, compareWith) => {
-      const selectOpt = opts.find(opt => {
-        return compareOptions(getOptionValue(opt), value, compareWith);
-      });
-      return selectOpt ? selectOpt.textContent : null;
-    };
-
-    let selectIds = 0;
-    const SelectOption = class {
+    let ids = 0;
+    const SegmentButton = class {
       constructor(hostRef) {
         Object(_core_0a8d4d2e_js__WEBPACK_IMPORTED_MODULE_0__["r"])(this, hostRef);
-        this.inputId = "ion-selopt-".concat(selectOptionIds++);
+        this.segmentEl = null;
+        this.checked = false;
         /**
-         * If `true`, the user cannot interact with the select option.
+         * If `true`, the user cannot interact with the segment button.
          */
 
         this.disabled = false;
+        /**
+         * Set the layout of the text and icon in the segment.
+         */
+
+        this.layout = 'icon-top';
+        /**
+         * The type of the button.
+         */
+
+        this.type = 'button';
+        /**
+         * The value of the segment button.
+         */
+
+        this.value = 'ion-sb-' + ids++;
+
+        this.updateState = () => {
+          if (this.segmentEl) {
+            this.checked = this.segmentEl.value === this.value;
+          }
+        };
+      }
+
+      connectedCallback() {
+        const segmentEl = this.segmentEl = this.el.closest('ion-segment');
+
+        if (segmentEl) {
+          this.updateState();
+          segmentEl.addEventListener('ionSelect', this.updateState);
+        }
+      }
+
+      disconnectedCallback() {
+        const segmentEl = this.segmentEl;
+
+        if (segmentEl) {
+          segmentEl.removeEventListener('ionSelect', this.updateState);
+          this.segmentEl = null;
+        }
+      }
+
+      get hasLabel() {
+        return !!this.el.querySelector('ion-label');
+      }
+
+      get hasIcon() {
+        return !!this.el.querySelector('ion-icon');
       }
 
       render() {
+        const {
+          checked,
+          type,
+          disabled,
+          hasIcon,
+          hasLabel,
+          layout
+        } = this;
+        const mode = Object(_core_0a8d4d2e_js__WEBPACK_IMPORTED_MODULE_0__["c"])(this);
         return Object(_core_0a8d4d2e_js__WEBPACK_IMPORTED_MODULE_0__["h"])(_core_0a8d4d2e_js__WEBPACK_IMPORTED_MODULE_0__["H"], {
-          role: "option",
-          id: this.inputId,
-          class: Object(_core_0a8d4d2e_js__WEBPACK_IMPORTED_MODULE_0__["c"])(this)
-        });
+          "aria-disabled": disabled ? 'true' : null,
+          class: {
+            [mode]: true,
+            'in-toolbar': Object(_theme_18cbe2cc_js__WEBPACK_IMPORTED_MODULE_3__["h"])('ion-toolbar', this.el),
+            'in-toolbar-color': Object(_theme_18cbe2cc_js__WEBPACK_IMPORTED_MODULE_3__["h"])('ion-toolbar[color]', this.el),
+            'in-segment': Object(_theme_18cbe2cc_js__WEBPACK_IMPORTED_MODULE_3__["h"])('ion-segment', this.el),
+            'in-segment-color': Object(_theme_18cbe2cc_js__WEBPACK_IMPORTED_MODULE_3__["h"])('ion-segment[color]', this.el),
+            'segment-button-has-label': hasLabel,
+            'segment-button-has-icon': hasIcon,
+            'segment-button-has-label-only': hasLabel && !hasIcon,
+            'segment-button-has-icon-only': hasIcon && !hasLabel,
+            'segment-button-disabled': disabled,
+            'segment-button-checked': checked,
+            ["segment-button-layout-".concat(layout)]: true,
+            'ion-activatable': true,
+            'ion-activatable-instant': true,
+            'ion-focusable': true
+          }
+        }, Object(_core_0a8d4d2e_js__WEBPACK_IMPORTED_MODULE_0__["h"])("button", {
+          type: type,
+          "aria-pressed": checked ? 'true' : null,
+          class: "button-native",
+          disabled: disabled
+        }, Object(_core_0a8d4d2e_js__WEBPACK_IMPORTED_MODULE_0__["h"])("span", {
+          class: "button-inner"
+        }, Object(_core_0a8d4d2e_js__WEBPACK_IMPORTED_MODULE_0__["h"])("slot", null)), mode === 'md' && Object(_core_0a8d4d2e_js__WEBPACK_IMPORTED_MODULE_0__["h"])("ion-ripple-effect", null)), Object(_core_0a8d4d2e_js__WEBPACK_IMPORTED_MODULE_0__["h"])("div", {
+          part: "indicator",
+          class: {
+            'segment-button-indicator': true,
+            'segment-button-indicator-animated': true
+          }
+        }, Object(_core_0a8d4d2e_js__WEBPACK_IMPORTED_MODULE_0__["h"])("div", {
+          part: "indicator-background",
+          class: "segment-button-indicator-background"
+        })));
       }
 
       get el() {
@@ -602,44 +526,7 @@
       }
 
       static get style() {
-        return ":host{display:none}";
-      }
-
-    };
-    let selectOptionIds = 0;
-    const SelectPopover = class {
-      constructor(hostRef) {
-        Object(_core_0a8d4d2e_js__WEBPACK_IMPORTED_MODULE_0__["r"])(this, hostRef);
-        /** Array of options for the popover */
-
-        this.options = [];
-      }
-
-      onSelect(ev) {
-        const option = this.options.find(o => o.value === ev.target.value);
-
-        if (option) {
-          Object(_overlays_e336664a_js__WEBPACK_IMPORTED_MODULE_4__["s"])(option.handler);
-        }
-      }
-
-      render() {
-        const checkedOption = this.options.find(o => o.checked);
-        const checkedValue = checkedOption ? checkedOption.value : undefined;
-        return Object(_core_0a8d4d2e_js__WEBPACK_IMPORTED_MODULE_0__["h"])(_core_0a8d4d2e_js__WEBPACK_IMPORTED_MODULE_0__["H"], {
-          class: Object(_core_0a8d4d2e_js__WEBPACK_IMPORTED_MODULE_0__["c"])(this)
-        }, Object(_core_0a8d4d2e_js__WEBPACK_IMPORTED_MODULE_0__["h"])("ion-list", null, this.header !== undefined && Object(_core_0a8d4d2e_js__WEBPACK_IMPORTED_MODULE_0__["h"])("ion-list-header", null, this.header), (this.subHeader !== undefined || this.message !== undefined) && Object(_core_0a8d4d2e_js__WEBPACK_IMPORTED_MODULE_0__["h"])("ion-item", null, Object(_core_0a8d4d2e_js__WEBPACK_IMPORTED_MODULE_0__["h"])("ion-label", {
-          class: "ion-text-wrap"
-        }, this.subHeader !== undefined && Object(_core_0a8d4d2e_js__WEBPACK_IMPORTED_MODULE_0__["h"])("h3", null, this.subHeader), this.message !== undefined && Object(_core_0a8d4d2e_js__WEBPACK_IMPORTED_MODULE_0__["h"])("p", null, this.message))), Object(_core_0a8d4d2e_js__WEBPACK_IMPORTED_MODULE_0__["h"])("ion-radio-group", {
-          value: checkedValue
-        }, this.options.map(option => Object(_core_0a8d4d2e_js__WEBPACK_IMPORTED_MODULE_0__["h"])("ion-item", null, Object(_core_0a8d4d2e_js__WEBPACK_IMPORTED_MODULE_0__["h"])("ion-label", null, option.text), Object(_core_0a8d4d2e_js__WEBPACK_IMPORTED_MODULE_0__["h"])("ion-radio", {
-          value: option.value,
-          disabled: option.disabled
-        }))))));
-      }
-
-      static get style() {
-        return ".sc-ion-select-popover-h ion-list.sc-ion-select-popover{margin-left:0;margin-right:0;margin-top:-1px;margin-bottom:-1px}.sc-ion-select-popover-h ion-label.sc-ion-select-popover, .sc-ion-select-popover-h ion-list-header.sc-ion-select-popover{margin-left:0;margin-right:0;margin-top:0;margin-bottom:0}";
+        return ":host{--color:initial;--color-hover:var(--color);--color-checked:var(--color);--color-disabled:var(--color);--padding-start:0;--padding-end:0;border-radius:var(--border-radius);-ms-flex:1 1 auto;flex:1 1 auto;-ms-flex-direction:column;flex-direction:column;background:var(--background);color:var(--color);text-decoration:none;text-overflow:ellipsis;white-space:nowrap;-webkit-font-kerning:none;font-kerning:none;cursor:pointer}.button-native,:host{display:-ms-flexbox;display:flex;height:auto}.button-native{border-radius:0;font-family:inherit;font-size:inherit;font-style:inherit;font-weight:inherit;letter-spacing:inherit;text-decoration:inherit;text-indent:inherit;text-overflow:inherit;text-transform:inherit;text-align:inherit;white-space:inherit;color:inherit;margin-left:var(--margin-start);margin-right:var(--margin-end);margin-top:var(--margin-top);margin-bottom:var(--margin-bottom);padding-left:var(--padding-start);padding-right:var(--padding-end);padding-top:var(--padding-top);padding-bottom:var(--padding-bottom);-webkit-transform:translateZ(0);transform:translateZ(0);position:relative;-ms-flex-direction:inherit;flex-direction:inherit;-ms-flex-positive:1;flex-grow:1;-ms-flex-align:center;align-items:center;-ms-flex-pack:center;justify-content:center;width:100%;min-width:inherit;max-width:inherit;min-height:inherit;max-height:inherit;-webkit-transition:var(--transition);transition:var(--transition);border:none;outline:none;background:transparent;contain:content;pointer-events:none;overflow:hidden;z-index:2}\@supports ((-webkit-margin-start:0) or (margin-inline-start:0)) or (-webkit-margin-start:0){.button-native{margin-left:unset;margin-right:unset;-webkit-margin-start:var(--margin-start);margin-inline-start:var(--margin-start);-webkit-margin-end:var(--margin-end);margin-inline-end:var(--margin-end);padding-left:unset;padding-right:unset;-webkit-padding-start:var(--padding-start);padding-inline-start:var(--padding-start);-webkit-padding-end:var(--padding-end);padding-inline-end:var(--padding-end)}}.button-native:after{left:0;right:0;top:0;bottom:0;position:absolute;content:\"\";opacity:0}.button-inner{display:-ms-flexbox;display:flex;position:relative;-ms-flex-flow:inherit;flex-flow:inherit;-ms-flex-align:center;align-items:center;-ms-flex-pack:center;justify-content:center;width:100%;height:100%;z-index:1}:host(.segment-button-checked){background:var(--background-checked);color:var(--color-checked)}:host(.segment-button-disabled){cursor:default;pointer-events:none}:host(.ion-focused) .button-native{color:var(--color-focused)}:host(.ion-focused) .button-native:after{background:var(--background-focused);opacity:var(--background-focused-opacity)}\@media (any-hover:hover){:host(:hover) .button-native{color:var(--color-hover)}:host(:hover) .button-native:after{background:var(--background-hover);opacity:var(--background-hover-opacity)}:host(.segment-button-checked:hover) .button-native{color:var(--color-checked)}}::slotted(ion-icon){-ms-flex-negative:0;flex-shrink:0;-ms-flex-order:-1;order:-1;pointer-events:none}::slotted(ion-label){display:block;-ms-flex-item-align:center;align-self:center;line-height:22px;text-overflow:ellipsis;white-space:nowrap;-webkit-box-sizing:border-box;box-sizing:border-box;pointer-events:none}:host(.segment-button-layout-icon-top) .button-native{-ms-flex-direction:column;flex-direction:column}:host(.segment-button-layout-icon-start) .button-native{-ms-flex-direction:row;flex-direction:row}:host(.segment-button-layout-icon-end) .button-native{-ms-flex-direction:row-reverse;flex-direction:row-reverse}:host(.segment-button-layout-icon-bottom) .button-native{-ms-flex-direction:column-reverse;flex-direction:column-reverse}:host(.segment-button-layout-icon-hide) ::slotted(ion-icon),:host(.segment-button-layout-label-hide) ::slotted(ion-label){display:none}ion-ripple-effect{color:var(--ripple-color,var(--color-checked))}.segment-button-indicator{-webkit-transform-origin:left;transform-origin:left;position:absolute;opacity:0;-webkit-box-sizing:border-box;box-sizing:border-box;will-change:transform,opacity;pointer-events:none}.segment-button-indicator-background{width:100%;height:var(--indicator-height);-webkit-transform:var(--indicator-transform);transform:var(--indicator-transform);-webkit-box-shadow:var(--indicator-box-shadow);box-shadow:var(--indicator-box-shadow);pointer-events:none}.segment-button-indicator-animated{-webkit-transition:var(--indicator-transition);transition:var(--indicator-transition)}:host(.segment-button-checked) .segment-button-indicator{opacity:1}\@media (prefers-reduced-motion:reduce){.segment-button-indicator-background{-webkit-transform:none;transform:none}.segment-button-indicator-animated{-webkit-transition:none;transition:none}}:host{--background:none;--background-checked:none;--background-hover:none;--background-hover-opacity:0;--background-focused:none;--background-focused-opacity:0;--border-radius:7px;--border-width:1px;--border-color:rgba(var(--ion-text-color-rgb,0,0,0),0.12);--border-style:solid;--indicator-box-shadow:0 0 5px rgba(0,0,0,0.16);--indicator-color:var(--ion-color-step-350,var(--ion-background-color,#fff));--indicator-height:100%;--indicator-transition:transform 260ms cubic-bezier(0.4,0,0.2,1);--indicator-transform:none;--transition:100ms all linear;--padding-top:0;--padding-end:13px;--padding-bottom:0;--padding-start:13px;margin-top:2px;margin-bottom:2px;position:relative;-ms-flex-preferred-size:0;flex-basis:0;-ms-flex-direction:row;flex-direction:row;min-width:70px;min-height:28px;-webkit-transform:translateZ(0);transform:translateZ(0);font-size:13px;font-weight:450;line-height:37px}:host:before{margin-left:0;margin-right:0;margin-top:5px;margin-bottom:5px;-webkit-transition:opacity .16s ease-in-out;transition:opacity .16s ease-in-out;-webkit-transition-delay:.1s;transition-delay:.1s;border-left:var(--border-width) var(--border-style) var(--border-color);content:\"\";opacity:1;will-change:opacity}:host(:first-of-type):before{border-left-color:transparent}:host(.segment-button-disabled){opacity:.3}::slotted(ion-icon){font-size:24px}:host(.segment-button-layout-icon-start) ::slotted(ion-label){margin-left:2px;margin-right:0}\@supports ((-webkit-margin-start:0) or (margin-inline-start:0)) or (-webkit-margin-start:0){:host(.segment-button-layout-icon-start) ::slotted(ion-label){margin-left:unset;margin-right:unset;-webkit-margin-start:2px;margin-inline-start:2px;-webkit-margin-end:0;margin-inline-end:0}}:host(.segment-button-layout-icon-end) ::slotted(ion-label){margin-left:0;margin-right:2px}\@supports ((-webkit-margin-start:0) or (margin-inline-start:0)) or (-webkit-margin-start:0){:host(.segment-button-layout-icon-end) ::slotted(ion-label){margin-left:unset;margin-right:unset;-webkit-margin-start:0;margin-inline-start:0;-webkit-margin-end:2px;margin-inline-end:2px}}.segment-button-indicator{padding-left:2px;padding-right:2px;left:0;right:0;top:0;bottom:0}\@supports ((-webkit-margin-start:0) or (margin-inline-start:0)) or (-webkit-margin-start:0){.segment-button-indicator{padding-left:unset;padding-right:unset;-webkit-padding-start:2px;padding-inline-start:2px;-webkit-padding-end:2px;padding-inline-end:2px}}.segment-button-indicator-background{border-radius:var(--border-radius);background:var(--indicator-color);-webkit-transition:var(--indicator-transition);transition:var(--indicator-transition)}:host(.segment-button-after-checked):before,:host(.segment-button-checked):before{opacity:0}:host(.segment-button-checked){z-index:-1}:host(.segment-button-activated){--indicator-transform:scale(0.95)}:host(.ion-focused) .button-native{opacity:.7}\@media (any-hover:hover){:host(:hover) .button-native{opacity:.5}:host(.segment-button-checked:hover) .button-native{opacity:1}}:host(.in-segment-color){background:none;color:var(--ion-text-color,#000)}:host(.in-segment-color) .segment-button-indicator-background{background:var(--ion-color-step-350,var(--ion-background-color,#fff))}\@media (any-hover:hover){:host(.in-segment-color.segment-button-checked:hover) .button-native,:host(.in-segment-color:hover) .button-native{color:var(--ion-text-color,#000)}}:host(.in-toolbar:not(.in-segment-color)){--background-checked:var(--ion-toolbar-segment-background-checked,none);--color:var(--ion-toolbar-segment-color,var(--ion-toolbar-color),initial);--color-checked:var(--ion-toolbar-segment-color-checked,var(--ion-toolbar-color),initial);--indicator-color:var(--ion-toolbar-segment-indicator-color,var(--ion-color-step-350,var(--ion-background-color,#fff)))}:host(.in-toolbar-color) .segment-button-indicator-background{background:#fff}:host(.in-toolbar-color:not(.in-segment-color)) .button-native{color:var(--ion-color-contrast)}:host(.in-toolbar-color.segment-button-checked:not(.in-segment-color)) .button-native{color:var(--ion-color-base)}\@media (any-hover:hover){:host(.in-toolbar-color:not(.in-segment-color):hover) .button-native{color:var(--ion-color-contrast)}:host(.in-toolbar-color.segment-button-checked:not(.in-segment-color):hover) .button-native{color:var(--ion-color-base)}}";
       }
 
     };

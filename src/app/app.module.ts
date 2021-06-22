@@ -24,7 +24,7 @@ import { SplashComponentsModule } from './splash-components/splash-components.mo
 import { FilterModalPageModule } from '../app/filter-modal/filter-modal.module';
 import { CardModalPageModule } from '../app/card-modal/card-modal.module';
 import { RequestInterceptorService } from './core/request-interceptor.service';
-// import { SuperTabsModule } from 'ionic2-super-tabs';
+import { SuperTabsModule } from '@ionic-super-tabs/angular';
 
 @NgModule({
   declarations: [AppComponent],
@@ -40,7 +40,7 @@ import { RequestInterceptorService } from './core/request-interceptor.service';
     FilterModalPageModule,
     CardModalPageModule,
     RequestQoutePageModule,
-    // SuperTabsModule.forRoot()
+    SuperTabsModule.forRoot(),
   ],
   providers: [
     StatusBar,

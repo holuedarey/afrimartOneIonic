@@ -1,27 +1,23 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[38],{
 
-/***/ "./node_modules/@ionic/core/dist/esm/ion-modal-ios.entry.js":
-/*!******************************************************************!*\
-  !*** ./node_modules/@ionic/core/dist/esm/ion-modal-ios.entry.js ***!
-  \******************************************************************/
-/*! exports provided: ion_modal */
+/***/ "./node_modules/@ionic/core/dist/esm/ion-loading-md.entry.js":
+/*!*******************************************************************!*\
+  !*** ./node_modules/@ionic/core/dist/esm/ion-loading-md.entry.js ***!
+  \*******************************************************************/
+/*! exports provided: ion_loading */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ion_modal", function() { return Modal; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ion_loading", function() { return Loading; });
 /* harmony import */ var _core_0a8d4d2e_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./core-0a8d4d2e.js */ "./node_modules/@ionic/core/dist/esm/core-0a8d4d2e.js");
 /* harmony import */ var _config_3c7f3790_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./config-3c7f3790.js */ "./node_modules/@ionic/core/dist/esm/config-3c7f3790.js");
 /* harmony import */ var _helpers_46f4a262_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./helpers-46f4a262.js */ "./node_modules/@ionic/core/dist/esm/helpers-46f4a262.js");
 /* harmony import */ var _animation_56279521_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./animation-56279521.js */ "./node_modules/@ionic/core/dist/esm/animation-56279521.js");
-/* harmony import */ var _cubic_bezier_1d592096_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./cubic-bezier-1d592096.js */ "./node_modules/@ionic/core/dist/esm/cubic-bezier-1d592096.js");
-/* harmony import */ var _index_c38df685_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./index-c38df685.js */ "./node_modules/@ionic/core/dist/esm/index-c38df685.js");
-/* harmony import */ var _constants_3c3e1099_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./constants-3c3e1099.js */ "./node_modules/@ionic/core/dist/esm/constants-3c3e1099.js");
-/* harmony import */ var _hardware_back_button_1ed0083a_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./hardware-back-button-1ed0083a.js */ "./node_modules/@ionic/core/dist/esm/hardware-back-button-1ed0083a.js");
-/* harmony import */ var _overlays_e336664a_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./overlays-e336664a.js */ "./node_modules/@ionic/core/dist/esm/overlays-e336664a.js");
-/* harmony import */ var _theme_18cbe2cc_js__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./theme-18cbe2cc.js */ "./node_modules/@ionic/core/dist/esm/theme-18cbe2cc.js");
-/* harmony import */ var _framework_delegate_c2e2e1f4_js__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./framework-delegate-c2e2e1f4.js */ "./node_modules/@ionic/core/dist/esm/framework-delegate-c2e2e1f4.js");
-/* harmony import */ var _index_1469ea79_js__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./index-1469ea79.js */ "./node_modules/@ionic/core/dist/esm/index-1469ea79.js");
+/* harmony import */ var _hardware_back_button_1ed0083a_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./hardware-back-button-1ed0083a.js */ "./node_modules/@ionic/core/dist/esm/hardware-back-button-1ed0083a.js");
+/* harmony import */ var _overlays_e336664a_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./overlays-e336664a.js */ "./node_modules/@ionic/core/dist/esm/overlays-e336664a.js");
+/* harmony import */ var _theme_18cbe2cc_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./theme-18cbe2cc.js */ "./node_modules/@ionic/core/dist/esm/theme-18cbe2cc.js");
+/* harmony import */ var _index_3476b023_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./index-3476b023.js */ "./node_modules/@ionic/core/dist/esm/index-3476b023.js");
 
 
 
@@ -30,191 +26,59 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-
-
-
-
-
-// Defaults for the card swipe animation
-const SwipeToCloseDefaults = {
-    MIN_PRESENTING_SCALE: 0.93,
-};
-const createSwipeToCloseGesture = (el, animation, onDismiss) => {
-    const height = el.offsetHeight;
-    let isOpen = false;
-    const canStart = (detail) => {
-        const target = detail.event.target;
-        if (target === null ||
-            !target.closest) {
-            return true;
-        }
-        const content = target.closest('ion-content');
-        if (content === null) {
-            return true;
-        }
-        // Target is in the content so we don't start the gesture.
-        // We could be more nuanced here and allow it for content that
-        // does not need to scroll.
-        return false;
-    };
-    const onStart = () => {
-        animation.progressStart(true, (isOpen) ? 1 : 0);
-    };
-    const onMove = (detail) => {
-        const step = detail.deltaY / height;
-        if (step < 0) {
-            return;
-        }
-        animation.progressStep(step);
-    };
-    const onEnd = (detail) => {
-        const velocity = detail.velocityY;
-        const step = detail.deltaY / height;
-        if (step < 0) {
-            return;
-        }
-        const threshold = (detail.deltaY + velocity * 1000) / height;
-        const shouldComplete = threshold >= 0.5;
-        let newStepValue = (shouldComplete) ? -0.001 : 0.001;
-        if (!shouldComplete) {
-            animation.easing('cubic-bezier(1, 0, 0.68, 0.28)');
-            newStepValue += Object(_cubic_bezier_1d592096_js__WEBPACK_IMPORTED_MODULE_4__["g"])([0, 0], [1, 0], [0.68, 0.28], [1, 1], step)[0];
-        }
-        else {
-            animation.easing('cubic-bezier(0.32, 0.72, 0, 1)');
-            newStepValue += Object(_cubic_bezier_1d592096_js__WEBPACK_IMPORTED_MODULE_4__["g"])([0, 0], [0.32, 0.72], [0, 1], [1, 1], step)[0];
-        }
-        const duration = (shouldComplete) ? computeDuration(step * height, velocity) : computeDuration((1 - step) * height, velocity);
-        isOpen = shouldComplete;
-        gesture.enable(false);
-        animation
-            .onFinish(() => {
-            if (!shouldComplete) {
-                gesture.enable(true);
-            }
-        })
-            .progressEnd((shouldComplete) ? 1 : 0, newStepValue, duration);
-        if (shouldComplete) {
-            onDismiss();
-        }
-    };
-    const gesture = Object(_index_c38df685_js__WEBPACK_IMPORTED_MODULE_5__["createGesture"])({
-        el,
-        gestureName: 'modalSwipeToClose',
-        gesturePriority: 40,
-        direction: 'y',
-        threshold: 10,
-        canStart,
-        onStart,
-        onMove,
-        onEnd
-    });
-    return gesture;
-};
-const computeDuration = (remaining, velocity) => {
-    return Object(_helpers_46f4a262_js__WEBPACK_IMPORTED_MODULE_2__["c"])(400, remaining / Math.abs(velocity * 1.1), 500);
-};
 
 /**
- * iOS Modal Enter Animation for the Card presentation style
+ * iOS Loading Enter Animation
  */
-const iosEnterAnimation = (baseEl, presentingEl) => {
-    // The top translate Y for the presenting element
-    const backdropAnimation = Object(_animation_56279521_js__WEBPACK_IMPORTED_MODULE_3__["c"])()
+const iosEnterAnimation = (baseEl) => {
+    const baseAnimation = Object(_animation_56279521_js__WEBPACK_IMPORTED_MODULE_3__["c"])();
+    const backdropAnimation = Object(_animation_56279521_js__WEBPACK_IMPORTED_MODULE_3__["c"])();
+    const wrapperAnimation = Object(_animation_56279521_js__WEBPACK_IMPORTED_MODULE_3__["c"])();
+    backdropAnimation
         .addElement(baseEl.querySelector('ion-backdrop'))
         .fromTo('opacity', 0.01, 'var(--backdrop-opacity)')
         .beforeStyles({
         'pointer-events': 'none'
     })
         .afterClearStyles(['pointer-events']);
-    const wrapperAnimation = Object(_animation_56279521_js__WEBPACK_IMPORTED_MODULE_3__["c"])()
-        .addElement(baseEl.querySelector('.modal-wrapper'))
-        .beforeStyles({ 'opacity': 1 })
-        .fromTo('transform', 'translateY(100vh)', 'translateY(0vh)');
-    const baseAnimation = Object(_animation_56279521_js__WEBPACK_IMPORTED_MODULE_3__["c"])()
+    wrapperAnimation
+        .addElement(baseEl.querySelector('.loading-wrapper'))
+        .keyframes([
+        { offset: 0, opacity: 0.01, transform: 'scale(1.1)' },
+        { offset: 1, opacity: 1, transform: 'scale(1)' }
+    ]);
+    return baseAnimation
         .addElement(baseEl)
-        .easing('cubic-bezier(0.32,0.72,0,1)')
-        .duration(500)
-        .beforeAddClass('show-modal')
+        .easing('ease-in-out')
+        .duration(200)
         .addAnimation([backdropAnimation, wrapperAnimation]);
-    if (presentingEl) {
-        /**
-         * Fallback for browsers that does not support `max()` (ex: Firefox)
-         * No need to wrry about statusbar padding since engines like Gecko
-         * are not used as the engine for standlone Cordova/Capacitor apps
-         */
-        const transformOffset = (!CSS.supports('width', 'max(0px, 1px)')) ? '30px' : 'max(30px, var(--ion-safe-area-top))';
-        const modalTransform = (presentingEl.tagName === 'ION-MODAL' && presentingEl.presentingElement !== undefined) ? '-10px' : transformOffset;
-        const bodyEl = document.body;
-        const toPresentingScale = SwipeToCloseDefaults.MIN_PRESENTING_SCALE;
-        const finalTransform = `translateY(${modalTransform}) scale(${toPresentingScale})`;
-        const presentingAnimation = Object(_animation_56279521_js__WEBPACK_IMPORTED_MODULE_3__["c"])()
-            .beforeStyles({
-            'transform': 'translateY(0)',
-            'transform-origin': 'top center',
-            'overflow': 'hidden'
-        })
-            .afterStyles({
-            'transform': finalTransform
-        })
-            .beforeAddWrite(() => bodyEl.style.setProperty('background-color', 'black'))
-            .addElement(presentingEl)
-            .keyframes([
-            { offset: 0, filter: 'contrast(1)', transform: 'translateY(0px) scale(1)', borderRadius: '0px' },
-            { offset: 1, filter: 'contrast(0.85)', transform: finalTransform, borderRadius: '10px 10px 0 0' }
-        ]);
-        baseAnimation.addAnimation(presentingAnimation);
-    }
-    return baseAnimation;
 };
 
 /**
- * iOS Modal Leave Animation
+ * iOS Loading Leave Animation
  */
-const iosLeaveAnimation = (baseEl, presentingEl, duration = 500) => {
-    const backdropAnimation = Object(_animation_56279521_js__WEBPACK_IMPORTED_MODULE_3__["c"])()
+const iosLeaveAnimation = (baseEl) => {
+    const baseAnimation = Object(_animation_56279521_js__WEBPACK_IMPORTED_MODULE_3__["c"])();
+    const backdropAnimation = Object(_animation_56279521_js__WEBPACK_IMPORTED_MODULE_3__["c"])();
+    const wrapperAnimation = Object(_animation_56279521_js__WEBPACK_IMPORTED_MODULE_3__["c"])();
+    backdropAnimation
         .addElement(baseEl.querySelector('ion-backdrop'))
-        .fromTo('opacity', 'var(--backdrop-opacity)', 0.0);
-    const wrapperAnimation = Object(_animation_56279521_js__WEBPACK_IMPORTED_MODULE_3__["c"])()
-        .addElement(baseEl.querySelector('.modal-wrapper'))
-        .beforeStyles({ 'opacity': 1 })
-        .fromTo('transform', 'translateY(0vh)', 'translateY(100vh)');
-    const baseAnimation = Object(_animation_56279521_js__WEBPACK_IMPORTED_MODULE_3__["c"])()
+        .fromTo('opacity', 'var(--backdrop-opacity)', 0);
+    wrapperAnimation
+        .addElement(baseEl.querySelector('.loading-wrapper'))
+        .keyframes([
+        { offset: 0, opacity: 0.99, transform: 'scale(1)' },
+        { offset: 1, opacity: 0, transform: 'scale(0.9)' }
+    ]);
+    return baseAnimation
         .addElement(baseEl)
-        .easing('cubic-bezier(0.32,0.72,0,1)')
-        .duration(duration)
+        .easing('ease-in-out')
+        .duration(200)
         .addAnimation([backdropAnimation, wrapperAnimation]);
-    if (presentingEl) {
-        const transformOffset = (!CSS.supports('width', 'max(0px, 1px)')) ? '30px' : 'max(30px, var(--ion-safe-area-top))';
-        const modalTransform = (presentingEl.tagName === 'ION-MODAL' && presentingEl.presentingElement !== undefined) ? '-10px' : transformOffset;
-        const bodyEl = document.body;
-        const currentPresentingScale = SwipeToCloseDefaults.MIN_PRESENTING_SCALE;
-        const presentingAnimation = Object(_animation_56279521_js__WEBPACK_IMPORTED_MODULE_3__["c"])()
-            .addElement(presentingEl)
-            .beforeClearStyles(['transform'])
-            .afterClearStyles(['transform'])
-            .onFinish(currentStep => {
-            // only reset background color if this is the last card-style modal
-            if (currentStep !== 1) {
-                return;
-            }
-            presentingEl.style.setProperty('overflow', '');
-            const numModals = Array.from(bodyEl.querySelectorAll('ion-modal')).filter(m => m.presentingElement !== undefined).length;
-            if (numModals <= 1) {
-                bodyEl.style.setProperty('background-color', '');
-            }
-        })
-            .keyframes([
-            { offset: 0, filter: 'contrast(0.85)', transform: `translateY(${modalTransform}) scale(${currentPresentingScale})`, borderRadius: '10px 10px 0 0' },
-            { offset: 1, filter: 'contrast(1)', transform: 'translateY(0px) scale(1)', borderRadius: '0px' }
-        ]);
-        baseAnimation.addAnimation(presentingAnimation);
-    }
-    return baseAnimation;
 };
 
 /**
- * Md Modal Enter Animation
+ * Md Loading Enter Animation
  */
 const mdEnterAnimation = (baseEl) => {
     const baseAnimation = Object(_animation_56279521_js__WEBPACK_IMPORTED_MODULE_3__["c"])();
@@ -228,48 +92,44 @@ const mdEnterAnimation = (baseEl) => {
     })
         .afterClearStyles(['pointer-events']);
     wrapperAnimation
-        .addElement(baseEl.querySelector('.modal-wrapper'))
+        .addElement(baseEl.querySelector('.loading-wrapper'))
         .keyframes([
-        { offset: 0, opacity: 0.01, transform: 'translateY(40px)' },
-        { offset: 1, opacity: 1, transform: 'translateY(0px)' }
+        { offset: 0, opacity: 0.01, transform: 'scale(1.1)' },
+        { offset: 1, opacity: 1, transform: 'scale(1)' }
     ]);
     return baseAnimation
         .addElement(baseEl)
-        .easing('cubic-bezier(0.36,0.66,0.04,1)')
-        .duration(280)
-        .beforeAddClass('show-modal')
+        .easing('ease-in-out')
+        .duration(200)
         .addAnimation([backdropAnimation, wrapperAnimation]);
 };
 
 /**
- * Md Modal Leave Animation
+ * Md Loading Leave Animation
  */
 const mdLeaveAnimation = (baseEl) => {
     const baseAnimation = Object(_animation_56279521_js__WEBPACK_IMPORTED_MODULE_3__["c"])();
     const backdropAnimation = Object(_animation_56279521_js__WEBPACK_IMPORTED_MODULE_3__["c"])();
     const wrapperAnimation = Object(_animation_56279521_js__WEBPACK_IMPORTED_MODULE_3__["c"])();
-    const wrapperEl = baseEl.querySelector('.modal-wrapper');
     backdropAnimation
         .addElement(baseEl.querySelector('ion-backdrop'))
-        .fromTo('opacity', 'var(--backdrop-opacity)', 0.0);
+        .fromTo('opacity', 'var(--backdrop-opacity)', 0);
     wrapperAnimation
-        .addElement(wrapperEl)
+        .addElement(baseEl.querySelector('.loading-wrapper'))
         .keyframes([
-        { offset: 0, opacity: 0.99, transform: 'translateY(0px)' },
-        { offset: 1, opacity: 0, transform: 'translateY(40px)' }
+        { offset: 0, opacity: 0.99, transform: 'scale(1)' },
+        { offset: 1, opacity: 0, transform: 'scale(0.9)' }
     ]);
     return baseAnimation
         .addElement(baseEl)
-        .easing('cubic-bezier(0.47,0,0.745,0.715)')
+        .easing('ease-in-out')
         .duration(200)
         .addAnimation([backdropAnimation, wrapperAnimation]);
 };
 
-const Modal = class {
+const Loading = class {
     constructor(hostRef) {
         Object(_core_0a8d4d2e_js__WEBPACK_IMPORTED_MODULE_0__["r"])(this, hostRef);
-        // Whether or not modal is being dismissed via gesture
-        this.gestureAnimationDismissing = false;
         this.presented = false;
         this.mode = Object(_core_0a8d4d2e_js__WEBPACK_IMPORTED_MODULE_0__["c"])(this);
         /**
@@ -277,137 +137,87 @@ const Modal = class {
          */
         this.keyboardClose = true;
         /**
-         * If `true`, the modal will be dismissed when the backdrop is clicked.
+         * Number of milliseconds to wait before dismissing the loading indicator.
          */
-        this.backdropDismiss = true;
+        this.duration = 0;
         /**
-         * If `true`, a backdrop will be displayed behind the modal.
+         * If `true`, the loading indicator will be dismissed when the backdrop is clicked.
+         */
+        this.backdropDismiss = false;
+        /**
+         * If `true`, a backdrop will be displayed behind the loading indicator.
          */
         this.showBackdrop = true;
         /**
-         * If `true`, the modal will animate.
+         * If `true`, the loading indicator will be translucent.
+         * Only applies when the mode is `"ios"` and the device supports
+         * [`backdrop-filter`](https://developer.mozilla.org/en-US/docs/Web/CSS/backdrop-filter#Browser_compatibility).
+         */
+        this.translucent = false;
+        /**
+         * If `true`, the loading indicator will animate.
          */
         this.animated = true;
-        /**
-         * If `true`, the modal can be swiped to dismiss. Only applies in iOS mode.
-         */
-        this.swipeToClose = false;
         this.onBackdropTap = () => {
-            this.dismiss(undefined, _overlays_e336664a_js__WEBPACK_IMPORTED_MODULE_8__["B"]);
+            this.dismiss(undefined, _overlays_e336664a_js__WEBPACK_IMPORTED_MODULE_5__["B"]);
         };
-        this.onDismiss = (ev) => {
-            ev.stopPropagation();
-            ev.preventDefault();
-            this.dismiss();
-        };
-        this.onLifecycle = (modalEvent) => {
-            const el = this.usersElement;
-            const name = LIFECYCLE_MAP[modalEvent.type];
-            if (el && name) {
-                const ev = new CustomEvent(name, {
-                    bubbles: false,
-                    cancelable: false,
-                    detail: modalEvent.detail
-                });
-                el.dispatchEvent(ev);
-            }
-        };
-        Object(_overlays_e336664a_js__WEBPACK_IMPORTED_MODULE_8__["d"])(this.el);
-        this.didPresent = Object(_core_0a8d4d2e_js__WEBPACK_IMPORTED_MODULE_0__["d"])(this, "ionModalDidPresent", 7);
-        this.willPresent = Object(_core_0a8d4d2e_js__WEBPACK_IMPORTED_MODULE_0__["d"])(this, "ionModalWillPresent", 7);
-        this.willDismiss = Object(_core_0a8d4d2e_js__WEBPACK_IMPORTED_MODULE_0__["d"])(this, "ionModalWillDismiss", 7);
-        this.didDismiss = Object(_core_0a8d4d2e_js__WEBPACK_IMPORTED_MODULE_0__["d"])(this, "ionModalDidDismiss", 7);
+        Object(_overlays_e336664a_js__WEBPACK_IMPORTED_MODULE_5__["d"])(this.el);
+        this.didPresent = Object(_core_0a8d4d2e_js__WEBPACK_IMPORTED_MODULE_0__["d"])(this, "ionLoadingDidPresent", 7);
+        this.willPresent = Object(_core_0a8d4d2e_js__WEBPACK_IMPORTED_MODULE_0__["d"])(this, "ionLoadingWillPresent", 7);
+        this.willDismiss = Object(_core_0a8d4d2e_js__WEBPACK_IMPORTED_MODULE_0__["d"])(this, "ionLoadingWillDismiss", 7);
+        this.didDismiss = Object(_core_0a8d4d2e_js__WEBPACK_IMPORTED_MODULE_0__["d"])(this, "ionLoadingDidDismiss", 7);
+    }
+    componentWillLoad() {
+        if (this.spinner === undefined) {
+            const mode = Object(_core_0a8d4d2e_js__WEBPACK_IMPORTED_MODULE_0__["c"])(this);
+            this.spinner = _config_3c7f3790_js__WEBPACK_IMPORTED_MODULE_1__["b"].get('loadingSpinner', _config_3c7f3790_js__WEBPACK_IMPORTED_MODULE_1__["b"].get('spinner', mode === 'ios' ? 'lines' : 'crescent'));
+        }
     }
     /**
-     * Present the modal overlay after it has been created.
+     * Present the loading overlay after it has been created.
      */
     async present() {
-        if (this.presented) {
-            return;
-        }
-        const container = this.el.querySelector(`.modal-wrapper`);
-        if (!container) {
-            throw new Error('container is undefined');
-        }
-        const componentProps = Object.assign(Object.assign({}, this.componentProps), { modal: this.el });
-        this.usersElement = await Object(_framework_delegate_c2e2e1f4_js__WEBPACK_IMPORTED_MODULE_10__["a"])(this.delegate, container, this.component, ['ion-page'], componentProps);
-        await Object(_index_1469ea79_js__WEBPACK_IMPORTED_MODULE_11__["d"])(this.usersElement);
-        await Object(_overlays_e336664a_js__WEBPACK_IMPORTED_MODULE_8__["e"])(this, 'modalEnter', iosEnterAnimation, mdEnterAnimation, this.presentingElement);
-        const mode = Object(_core_0a8d4d2e_js__WEBPACK_IMPORTED_MODULE_0__["c"])(this);
-        if (this.swipeToClose && mode === 'ios') {
-            // All of the elements needed for the swipe gesture
-            // should be in the DOM and referenced by now, except
-            // for the presenting el
-            const animationBuilder = this.leaveAnimation || _config_3c7f3790_js__WEBPACK_IMPORTED_MODULE_1__["b"].get('modalLeave', iosLeaveAnimation);
-            const ani = this.animation = animationBuilder(this.el, this.presentingElement);
-            this.gesture = createSwipeToCloseGesture(this.el, ani, () => {
-                /**
-                 * While the gesture animation is finishing
-                 * it is possible for a user to tap the backdrop.
-                 * This would result in the dismiss animation
-                 * being played again. Typically this is avoided
-                 * by setting `presented = false` on the overlay
-                 * component; however, we cannot do that here as
-                 * that would prevent the element from being
-                 * removed from the DOM.
-                 */
-                this.gestureAnimationDismissing = true;
-                this.animation.onFinish(async () => {
-                    await this.dismiss(undefined, 'gesture');
-                    this.gestureAnimationDismissing = false;
-                });
-            });
-            this.gesture.enable(true);
+        await Object(_overlays_e336664a_js__WEBPACK_IMPORTED_MODULE_5__["e"])(this, 'loadingEnter', iosEnterAnimation, mdEnterAnimation, undefined);
+        if (this.duration > 0) {
+            this.durationTimeout = setTimeout(() => this.dismiss(), this.duration + 10);
         }
     }
     /**
-     * Dismiss the modal overlay after it has been presented.
+     * Dismiss the loading overlay after it has been presented.
      *
      * @param data Any data to emit in the dismiss events.
-     * @param role The role of the element that is dismissing the modal. For example, 'cancel' or 'backdrop'.
+     * @param role The role of the element that is dismissing the loading.
+     * This can be useful in a button handler for determining which button was
+     * clicked to dismiss the loading.
+     * Some examples include: ``"cancel"`, `"destructive"`, "selected"`, and `"backdrop"`.
      */
-    async dismiss(data, role) {
-        if (this.gestureAnimationDismissing && role !== 'gesture') {
-            return false;
+    dismiss(data, role) {
+        if (this.durationTimeout) {
+            clearTimeout(this.durationTimeout);
         }
-        const enteringAnimation = _overlays_e336664a_js__WEBPACK_IMPORTED_MODULE_8__["h"].get(this) || [];
-        const dismissed = await Object(_overlays_e336664a_js__WEBPACK_IMPORTED_MODULE_8__["f"])(this, data, role, 'modalLeave', iosLeaveAnimation, mdLeaveAnimation, this.presentingElement);
-        if (dismissed) {
-            await Object(_framework_delegate_c2e2e1f4_js__WEBPACK_IMPORTED_MODULE_10__["d"])(this.delegate, this.usersElement);
-            if (this.animation) {
-                this.animation.destroy();
-            }
-            enteringAnimation.forEach(ani => ani.destroy());
-        }
-        this.animation = undefined;
-        return dismissed;
+        return Object(_overlays_e336664a_js__WEBPACK_IMPORTED_MODULE_5__["f"])(this, data, role, 'loadingLeave', iosLeaveAnimation, mdLeaveAnimation);
     }
     /**
-     * Returns a promise that resolves when the modal did dismiss.
+     * Returns a promise that resolves when the loading did dismiss.
      */
     onDidDismiss() {
-        return Object(_overlays_e336664a_js__WEBPACK_IMPORTED_MODULE_8__["g"])(this.el, 'ionModalDidDismiss');
+        return Object(_overlays_e336664a_js__WEBPACK_IMPORTED_MODULE_5__["g"])(this.el, 'ionLoadingDidDismiss');
     }
     /**
-     * Returns a promise that resolves when the modal will dismiss.
+     * Returns a promise that resolves when the loading will dismiss.
      */
     onWillDismiss() {
-        return Object(_overlays_e336664a_js__WEBPACK_IMPORTED_MODULE_8__["g"])(this.el, 'ionModalWillDismiss');
+        return Object(_overlays_e336664a_js__WEBPACK_IMPORTED_MODULE_5__["g"])(this.el, 'ionLoadingWillDismiss');
     }
     render() {
+        const { message, spinner } = this;
         const mode = Object(_core_0a8d4d2e_js__WEBPACK_IMPORTED_MODULE_0__["c"])(this);
-        return (Object(_core_0a8d4d2e_js__WEBPACK_IMPORTED_MODULE_0__["h"])(_core_0a8d4d2e_js__WEBPACK_IMPORTED_MODULE_0__["H"], { "no-router": true, "aria-modal": "true", class: Object.assign({ [mode]: true, [`modal-card`]: this.presentingElement !== undefined && mode === 'ios' }, Object(_theme_18cbe2cc_js__WEBPACK_IMPORTED_MODULE_9__["g"])(this.cssClass)), style: {
-                zIndex: `${20000 + this.overlayIndex}`,
-            }, onIonBackdropTap: this.onBackdropTap, onIonDismiss: this.onDismiss, onIonModalDidPresent: this.onLifecycle, onIonModalWillPresent: this.onLifecycle, onIonModalWillDismiss: this.onLifecycle, onIonModalDidDismiss: this.onLifecycle }, Object(_core_0a8d4d2e_js__WEBPACK_IMPORTED_MODULE_0__["h"])("ion-backdrop", { visible: this.showBackdrop, tappable: this.backdropDismiss }), Object(_core_0a8d4d2e_js__WEBPACK_IMPORTED_MODULE_0__["h"])("div", { role: "dialog", class: "modal-wrapper" })));
+        return (Object(_core_0a8d4d2e_js__WEBPACK_IMPORTED_MODULE_0__["h"])(_core_0a8d4d2e_js__WEBPACK_IMPORTED_MODULE_0__["H"], { onIonBackdropTap: this.onBackdropTap, style: {
+                zIndex: `${40000 + this.overlayIndex}`
+            }, class: Object.assign(Object.assign({}, Object(_theme_18cbe2cc_js__WEBPACK_IMPORTED_MODULE_6__["g"])(this.cssClass)), { [mode]: true, 'loading-translucent': this.translucent }) }, Object(_core_0a8d4d2e_js__WEBPACK_IMPORTED_MODULE_0__["h"])("ion-backdrop", { visible: this.showBackdrop, tappable: this.backdropDismiss }), Object(_core_0a8d4d2e_js__WEBPACK_IMPORTED_MODULE_0__["h"])("div", { class: "loading-wrapper", role: "dialog" }, spinner && (Object(_core_0a8d4d2e_js__WEBPACK_IMPORTED_MODULE_0__["h"])("div", { class: "loading-spinner" }, Object(_core_0a8d4d2e_js__WEBPACK_IMPORTED_MODULE_0__["h"])("ion-spinner", { name: spinner }))), message && Object(_core_0a8d4d2e_js__WEBPACK_IMPORTED_MODULE_0__["h"])("div", { class: "loading-content", innerHTML: Object(_index_3476b023_js__WEBPACK_IMPORTED_MODULE_7__["s"])(message) }))));
     }
     get el() { return Object(_core_0a8d4d2e_js__WEBPACK_IMPORTED_MODULE_0__["e"])(this); }
-    static get style() { return ".sc-ion-modal-ios-h{--width:100%;--min-width:auto;--max-width:auto;--height:100%;--min-height:auto;--max-height:auto;--overflow:hidden;--border-radius:0;--border-width:0;--border-style:none;--border-color:transparent;--background:var(--ion-background-color,#fff);--box-shadow:none;left:0;right:0;top:0;bottom:0;display:-ms-flexbox;display:flex;position:absolute;-ms-flex-align:center;align-items:center;-ms-flex-pack:center;justify-content:center;contain:strict}.overlay-hidden.sc-ion-modal-ios-h{display:none}.modal-wrapper.sc-ion-modal-ios{border-radius:var(--border-radius);width:var(--width);min-width:var(--min-width);max-width:var(--max-width);height:var(--height);min-height:var(--min-height);max-height:var(--max-height);border-width:var(--border-width);border-style:var(--border-style);border-color:var(--border-color);background:var(--background);-webkit-box-shadow:var(--box-shadow);box-shadow:var(--box-shadow);overflow:var(--overflow);z-index:10}\@media only screen and (min-width:768px) and (min-height:600px){.sc-ion-modal-ios-h{--width:600px;--height:500px;--ion-safe-area-top:0px;--ion-safe-area-bottom:0px;--ion-safe-area-right:0px;--ion-safe-area-left:0px}}\@media only screen and (min-width:768px) and (min-height:768px){.sc-ion-modal-ios-h{--width:600px;--height:600px}}.sc-ion-modal-ios-h{--backdrop-opacity:var(--ion-backdrop-opacity,0.4)}\@media only screen and (min-width:768px) and (min-height:600px){.sc-ion-modal-ios-h{--border-radius:10px}}.modal-wrapper.sc-ion-modal-ios{-webkit-transform:translate3d(0,100%,0);transform:translate3d(0,100%,0)}.modal-card.sc-ion-modal-ios-h{--backdrop-opacity:0;--width:100%;-ms-flex-align:end;align-items:flex-end}.modal-card.sc-ion-modal-ios-h .modal-wrapper.sc-ion-modal-ios{height:calc(100% - 40px)}.modal-card.sc-ion-modal-ios-h .modal-wrapper.sc-ion-modal-ios, [dir=rtl].modal-card.sc-ion-modal-ios-h .modal-wrapper.sc-ion-modal-ios, [dir=rtl] .modal-card.sc-ion-modal-ios-h .modal-wrapper.sc-ion-modal-ios, [dir=rtl].sc-ion-modal-ios-h -no-combinator.modal-card.sc-ion-modal-ios-h .modal-wrapper.sc-ion-modal-ios, [dir=rtl] .sc-ion-modal-ios-h -no-combinator.modal-card.sc-ion-modal-ios-h .modal-wrapper.sc-ion-modal-ios{border-top-left-radius:10px;border-top-right-radius:10px;border-bottom-right-radius:0;border-bottom-left-radius:0}\@supports (width:max(0px,1px)){.modal-card.sc-ion-modal-ios-h .modal-wrapper.sc-ion-modal-ios{height:calc(100% - max(30px, var(--ion-safe-area-top)) - 10px)}}"; }
-};
-const LIFECYCLE_MAP = {
-    'ionModalDidPresent': 'ionViewDidEnter',
-    'ionModalWillPresent': 'ionViewWillEnter',
-    'ionModalWillDismiss': 'ionViewWillLeave',
-    'ionModalDidDismiss': 'ionViewDidLeave',
+    static get style() { return ".sc-ion-loading-md-h{--min-width:auto;--width:auto;--min-height:auto;--height:auto;-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased;left:0;right:0;top:0;bottom:0;display:-ms-flexbox;display:flex;position:fixed;-ms-flex-align:center;align-items:center;-ms-flex-pack:center;justify-content:center;font-family:var(--ion-font-family,inherit);contain:strict;-ms-touch-action:none;touch-action:none;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;z-index:1001}.overlay-hidden.sc-ion-loading-md-h{display:none}.loading-wrapper.sc-ion-loading-md{display:-ms-flexbox;display:flex;-ms-flex-align:inherit;align-items:inherit;-ms-flex-pack:inherit;justify-content:inherit;width:var(--width);min-width:var(--min-width);max-width:var(--max-width);height:var(--height);min-height:var(--min-height);max-height:var(--max-height);background:var(--background);opacity:0;z-index:10}.spinner-bubbles.sc-ion-loading-md, .spinner-circles.sc-ion-loading-md, .spinner-crescent.sc-ion-loading-md, .spinner-dots.sc-ion-loading-md, .spinner-lines.sc-ion-loading-md, .spinner-lines-small.sc-ion-loading-md{color:var(--spinner-color)}.sc-ion-loading-md-h{--background:var(--ion-color-step-50,#f2f2f2);--max-width:280px;--max-height:90%;--spinner-color:var(--ion-color-primary,#3880ff);--backdrop-opacity:var(--ion-backdrop-opacity,0.32);color:var(--ion-color-step-850,#262626);font-size:14px}.loading-wrapper.sc-ion-loading-md{border-radius:2px;padding-left:24px;padding-right:24px;padding-top:24px;padding-bottom:24px;-webkit-box-shadow:0 16px 20px rgba(0,0,0,.4);box-shadow:0 16px 20px rgba(0,0,0,.4)}\@supports ((-webkit-margin-start:0) or (margin-inline-start:0)) or (-webkit-margin-start:0){.loading-wrapper.sc-ion-loading-md{padding-left:unset;padding-right:unset;-webkit-padding-start:24px;padding-inline-start:24px;-webkit-padding-end:24px;padding-inline-end:24px}}.loading-spinner.sc-ion-loading-md + .loading-content.sc-ion-loading-md{margin-left:16px}\@supports ((-webkit-margin-start:0) or (margin-inline-start:0)) or (-webkit-margin-start:0){.loading-spinner.sc-ion-loading-md + .loading-content.sc-ion-loading-md{margin-left:unset;-webkit-margin-start:16px;margin-inline-start:16px}}"; }
 };
 
 

@@ -1,28 +1,34 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[40], {
   /***/
-  "./node_modules/@ionic/core/dist/esm/ion-nav_2.entry.js":
-  /*!**************************************************************!*\
-    !*** ./node_modules/@ionic/core/dist/esm/ion-nav_2.entry.js ***!
-    \**************************************************************/
+  "./node_modules/@ionic/core/dist/esm/ion-menu_3-md.entry.js":
+  /*!******************************************************************!*\
+    !*** ./node_modules/@ionic/core/dist/esm/ion-menu_3-md.entry.js ***!
+    \******************************************************************/
 
-  /*! exports provided: ion_nav, ion_nav_link */
+  /*! exports provided: ion_menu, ion_menu_button, ion_menu_toggle */
 
   /***/
-  function node_modulesIonicCoreDistEsmIonNav_2EntryJs(module, __webpack_exports__, __webpack_require__) {
+  function node_modulesIonicCoreDistEsmIonMenu_3MdEntryJs(module, __webpack_exports__, __webpack_require__) {
     "use strict";
 
     __webpack_require__.r(__webpack_exports__);
     /* harmony export (binding) */
 
 
-    __webpack_require__.d(__webpack_exports__, "ion_nav", function () {
-      return Nav;
+    __webpack_require__.d(__webpack_exports__, "ion_menu", function () {
+      return Menu;
     });
     /* harmony export (binding) */
 
 
-    __webpack_require__.d(__webpack_exports__, "ion_nav_link", function () {
-      return NavLink;
+    __webpack_require__.d(__webpack_exports__, "ion_menu_button", function () {
+      return MenuButton;
+    });
+    /* harmony export (binding) */
+
+
+    __webpack_require__.d(__webpack_exports__, "ion_menu_toggle", function () {
+      return MenuToggle;
     });
     /* harmony import */
 
@@ -45,979 +51,539 @@
     /* harmony import */
 
 
-    var _cubic_bezier_1d592096_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
+    var _animation_56279521_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
+    /*! ./animation-56279521.js */
+    "./node_modules/@ionic/core/dist/esm/animation-56279521.js");
+    /* harmony import */
+
+
+    var _cubic_bezier_1d592096_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
     /*! ./cubic-bezier-1d592096.js */
     "./node_modules/@ionic/core/dist/esm/cubic-bezier-1d592096.js");
     /* harmony import */
 
 
-    var _constants_3c3e1099_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
-    /*! ./constants-3c3e1099.js */
-    "./node_modules/@ionic/core/dist/esm/constants-3c3e1099.js");
+    var _index_c38df685_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(
+    /*! ./index-c38df685.js */
+    "./node_modules/@ionic/core/dist/esm/index-c38df685.js");
     /* harmony import */
 
 
-    var _framework_delegate_c2e2e1f4_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(
-    /*! ./framework-delegate-c2e2e1f4.js */
-    "./node_modules/@ionic/core/dist/esm/framework-delegate-c2e2e1f4.js");
+    var _hardware_back_button_1ed0083a_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(
+    /*! ./hardware-back-button-1ed0083a.js */
+    "./node_modules/@ionic/core/dist/esm/hardware-back-button-1ed0083a.js");
     /* harmony import */
 
 
-    var _index_1469ea79_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(
-    /*! ./index-1469ea79.js */
-    "./node_modules/@ionic/core/dist/esm/index-1469ea79.js");
-
-    const VIEW_STATE_NEW = 1;
-    const VIEW_STATE_ATTACHED = 2;
-    const VIEW_STATE_DESTROYED = 3;
-
-    class ViewController {
-      constructor(component, params) {
-        this.component = component;
-        this.params = params;
-        this.state = VIEW_STATE_NEW;
-      }
-
-      async init(container) {
-        this.state = VIEW_STATE_ATTACHED;
-
-        if (!this.element) {
-          const component = this.component;
-          this.element = await Object(_framework_delegate_c2e2e1f4_js__WEBPACK_IMPORTED_MODULE_5__["a"])(this.delegate, container, component, ['ion-page', 'ion-page-invisible'], this.params);
-        }
-      }
-      /**
-       * DOM WRITE
-       */
+    var _index_c58c7441_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(
+    /*! ./index-c58c7441.js */
+    "./node_modules/@ionic/core/dist/esm/index-c58c7441.js");
+    /* harmony import */
 
 
-      _destroy() {
-        Object(_helpers_46f4a262_js__WEBPACK_IMPORTED_MODULE_2__["b"])(this.state !== VIEW_STATE_DESTROYED, 'view state must be ATTACHED');
-        const element = this.element;
+    var _theme_18cbe2cc_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(
+    /*! ./theme-18cbe2cc.js */
+    "./node_modules/@ionic/core/dist/esm/theme-18cbe2cc.js");
 
-        if (element) {
-          if (this.delegate) {
-            this.delegate.removeViewFromDom(element.parentElement, element);
-          } else {
-            element.remove();
-          }
-        }
-
-        this.nav = undefined;
-        this.state = VIEW_STATE_DESTROYED;
-      }
-
-    }
-
-    const matches = (view, id, params) => {
-      if (!view) {
-        return false;
-      }
-
-      if (view.component !== id) {
-        return false;
-      }
-
-      const currentParams = view.params;
-
-      if (currentParams === params) {
-        return true;
-      }
-
-      if (!currentParams && !params) {
-        return true;
-      }
-
-      if (!currentParams || !params) {
-        return false;
-      }
-
-      const keysA = Object.keys(currentParams);
-      const keysB = Object.keys(params);
-
-      if (keysA.length !== keysB.length) {
-        return false;
-      } // Test for A's keys different from B.
-
-
-      for (const key of keysA) {
-        if (currentParams[key] !== params[key]) {
-          return false;
-        }
-      }
-
-      return true;
-    };
-
-    const convertToView = (page, params) => {
-      if (!page) {
-        return null;
-      }
-
-      if (page instanceof ViewController) {
-        return page;
-      }
-
-      return new ViewController(page, params);
-    };
-
-    const convertToViews = pages => {
-      return pages.map(page => {
-        if (page instanceof ViewController) {
-          return page;
-        }
-
-        if ('page' in page) {
-          return convertToView(page.page, page.params);
-        }
-
-        return convertToView(page, undefined);
-      }).filter(v => v !== null);
-    };
-
-    const Nav = class {
+    const iosEasing = 'cubic-bezier(0.32,0.72,0,1)';
+    const mdEasing = 'cubic-bezier(0.0,0.0,0.2,1)';
+    const iosEasingReverse = 'cubic-bezier(1, 0, 0.68, 0.28)';
+    const mdEasingReverse = 'cubic-bezier(0.4, 0, 0.6, 1)';
+    const Menu = class {
       constructor(hostRef) {
         Object(_core_0a8d4d2e_js__WEBPACK_IMPORTED_MODULE_0__["r"])(this, hostRef);
-        this.transInstr = [];
-        this.animationEnabled = true;
-        this.useRouter = false;
-        this.isTransitioning = false;
-        this.destroyed = false;
-        this.views = [];
+        this.lastOnEnd = 0;
+        this.blocker = _index_c38df685_js__WEBPACK_IMPORTED_MODULE_5__["GESTURE_CONTROLLER"].createBlocker({
+          disableScroll: true
+        });
+        this.mode = Object(_core_0a8d4d2e_js__WEBPACK_IMPORTED_MODULE_0__["c"])(this);
+        this.easing = this.mode === 'ios' ? iosEasing : mdEasing;
+        this.easingReverse = this.mode === 'ios' ? iosEasingReverse : mdEasingReverse;
+        this.isAnimating = false;
+        this._isOpen = false;
+        this.isPaneVisible = false;
+        this.isEndSide = false;
         /**
-         * If `true`, the nav should animate the transition of components.
+         * If `true`, the menu is disabled.
          */
 
-        this.animated = true;
-        this.ionNavWillLoad = Object(_core_0a8d4d2e_js__WEBPACK_IMPORTED_MODULE_0__["d"])(this, "ionNavWillLoad", 7);
-        this.ionNavWillChange = Object(_core_0a8d4d2e_js__WEBPACK_IMPORTED_MODULE_0__["d"])(this, "ionNavWillChange", 3);
-        this.ionNavDidChange = Object(_core_0a8d4d2e_js__WEBPACK_IMPORTED_MODULE_0__["d"])(this, "ionNavDidChange", 3);
+        this.disabled = false;
+        /**
+         * Which side of the view the menu should be placed.
+         */
+
+        this.side = 'start';
+        /**
+         * If `true`, swiping the menu is enabled.
+         */
+
+        this.swipeGesture = true;
+        /**
+         * The edge threshold for dragging the menu open.
+         * If a drag/swipe happens over this value, the menu is not triggered.
+         */
+
+        this.maxEdgeStart = 50;
+        this.ionWillOpen = Object(_core_0a8d4d2e_js__WEBPACK_IMPORTED_MODULE_0__["d"])(this, "ionWillOpen", 7);
+        this.ionWillClose = Object(_core_0a8d4d2e_js__WEBPACK_IMPORTED_MODULE_0__["d"])(this, "ionWillClose", 7);
+        this.ionDidOpen = Object(_core_0a8d4d2e_js__WEBPACK_IMPORTED_MODULE_0__["d"])(this, "ionDidOpen", 7);
+        this.ionDidClose = Object(_core_0a8d4d2e_js__WEBPACK_IMPORTED_MODULE_0__["d"])(this, "ionDidClose", 7);
+        this.ionMenuChange = Object(_core_0a8d4d2e_js__WEBPACK_IMPORTED_MODULE_0__["d"])(this, "ionMenuChange", 7);
+      }
+
+      typeChanged(type, oldType) {
+        const contentEl = this.contentEl;
+
+        if (contentEl) {
+          if (oldType !== undefined) {
+            contentEl.classList.remove("menu-content-".concat(oldType));
+          }
+
+          contentEl.classList.add("menu-content-".concat(type));
+          contentEl.removeAttribute('style');
+        }
+
+        if (this.menuInnerEl) {
+          // Remove effects of previous animations
+          this.menuInnerEl.removeAttribute('style');
+        }
+
+        this.animation = undefined;
+      }
+
+      disabledChanged() {
+        this.updateState();
+        this.ionMenuChange.emit({
+          disabled: this.disabled,
+          open: this._isOpen
+        });
+      }
+
+      sideChanged() {
+        this.isEndSide = Object(_helpers_46f4a262_js__WEBPACK_IMPORTED_MODULE_2__["i"])(this.side);
       }
 
       swipeGestureChanged() {
-        if (this.gesture) {
-          this.gesture.enable(this.swipeGesture === true);
-        }
+        this.updateState();
       }
 
-      rootChanged() {
-        if (this.root !== undefined) {
-          if (!this.useRouter) {
-            this.setRoot(this.root, this.rootParams);
-          }
-        }
-      }
-
-      componentWillLoad() {
-        this.useRouter = !!document.querySelector('ion-router') && !this.el.closest('[no-router]');
-
-        if (this.swipeGesture === undefined) {
-          const mode = Object(_core_0a8d4d2e_js__WEBPACK_IMPORTED_MODULE_0__["c"])(this);
-          this.swipeGesture = _config_3c7f3790_js__WEBPACK_IMPORTED_MODULE_1__["b"].getBoolean('swipeBackEnabled', mode === 'ios');
+      async connectedCallback() {
+        if (this.type === undefined) {
+          this.type = _config_3c7f3790_js__WEBPACK_IMPORTED_MODULE_1__["b"].get('menuType', 'overlay');
         }
 
-        this.ionNavWillLoad.emit();
+        const el = this.el;
+        const parent = el.parentNode;
+
+        if (this.contentId === undefined) {
+          console.warn("[DEPRECATED][ion-menu] Using the [main] attribute is deprecated, please use the \"contentId\" property instead:\nBEFORE:\n  <ion-menu>...</ion-menu>\n  <div main>...</div>\n\nAFTER:\n  <ion-menu contentId=\"main-content\"></ion-menu>\n  <div id=\"main-content\">...</div>\n");
+        }
+
+        const content = this.contentId !== undefined ? document.getElementById(this.contentId) : parent && parent.querySelector && parent.querySelector('[main]');
+
+        if (!content || !content.tagName) {
+          // requires content element
+          console.error('Menu: must have a "content" element to listen for drag events on.');
+          return;
+        }
+
+        this.contentEl = content; // add menu's content classes
+
+        content.classList.add('menu-content');
+        this.typeChanged(this.type, undefined);
+        this.sideChanged(); // register this menu with the app's menu controller
+
+        _index_c58c7441_js__WEBPACK_IMPORTED_MODULE_7__["m"]._register(this);
+
+        this.gesture = (await Promise.resolve().then(__webpack_require__.bind(null,
+        /*! ./index-c38df685.js */
+        "./node_modules/@ionic/core/dist/esm/index-c38df685.js"))).createGesture({
+          el: document,
+          gestureName: 'menu-swipe',
+          gesturePriority: 30,
+          threshold: 10,
+          canStart: ev => this.canStart(ev),
+          onWillStart: () => this.onWillStart(),
+          onStart: () => this.onStart(),
+          onMove: ev => this.onMove(ev),
+          onEnd: ev => this.onEnd(ev)
+        });
+        this.updateState();
       }
 
       async componentDidLoad() {
-        this.rootChanged();
-        this.gesture = (await __webpack_require__.e(
-        /*! import() | swipe-back-d2cdbf9a-js */
-        "swipe-back-d2cdbf9a-js").then(__webpack_require__.bind(null,
-        /*! ./swipe-back-d2cdbf9a.js */
-        "./node_modules/@ionic/core/dist/esm/swipe-back-d2cdbf9a.js"))).createSwipeBackGesture(this.el, this.canStart.bind(this), this.onStart.bind(this), this.onMove.bind(this), this.onEnd.bind(this));
-        this.swipeGestureChanged();
+        this.ionMenuChange.emit({
+          disabled: this.disabled,
+          open: this._isOpen
+        });
+        this.updateState();
       }
 
-      componentDidUnload() {
-        for (const view of this.views) {
-          Object(_index_1469ea79_js__WEBPACK_IMPORTED_MODULE_6__["l"])(view.element, _constants_3c3e1099_js__WEBPACK_IMPORTED_MODULE_4__["d"]);
+      disconnectedCallback() {
+        this.blocker.destroy();
 
-          view._destroy();
+        _index_c58c7441_js__WEBPACK_IMPORTED_MODULE_7__["m"]._unregister(this);
+
+        if (this.animation) {
+          this.animation.destroy();
         }
 
         if (this.gesture) {
           this.gesture.destroy();
           this.gesture = undefined;
-        } // release swipe back gesture and transition
-
-
-        this.transInstr.length = this.views.length = 0;
-        this.destroyed = true;
-      }
-      /**
-       * Push a new component onto the current navigation stack. Pass any additional
-       * information along as an object. This additional information is accessible
-       * through NavParams.
-       *
-       * @param component The component to push onto the navigation stack.
-       * @param componentProps Any properties of the component.
-       * @param opts The navigation options.
-       * @param done The transition complete function.
-       */
-
-
-      push(component, componentProps, opts, done) {
-        return this.queueTrns({
-          insertStart: -1,
-          insertViews: [{
-            page: component,
-            params: componentProps
-          }],
-          opts
-        }, done);
-      }
-      /**
-       * Inserts a component into the navigation stack at the specified index.
-       * This is useful to add a component at any point in the navigation stack.
-       *
-       * @param insertIndex The index to insert the component at in the stack.
-       * @param component The component to insert into the navigation stack.
-       * @param componentProps Any properties of the component.
-       * @param opts The navigation options.
-       * @param done The transition complete function.
-       */
-
-
-      insert(insertIndex, component, componentProps, opts, done) {
-        return this.queueTrns({
-          insertStart: insertIndex,
-          insertViews: [{
-            page: component,
-            params: componentProps
-          }],
-          opts
-        }, done);
-      }
-      /**
-       * Inserts an array of components into the navigation stack at the specified index.
-       * The last component in the array will become instantiated as a view, and animate
-       * in to become the active view.
-       *
-       * @param insertIndex The index to insert the components at in the stack.
-       * @param insertComponents The components to insert into the navigation stack.
-       * @param opts The navigation options.
-       * @param done The transition complete function.
-       */
-
-
-      insertPages(insertIndex, insertComponents, opts, done) {
-        return this.queueTrns({
-          insertStart: insertIndex,
-          insertViews: insertComponents,
-          opts
-        }, done);
-      }
-      /**
-       * Pop a component off of the navigation stack. Navigates back from the current
-       * component.
-       *
-       * @param opts The navigation options.
-       * @param done The transition complete function.
-       */
-
-
-      pop(opts, done) {
-        return this.queueTrns({
-          removeStart: -1,
-          removeCount: 1,
-          opts
-        }, done);
-      }
-      /**
-       * Pop to a specific index in the navigation stack.
-       *
-       * @param indexOrViewCtrl The index or view controller to pop to.
-       * @param opts The navigation options.
-       * @param done The transition complete function.
-       */
-
-
-      popTo(indexOrViewCtrl, opts, done) {
-        const tiConfig = {
-          removeStart: -1,
-          removeCount: -1,
-          opts
-        };
-
-        if (typeof indexOrViewCtrl === 'object' && indexOrViewCtrl.component) {
-          tiConfig.removeView = indexOrViewCtrl;
-          tiConfig.removeStart = 1;
-        } else if (typeof indexOrViewCtrl === 'number') {
-          tiConfig.removeStart = indexOrViewCtrl + 1;
         }
 
-        return this.queueTrns(tiConfig, done);
-      }
-      /**
-       * Navigate back to the root of the stack, no matter how far back that is.
-       *
-       * @param opts The navigation options.
-       * @param done The transition complete function.
-       */
-
-
-      popToRoot(opts, done) {
-        return this.queueTrns({
-          removeStart: 1,
-          removeCount: -1,
-          opts
-        }, done);
-      }
-      /**
-       * Removes a component from the navigation stack at the specified index.
-       *
-       * @param startIndex The number to begin removal at.
-       * @param removeCount The number of components to remove.
-       * @param opts The navigation options.
-       * @param done The transition complete function.
-       */
-
-
-      removeIndex(startIndex, removeCount = 1, opts, done) {
-        return this.queueTrns({
-          removeStart: startIndex,
-          removeCount,
-          opts
-        }, done);
-      }
-      /**
-       * Set the root for the current navigation stack to a component.
-       *
-       * @param component The component to set as the root of the navigation stack.
-       * @param componentProps Any properties of the component.
-       * @param opts The navigation options.
-       * @param done The transition complete function.
-       */
-
-
-      setRoot(component, componentProps, opts, done) {
-        return this.setPages([{
-          page: component,
-          params: componentProps
-        }], opts, done);
-      }
-      /**
-       * Set the views of the current navigation stack and navigate to the last view.
-       * By default animations are disabled, but they can be enabled by passing options
-       * to the navigation controller. Navigation parameters can also be passed to the
-       * individual pages in the array.
-       *
-       * @param views The list of views to set as the navigation stack.
-       * @param opts The navigation options.
-       * @param done The transition complete function.
-       */
-
-
-      setPages(views, opts, done) {
-        if (opts == null) {
-          opts = {};
-        } // if animation wasn't set to true then default it to NOT animate
-
-
-        if (opts.animated !== true) {
-          opts.animated = false;
-        }
-
-        return this.queueTrns({
-          insertStart: 0,
-          insertViews: views,
-          removeStart: 0,
-          removeCount: -1,
-          opts
-        }, done);
-      }
-      /** @internal */
-
-
-      setRouteId(id, params, direction) {
-        const active = this.getActiveSync();
-
-        if (matches(active, id, params)) {
-          return Promise.resolve({
-            changed: false,
-            element: active.element
-          });
-        }
-
-        let resolve;
-        const promise = new Promise(r => resolve = r);
-        let finish;
-        const commonOpts = {
-          updateURL: false,
-          viewIsReady: enteringEl => {
-            let mark;
-            const p = new Promise(r => mark = r);
-            resolve({
-              changed: true,
-              element: enteringEl,
-              markVisible: async () => {
-                mark();
-                await finish;
-              }
-            });
-            return p;
-          }
-        };
-
-        if (direction === 'root') {
-          finish = this.setRoot(id, params, commonOpts);
-        } else {
-          const viewController = this.views.find(v => matches(v, id, params));
-
-          if (viewController) {
-            finish = this.popTo(viewController, Object.assign(Object.assign({}, commonOpts), {
-              direction: 'back'
-            }));
-          } else if (direction === 'forward') {
-            finish = this.push(id, params, commonOpts);
-          } else if (direction === 'back') {
-            finish = this.setRoot(id, params, Object.assign(Object.assign({}, commonOpts), {
-              direction: 'back',
-              animated: true
-            }));
-          }
-        }
-
-        return promise;
-      }
-      /** @internal */
-
-
-      async getRouteId() {
-        const active = this.getActiveSync();
-        return active ? {
-          id: active.element.tagName,
-          params: active.params,
-          element: active.element
-        } : undefined;
-      }
-      /**
-       * Get the active view.
-       */
-
-
-      getActive() {
-        return Promise.resolve(this.getActiveSync());
-      }
-      /**
-       * Get the view at the specified index.
-       *
-       * @param index The index of the view.
-       */
-
-
-      getByIndex(index) {
-        return Promise.resolve(this.views[index]);
-      }
-      /**
-       * Returns `true` if the current view can go back.
-       *
-       * @param view The view to check.
-       */
-
-
-      canGoBack(view) {
-        return Promise.resolve(this.canGoBackSync(view));
-      }
-      /**
-       * Get the previous view.
-       *
-       * @param view The view to get.
-       */
-
-
-      getPrevious(view) {
-        return Promise.resolve(this.getPreviousSync(view));
+        this.animation = undefined;
+        this.contentEl = this.backdropEl = this.menuInnerEl = undefined;
       }
 
-      getLength() {
-        return this.views.length;
+      onSplitPaneChanged(ev) {
+        this.isPaneVisible = ev.detail.isPane(this.el);
+        this.updateState();
       }
 
-      getActiveSync() {
-        return this.views[this.views.length - 1];
-      }
+      onBackdropClick(ev) {
+        if (this._isOpen && this.lastOnEnd < ev.timeStamp - 100) {
+          const shouldClose = ev.composedPath ? !ev.composedPath().includes(this.menuInnerEl) : false;
 
-      canGoBackSync(view = this.getActiveSync()) {
-        return !!(view && this.getPreviousSync(view));
-      }
-
-      getPreviousSync(view = this.getActiveSync()) {
-        if (!view) {
-          return undefined;
-        }
-
-        const views = this.views;
-        const index = views.indexOf(view);
-        return index > 0 ? views[index - 1] : undefined;
-      } // _queueTrns() adds a navigation stack change to the queue and schedules it to run:
-      // 1. _nextTrns(): consumes the next transition in the queue
-      // 2. _viewInit(): initializes enteringView if required
-      // 3. _viewTest(): ensures canLeave/canEnter Returns `true`, so the operation can continue
-      // 4. _postViewInit(): add/remove the views from the navigation stack
-      // 5. _transitionInit(): initializes the visual transition if required and schedules it to run
-      // 6. _viewAttachToDOM(): attaches the enteringView to the DOM
-      // 7. _transitionStart(): called once the transition actually starts, it initializes the Animation underneath.
-      // 8. _transitionFinish(): called once the transition finishes
-      // 9. _cleanup(): syncs the navigation internal state with the DOM. For example it removes the pages from the DOM or hides/show them.
-
-
-      queueTrns(ti, done) {
-        if (this.isTransitioning && ti.opts != null && ti.opts.skipIfBusy) {
-          return Promise.resolve(false);
-        }
-
-        const promise = new Promise((resolve, reject) => {
-          ti.resolve = resolve;
-          ti.reject = reject;
-        });
-        ti.done = done; // Normalize empty
-
-        if (ti.insertViews && ti.insertViews.length === 0) {
-          ti.insertViews = undefined;
-        } // Enqueue transition instruction
-
-
-        this.transInstr.push(ti); // if there isn't a transition already happening
-        // then this will kick off this transition
-
-        this.nextTrns();
-        return promise;
-      }
-
-      success(result, ti) {
-        if (this.destroyed) {
-          this.fireError('nav controller was destroyed', ti);
-          return;
-        }
-
-        if (ti.done) {
-          ti.done(result.hasCompleted, result.requiresTransition, result.enteringView, result.leavingView, result.direction);
-        }
-
-        ti.resolve(result.hasCompleted);
-
-        if (ti.opts.updateURL !== false && this.useRouter) {
-          const router = document.querySelector('ion-router');
-
-          if (router) {
-            const direction = result.direction === 'back' ? 'back' : 'forward';
-            router.navChanged(direction);
+          if (shouldClose) {
+            ev.preventDefault();
+            ev.stopPropagation();
+            this.close();
           }
         }
       }
+      /**
+       * Returns `true` is the menu is open.
+       */
 
-      failed(rejectReason, ti) {
-        if (this.destroyed) {
-          this.fireError('nav controller was destroyed', ti);
-          return;
-        }
 
-        this.transInstr.length = 0;
-        this.fireError(rejectReason, ti);
+      isOpen() {
+        return Promise.resolve(this._isOpen);
+      }
+      /**
+       * Returns `true` is the menu is active.
+       *
+       * A menu is active when it can be opened or closed, meaning it's enabled
+       * and it's not part of a `ion-split-pane`.
+       */
+
+
+      isActive() {
+        return Promise.resolve(this._isActive());
+      }
+      /**
+       * Opens the menu. If the menu is already open or it can't be opened,
+       * it returns `false`.
+       */
+
+
+      open(animated = true) {
+        return this.setOpen(true, animated);
+      }
+      /**
+       * Closes the menu. If the menu is already closed or it can't be closed,
+       * it returns `false`.
+       */
+
+
+      close(animated = true) {
+        return this.setOpen(false, animated);
+      }
+      /**
+       * Toggles the menu. If the menu is already open, it will try to close, otherwise it will try to open it.
+       * If the operation can't be completed successfully, it returns `false`.
+       */
+
+
+      toggle(animated = true) {
+        return this.setOpen(!this._isOpen, animated);
+      }
+      /**
+       * Opens or closes the button.
+       * If the operation can't be completed successfully, it returns `false`.
+       */
+
+
+      setOpen(shouldOpen, animated = true) {
+        return _index_c58c7441_js__WEBPACK_IMPORTED_MODULE_7__["m"]._setOpen(this, shouldOpen, animated);
       }
 
-      fireError(rejectReason, ti) {
-        if (ti.done) {
-          ti.done(false, false, rejectReason);
-        }
-
-        if (ti.reject && !this.destroyed) {
-          ti.reject(rejectReason);
-        } else {
-          ti.resolve(false);
-        }
-      }
-
-      nextTrns() {
-        // this is the framework's bread 'n butta function
-        // only one transition is allowed at any given time
-        if (this.isTransitioning) {
-          return false;
-        } // there is no transition happening right now
-        // get the next instruction
-
-
-        const ti = this.transInstr.shift();
-
-        if (!ti) {
+      async _setOpen(shouldOpen, animated = true) {
+        // If the menu is disabled or it is currently being animated, let's do nothing
+        if (!this._isActive() || this.isAnimating || shouldOpen === this._isOpen) {
           return false;
         }
 
-        this.runTransition(ti);
+        this.beforeAnimation(shouldOpen);
+        await this.loadAnimation();
+        await this.startAnimation(shouldOpen, animated);
+        this.afterAnimation(shouldOpen);
         return true;
       }
 
-      async runTransition(ti) {
-        try {
-          // set that this nav is actively transitioning
-          this.ionNavWillChange.emit();
-          this.isTransitioning = true;
-          this.prepareTI(ti);
-          const leavingView = this.getActiveSync();
-          const enteringView = this.getEnteringView(ti, leavingView);
+      async loadAnimation() {
+        // Menu swipe animation takes the menu's inner width as parameter,
+        // If `offsetWidth` changes, we need to create a new animation.
+        const width = this.menuInnerEl.offsetWidth;
 
-          if (!leavingView && !enteringView) {
-            throw new Error('no views in the stack to be removed');
-          }
-
-          if (enteringView && enteringView.state === VIEW_STATE_NEW) {
-            await enteringView.init(this.el);
-          }
-
-          this.postViewInit(enteringView, leavingView, ti); // Needs transition?
-
-          const requiresTransition = (ti.enteringRequiresTransition || ti.leavingRequiresTransition) && enteringView !== leavingView;
-          const result = requiresTransition ? await this.transition(enteringView, leavingView, ti) : {
-            // transition is not required, so we are already done!
-            // they're inserting/removing the views somewhere in the middle or
-            // beginning, so visually nothing needs to animate/transition
-            // resolve immediately because there's no animation that's happening
-            hasCompleted: true,
-            requiresTransition: false
-          };
-          this.success(result, ti);
-          this.ionNavDidChange.emit();
-        } catch (rejectReason) {
-          this.failed(rejectReason, ti);
-        }
-
-        this.isTransitioning = false;
-        this.nextTrns();
-      }
-
-      prepareTI(ti) {
-        const viewsLength = this.views.length;
-        ti.opts = ti.opts || {};
-
-        if (ti.opts.delegate === undefined) {
-          ti.opts.delegate = this.delegate;
-        }
-
-        if (ti.removeView !== undefined) {
-          Object(_helpers_46f4a262_js__WEBPACK_IMPORTED_MODULE_2__["b"])(ti.removeStart !== undefined, 'removeView needs removeStart');
-          Object(_helpers_46f4a262_js__WEBPACK_IMPORTED_MODULE_2__["b"])(ti.removeCount !== undefined, 'removeView needs removeCount');
-          const index = this.views.indexOf(ti.removeView);
-
-          if (index < 0) {
-            throw new Error('removeView was not found');
-          }
-
-          ti.removeStart += index;
-        }
-
-        if (ti.removeStart !== undefined) {
-          if (ti.removeStart < 0) {
-            ti.removeStart = viewsLength - 1;
-          }
-
-          if (ti.removeCount < 0) {
-            ti.removeCount = viewsLength - ti.removeStart;
-          }
-
-          ti.leavingRequiresTransition = ti.removeCount > 0 && ti.removeStart + ti.removeCount === viewsLength;
-        }
-
-        if (ti.insertViews) {
-          // allow -1 to be passed in to auto push it on the end
-          // and clean up the index if it's larger then the size of the stack
-          if (ti.insertStart < 0 || ti.insertStart > viewsLength) {
-            ti.insertStart = viewsLength;
-          }
-
-          ti.enteringRequiresTransition = ti.insertStart === viewsLength;
-        }
-
-        const insertViews = ti.insertViews;
-
-        if (!insertViews) {
+        if (width === this.width && this.animation !== undefined) {
           return;
         }
 
-        Object(_helpers_46f4a262_js__WEBPACK_IMPORTED_MODULE_2__["b"])(insertViews.length > 0, 'length can not be zero');
-        const viewControllers = convertToViews(insertViews);
+        this.width = width; // Destroy existing animation
 
-        if (viewControllers.length === 0) {
-          throw new Error('invalid views to insert');
-        } // Check all the inserted view are correct
+        if (this.animation) {
+          this.animation.destroy();
+          this.animation = undefined;
+        } // Create new animation
 
 
-        for (const view of viewControllers) {
-          view.delegate = ti.opts.delegate;
-          const nav = view.nav;
+        this.animation = await _index_c58c7441_js__WEBPACK_IMPORTED_MODULE_7__["m"]._createAnimation(this.type, this);
 
-          if (nav && nav !== this) {
-            throw new Error('inserted view was already inserted');
-          }
-
-          if (view.state === VIEW_STATE_DESTROYED) {
-            throw new Error('inserted view was already destroyed');
-          }
+        if (!_config_3c7f3790_js__WEBPACK_IMPORTED_MODULE_1__["b"].getBoolean('animated', true)) {
+          this.animation.duration(0);
         }
 
-        ti.insertViews = viewControllers;
+        this.animation.fill('both');
       }
 
-      getEnteringView(ti, leavingView) {
-        const insertViews = ti.insertViews;
-
-        if (insertViews !== undefined) {
-          // grab the very last view of the views to be inserted
-          // and initialize it as the new entering view
-          return insertViews[insertViews.length - 1];
-        }
-
-        const removeStart = ti.removeStart;
-
-        if (removeStart !== undefined) {
-          const views = this.views;
-          const removeEnd = removeStart + ti.removeCount;
-
-          for (let i = views.length - 1; i >= 0; i--) {
-            const view = views[i];
-
-            if ((i < removeStart || i >= removeEnd) && view !== leavingView) {
-              return view;
-            }
+      async startAnimation(shouldOpen, animated) {
+        const isReversed = !shouldOpen;
+        const ani = this.animation.direction(isReversed ? 'reverse' : 'normal').easing(isReversed ? this.easingReverse : this.easing).onFinish(() => {
+          if (ani.getDirection() === 'reverse') {
+            ani.direction('normal');
           }
-        }
+        });
 
-        return undefined;
-      }
-
-      postViewInit(enteringView, leavingView, ti) {
-        Object(_helpers_46f4a262_js__WEBPACK_IMPORTED_MODULE_2__["b"])(leavingView || enteringView, 'Both leavingView and enteringView are null');
-        Object(_helpers_46f4a262_js__WEBPACK_IMPORTED_MODULE_2__["b"])(ti.resolve, 'resolve must be valid');
-        Object(_helpers_46f4a262_js__WEBPACK_IMPORTED_MODULE_2__["b"])(ti.reject, 'reject must be valid');
-        const opts = ti.opts;
-        const insertViews = ti.insertViews;
-        const removeStart = ti.removeStart;
-        const removeCount = ti.removeCount;
-        let destroyQueue; // there are views to remove
-
-        if (removeStart !== undefined && removeCount !== undefined) {
-          Object(_helpers_46f4a262_js__WEBPACK_IMPORTED_MODULE_2__["b"])(removeStart >= 0, 'removeStart can not be negative');
-          Object(_helpers_46f4a262_js__WEBPACK_IMPORTED_MODULE_2__["b"])(removeCount >= 0, 'removeCount can not be negative');
-          destroyQueue = [];
-
-          for (let i = 0; i < removeCount; i++) {
-            const view = this.views[i + removeStart];
-
-            if (view && view !== enteringView && view !== leavingView) {
-              destroyQueue.push(view);
-            }
-          } // default the direction to "back"
-
-
-          opts.direction = opts.direction || 'back';
-        }
-
-        const finalBalance = this.views.length + (insertViews !== undefined ? insertViews.length : 0) - (removeCount !== undefined ? removeCount : 0);
-        Object(_helpers_46f4a262_js__WEBPACK_IMPORTED_MODULE_2__["b"])(finalBalance >= 0, 'final balance can not be negative');
-
-        if (finalBalance === 0) {
-          console.warn("You can't remove all the pages in the navigation stack. nav.pop() is probably called too many times.", this, this.el);
-          throw new Error('navigation stack needs at least one root page');
-        } // At this point the transition can not be rejected, any throw should be an error
-        // there are views to insert
-
-
-        if (insertViews) {
-          // add the views to the
-          let insertIndex = ti.insertStart;
-
-          for (const view of insertViews) {
-            this.insertViewAt(view, insertIndex);
-            insertIndex++;
-          }
-
-          if (ti.enteringRequiresTransition) {
-            // default to forward if not already set
-            opts.direction = opts.direction || 'forward';
-          }
-        } // if the views to be removed are in the beginning or middle
-        // and there is not a view that needs to visually transition out
-        // then just destroy them and don't transition anything
-        // batch all of lifecycles together
-        // let's make sure, callbacks are zoned
-
-
-        if (destroyQueue && destroyQueue.length > 0) {
-          for (const view of destroyQueue) {
-            Object(_index_1469ea79_js__WEBPACK_IMPORTED_MODULE_6__["l"])(view.element, _constants_3c3e1099_js__WEBPACK_IMPORTED_MODULE_4__["b"]);
-            Object(_index_1469ea79_js__WEBPACK_IMPORTED_MODULE_6__["l"])(view.element, _constants_3c3e1099_js__WEBPACK_IMPORTED_MODULE_4__["c"]);
-            Object(_index_1469ea79_js__WEBPACK_IMPORTED_MODULE_6__["l"])(view.element, _constants_3c3e1099_js__WEBPACK_IMPORTED_MODULE_4__["d"]);
-          } // once all lifecycle events has been delivered, we can safely detroy the views
-
-
-          for (const view of destroyQueue) {
-            this.destroyView(view);
-          }
-        }
-      }
-
-      async transition(enteringView, leavingView, ti) {
-        // we should animate (duration > 0) if the pushed page is not the first one (startup)
-        // or if it is a portal (modal, actionsheet, etc.)
-        const opts = ti.opts;
-        const progressCallback = opts.progressAnimation ? ani => this.sbAni = ani : undefined;
-        const mode = Object(_core_0a8d4d2e_js__WEBPACK_IMPORTED_MODULE_0__["c"])(this);
-        const enteringEl = enteringView.element;
-        const leavingEl = leavingView && leavingView.element;
-        const animationOpts = Object.assign({
-          mode,
-          showGoBack: this.canGoBackSync(enteringView),
-          baseEl: this.el,
-          animationBuilder: this.animation || opts.animationBuilder || _config_3c7f3790_js__WEBPACK_IMPORTED_MODULE_1__["b"].get('navAnimation'),
-          progressCallback,
-          animated: this.animated && _config_3c7f3790_js__WEBPACK_IMPORTED_MODULE_1__["b"].getBoolean('animated', true),
-          enteringEl,
-          leavingEl
-        }, opts);
-        const {
-          hasCompleted
-        } = await Object(_index_1469ea79_js__WEBPACK_IMPORTED_MODULE_6__["t"])(animationOpts);
-        return this.transitionFinish(hasCompleted, enteringView, leavingView, opts);
-      }
-
-      transitionFinish(hasCompleted, enteringView, leavingView, opts) {
-        const cleanupView = hasCompleted ? enteringView : leavingView;
-
-        if (cleanupView) {
-          this.cleanup(cleanupView);
-        }
-
-        return {
-          hasCompleted,
-          requiresTransition: true,
-          enteringView,
-          leavingView,
-          direction: opts.direction
-        };
-      }
-
-      insertViewAt(view, index) {
-        const views = this.views;
-        const existingIndex = views.indexOf(view);
-
-        if (existingIndex > -1) {
-          // this view is already in the stack!!
-          // move it to its new location
-          Object(_helpers_46f4a262_js__WEBPACK_IMPORTED_MODULE_2__["b"])(view.nav === this, 'view is not part of the nav');
-          views.splice(index, 0, views.splice(existingIndex, 1)[0]);
+        if (animated) {
+          await ani.play();
         } else {
-          Object(_helpers_46f4a262_js__WEBPACK_IMPORTED_MODULE_2__["b"])(!view.nav, 'nav is used'); // this is a new view to add to the stack
-          // create the new entering view
-
-          view.nav = this; // insert the entering view into the correct index in the stack
-
-          views.splice(index, 0, view);
+          ani.play({
+            sync: true
+          });
         }
       }
 
-      removeView(view) {
-        Object(_helpers_46f4a262_js__WEBPACK_IMPORTED_MODULE_2__["b"])(view.state === VIEW_STATE_ATTACHED || view.state === VIEW_STATE_DESTROYED, 'view state should be loaded or destroyed');
-        const views = this.views;
-        const index = views.indexOf(view);
-        Object(_helpers_46f4a262_js__WEBPACK_IMPORTED_MODULE_2__["b"])(index > -1, 'view must be part of the stack');
-
-        if (index >= 0) {
-          views.splice(index, 1);
-        }
+      _isActive() {
+        return !this.disabled && !this.isPaneVisible;
       }
 
-      destroyView(view) {
-        view._destroy();
-
-        this.removeView(view);
-      }
-      /**
-       * DOM WRITE
-       */
-
-
-      cleanup(activeView) {
-        // ok, cleanup time!! Destroy all of the views that are
-        // INACTIVE and come after the active view
-        // only do this if the views exist, though
-        if (this.destroyed) {
-          return;
-        }
-
-        const views = this.views;
-        const activeViewIndex = views.indexOf(activeView);
-
-        for (let i = views.length - 1; i >= 0; i--) {
-          const view = views[i];
-          const element = view.element;
-
-          if (i > activeViewIndex) {
-            // this view comes after the active view
-            // let's unload it
-            Object(_index_1469ea79_js__WEBPACK_IMPORTED_MODULE_6__["l"])(element, _constants_3c3e1099_js__WEBPACK_IMPORTED_MODULE_4__["d"]);
-            this.destroyView(view);
-          } else if (i < activeViewIndex) {
-            // this view comes before the active view
-            // and it is not a portal then ensure it is hidden
-            Object(_index_1469ea79_js__WEBPACK_IMPORTED_MODULE_6__["s"])(element, true);
-          }
-        }
+      canSwipe() {
+        return this.swipeGesture && !this.isAnimating && this._isActive();
       }
 
-      canStart() {
-        return !!this.swipeGesture && !this.isTransitioning && this.transInstr.length === 0 && this.animationEnabled && this.canGoBackSync();
+      canStart(detail) {
+        // Do not allow swipe gesture if a modal is open
+        const isModalPresented = !!document.querySelector('ion-modal.show-modal');
+
+        if (isModalPresented || !this.canSwipe()) {
+          return false;
+        }
+
+        if (this._isOpen) {
+          return true; // TODO error
+        } else if (_index_c58c7441_js__WEBPACK_IMPORTED_MODULE_7__["m"]._getOpenSync()) {
+          return false;
+        }
+
+        return checkEdgeSide(window, detail.currentX, this.isEndSide, this.maxEdgeStart);
+      }
+
+      onWillStart() {
+        this.beforeAnimation(!this._isOpen);
+        return this.loadAnimation();
       }
 
       onStart() {
-        this.queueTrns({
-          removeStart: -1,
-          removeCount: 1,
-          opts: {
-            direction: 'back',
-            progressAnimation: true
-          }
-        }, undefined);
+        if (!this.isAnimating || !this.animation) {
+          Object(_helpers_46f4a262_js__WEBPACK_IMPORTED_MODULE_2__["b"])(false, 'isAnimating has to be true');
+          return;
+        } // the cloned animation should not use an easing curve during seek
+
+
+        this.animation.progressStart(true, this._isOpen ? 1 : 0);
       }
 
-      onMove(stepValue) {
-        if (this.sbAni) {
-          this.sbAni.progressStep(stepValue);
+      onMove(detail) {
+        if (!this.isAnimating || !this.animation) {
+          Object(_helpers_46f4a262_js__WEBPACK_IMPORTED_MODULE_2__["b"])(false, 'isAnimating has to be true');
+          return;
+        }
+
+        const delta = computeDelta(detail.deltaX, this._isOpen, this.isEndSide);
+        const stepValue = delta / this.width;
+        this.animation.progressStep(this._isOpen ? 1 - stepValue : stepValue);
+      }
+
+      onEnd(detail) {
+        if (!this.isAnimating || !this.animation) {
+          Object(_helpers_46f4a262_js__WEBPACK_IMPORTED_MODULE_2__["b"])(false, 'isAnimating has to be true');
+          return;
+        }
+
+        const isOpen = this._isOpen;
+        const isEndSide = this.isEndSide;
+        const delta = computeDelta(detail.deltaX, isOpen, isEndSide);
+        const width = this.width;
+        const stepValue = delta / width;
+        const velocity = detail.velocityX;
+        const z = width / 2.0;
+        const shouldCompleteRight = velocity >= 0 && (velocity > 0.2 || detail.deltaX > z);
+        const shouldCompleteLeft = velocity <= 0 && (velocity < -0.2 || detail.deltaX < -z);
+        const shouldComplete = isOpen ? isEndSide ? shouldCompleteRight : shouldCompleteLeft : isEndSide ? shouldCompleteLeft : shouldCompleteRight;
+        let shouldOpen = !isOpen && shouldComplete;
+
+        if (isOpen && !shouldComplete) {
+          shouldOpen = true;
+        }
+
+        this.lastOnEnd = detail.currentTime; // Account for rounding errors in JS
+
+        let newStepValue = shouldComplete ? 0.001 : -0.001;
+        /**
+         * TODO: stepValue can sometimes return a negative
+         * value, but you can't have a negative time value
+         * for the cubic bezier curve (at least with web animations)
+         * Not sure if the negative step value is an error or not
+         */
+
+        const adjustedStepValue = stepValue < 0 ? 0.01 : stepValue;
+        /**
+         * Animation will be reversed here, so need to
+         * reverse the easing curve as well
+         *
+         * Additionally, we need to account for the time relative
+         * to the new easing curve, as `stepValue` is going to be given
+         * in terms of a linear curve.
+         */
+
+        newStepValue += Object(_cubic_bezier_1d592096_js__WEBPACK_IMPORTED_MODULE_4__["g"])([0, 0], [0.4, 0], [0.6, 1], [1, 1], Object(_helpers_46f4a262_js__WEBPACK_IMPORTED_MODULE_2__["c"])(0, adjustedStepValue, 0.9999))[0] || 0;
+        const playTo = this._isOpen ? !shouldComplete : shouldComplete;
+        this.animation.easing('cubic-bezier(0.4, 0.0, 0.6, 1)').onFinish(() => this.afterAnimation(shouldOpen), {
+          oneTimeCallback: true
+        }).progressEnd(playTo ? 1 : 0, this._isOpen ? 1 - newStepValue : newStepValue, 300);
+      }
+
+      beforeAnimation(shouldOpen) {
+        Object(_helpers_46f4a262_js__WEBPACK_IMPORTED_MODULE_2__["b"])(!this.isAnimating, '_before() should not be called while animating'); // this places the menu into the correct location before it animates in
+        // this css class doesn't actually kick off any animations
+
+        this.el.classList.add(SHOW_MENU);
+
+        if (this.backdropEl) {
+          this.backdropEl.classList.add(SHOW_BACKDROP);
+        }
+
+        this.blocker.block();
+        this.isAnimating = true;
+
+        if (shouldOpen) {
+          this.ionWillOpen.emit();
+        } else {
+          this.ionWillClose.emit();
         }
       }
 
-      onEnd(shouldComplete, stepValue, dur) {
-        if (this.sbAni) {
-          this.animationEnabled = false;
-          this.sbAni.onFinish(() => {
-            this.animationEnabled = true;
-          }, {
-            oneTimeCallback: true
-          }); // Account for rounding errors in JS
+      afterAnimation(isOpen) {
+        Object(_helpers_46f4a262_js__WEBPACK_IMPORTED_MODULE_2__["b"])(this.isAnimating, '_before() should be called while animating'); // keep opening/closing the menu disabled for a touch more yet
+        // only add listeners/css if it's enabled and isOpen
+        // and only remove listeners/css if it's not open
+        // emit opened/closed events
 
-          let newStepValue = shouldComplete ? -0.001 : 0.001;
-          /**
-           * Animation will be reversed here, so need to
-           * reverse the easing curve as well
-           *
-           * Additionally, we need to account for the time relative
-           * to the new easing curve, as `stepValue` is going to be given
-           * in terms of a linear curve.
-           */
+        this._isOpen = isOpen;
+        this.isAnimating = false;
 
-          if (!shouldComplete) {
-            this.sbAni.easing('cubic-bezier(1, 0, 0.68, 0.28)');
-            newStepValue += Object(_cubic_bezier_1d592096_js__WEBPACK_IMPORTED_MODULE_3__["g"])([0, 0], [1, 0], [0.68, 0.28], [1, 1], stepValue)[0];
-          } else {
-            newStepValue += Object(_cubic_bezier_1d592096_js__WEBPACK_IMPORTED_MODULE_3__["g"])([0, 0], [0.32, 0.72], [0, 1], [1, 1], stepValue)[0];
+        if (!this._isOpen) {
+          this.blocker.unblock();
+        }
+
+        if (isOpen) {
+          // add css class
+          if (this.contentEl) {
+            this.contentEl.classList.add(MENU_CONTENT_OPEN);
+          } // emit open event
+
+
+          this.ionDidOpen.emit();
+        } else {
+          // remove css classes
+          this.el.classList.remove(SHOW_MENU);
+
+          if (this.contentEl) {
+            this.contentEl.classList.remove(MENU_CONTENT_OPEN);
           }
 
-          this.sbAni.progressEnd(shouldComplete ? 1 : 0, newStepValue, dur);
+          if (this.backdropEl) {
+            this.backdropEl.classList.remove(SHOW_BACKDROP);
+          }
+
+          if (this.animation) {
+            this.animation.stop();
+          } // emit close event
+
+
+          this.ionDidClose.emit();
         }
+      }
+
+      updateState() {
+        const isActive = this._isActive();
+
+        if (this.gesture) {
+          this.gesture.enable(isActive && this.swipeGesture);
+        } // Close menu immediately
+
+
+        if (!isActive && this._isOpen) {
+          // close if this menu is open, and should not be enabled
+          this.forceClosing();
+        }
+
+        if (!this.disabled) {
+          _index_c58c7441_js__WEBPACK_IMPORTED_MODULE_7__["m"]._setActiveMenu(this);
+        }
+
+        Object(_helpers_46f4a262_js__WEBPACK_IMPORTED_MODULE_2__["b"])(!this.isAnimating, 'can not be animating');
+      }
+
+      forceClosing() {
+        Object(_helpers_46f4a262_js__WEBPACK_IMPORTED_MODULE_2__["b"])(this._isOpen, 'menu cannot be closed');
+        this.isAnimating = true;
+        const ani = this.animation.direction('reverse');
+        ani.play({
+          sync: true
+        });
+        this.afterAnimation(false);
       }
 
       render() {
-        return Object(_core_0a8d4d2e_js__WEBPACK_IMPORTED_MODULE_0__["h"])("slot", null);
+        const {
+          isEndSide,
+          type,
+          disabled,
+          mode,
+          isPaneVisible
+        } = this;
+        return Object(_core_0a8d4d2e_js__WEBPACK_IMPORTED_MODULE_0__["h"])(_core_0a8d4d2e_js__WEBPACK_IMPORTED_MODULE_0__["H"], {
+          role: "navigation",
+          class: {
+            [mode]: true,
+            ["menu-type-".concat(type)]: true,
+            'menu-enabled': !disabled,
+            'menu-side-end': isEndSide,
+            'menu-side-start': !isEndSide,
+            'menu-pane-visible': isPaneVisible
+          }
+        }, Object(_core_0a8d4d2e_js__WEBPACK_IMPORTED_MODULE_0__["h"])("div", {
+          class: "menu-inner",
+          ref: el => this.menuInnerEl = el
+        }, Object(_core_0a8d4d2e_js__WEBPACK_IMPORTED_MODULE_0__["h"])("slot", null)), Object(_core_0a8d4d2e_js__WEBPACK_IMPORTED_MODULE_0__["h"])("ion-backdrop", {
+          ref: el => this.backdropEl = el,
+          class: "menu-backdrop",
+          tappable: false,
+          stopPropagation: false
+        }));
       }
 
       get el() {
@@ -1026,65 +592,165 @@
 
       static get watchers() {
         return {
-          "swipeGesture": ["swipeGestureChanged"],
-          "root": ["rootChanged"]
+          "type": ["typeChanged"],
+          "disabled": ["disabledChanged"],
+          "side": ["sideChanged"],
+          "swipeGesture": ["swipeGestureChanged"]
         };
       }
 
       static get style() {
-        return ":host{left:0;right:0;top:0;bottom:0;position:absolute;contain:layout size style;overflow:hidden;z-index:0}";
+        return ":host{--width:304px;--min-width:auto;--max-width:auto;--height:100%;--min-height:auto;--max-height:auto;--background:var(--ion-background-color,#fff);left:0;right:0;top:0;bottom:0;display:none;position:absolute;contain:strict}:host(.show-menu){display:block}.menu-inner{left:0;right:auto;top:0;bottom:0;-webkit-transform:translate3d(-9999px,0,0);transform:translate3d(-9999px,0,0);display:-ms-flexbox;display:flex;position:absolute;-ms-flex-direction:column;flex-direction:column;-ms-flex-pack:justify;justify-content:space-between;width:var(--width);min-width:var(--min-width);max-width:var(--max-width);height:var(--height);min-height:var(--min-height);max-height:var(--max-height);background:var(--background);contain:strict}:host-context([dir=rtl]) .menu-inner,[dir=rtl] .menu-inner{left:unset;right:unset;left:auto;right:0;-webkit-transform:translate3d(calc(-1 * -9999px),0,0);transform:translate3d(calc(-1 * -9999px),0,0)}:host(.menu-side-start) .menu-inner{--ion-safe-area-right:0px;right:auto;left:0}:host(.menu-side-end) .menu-inner{--ion-safe-area-left:0px;right:0;left:auto}ion-backdrop{display:none;opacity:.01;z-index:-1}\@media (max-width:340px){.menu-inner{--width:264px}}:host(.menu-type-reveal){z-index:0}:host(.menu-type-reveal.show-menu) .menu-inner{-webkit-transform:translateZ(0);transform:translateZ(0)}:host(.menu-type-overlay){z-index:1000}:host(.menu-type-overlay) .show-backdrop{display:block;cursor:pointer}:host(.menu-pane-visible){width:var(--width);min-width:var(--min-width);max-width:var(--max-width)}:host(.menu-pane-visible) .menu-inner{left:0;right:0;width:auto;-webkit-transform:none!important;transform:none!important;-webkit-box-shadow:none!important;box-shadow:none!important}:host(.menu-pane-visible) ion-backdrop{display:hidden!important}:host(.menu-type-overlay) .menu-inner{-webkit-box-shadow:4px 0 16px rgba(0,0,0,.18);box-shadow:4px 0 16px rgba(0,0,0,.18)}";
       }
 
     };
 
-    const navLink = (el, routerDirection, component, componentProps) => {
-      const nav = el.closest('ion-nav');
-
-      if (nav) {
-        if (routerDirection === 'forward') {
-          if (component !== undefined) {
-            return nav.push(component, componentProps, {
-              skipIfBusy: true
-            });
-          }
-        } else if (routerDirection === 'root') {
-          if (component !== undefined) {
-            return nav.setRoot(component, componentProps, {
-              skipIfBusy: true
-            });
-          }
-        } else if (routerDirection === 'back') {
-          return nav.pop({
-            skipIfBusy: true
-          });
-        }
-      }
-
-      return Promise.resolve(false);
+    const computeDelta = (deltaX, isOpen, isEndSide) => {
+      return Math.max(0, isOpen !== isEndSide ? -deltaX : deltaX);
     };
 
-    const NavLink = class {
+    const checkEdgeSide = (win, posX, isEndSide, maxEdgeStart) => {
+      if (isEndSide) {
+        return posX >= win.innerWidth - maxEdgeStart;
+      } else {
+        return posX <= maxEdgeStart;
+      }
+    };
+
+    const SHOW_MENU = 'show-menu';
+    const SHOW_BACKDROP = 'show-backdrop';
+    const MENU_CONTENT_OPEN = 'menu-content-open'; // Given a menu, return whether or not the menu toggle should be visible
+
+    const updateVisibility = async menu => {
+      const menuEl = await _index_c58c7441_js__WEBPACK_IMPORTED_MODULE_7__["m"].get(menu);
+      return !!(menuEl && (await menuEl.isActive()));
+    };
+
+    const MenuButton = class {
       constructor(hostRef) {
         Object(_core_0a8d4d2e_js__WEBPACK_IMPORTED_MODULE_0__["r"])(this, hostRef);
+        this.visible = false;
         /**
-         * The transition direction when navigating to another page.
+         * If `true`, the user cannot interact with the menu button.
          */
 
-        this.routerDirection = 'forward';
+        this.disabled = false;
+        /**
+         * Automatically hides the menu button when the corresponding menu is not active
+         */
 
-        this.onClick = () => {
-          return navLink(this.el, this.routerDirection, this.component, this.componentProps);
+        this.autoHide = true;
+        /**
+         * The type of the button.
+         */
+
+        this.type = 'button';
+
+        this.onClick = async () => {
+          return _index_c58c7441_js__WEBPACK_IMPORTED_MODULE_7__["m"].toggle(this.menu);
         };
       }
 
+      componentDidLoad() {
+        this.visibilityChanged();
+      }
+
+      async visibilityChanged() {
+        this.visible = await updateVisibility(this.menu);
+      }
+
       render() {
+        const {
+          color,
+          disabled
+        } = this;
+        const mode = Object(_core_0a8d4d2e_js__WEBPACK_IMPORTED_MODULE_0__["c"])(this);
+
+        const menuIcon = _config_3c7f3790_js__WEBPACK_IMPORTED_MODULE_1__["b"].get('menuIcon', mode === 'ios' ? 'menu-outline' : 'menu-sharp');
+
+        const hidden = this.autoHide && !this.visible;
+        const attrs = {
+          type: this.type
+        };
         return Object(_core_0a8d4d2e_js__WEBPACK_IMPORTED_MODULE_0__["h"])(_core_0a8d4d2e_js__WEBPACK_IMPORTED_MODULE_0__["H"], {
-          onClick: this.onClick
-        });
+          onClick: this.onClick,
+          "aria-disabled": disabled ? 'true' : null,
+          "aria-hidden": hidden ? 'true' : null,
+          class: Object.assign(Object.assign({
+            [mode]: true
+          }, Object(_theme_18cbe2cc_js__WEBPACK_IMPORTED_MODULE_8__["c"])(color)), {
+            'button': true,
+            'menu-button-hidden': hidden,
+            'menu-button-disabled': disabled,
+            'in-toolbar': Object(_theme_18cbe2cc_js__WEBPACK_IMPORTED_MODULE_8__["h"])('ion-toolbar', this.el),
+            'in-toolbar-color': Object(_theme_18cbe2cc_js__WEBPACK_IMPORTED_MODULE_8__["h"])('ion-toolbar[color]', this.el),
+            'ion-activatable': true,
+            'ion-focusable': true
+          })
+        }, Object(_core_0a8d4d2e_js__WEBPACK_IMPORTED_MODULE_0__["h"])("button", Object.assign({}, attrs, {
+          disabled: disabled,
+          class: "button-native"
+        }), Object(_core_0a8d4d2e_js__WEBPACK_IMPORTED_MODULE_0__["h"])("span", {
+          class: "button-inner"
+        }, Object(_core_0a8d4d2e_js__WEBPACK_IMPORTED_MODULE_0__["h"])("slot", null, Object(_core_0a8d4d2e_js__WEBPACK_IMPORTED_MODULE_0__["h"])("ion-icon", {
+          icon: menuIcon,
+          mode: mode,
+          lazy: false
+        }))), mode === 'md' && Object(_core_0a8d4d2e_js__WEBPACK_IMPORTED_MODULE_0__["h"])("ion-ripple-effect", {
+          type: "unbounded"
+        })));
       }
 
       get el() {
         return Object(_core_0a8d4d2e_js__WEBPACK_IMPORTED_MODULE_0__["e"])(this);
+      }
+
+      static get style() {
+        return ":host{--background:transparent;--color-focused:currentColor;--border-radius:initial;--padding-top:0;--padding-bottom:0;color:var(--color);text-align:center;text-decoration:none;text-overflow:ellipsis;text-transform:none;white-space:nowrap;-webkit-font-kerning:none;font-kerning:none}.button-native{border-radius:var(--border-radius);font-family:inherit;font-size:inherit;font-style:inherit;font-weight:inherit;letter-spacing:inherit;text-decoration:inherit;text-indent:inherit;text-overflow:inherit;text-transform:inherit;text-align:inherit;white-space:inherit;color:inherit;margin-left:0;margin-right:0;margin-top:0;margin-bottom:0;padding-left:var(--padding-start);padding-right:var(--padding-end);padding-top:var(--padding-top);padding-bottom:var(--padding-bottom);-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased;display:-ms-flexbox;display:flex;position:relative;-ms-flex-flow:row nowrap;flex-flow:row nowrap;-ms-flex-negative:0;flex-shrink:0;-ms-flex-align:center;align-items:center;-ms-flex-pack:center;justify-content:center;width:100%;height:100%;border:0;outline:none;background:var(--background);line-height:1;cursor:pointer;overflow:hidden;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;z-index:0;-webkit-appearance:none;-moz-appearance:none;appearance:none}\@supports ((-webkit-margin-start:0) or (margin-inline-start:0)) or (-webkit-margin-start:0){.button-native{padding-left:unset;padding-right:unset;-webkit-padding-start:var(--padding-start);padding-inline-start:var(--padding-start);-webkit-padding-end:var(--padding-end);padding-inline-end:var(--padding-end)}}.button-inner{display:-ms-flexbox;display:flex;position:relative;-ms-flex-flow:row nowrap;flex-flow:row nowrap;-ms-flex-negative:0;flex-shrink:0;-ms-flex-align:center;align-items:center;-ms-flex-pack:center;justify-content:center;width:100%;height:100%;z-index:1}ion-icon{margin-left:0;margin-right:0;margin-top:0;margin-bottom:0;padding-left:0;padding-right:0;padding-top:0;padding-bottom:0;pointer-events:none}:host(.menu-button-hidden){display:none}:host(.menu-button-disabled){cursor:default;opacity:.5;pointer-events:none}:host(.ion-focused) .button-native{color:var(--color-focused)}:host(.ion-focused) .button-native:after{background:var(--background-focused);opacity:var(--background-focused-opacity)}.button-native:after{left:0;right:0;top:0;bottom:0;position:absolute;content:\"\";opacity:0}\@media (any-hover:hover){:host(:hover) .button-native{color:var(--color-hover)}:host(:hover) .button-native:after{background:var(--background-hover);opacity:var(--background-hover-opacity,0)}}:host(.ion-color) .button-native{color:var(--ion-color-base)}:host(.in-toolbar:not(.in-toolbar-color)){color:var(--ion-toolbar-color,var(--color))}:host{--background-focused:currentColor;--background-focused-opacity:.12;--background-hover:currentColor;--background-hover-opacity:.04;--border-radius:50%;--color:initial;--padding-start:8px;--padding-end:8px;width:48px;height:48px;font-size:24px}:host(.ion-color.ion-focused):after{background:var(--ion-color-base)}\@media (any-hover:hover){:host(.ion-color:hover) .button-native:after{background:var(--ion-color-base)}}";
+      }
+
+    };
+    const MenuToggle = class {
+      constructor(hostRef) {
+        Object(_core_0a8d4d2e_js__WEBPACK_IMPORTED_MODULE_0__["r"])(this, hostRef);
+        this.visible = false;
+        /**
+         * Automatically hides the content when the corresponding menu is not active.
+         *
+         * By default, it's `true`. Change it to `false` in order to
+         * keep `ion-menu-toggle` always visible regardless the state of the menu.
+         */
+
+        this.autoHide = true;
+
+        this.onClick = () => {
+          return _index_c58c7441_js__WEBPACK_IMPORTED_MODULE_7__["m"].toggle(this.menu);
+        };
+      }
+
+      connectedCallback() {
+        this.visibilityChanged();
+      }
+
+      async visibilityChanged() {
+        this.visible = await updateVisibility(this.menu);
+      }
+
+      render() {
+        const mode = Object(_core_0a8d4d2e_js__WEBPACK_IMPORTED_MODULE_0__["c"])(this);
+        const hidden = this.autoHide && !this.visible;
+        return Object(_core_0a8d4d2e_js__WEBPACK_IMPORTED_MODULE_0__["h"])(_core_0a8d4d2e_js__WEBPACK_IMPORTED_MODULE_0__["H"], {
+          onClick: this.onClick,
+          "aria-hidden": hidden ? 'true' : null,
+          class: {
+            [mode]: true,
+            'menu-toggle-hidden': hidden
+          }
+        }, Object(_core_0a8d4d2e_js__WEBPACK_IMPORTED_MODULE_0__["h"])("slot", null));
+      }
+
+      static get style() {
+        return ":host(.menu-toggle-hidden){display:none}";
       }
 
     };

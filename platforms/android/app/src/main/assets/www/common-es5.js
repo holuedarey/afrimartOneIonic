@@ -1,5 +1,197 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([["common"], {
   /***/
+  "./node_modules/@ionic-super-tabs/core/dist/esm/utils-640d2cf5.js":
+  /*!************************************************************************!*\
+    !*** ./node_modules/@ionic-super-tabs/core/dist/esm/utils-640d2cf5.js ***!
+    \************************************************************************/
+
+  /*! exports provided: D, a, c, d, g, p, s */
+
+  /***/
+  function node_modulesIonicSuperTabsCoreDistEsmUtils640d2cf5Js(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony export (binding) */
+
+
+    __webpack_require__.d(__webpack_exports__, "D", function () {
+      return DEFAULT_CONFIG;
+    });
+    /* harmony export (binding) */
+
+
+    __webpack_require__.d(__webpack_exports__, "a", function () {
+      return getTs;
+    });
+    /* harmony export (binding) */
+
+
+    __webpack_require__.d(__webpack_exports__, "c", function () {
+      return checkGesture;
+    });
+    /* harmony export (binding) */
+
+
+    __webpack_require__.d(__webpack_exports__, "d", function () {
+      return debugLog;
+    });
+    /* harmony export (binding) */
+
+
+    __webpack_require__.d(__webpack_exports__, "g", function () {
+      return getNormalizedScrollX;
+    });
+    /* harmony export (binding) */
+
+
+    __webpack_require__.d(__webpack_exports__, "p", function () {
+      return pointerCoord;
+    });
+    /* harmony export (binding) */
+
+
+    __webpack_require__.d(__webpack_exports__, "s", function () {
+      return scrollEl;
+    });
+
+    const DEFAULT_CONFIG = {
+      dragThreshold: 20,
+      allowElementScroll: false,
+      maxDragAngle: 40,
+      sideMenuThreshold: 50,
+      transitionDuration: 150,
+      shortSwipeDuration: 300,
+      debug: false,
+      avoidElements: false
+    };
+
+    function pointerCoord(ev) {
+      // get X coordinates for either a mouse click
+      // or a touch depending on the given event
+      if (ev) {
+        const changedTouches = ev.changedTouches;
+
+        if (changedTouches && changedTouches.length > 0) {
+          const touch = changedTouches[0];
+          return {
+            x: touch.clientX,
+            y: touch.clientY
+          };
+        }
+
+        if (ev.pageX !== undefined) {
+          return {
+            x: ev.pageX,
+            y: ev.pageY
+          };
+        }
+      }
+
+      return {
+        x: 0,
+        y: 0
+      };
+    }
+
+    const nativeScrollAvailable = ('scrollBehavior' in document.documentElement.style);
+
+    let _getTs;
+
+    if (window.performance && window.performance.now) {
+      _getTs = window.performance.now.bind(window.performance);
+    } else {
+      _getTs = Date.now.bind(Date);
+    }
+
+    const getTs = _getTs;
+
+    const easeInOutCubic = t => t < 0.5 ? 4 * t * t * t : (t - 1) * (2 * t - 2) * (2 * t - 2) + 1;
+
+    function getScrollCoord(start, dest, startTime, currentTime, duration) {
+      const time = Math.min(1, (currentTime - startTime) / duration);
+      const timeFn = easeInOutCubic(time);
+      return Math.ceil(timeFn * (dest - start) + start);
+    }
+
+    function scroll(el, startX, x, y, startTime, duration) {
+      const currentTime = getTs();
+      const scrollX = startX === x ? x : getScrollCoord(startX, x, startTime, currentTime, duration);
+      el.scrollTo(scrollX, y);
+
+      if (currentTime - startTime >= duration) {
+        return;
+      }
+
+      requestAnimationFrame(() => {
+        scroll(el, startX, x, y, startTime, duration);
+      });
+    }
+
+    const scrollEl = (el, x, y = 0, native = false, duration = 300) => {
+      if (duration <= 0) {
+        requestAnimationFrame(() => {
+          el.scrollTo(x, y);
+        });
+        return;
+      }
+
+      if (native && nativeScrollAvailable) {
+        el.scrollTo({
+          left: x,
+          top: y,
+          behavior: 'smooth'
+        });
+        return;
+      }
+
+      requestAnimationFrame(() => {
+        scroll(el, el.scrollLeft, x, y, getTs(), duration);
+      });
+    };
+
+    function checkGesture(newCoords, initialCoords, config) {
+      if (!initialCoords) {
+        return false;
+      }
+
+      const radians = config.maxDragAngle * (Math.PI / 180);
+      const maxCosine = Math.cos(radians);
+      const deltaX = newCoords.x - initialCoords.x;
+      const deltaY = newCoords.y - initialCoords.y;
+      const distance = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
+
+      if (distance >= config.dragThreshold) {
+        // swipe is long enough
+        // lets check the angle
+        const angle = Math.atan2(deltaY, deltaX);
+        const cosine = Math.cos(angle);
+        return Math.abs(cosine) > maxCosine;
+      }
+
+      return false;
+    }
+
+    function getNormalizedScrollX(el, width, delta = 0) {
+      return Math.max(0, Math.min(el.scrollWidth - width, el.scrollLeft + delta));
+    }
+
+    const debugStyle1 = 'background: linear-gradient(135deg,#4150b2,#f71947); border: 1px solid #9a9a9a; color: #ffffff; border-bottom-left-radius: 2px; border-top-left-radius: 2px; padding: 2px 0 2px 4px;';
+    const debugStyle2 = 'background: #252b3e; border: 1px solid #9a9a9a; border-top-right-radius: 2px; border-bottom-right-radius: 2px; margin-left: -2px; padding: 2px 4px; color: white;';
+
+    function debugLog(config, tag, vals) {
+      if (!config || !config.debug) {
+        return;
+      } // Some gorgeous logging, because apparently I have lots of free time to style console logs and write this comment
+
+
+      console.log("%csuper-tabs %c%s", debugStyle1, debugStyle2, ' '.repeat(10 - tag.length) + tag, ...vals);
+    }
+    /***/
+
+  },
+
+  /***/
   "./node_modules/@ionic/core/dist/esm/framework-delegate-c2e2e1f4.js":
   /*!**************************************************************************!*\
     !*** ./node_modules/@ionic/core/dist/esm/framework-delegate-c2e2e1f4.js ***!
@@ -821,186 +1013,6 @@
     };
     /***/
 
-  },
-
-  /***/
-  "./node_modules/raw-loader/dist/cjs.js!./src/app/chat-message/chat-message.page.html":
-  /*!*******************************************************************************************!*\
-    !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/chat-message/chat-message.page.html ***!
-    \*******************************************************************************************/
-
-  /*! exports provided: default */
-
-  /***/
-  function node_modulesRawLoaderDistCjsJsSrcAppChatMessageChatMessagePageHtml(module, __webpack_exports__, __webpack_require__) {
-    "use strict";
-
-    __webpack_require__.r(__webpack_exports__);
-    /* harmony default export */
-
-
-    __webpack_exports__["default"] = "<ion-content>\n  message\n</ion-content>\n";
-    /***/
-  },
-
-  /***/
-  "./node_modules/raw-loader/dist/cjs.js!./src/app/contact-message/contact-message.page.html":
-  /*!*************************************************************************************************!*\
-    !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/contact-message/contact-message.page.html ***!
-    \*************************************************************************************************/
-
-  /*! exports provided: default */
-
-  /***/
-  function node_modulesRawLoaderDistCjsJsSrcAppContactMessageContactMessagePageHtml(module, __webpack_exports__, __webpack_require__) {
-    "use strict";
-
-    __webpack_require__.r(__webpack_exports__);
-    /* harmony default export */
-
-
-    __webpack_exports__["default"] = "<ion-content>\n  contact\n</ion-content>\n";
-    /***/
-  },
-
-  /***/
-  "./src/app/chat-message/chat-message.page.scss":
-  /*!*****************************************************!*\
-    !*** ./src/app/chat-message/chat-message.page.scss ***!
-    \*****************************************************/
-
-  /*! exports provided: default */
-
-  /***/
-  function srcAppChatMessageChatMessagePageScss(module, __webpack_exports__, __webpack_require__) {
-    "use strict";
-
-    __webpack_require__.r(__webpack_exports__);
-    /* harmony default export */
-
-
-    __webpack_exports__["default"] = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2NoYXQtbWVzc2FnZS9jaGF0LW1lc3NhZ2UucGFnZS5zY3NzIn0= */";
-    /***/
-  },
-
-  /***/
-  "./src/app/chat-message/chat-message.page.ts":
-  /*!***************************************************!*\
-    !*** ./src/app/chat-message/chat-message.page.ts ***!
-    \***************************************************/
-
-  /*! exports provided: ChatMessagePage */
-
-  /***/
-  function srcAppChatMessageChatMessagePageTs(module, __webpack_exports__, __webpack_require__) {
-    "use strict";
-
-    __webpack_require__.r(__webpack_exports__);
-    /* harmony export (binding) */
-
-
-    __webpack_require__.d(__webpack_exports__, "ChatMessagePage", function () {
-      return ChatMessagePage;
-    });
-    /* harmony import */
-
-
-    var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
-    /*! tslib */
-    "./node_modules/tslib/tslib.es6.js");
-    /* harmony import */
-
-
-    var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
-    /*! @angular/core */
-    "./node_modules/@angular/core/fesm2015/core.js");
-
-    let ChatMessagePage = class ChatMessagePage {
-      constructor() {}
-
-      ngOnInit() {}
-
-    };
-    ChatMessagePage = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
-      selector: 'app-chat-message',
-      template: tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(
-      /*! raw-loader!./chat-message.page.html */
-      "./node_modules/raw-loader/dist/cjs.js!./src/app/chat-message/chat-message.page.html")).default,
-      styles: [tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(
-      /*! ./chat-message.page.scss */
-      "./src/app/chat-message/chat-message.page.scss")).default]
-    }), tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [])], ChatMessagePage);
-    /***/
-  },
-
-  /***/
-  "./src/app/contact-message/contact-message.page.scss":
-  /*!***********************************************************!*\
-    !*** ./src/app/contact-message/contact-message.page.scss ***!
-    \***********************************************************/
-
-  /*! exports provided: default */
-
-  /***/
-  function srcAppContactMessageContactMessagePageScss(module, __webpack_exports__, __webpack_require__) {
-    "use strict";
-
-    __webpack_require__.r(__webpack_exports__);
-    /* harmony default export */
-
-
-    __webpack_exports__["default"] = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2NvbnRhY3QtbWVzc2FnZS9jb250YWN0LW1lc3NhZ2UucGFnZS5zY3NzIn0= */";
-    /***/
-  },
-
-  /***/
-  "./src/app/contact-message/contact-message.page.ts":
-  /*!*********************************************************!*\
-    !*** ./src/app/contact-message/contact-message.page.ts ***!
-    \*********************************************************/
-
-  /*! exports provided: ContactMessagePage */
-
-  /***/
-  function srcAppContactMessageContactMessagePageTs(module, __webpack_exports__, __webpack_require__) {
-    "use strict";
-
-    __webpack_require__.r(__webpack_exports__);
-    /* harmony export (binding) */
-
-
-    __webpack_require__.d(__webpack_exports__, "ContactMessagePage", function () {
-      return ContactMessagePage;
-    });
-    /* harmony import */
-
-
-    var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
-    /*! tslib */
-    "./node_modules/tslib/tslib.es6.js");
-    /* harmony import */
-
-
-    var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
-    /*! @angular/core */
-    "./node_modules/@angular/core/fesm2015/core.js");
-
-    let ContactMessagePage = class ContactMessagePage {
-      constructor() {}
-
-      ngOnInit() {}
-
-    };
-    ContactMessagePage = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
-      selector: 'app-contact-message',
-      template: tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(
-      /*! raw-loader!./contact-message.page.html */
-      "./node_modules/raw-loader/dist/cjs.js!./src/app/contact-message/contact-message.page.html")).default,
-      styles: [tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(
-      /*! ./contact-message.page.scss */
-      "./src/app/contact-message/contact-message.page.scss")).default]
-    }), tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [])], ContactMessagePage);
-    /***/
   },
 
   /***/

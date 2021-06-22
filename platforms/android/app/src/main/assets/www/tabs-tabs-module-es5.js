@@ -214,35 +214,35 @@
         path: 'home',
         loadChildren: () => Promise.all(
         /*! import() | home-home-module */
-        [__webpack_require__.e("default~address-book-address-book-module~become-supplier-become-supplier-module~cart-cart-module~cat~1ae0154c"), __webpack_require__.e("common"), __webpack_require__.e("home-home-module")]).then(__webpack_require__.bind(null,
+        [__webpack_require__.e("default~address-book-address-book-module~become-supplier-become-supplier-module~cart-cart-module~cat~067d5bd0"), __webpack_require__.e("common"), __webpack_require__.e("home-home-module")]).then(__webpack_require__.bind(null,
         /*! ../home/home.module */
         "./src/app/home/home.module.ts")).then(m => m.HomePageModule)
       }, {
         path: 'categories',
         loadChildren: () => Promise.all(
         /*! import() | categories-categories-module */
-        [__webpack_require__.e("default~address-book-address-book-module~become-supplier-become-supplier-module~cart-cart-module~cat~1ae0154c"), __webpack_require__.e("common"), __webpack_require__.e("categories-categories-module")]).then(__webpack_require__.bind(null,
+        [__webpack_require__.e("default~address-book-address-book-module~become-supplier-become-supplier-module~cart-cart-module~cat~067d5bd0"), __webpack_require__.e("common"), __webpack_require__.e("categories-categories-module")]).then(__webpack_require__.bind(null,
         /*! ../categories/categories.module */
         "./src/app/categories/categories.module.ts")).then(m => m.CategoriesPageModule)
       }, {
         path: 'categories/:id',
         loadChildren: () => Promise.all(
         /*! import() | categories-categories-module */
-        [__webpack_require__.e("default~address-book-address-book-module~become-supplier-become-supplier-module~cart-cart-module~cat~1ae0154c"), __webpack_require__.e("common"), __webpack_require__.e("categories-categories-module")]).then(__webpack_require__.bind(null,
+        [__webpack_require__.e("default~address-book-address-book-module~become-supplier-become-supplier-module~cart-cart-module~cat~067d5bd0"), __webpack_require__.e("common"), __webpack_require__.e("categories-categories-module")]).then(__webpack_require__.bind(null,
         /*! ../categories/categories.module */
         "./src/app/categories/categories.module.ts")).then(m => m.CategoriesPageModule)
       }, {
         path: 'profile',
         loadChildren: () => Promise.all(
         /*! import() | profile-profile-module */
-        [__webpack_require__.e("default~address-book-address-book-module~become-supplier-become-supplier-module~cart-cart-module~cat~1ae0154c"), __webpack_require__.e("profile-profile-module")]).then(__webpack_require__.bind(null,
+        [__webpack_require__.e("default~address-book-address-book-module~become-supplier-become-supplier-module~cart-cart-module~cat~067d5bd0"), __webpack_require__.e("profile-profile-module")]).then(__webpack_require__.bind(null,
         /*! ../profile/profile.module */
         "./src/app/profile/profile.module.ts")).then(m => m.ProfilePageModule)
       }, {
         path: 'help',
         loadChildren: () => Promise.all(
         /*! import() | help-help-module */
-        [__webpack_require__.e("default~address-book-address-book-module~become-supplier-become-supplier-module~cart-cart-module~cat~1ae0154c"), __webpack_require__.e("help-help-module")]).then(__webpack_require__.bind(null,
+        [__webpack_require__.e("default~address-book-address-book-module~become-supplier-become-supplier-module~cart-cart-module~cat~067d5bd0"), __webpack_require__.e("help-help-module")]).then(__webpack_require__.bind(null,
         /*! ../help/help.module */
         "./src/app/help/help.module.ts")).then(m => m.HelpPageModule)
       }]

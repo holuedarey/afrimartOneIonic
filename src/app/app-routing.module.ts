@@ -163,15 +163,7 @@ const routes: Routes = [
   },
   {
     path: 'messaging',
-    loadChildren: () => import('./messaging/messaging.module').then( m => m.MessagingPageModule)
-  },
-  {
-    path: 'contact-message',
-    loadChildren: () => import('./contact-message/contact-message.module').then( m => m.ContactMessagePageModule)
-  },
-  {
-    path: 'chat-message',
-    loadChildren: () => import('./chat-message/chat-message.module').then( m => m.ChatMessagePageModule)
+    loadChildren: () => import('./messaging/messaging/messaging.module').then( m => m.MessagingPageModule)
   },
   {
     path: 'become-supplier',
@@ -180,6 +172,10 @@ const routes: Routes = [
   {
     path: 'forget-verify',
     loadChildren: () => import('./forget-verify/forget-verify.module').then( m => m.ForgetVerifyPageModule)
+  },
+  {
+    path: 'chat-details',
+    loadChildren: () => import('./messaging/chat-details/chat-details.module').then( m => m.ChatDetailsPageModule)
   },
 ];
 

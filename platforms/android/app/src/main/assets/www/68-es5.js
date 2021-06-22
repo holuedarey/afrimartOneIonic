@@ -1,28 +1,22 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[68], {
   /***/
-  "./node_modules/@ionic/core/dist/esm/ion-tab_2.entry.js":
-  /*!**************************************************************!*\
-    !*** ./node_modules/@ionic/core/dist/esm/ion-tab_2.entry.js ***!
-    \**************************************************************/
+  "./node_modules/@ionic/core/dist/esm/ion-split-pane-md.entry.js":
+  /*!**********************************************************************!*\
+    !*** ./node_modules/@ionic/core/dist/esm/ion-split-pane-md.entry.js ***!
+    \**********************************************************************/
 
-  /*! exports provided: ion_tab, ion_tabs */
+  /*! exports provided: ion_split_pane */
 
   /***/
-  function node_modulesIonicCoreDistEsmIonTab_2EntryJs(module, __webpack_exports__, __webpack_require__) {
+  function node_modulesIonicCoreDistEsmIonSplitPaneMdEntryJs(module, __webpack_exports__, __webpack_require__) {
     "use strict";
 
     __webpack_require__.r(__webpack_exports__);
     /* harmony export (binding) */
 
 
-    __webpack_require__.d(__webpack_exports__, "ion_tab", function () {
-      return Tab;
-    });
-    /* harmony export (binding) */
-
-
-    __webpack_require__.d(__webpack_exports__, "ion_tabs", function () {
-      return Tabs;
+    __webpack_require__.d(__webpack_exports__, "ion_split_pane", function () {
+      return SplitPane;
     });
     /* harmony import */
 
@@ -36,68 +30,142 @@
     var _config_3c7f3790_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
     /*! ./config-3c7f3790.js */
     "./node_modules/@ionic/core/dist/esm/config-3c7f3790.js");
-    /* harmony import */
 
-
-    var _framework_delegate_c2e2e1f4_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
-    /*! ./framework-delegate-c2e2e1f4.js */
-    "./node_modules/@ionic/core/dist/esm/framework-delegate-c2e2e1f4.js");
-
-    const Tab = class {
+    const SPLIT_PANE_MAIN = 'split-pane-main';
+    const SPLIT_PANE_SIDE = 'split-pane-side';
+    const QUERY = {
+      'xs': '(min-width: 0px)',
+      'sm': '(min-width: 576px)',
+      'md': '(min-width: 768px)',
+      'lg': '(min-width: 992px)',
+      'xl': '(min-width: 1200px)',
+      'never': ''
+    };
+    const SplitPane = class {
       constructor(hostRef) {
         Object(_core_0a8d4d2e_js__WEBPACK_IMPORTED_MODULE_0__["r"])(this, hostRef);
-        this.loaded = false;
-        /** @internal */
+        this.visible = false;
+        /**
+         * If `true`, the split pane will be hidden.
+         */
 
-        this.active = false;
+        this.disabled = false;
+        /**
+         * When the split-pane should be shown.
+         * Can be a CSS media query expression, or a shortcut expression.
+         * Can also be a boolean expression.
+         */
+
+        this.when = QUERY['lg'];
+        this.ionSplitPaneVisible = Object(_core_0a8d4d2e_js__WEBPACK_IMPORTED_MODULE_0__["d"])(this, "ionSplitPaneVisible", 7);
       }
 
-      async componentWillLoad() {
-        if (this.active) {
-          await this.setActive();
+      visibleChanged(visible) {
+        const detail = {
+          visible,
+          isPane: this.isPane.bind(this)
+        };
+        this.ionSplitPaneVisible.emit(detail);
+      }
+
+      connectedCallback() {
+        this.styleChildren();
+        this.updateState();
+      }
+
+      disconnectedCallback() {
+        if (this.rmL) {
+          this.rmL();
+          this.rmL = undefined;
         }
       }
-      /** Set the active component for the tab */
+
+      updateState() {
+        if (this.rmL) {
+          this.rmL();
+          this.rmL = undefined;
+        } // Check if the split-pane is disabled
 
 
-      async setActive() {
-        await this.prepareLazyLoaded();
-        this.active = true;
-      }
+        if (this.disabled) {
+          this.visible = false;
+          return;
+        } // When query is a boolean
 
-      changeActive(isActive) {
-        if (isActive) {
-          this.prepareLazyLoaded();
+
+        const query = this.when;
+
+        if (typeof query === 'boolean') {
+          this.visible = query;
+          return;
+        } // When query is a string, let's find first if it is a shortcut
+
+
+        const mediaQuery = QUERY[query] || query; // Media query is empty or null, we hide it
+
+        if (mediaQuery.length === 0) {
+          this.visible = false;
+          return;
+        }
+
+        if (window.matchMedia) {
+          // Listen on media query
+          const callback = q => {
+            this.visible = q.matches;
+          };
+
+          const mediaList = window.matchMedia(mediaQuery);
+          mediaList.addListener(callback);
+
+          this.rmL = () => mediaList.removeListener(callback);
+
+          this.visible = mediaList.matches;
         }
       }
 
-      prepareLazyLoaded() {
-        if (!this.loaded && this.component != null) {
-          this.loaded = true;
+      isPane(element) {
+        if (!this.visible) {
+          return false;
+        }
 
-          try {
-            return Object(_framework_delegate_c2e2e1f4_js__WEBPACK_IMPORTED_MODULE_2__["a"])(this.delegate, this.el, this.component, ['ion-page']);
-          } catch (e) {
-            console.error(e);
+        return element.parentElement === this.el && element.classList.contains(SPLIT_PANE_SIDE);
+      }
+
+      styleChildren() {
+        const contentId = this.contentId;
+        const children = this.el.children;
+        const nu = this.el.childElementCount;
+        let foundMain = false;
+
+        for (let i = 0; i < nu; i++) {
+          const child = children[i];
+          const isMain = contentId !== undefined && child.id === contentId;
+
+          if (isMain) {
+            if (foundMain) {
+              console.warn('split pane cannot have more than one main node');
+              return;
+            }
+
+            foundMain = true;
           }
+
+          setPaneClass(child, isMain);
         }
 
-        return Promise.resolve(undefined);
+        if (!foundMain) {
+          console.warn('split pane does not have a specified main node');
+        }
       }
 
       render() {
-        const {
-          tab,
-          active,
-          component
-        } = this;
+        const mode = Object(_core_0a8d4d2e_js__WEBPACK_IMPORTED_MODULE_0__["c"])(this);
         return Object(_core_0a8d4d2e_js__WEBPACK_IMPORTED_MODULE_0__["h"])(_core_0a8d4d2e_js__WEBPACK_IMPORTED_MODULE_0__["H"], {
-          role: "tabpanel",
-          "aria-hidden": !active ? 'true' : null,
-          "aria-labelledby": "tab-button-".concat(tab),
           class: {
-            'ion-page': component === undefined,
-            'tab-hidden': !active
+            [mode]: true,
+            // Used internally for styling
+            ["split-pane-".concat(mode)]: true,
+            'split-pane-visible': this.visible
           }
         }, Object(_core_0a8d4d2e_js__WEBPACK_IMPORTED_MODULE_0__["h"])("slot", null));
       }
@@ -108,224 +176,33 @@
 
       static get watchers() {
         return {
-          "active": ["changeActive"]
+          "visible": ["visibleChanged"],
+          "disabled": ["updateState"],
+          "when": ["updateState"]
         };
       }
 
       static get style() {
-        return ":host(.tab-hidden){display:none!important}";
-      }
-
-    };
-    const Tabs = class {
-      constructor(hostRef) {
-        Object(_core_0a8d4d2e_js__WEBPACK_IMPORTED_MODULE_0__["r"])(this, hostRef);
-        this.transitioning = false;
-        /** @internal */
-
-        this.useRouter = false;
-
-        this.onTabClicked = ev => {
-          const {
-            href,
-            tab
-          } = ev.detail;
-
-          if (this.useRouter && href !== undefined) {
-            const router = document.querySelector('ion-router');
-
-            if (router) {
-              router.push(href);
-            }
-          } else {
-            this.select(tab);
-          }
-        };
-
-        this.ionNavWillLoad = Object(_core_0a8d4d2e_js__WEBPACK_IMPORTED_MODULE_0__["d"])(this, "ionNavWillLoad", 7);
-        this.ionTabsWillChange = Object(_core_0a8d4d2e_js__WEBPACK_IMPORTED_MODULE_0__["d"])(this, "ionTabsWillChange", 3);
-        this.ionTabsDidChange = Object(_core_0a8d4d2e_js__WEBPACK_IMPORTED_MODULE_0__["d"])(this, "ionTabsDidChange", 3);
-      }
-
-      async componentWillLoad() {
-        if (!this.useRouter) {
-          this.useRouter = !!document.querySelector('ion-router') && !this.el.closest('[no-router]');
-        }
-
-        if (!this.useRouter) {
-          const tabs = this.tabs;
-
-          if (tabs.length > 0) {
-            await this.select(tabs[0]);
-          }
-        }
-
-        this.ionNavWillLoad.emit();
-      }
-
-      componentWillRender() {
-        const tabBar = this.el.querySelector('ion-tab-bar');
-
-        if (tabBar) {
-          const tab = this.selectedTab ? this.selectedTab.tab : undefined;
-          tabBar.selectedTab = tab;
-        }
-      }
-      /**
-       * Select a tab by the value of its `tab` property or an element reference.
-       *
-       * @param tab The tab instance to select. If passed a string, it should be the value of the tab's `tab` property.
-       */
-
-
-      async select(tab) {
-        const selectedTab = getTab(this.tabs, tab);
-
-        if (!this.shouldSwitch(selectedTab)) {
-          return false;
-        }
-
-        await this.setActive(selectedTab);
-        await this.notifyRouter();
-        this.tabSwitch();
-        return true;
-      }
-      /**
-       * Get a specific tab by the value of its `tab` property or an element reference.
-       *
-       * @param tab The tab instance to select. If passed a string, it should be the value of the tab's `tab` property.
-       */
-
-
-      async getTab(tab) {
-        return getTab(this.tabs, tab);
-      }
-      /**
-       * Get the currently selected tab.
-       */
-
-
-      getSelected() {
-        return Promise.resolve(this.selectedTab ? this.selectedTab.tab : undefined);
-      }
-      /** @internal */
-
-
-      async setRouteId(id) {
-        const selectedTab = getTab(this.tabs, id);
-
-        if (!this.shouldSwitch(selectedTab)) {
-          return {
-            changed: false,
-            element: this.selectedTab
-          };
-        }
-
-        await this.setActive(selectedTab);
-        return {
-          changed: true,
-          element: this.selectedTab,
-          markVisible: () => this.tabSwitch()
-        };
-      }
-      /** @internal */
-
-
-      async getRouteId() {
-        const tabId = this.selectedTab && this.selectedTab.tab;
-        return tabId !== undefined ? {
-          id: tabId,
-          element: this.selectedTab
-        } : undefined;
-      }
-
-      setActive(selectedTab) {
-        if (this.transitioning) {
-          return Promise.reject('transitioning already happening');
-        }
-
-        this.transitioning = true;
-        this.leavingTab = this.selectedTab;
-        this.selectedTab = selectedTab;
-        this.ionTabsWillChange.emit({
-          tab: selectedTab.tab
-        });
-        selectedTab.active = true;
-        return Promise.resolve();
-      }
-
-      tabSwitch() {
-        const selectedTab = this.selectedTab;
-        const leavingTab = this.leavingTab;
-        this.leavingTab = undefined;
-        this.transitioning = false;
-
-        if (!selectedTab) {
-          return;
-        }
-
-        if (leavingTab !== selectedTab) {
-          if (leavingTab) {
-            leavingTab.active = false;
-          }
-
-          this.ionTabsDidChange.emit({
-            tab: selectedTab.tab
-          });
-        }
-      }
-
-      notifyRouter() {
-        if (this.useRouter) {
-          const router = document.querySelector('ion-router');
-
-          if (router) {
-            return router.navChanged('forward');
-          }
-        }
-
-        return Promise.resolve(false);
-      }
-
-      shouldSwitch(selectedTab) {
-        const leavingTab = this.selectedTab;
-        return selectedTab !== undefined && selectedTab !== leavingTab && !this.transitioning;
-      }
-
-      get tabs() {
-        return Array.from(this.el.querySelectorAll('ion-tab'));
-      }
-
-      render() {
-        return Object(_core_0a8d4d2e_js__WEBPACK_IMPORTED_MODULE_0__["h"])(_core_0a8d4d2e_js__WEBPACK_IMPORTED_MODULE_0__["H"], {
-          onIonTabButtonClick: this.onTabClicked
-        }, Object(_core_0a8d4d2e_js__WEBPACK_IMPORTED_MODULE_0__["h"])("slot", {
-          name: "top"
-        }), Object(_core_0a8d4d2e_js__WEBPACK_IMPORTED_MODULE_0__["h"])("div", {
-          class: "tabs-inner"
-        }, Object(_core_0a8d4d2e_js__WEBPACK_IMPORTED_MODULE_0__["h"])("slot", null)), Object(_core_0a8d4d2e_js__WEBPACK_IMPORTED_MODULE_0__["h"])("slot", {
-          name: "bottom"
-        }));
-      }
-
-      get el() {
-        return Object(_core_0a8d4d2e_js__WEBPACK_IMPORTED_MODULE_0__["e"])(this);
-      }
-
-      static get style() {
-        return ":host{left:0;right:0;top:0;bottom:0;display:-ms-flexbox;display:flex;position:absolute;-ms-flex-direction:column;flex-direction:column;width:100%;height:100%;z-index:0}.tabs-inner,:host{contain:layout size style}.tabs-inner{position:relative;-ms-flex:1;flex:1}";
+        return ":host{--side-width:100%;left:0;right:0;top:0;bottom:0;display:-ms-flexbox;display:flex;position:absolute;-ms-flex-direction:row;flex-direction:row;-ms-flex-wrap:nowrap;flex-wrap:nowrap;contain:strict}::slotted(ion-menu.menu-pane-visible){-ms-flex:0 1 auto;flex:0 1 auto;width:var(--side-width);min-width:var(--side-min-width);max-width:var(--side-max-width)}:host(.split-pane-visible) ::slotted(.split-pane-main),:host(.split-pane-visible) ::slotted(.split-pane-side){left:0;right:0;top:0;bottom:0;position:relative;-webkit-box-shadow:none!important;box-shadow:none!important;z-index:0}:host(.split-pane-visible) ::slotted(.split-pane-main){-ms-flex:1;flex:1}:host(.split-pane-visible) ::slotted(.split-pane-side:not(ion-menu)),:host(.split-pane-visible) ::slotted(ion-menu.split-pane-side.menu-enabled){display:-ms-flexbox;display:flex;-ms-flex-negative:0;flex-shrink:0}::slotted(.split-pane-side:not(ion-menu)){display:none}:host(.split-pane-visible) ::slotted(.split-pane-side){-ms-flex-order:-1;order:-1}:host(.split-pane-visible) ::slotted(.split-pane-side[side=end]){-ms-flex-order:1;order:1}:host{--border:1px solid var(--ion-item-border-color,var(--ion-border-color,var(--ion-color-step-150,rgba(0,0,0,0.13))));--side-min-width:270px;--side-max-width:28%}:host(.split-pane-visible) ::slotted(.split-pane-side){min-width:var(--side-min-width);max-width:var(--side-max-width);border-right:var(--border);border-left:0}:host(.split-pane-visible) ::slotted(.split-pane-side[side=end]){min-width:var(--side-min-width);max-width:var(--side-max-width);border-right:0;border-left:var(--border)}";
       }
 
     };
 
-    const getTab = (tabs, tab) => {
-      const tabEl = typeof tab === 'string' ? tabs.find(t => t.tab === tab) : tab;
+    const setPaneClass = (el, isMain) => {
+      let toAdd;
+      let toRemove;
 
-      if (!tabEl) {
-        console.error("tab with id: \"".concat(tabEl, "\" does not exist"));
+      if (isMain) {
+        toAdd = SPLIT_PANE_MAIN;
+        toRemove = SPLIT_PANE_SIDE;
+      } else {
+        toAdd = SPLIT_PANE_SIDE;
+        toRemove = SPLIT_PANE_MAIN;
       }
 
-      return tabEl;
+      const classList = el.classList;
+      classList.add(toAdd);
+      classList.remove(toRemove);
     };
     /***/
 

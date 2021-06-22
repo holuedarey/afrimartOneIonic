@@ -1,22 +1,22 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[73], {
   /***/
-  "./node_modules/@ionic/core/dist/esm/ion-toast-md.entry.js":
-  /*!*****************************************************************!*\
-    !*** ./node_modules/@ionic/core/dist/esm/ion-toast-md.entry.js ***!
-    \*****************************************************************/
+  "./node_modules/@ionic/core/dist/esm/ion-textarea-ios.entry.js":
+  /*!*********************************************************************!*\
+    !*** ./node_modules/@ionic/core/dist/esm/ion-textarea-ios.entry.js ***!
+    \*********************************************************************/
 
-  /*! exports provided: ion_toast */
+  /*! exports provided: ion_textarea */
 
   /***/
-  function node_modulesIonicCoreDistEsmIonToastMdEntryJs(module, __webpack_exports__, __webpack_require__) {
+  function node_modulesIonicCoreDistEsmIonTextareaIosEntryJs(module, __webpack_exports__, __webpack_require__) {
     "use strict";
 
     __webpack_require__.r(__webpack_exports__);
     /* harmony export (binding) */
 
 
-    __webpack_require__.d(__webpack_exports__, "ion_toast", function () {
-      return Toast;
+    __webpack_require__.d(__webpack_exports__, "ion_textarea", function () {
+      return Textarea;
     });
     /* harmony import */
 
@@ -39,369 +39,289 @@
     /* harmony import */
 
 
-    var _animation_56279521_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
-    /*! ./animation-56279521.js */
-    "./node_modules/@ionic/core/dist/esm/animation-56279521.js");
-    /* harmony import */
-
-
-    var _hardware_back_button_1ed0083a_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
-    /*! ./hardware-back-button-1ed0083a.js */
-    "./node_modules/@ionic/core/dist/esm/hardware-back-button-1ed0083a.js");
-    /* harmony import */
-
-
-    var _overlays_e336664a_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(
-    /*! ./overlays-e336664a.js */
-    "./node_modules/@ionic/core/dist/esm/overlays-e336664a.js");
-    /* harmony import */
-
-
-    var _theme_18cbe2cc_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(
+    var _theme_18cbe2cc_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
     /*! ./theme-18cbe2cc.js */
     "./node_modules/@ionic/core/dist/esm/theme-18cbe2cc.js");
-    /* harmony import */
 
-
-    var _index_3476b023_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(
-    /*! ./index-3476b023.js */
-    "./node_modules/@ionic/core/dist/esm/index-3476b023.js");
-    /**
-     * iOS Toast Enter Animation
-     */
-
-
-    const iosEnterAnimation = (baseEl, position) => {
-      const baseAnimation = Object(_animation_56279521_js__WEBPACK_IMPORTED_MODULE_3__["c"])();
-      const wrapperAnimation = Object(_animation_56279521_js__WEBPACK_IMPORTED_MODULE_3__["c"])();
-      const hostEl = baseEl.host || baseEl;
-      const wrapperEl = baseEl.querySelector('.toast-wrapper');
-      const bottom = "calc(-10px - var(--ion-safe-area-bottom, 0px))";
-      const top = "calc(10px + var(--ion-safe-area-top, 0px))";
-      wrapperAnimation.addElement(wrapperEl);
-
-      switch (position) {
-        case 'top':
-          wrapperAnimation.fromTo('transform', 'translateY(-100%)', "translateY(".concat(top, ")"));
-          break;
-
-        case 'middle':
-          const topPosition = Math.floor(hostEl.clientHeight / 2 - wrapperEl.clientHeight / 2);
-          wrapperEl.style.top = "".concat(topPosition, "px");
-          wrapperAnimation.fromTo('opacity', 0.01, 1);
-          break;
-
-        default:
-          wrapperAnimation.fromTo('transform', 'translateY(100%)', "translateY(".concat(bottom, ")"));
-          break;
-      }
-
-      return baseAnimation.addElement(hostEl).easing('cubic-bezier(.155,1.105,.295,1.12)').duration(400).addAnimation(wrapperAnimation);
-    };
-    /**
-     * iOS Toast Leave Animation
-     */
-
-
-    const iosLeaveAnimation = (baseEl, position) => {
-      const baseAnimation = Object(_animation_56279521_js__WEBPACK_IMPORTED_MODULE_3__["c"])();
-      const wrapperAnimation = Object(_animation_56279521_js__WEBPACK_IMPORTED_MODULE_3__["c"])();
-      const hostEl = baseEl.host || baseEl;
-      const wrapperEl = baseEl.querySelector('.toast-wrapper');
-      const bottom = "calc(-10px - var(--ion-safe-area-bottom, 0px))";
-      const top = "calc(10px + var(--ion-safe-area-top, 0px))";
-      wrapperAnimation.addElement(wrapperEl);
-
-      switch (position) {
-        case 'top':
-          wrapperAnimation.fromTo('transform', "translateY(".concat(top, ")"), 'translateY(-100%)');
-          break;
-
-        case 'middle':
-          wrapperAnimation.fromTo('opacity', 0.99, 0);
-          break;
-
-        default:
-          wrapperAnimation.fromTo('transform', "translateY(".concat(bottom, ")"), 'translateY(100%)');
-          break;
-      }
-
-      return baseAnimation.addElement(hostEl).easing('cubic-bezier(.36,.66,.04,1)').duration(300).addAnimation(wrapperAnimation);
-    };
-    /**
-     * MD Toast Enter Animation
-     */
-
-
-    const mdEnterAnimation = (baseEl, position) => {
-      const baseAnimation = Object(_animation_56279521_js__WEBPACK_IMPORTED_MODULE_3__["c"])();
-      const wrapperAnimation = Object(_animation_56279521_js__WEBPACK_IMPORTED_MODULE_3__["c"])();
-      const hostEl = baseEl.host || baseEl;
-      const wrapperEl = baseEl.querySelector('.toast-wrapper');
-      const bottom = "calc(8px + var(--ion-safe-area-bottom, 0px))";
-      const top = "calc(8px + var(--ion-safe-area-top, 0px))";
-      wrapperAnimation.addElement(wrapperEl);
-
-      switch (position) {
-        case 'top':
-          wrapperEl.style.top = top;
-          wrapperAnimation.fromTo('opacity', 0.01, 1);
-          break;
-
-        case 'middle':
-          const topPosition = Math.floor(hostEl.clientHeight / 2 - wrapperEl.clientHeight / 2);
-          wrapperEl.style.top = "".concat(topPosition, "px");
-          wrapperAnimation.fromTo('opacity', 0.01, 1);
-          break;
-
-        default:
-          wrapperEl.style.bottom = bottom;
-          wrapperAnimation.fromTo('opacity', 0.01, 1);
-          break;
-      }
-
-      return baseAnimation.addElement(hostEl).easing('cubic-bezier(.36,.66,.04,1)').duration(400).addAnimation(wrapperAnimation);
-    };
-    /**
-     * md Toast Leave Animation
-     */
-
-
-    const mdLeaveAnimation = baseEl => {
-      const baseAnimation = Object(_animation_56279521_js__WEBPACK_IMPORTED_MODULE_3__["c"])();
-      const wrapperAnimation = Object(_animation_56279521_js__WEBPACK_IMPORTED_MODULE_3__["c"])();
-      const hostEl = baseEl.host || baseEl;
-      const wrapperEl = baseEl.querySelector('.toast-wrapper');
-      wrapperAnimation.addElement(wrapperEl).fromTo('opacity', 0.99, 0);
-      return baseAnimation.addElement(hostEl).easing('cubic-bezier(.36,.66,.04,1)').duration(300).addAnimation(wrapperAnimation);
-    };
-
-    const Toast = class {
+    const Textarea = class {
       constructor(hostRef) {
         Object(_core_0a8d4d2e_js__WEBPACK_IMPORTED_MODULE_0__["r"])(this, hostRef);
-        this.presented = false;
-        this.mode = Object(_core_0a8d4d2e_js__WEBPACK_IMPORTED_MODULE_0__["c"])(this);
+        this.inputId = "ion-input-".concat(textareaIds++);
+        this.didBlurAfterEdit = false;
+        this.hasFocus = false;
         /**
-         * How many milliseconds to wait before hiding the toast. By default, it will show
-         * until `dismiss()` is called.
+         * Indicates whether and how the text value should be automatically capitalized as it is entered/edited by the user.
          */
 
-        this.duration = 0;
+        this.autocapitalize = 'none';
         /**
-         * If `true`, the keyboard will be automatically dismissed when the overlay is presented.
+         * This Boolean attribute lets you specify that a form control should have input focus when the page loads.
          */
 
-        this.keyboardClose = false;
+        this.autofocus = false;
         /**
-         * The position of the toast on the screen.
+         * If `true`, the value will be cleared after focus upon edit. Defaults to `true` when `type` is `"password"`, `false` for all other types.
          */
 
-        this.position = 'bottom';
+        this.clearOnEdit = false;
         /**
-         * If `true`, the toast will be translucent.
-         * Only applies when the mode is `"ios"` and the device supports
-         * [`backdrop-filter`](https://developer.mozilla.org/en-US/docs/Web/CSS/backdrop-filter#Browser_compatibility).
+         * Set the amount of time, in milliseconds, to wait to trigger the `ionChange` event after each keystroke.
          */
 
-        this.translucent = false;
+        this.debounce = 0;
         /**
-         * If `true`, the toast will animate.
+         * If `true`, the user cannot interact with the textarea.
          */
 
-        this.animated = true;
+        this.disabled = false;
+        /**
+         * The name of the control, which is submitted with the form data.
+         */
 
-        this.dispatchCancelHandler = ev => {
-          const role = ev.detail.role;
+        this.name = this.inputId;
+        /**
+         * If `true`, the user cannot modify the value.
+         */
 
-          if (Object(_overlays_e336664a_js__WEBPACK_IMPORTED_MODULE_5__["i"])(role)) {
-            const cancelButton = this.getButtons().find(b => b.role === 'cancel');
-            this.callButtonHandler(cancelButton);
+        this.readonly = false;
+        /**
+         * If `true`, the user must fill in a value before submitting a form.
+         */
+
+        this.required = false;
+        /**
+         * If `true`, the element will have its spelling and grammar checked.
+         */
+
+        this.spellcheck = false;
+        /**
+         * If `true`, the element height will increase based on the value.
+         */
+
+        this.autoGrow = false;
+        /**
+         * The value of the textarea.
+         */
+
+        this.value = '';
+
+        this.onInput = ev => {
+          if (this.nativeInput) {
+            this.value = this.nativeInput.value;
           }
+
+          this.emitStyle();
+          this.ionInput.emit(ev);
         };
 
-        Object(_overlays_e336664a_js__WEBPACK_IMPORTED_MODULE_5__["d"])(this.el);
-        this.didPresent = Object(_core_0a8d4d2e_js__WEBPACK_IMPORTED_MODULE_0__["d"])(this, "ionToastDidPresent", 7);
-        this.willPresent = Object(_core_0a8d4d2e_js__WEBPACK_IMPORTED_MODULE_0__["d"])(this, "ionToastWillPresent", 7);
-        this.willDismiss = Object(_core_0a8d4d2e_js__WEBPACK_IMPORTED_MODULE_0__["d"])(this, "ionToastWillDismiss", 7);
-        this.didDismiss = Object(_core_0a8d4d2e_js__WEBPACK_IMPORTED_MODULE_0__["d"])(this, "ionToastDidDismiss", 7);
+        this.onFocus = () => {
+          this.hasFocus = true;
+          this.focusChange();
+          this.ionFocus.emit();
+        };
+
+        this.onBlur = () => {
+          this.hasFocus = false;
+          this.focusChange();
+          this.ionBlur.emit();
+        };
+
+        this.onKeyDown = () => {
+          this.checkClearOnEdit();
+        };
+
+        this.ionChange = Object(_core_0a8d4d2e_js__WEBPACK_IMPORTED_MODULE_0__["d"])(this, "ionChange", 7);
+        this.ionInput = Object(_core_0a8d4d2e_js__WEBPACK_IMPORTED_MODULE_0__["d"])(this, "ionInput", 7);
+        this.ionStyle = Object(_core_0a8d4d2e_js__WEBPACK_IMPORTED_MODULE_0__["d"])(this, "ionStyle", 7);
+        this.ionBlur = Object(_core_0a8d4d2e_js__WEBPACK_IMPORTED_MODULE_0__["d"])(this, "ionBlur", 7);
+        this.ionFocus = Object(_core_0a8d4d2e_js__WEBPACK_IMPORTED_MODULE_0__["d"])(this, "ionFocus", 7);
+      }
+
+      debounceChanged() {
+        this.ionChange = Object(_helpers_46f4a262_js__WEBPACK_IMPORTED_MODULE_2__["d"])(this.ionChange, this.debounce);
+      }
+
+      disabledChanged() {
+        this.emitStyle();
       }
       /**
-       * Present the toast overlay after it has been created.
+       * Update the native input element when the value changes
        */
 
 
-      async present() {
-        await Object(_overlays_e336664a_js__WEBPACK_IMPORTED_MODULE_5__["e"])(this, 'toastEnter', iosEnterAnimation, mdEnterAnimation, this.position);
+      valueChanged() {
+        const nativeInput = this.nativeInput;
+        const value = this.getValue();
 
-        if (this.duration > 0) {
-          this.durationTimeout = setTimeout(() => this.dismiss(undefined, 'timeout'), this.duration);
+        if (nativeInput && nativeInput.value !== value) {
+          nativeInput.value = value;
+        }
+
+        this.runAutoGrow();
+        this.emitStyle();
+        this.ionChange.emit({
+          value
+        });
+      }
+
+      connectedCallback() {
+        this.emitStyle();
+        this.debounceChanged();
+        {
+          this.el.dispatchEvent(new CustomEvent('ionInputDidLoad', {
+            detail: this.el
+          }));
+        }
+      }
+
+      disconnectedCallback() {
+        {
+          document.dispatchEvent(new CustomEvent('ionInputDidUnload', {
+            detail: this.el
+          }));
+        }
+      }
+
+      componentDidLoad() {
+        this.runAutoGrow();
+      } // TODO: performance hit, this cause layout thrashing
+
+
+      runAutoGrow() {
+        const nativeInput = this.nativeInput;
+
+        if (nativeInput && this.autoGrow) {
+          Object(_core_0a8d4d2e_js__WEBPACK_IMPORTED_MODULE_0__["f"])(() => {
+            nativeInput.style.height = 'inherit';
+            nativeInput.style.height = nativeInput.scrollHeight + 'px';
+          });
         }
       }
       /**
-       * Dismiss the toast overlay after it has been presented.
-       *
-       * @param data Any data to emit in the dismiss events.
-       * @param role The role of the element that is dismissing the toast.
-       * This can be useful in a button handler for determining which button was
-       * clicked to dismiss the toast.
-       * Some examples include: ``"cancel"`, `"destructive"`, "selected"`, and `"backdrop"`.
+       * Sets focus on the specified `ion-textarea`. Use this method instead of the global
+       * `input.focus()`.
        */
 
 
-      dismiss(data, role) {
-        if (this.durationTimeout) {
-          clearTimeout(this.durationTimeout);
+      async setFocus() {
+        if (this.nativeInput) {
+          this.nativeInput.focus();
         }
-
-        return Object(_overlays_e336664a_js__WEBPACK_IMPORTED_MODULE_5__["f"])(this, data, role, 'toastLeave', iosLeaveAnimation, mdLeaveAnimation, this.position);
       }
       /**
-       * Returns a promise that resolves when the toast did dismiss.
+       * Returns the native `<textarea>` element used under the hood.
        */
 
 
-      onDidDismiss() {
-        return Object(_overlays_e336664a_js__WEBPACK_IMPORTED_MODULE_5__["g"])(this.el, 'ionToastDidDismiss');
+      getInputElement() {
+        return Promise.resolve(this.nativeInput);
+      }
+
+      emitStyle() {
+        this.ionStyle.emit({
+          'interactive': true,
+          'textarea': true,
+          'input': true,
+          'interactive-disabled': this.disabled,
+          'has-placeholder': this.placeholder != null,
+          'has-value': this.hasValue(),
+          'has-focus': this.hasFocus
+        });
       }
       /**
-       * Returns a promise that resolves when the toast will dismiss.
+       * Check if we need to clear the text input if clearOnEdit is enabled
        */
 
 
-      onWillDismiss() {
-        return Object(_overlays_e336664a_js__WEBPACK_IMPORTED_MODULE_5__["g"])(this.el, 'ionToastWillDismiss');
-      }
-
-      getButtons() {
-        const buttons = this.buttons ? this.buttons.map(b => {
-          return typeof b === 'string' ? {
-            text: b
-          } : b;
-        }) : [];
-        return buttons;
-      }
-
-      async buttonClick(button) {
-        const role = button.role;
-
-        if (Object(_overlays_e336664a_js__WEBPACK_IMPORTED_MODULE_5__["i"])(role)) {
-          return this.dismiss(undefined, role);
-        }
-
-        const shouldDismiss = await this.callButtonHandler(button);
-
-        if (shouldDismiss) {
-          return this.dismiss(undefined, role);
-        }
-
-        return Promise.resolve();
-      }
-
-      async callButtonHandler(button) {
-        if (button && button.handler) {
-          // a handler has been provided, execute it
-          // pass the handler the values from the inputs
-          try {
-            const rtn = await Object(_overlays_e336664a_js__WEBPACK_IMPORTED_MODULE_5__["s"])(button.handler);
-
-            if (rtn === false) {
-              // if the return value of the handler is false then do not dismiss
-              return false;
-            }
-          } catch (e) {
-            console.error(e);
-          }
-        }
-
-        return true;
-      }
-
-      renderButtons(buttons, side) {
-        if (buttons.length === 0) {
+      checkClearOnEdit() {
+        if (!this.clearOnEdit) {
           return;
+        } // Did the input value change after it was blurred and edited?
+
+
+        if (this.didBlurAfterEdit && this.hasValue()) {
+          // Clear the input
+          this.value = '';
+        } // Reset the flag
+
+
+        this.didBlurAfterEdit = false;
+      }
+
+      focusChange() {
+        // If clearOnEdit is enabled and the input blurred but has a value, set a flag
+        if (this.clearOnEdit && !this.hasFocus && this.hasValue()) {
+          this.didBlurAfterEdit = true;
         }
 
-        const mode = Object(_core_0a8d4d2e_js__WEBPACK_IMPORTED_MODULE_0__["c"])(this);
-        const buttonGroupsClasses = {
-          'toast-button-group': true,
-          ["toast-button-group-".concat(side)]: true
-        };
-        return Object(_core_0a8d4d2e_js__WEBPACK_IMPORTED_MODULE_0__["h"])("div", {
-          class: buttonGroupsClasses
-        }, buttons.map(b => Object(_core_0a8d4d2e_js__WEBPACK_IMPORTED_MODULE_0__["h"])("button", {
-          type: "button",
-          class: buttonClass(b),
-          tabIndex: 0,
-          onClick: () => this.buttonClick(b),
-          part: "button"
-        }, Object(_core_0a8d4d2e_js__WEBPACK_IMPORTED_MODULE_0__["h"])("div", {
-          class: "toast-button-inner"
-        }, b.icon && Object(_core_0a8d4d2e_js__WEBPACK_IMPORTED_MODULE_0__["h"])("ion-icon", {
-          icon: b.icon,
-          slot: b.text === undefined ? 'icon-only' : undefined,
-          class: "toast-icon"
-        }), b.text), mode === 'md' && Object(_core_0a8d4d2e_js__WEBPACK_IMPORTED_MODULE_0__["h"])("ion-ripple-effect", {
-          type: b.icon !== undefined && b.text === undefined ? 'unbounded' : 'bounded'
-        }))));
+        this.emitStyle();
+      }
+
+      hasValue() {
+        return this.getValue() !== '';
+      }
+
+      getValue() {
+        return this.value || '';
       }
 
       render() {
-        const allButtons = this.getButtons();
-        const startButtons = allButtons.filter(b => b.side === 'start');
-        const endButtons = allButtons.filter(b => b.side !== 'start');
         const mode = Object(_core_0a8d4d2e_js__WEBPACK_IMPORTED_MODULE_0__["c"])(this);
-        const wrapperClass = {
-          'toast-wrapper': true,
-          ["toast-".concat(this.position)]: true
-        };
+        const value = this.getValue();
+        const labelId = this.inputId + '-lbl';
+        const label = Object(_helpers_46f4a262_js__WEBPACK_IMPORTED_MODULE_2__["f"])(this.el);
+
+        if (label) {
+          label.id = labelId;
+        }
+
         return Object(_core_0a8d4d2e_js__WEBPACK_IMPORTED_MODULE_0__["h"])(_core_0a8d4d2e_js__WEBPACK_IMPORTED_MODULE_0__["H"], {
-          style: {
-            zIndex: "".concat(60000 + this.overlayIndex)
-          },
-          class: Object.assign(Object.assign(Object.assign({
+          "aria-disabled": this.disabled ? 'true' : null,
+          class: Object.assign(Object.assign({}, Object(_theme_18cbe2cc_js__WEBPACK_IMPORTED_MODULE_3__["c"])(this.color)), {
             [mode]: true
-          }, Object(_theme_18cbe2cc_js__WEBPACK_IMPORTED_MODULE_6__["c"])(this.color)), Object(_theme_18cbe2cc_js__WEBPACK_IMPORTED_MODULE_6__["g"])(this.cssClass)), {
-            'toast-translucent': this.translucent
-          }),
-          onIonToastWillDismiss: this.dispatchCancelHandler
-        }, Object(_core_0a8d4d2e_js__WEBPACK_IMPORTED_MODULE_0__["h"])("div", {
-          class: wrapperClass
-        }, Object(_core_0a8d4d2e_js__WEBPACK_IMPORTED_MODULE_0__["h"])("div", {
-          class: "toast-container",
-          part: "container"
-        }, this.renderButtons(startButtons, 'start'), Object(_core_0a8d4d2e_js__WEBPACK_IMPORTED_MODULE_0__["h"])("div", {
-          class: "toast-content"
-        }, this.header !== undefined && Object(_core_0a8d4d2e_js__WEBPACK_IMPORTED_MODULE_0__["h"])("div", {
-          class: "toast-header",
-          part: "header"
-        }, this.header), this.message !== undefined && Object(_core_0a8d4d2e_js__WEBPACK_IMPORTED_MODULE_0__["h"])("div", {
-          class: "toast-message",
-          part: "message",
-          innerHTML: Object(_index_3476b023_js__WEBPACK_IMPORTED_MODULE_7__["s"])(this.message)
-        })), this.renderButtons(endButtons, 'end'))));
+          })
+        }, Object(_core_0a8d4d2e_js__WEBPACK_IMPORTED_MODULE_0__["h"])("textarea", {
+          class: "native-textarea",
+          ref: el => this.nativeInput = el,
+          autoCapitalize: this.autocapitalize,
+          autoFocus: this.autofocus,
+          disabled: this.disabled,
+          maxLength: this.maxlength,
+          minLength: this.minlength,
+          name: this.name,
+          placeholder: this.placeholder || '',
+          readOnly: this.readonly,
+          required: this.required,
+          spellCheck: this.spellcheck,
+          cols: this.cols,
+          rows: this.rows,
+          wrap: this.wrap,
+          onInput: this.onInput,
+          onBlur: this.onBlur,
+          onFocus: this.onFocus,
+          onKeyDown: this.onKeyDown
+        }, value));
       }
 
       get el() {
         return Object(_core_0a8d4d2e_js__WEBPACK_IMPORTED_MODULE_0__["e"])(this);
       }
 
+      static get watchers() {
+        return {
+          "debounce": ["debounceChanged"],
+          "disabled": ["disabledChanged"],
+          "value": ["valueChanged"]
+        };
+      }
+
       static get style() {
-        return ":host{--border-width:0;--border-style:none;--border-color:initial;--box-shadow:none;--min-width:auto;--width:auto;--min-height:auto;--height:auto;--max-height:auto;left:0;top:0;display:block;position:absolute;width:100%;height:100%;color:var(--color);font-family:var(--ion-font-family,inherit);contain:strict;z-index:1001;pointer-events:none}:host-context([dir=rtl]){left:unset;right:unset;right:0}:host(.overlay-hidden){display:none}:host(.ion-color){--button-color:inherit;color:var(--ion-color-contrast)}:host(.ion-color) .toast-button-cancel{color:inherit}:host(.ion-color) .toast-wrapper{background:var(--ion-color-base)}.toast-wrapper{border-radius:var(--border-radius);left:var(--start);right:var(--end);width:var(--width);min-width:var(--min-width);max-width:var(--max-width);height:var(--height);min-height:var(--min-height);max-height:var(--max-height);border-width:var(--border-width);border-style:var(--border-style);border-color:var(--border-color);background:var(--background);-webkit-box-shadow:var(--box-shadow);box-shadow:var(--box-shadow)}:host-context([dir=rtl]) .toast-wrapper,[dir=rtl] .toast-wrapper{left:unset;right:unset;left:var(--end);right:var(--start)}.toast-container{-ms-flex-align:center;align-items:center;pointer-events:auto;height:inherit;min-height:inherit;max-height:inherit;contain:content}.toast-container,.toast-content{display:-ms-flexbox;display:flex}.toast-content{-ms-flex:1;flex:1;-ms-flex-direction:column;flex-direction:column;-ms-flex-pack:center;justify-content:center}.toast-message{-ms-flex:1;flex:1;white-space:pre-wrap}.toast-button-group{display:-ms-flexbox;display:flex}.toast-button{border:0;outline:none;color:var(--button-color);z-index:0}.toast-icon{font-size:1.4em}.toast-button-inner{display:-ms-flexbox;display:flex;-ms-flex-align:center;align-items:center}\@media (any-hover:hover){.toast-button:hover{cursor:pointer}}:host{--background:var(--ion-color-step-800,#333);--border-radius:4px;--box-shadow:0 3px 5px -1px rgba(0,0,0,0.2),0 6px 10px 0 rgba(0,0,0,0.14),0 1px 18px 0 rgba(0,0,0,0.12);--button-color:var(--ion-color-primary,#3880ff);--color:var(--ion-color-step-50,#f2f2f2);--max-width:700px;--start:8px;--end:8px;font-size:14px}.toast-wrapper{margin-left:auto;margin-right:auto;margin-top:auto;margin-bottom:auto;display:block;position:absolute;opacity:.01;z-index:10}\@supports ((-webkit-margin-start:0) or (margin-inline-start:0)) or (-webkit-margin-start:0){.toast-wrapper{margin-left:unset;margin-right:unset;-webkit-margin-start:auto;margin-inline-start:auto;-webkit-margin-end:auto;margin-inline-end:auto}}.toast-content{padding-left:16px;padding-right:16px;padding-top:14px;padding-bottom:14px}\@supports ((-webkit-margin-start:0) or (margin-inline-start:0)) or (-webkit-margin-start:0){.toast-content{padding-left:unset;padding-right:unset;-webkit-padding-start:16px;padding-inline-start:16px;-webkit-padding-end:16px;padding-inline-end:16px}}.toast-header{margin-bottom:2px;font-weight:500}.toast-header,.toast-message{line-height:20px}.toast-button-group-start{margin-left:8px}\@supports ((-webkit-margin-start:0) or (margin-inline-start:0)) or (-webkit-margin-start:0){.toast-button-group-start{margin-left:unset;-webkit-margin-start:8px;margin-inline-start:8px}}.toast-button-group-end{margin-right:8px}\@supports ((-webkit-margin-start:0) or (margin-inline-start:0)) or (-webkit-margin-start:0){.toast-button-group-end{margin-right:unset;-webkit-margin-end:8px;margin-inline-end:8px}}.toast-button{padding-left:15px;padding-right:15px;padding-top:10px;padding-bottom:10px;position:relative;background-color:transparent;font-family:var(--ion-font-family);font-size:14px;font-weight:500;letter-spacing:.84px;text-transform:uppercase;overflow:hidden}\@supports ((-webkit-margin-start:0) or (margin-inline-start:0)) or (-webkit-margin-start:0){.toast-button{padding-left:unset;padding-right:unset;-webkit-padding-start:15px;padding-inline-start:15px;-webkit-padding-end:15px;padding-inline-end:15px}}.toast-button-cancel{color:var(--ion-color-step-100,#e6e6e6)}.toast-button-icon-only{border-radius:50%;padding-left:9px;padding-right:9px;padding-top:9px;padding-bottom:9px;width:36px;height:36px}\@supports ((-webkit-margin-start:0) or (margin-inline-start:0)) or (-webkit-margin-start:0){.toast-button-icon-only{padding-left:unset;padding-right:unset;-webkit-padding-start:9px;padding-inline-start:9px;-webkit-padding-end:9px;padding-inline-end:9px}}\@media (any-hover:hover){.toast-button:hover{background-color:rgba(var(--ion-color-primary-rgb,56,128,255),.08)}.toast-button-cancel:hover{background-color:rgba(var(--ion-background-color-rgb,255,255,255),.08)}}";
+        return ".sc-ion-textarea-ios-h{--background:initial;--color:initial;--placeholder-color:initial;--placeholder-font-style:initial;--placeholder-font-weight:initial;--placeholder-opacity:.5;--padding-top:0;--padding-end:0;--padding-bottom:0;--border-radius:0;display:block;position:relative;-ms-flex:1;flex:1;width:100%;-webkit-box-sizing:border-box;box-sizing:border-box;background:var(--background);color:var(--color);font-family:var(--ion-font-family,inherit);white-space:pre-wrap;z-index:2}.ion-color.sc-ion-textarea-ios-h{background:initial;color:var(--ion-color-base)}ion-item.sc-ion-textarea-ios-h, ion-item .sc-ion-textarea-ios-h{-ms-flex-item-align:baseline;align-self:baseline}ion-item.sc-ion-textarea-ios-h:not(.item-label), ion-item:not(.item-label) .sc-ion-textarea-ios-h{--padding-start:0}.native-textarea.sc-ion-textarea-ios{border-radius:var(--border-radius);margin-left:0;margin-right:0;margin-top:0;margin-bottom:0;padding-left:var(--padding-start);padding-right:var(--padding-end);padding-top:var(--padding-top);padding-bottom:var(--padding-bottom);font-family:inherit;font-size:inherit;font-style:inherit;font-weight:inherit;letter-spacing:inherit;text-decoration:inherit;text-indent:inherit;text-overflow:inherit;text-transform:inherit;text-align:inherit;white-space:inherit;color:inherit;display:block;width:100%;max-width:100%;max-height:100%;border:0;outline:none;background:transparent;-webkit-box-sizing:border-box;box-sizing:border-box;resize:none;-webkit-appearance:none;-moz-appearance:none;appearance:none}\@supports ((-webkit-margin-start:0) or (margin-inline-start:0)) or (-webkit-margin-start:0){.native-textarea.sc-ion-textarea-ios{padding-left:unset;padding-right:unset;-webkit-padding-start:var(--padding-start);padding-inline-start:var(--padding-start);-webkit-padding-end:var(--padding-end);padding-inline-end:var(--padding-end)}}.native-textarea.sc-ion-textarea-ios::-webkit-input-placeholder{padding-left:0;padding-right:0;padding-top:0;padding-bottom:0;color:var(--placeholder-color);font-family:inherit;font-style:var(--placeholder-font-style);font-weight:var(--placeholder-font-weight);opacity:var(--placeholder-opacity)}.native-textarea.sc-ion-textarea-ios::-moz-placeholder{padding-left:0;padding-right:0;padding-top:0;padding-bottom:0;color:var(--placeholder-color);font-family:inherit;font-style:var(--placeholder-font-style);font-weight:var(--placeholder-font-weight);opacity:var(--placeholder-opacity)}.native-textarea.sc-ion-textarea-ios:-ms-input-placeholder{padding-left:0;padding-right:0;padding-top:0;padding-bottom:0;color:var(--placeholder-color);font-family:inherit;font-style:var(--placeholder-font-style);font-weight:var(--placeholder-font-weight);opacity:var(--placeholder-opacity)}.native-textarea.sc-ion-textarea-ios::-ms-input-placeholder{padding-left:0;padding-right:0;padding-top:0;padding-bottom:0;color:var(--placeholder-color);font-family:inherit;font-style:var(--placeholder-font-style);font-weight:var(--placeholder-font-weight);opacity:var(--placeholder-opacity)}.native-textarea.sc-ion-textarea-ios::placeholder{padding-left:0;padding-right:0;padding-top:0;padding-bottom:0;color:var(--placeholder-color);font-family:inherit;font-style:var(--placeholder-font-style);font-weight:var(--placeholder-font-weight);opacity:var(--placeholder-opacity)}.native-textarea[disabled].sc-ion-textarea-ios{opacity:.4}.cloned-input.sc-ion-textarea-ios{left:0;top:0;position:absolute;pointer-events:none}[dir=rtl].sc-ion-textarea-ios-h .cloned-input.sc-ion-textarea-ios, [dir=rtl] .sc-ion-textarea-ios-h .cloned-input.sc-ion-textarea-ios, [dir=rtl].sc-ion-textarea-ios .cloned-input.sc-ion-textarea-ios{left:unset;right:unset;right:0}.sc-ion-textarea-ios-h{--padding-top:10px;--padding-end:10px;--padding-bottom:10px;--padding-start:0;font-size:inherit}.item-label-floating.sc-ion-textarea-ios-h, .item-label-floating .sc-ion-textarea-ios-h, .item-label-stacked.sc-ion-textarea-ios-h, .item-label-stacked .sc-ion-textarea-ios-h{--padding-top:8px;--padding-bottom:8px;--padding-start:0px}";
       }
 
     };
-
-    const buttonClass = button => {
-      return Object.assign({
-        'toast-button': true,
-        'toast-button-icon-only': button.icon !== undefined && button.text === undefined,
-        ["toast-button-".concat(button.role)]: button.role !== undefined,
-        'ion-focusable': true,
-        'ion-activatable': true
-      }, Object(_theme_18cbe2cc_js__WEBPACK_IMPORTED_MODULE_6__["g"])(button.cssClass));
-    };
+    let textareaIds = 0;
     /***/
-
   }
 }]);
 //# sourceMappingURL=73-es5.js.map

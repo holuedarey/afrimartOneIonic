@@ -1,0 +1,16 @@
+.top-bar{
+    height: 34px;
+    background: #EBF0E3;
+    --st-indicator-color:#00733F;
+    --st-scrollable-toolbar-padding-left:100px;
+    super-tab-button{
+        height: 35px;
+        --st-base-color-active: #00733F;
+        --st-base-color-inactive: #343434;  
+        ion-label{
+            font-size: 12px !important;
+            text-transform: capitalize !important;
+        }
+    }
+}
+
