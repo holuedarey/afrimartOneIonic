@@ -206,6 +206,14 @@
 
     let SubCategoryPage = class SubCategoryPage {
       constructor(toastController, router, route, orderService, productService, authService, modalCtrl, nativeStorage, actionSheetController) {
+        // this.nativeStorage.getItem('currentUser').then((x) => {
+        //   this.currentUser = x;
+        //   this.nativeStorage.getItem('WishList').then((x) => {
+        //     this.wishList = x;
+        //     }
+        //     );
+        //   }
+        //   );
         this.toastController = toastController;
         this.router = router;
         this.route = route;
@@ -229,12 +237,6 @@
         this.catId = '';
         this.wishList = new Array();
         this.sortStatus = 'asc';
-        this.nativeStorage.getItem('currentUser').then(x => {
-          this.currentUser = x;
-          this.nativeStorage.getItem('WishList').then(x => {
-            this.wishList = x;
-          });
-        });
       }
 
       presentSortFilterSheet() {

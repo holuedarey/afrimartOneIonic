@@ -112,6 +112,14 @@ __webpack_require__.r(__webpack_exports__);
 
 let SubCategoryPage = class SubCategoryPage {
     constructor(toastController, router, route, orderService, productService, authService, modalCtrl, nativeStorage, actionSheetController) {
+        // this.nativeStorage.getItem('currentUser').then((x) => {
+        //   this.currentUser = x;
+        //   this.nativeStorage.getItem('WishList').then((x) => {
+        //     this.wishList = x;
+        //     }
+        //     );
+        //   }
+        //   );
         this.toastController = toastController;
         this.router = router;
         this.route = route;
@@ -135,12 +143,6 @@ let SubCategoryPage = class SubCategoryPage {
         this.catId = '';
         this.wishList = new Array();
         this.sortStatus = 'asc';
-        this.nativeStorage.getItem('currentUser').then((x) => {
-            this.currentUser = x;
-            this.nativeStorage.getItem('WishList').then((x) => {
-                this.wishList = x;
-            });
-        });
     }
     presentSortFilterSheet() {
         return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function* () {

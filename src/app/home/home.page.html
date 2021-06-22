@@ -188,9 +188,9 @@
       </ion-col>
     </ion-row>
     <ion-row class="t_center">
-      <ion-col size="6" routerLink="/" *ngFor="let cat of categories; let index = index">
-        <ion-row>
-          <ion-col class="feature-categories" style="background-image:url('/assets/vectors/icons/test4.svg')">
+      <ion-col size="6" *ngFor="let cat of categories; let index = index">
+        <ion-row >
+          <ion-col (click)="viewSubCategory(cat.slug, cat.name)" class="feature-categories" style="background-image:url('/assets/vectors/icons/test4.svg')">
             <div class="feature-top-desc">{{ cat.name }}</div>
           </ion-col>
         </ion-row>

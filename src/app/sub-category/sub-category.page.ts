@@ -46,14 +46,14 @@ export class SubCategoryPage implements OnInit {
     public actionSheetController: ActionSheetController
   ) {
     
-    this.nativeStorage.getItem('currentUser').then((x) => {
-      this.currentUser = x;
-      this.nativeStorage.getItem('WishList').then((x) => {
-        this.wishList = x;
-        }
-        );
-      }
-      );
+    // this.nativeStorage.getItem('currentUser').then((x) => {
+    //   this.currentUser = x;
+    //   this.nativeStorage.getItem('WishList').then((x) => {
+    //     this.wishList = x;
+    //     }
+    //     );
+    //   }
+    //   );
     
   }
   async presentSortFilterSheet() {

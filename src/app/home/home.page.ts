@@ -6,7 +6,7 @@ import { CategoryService } from 'src/app/core/http-services/category.service';
 import { ProductService } from 'src/app/core/http-services/product.service';
 import { UtilityService } from 'src/app/core/utility.service';
 import { AuthenticationService } from 'src/app/core/authentication/authentication.service';
-import { IonContent } from '@ionic/angular';
+import { IonContent, NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-home',
@@ -76,7 +76,8 @@ export class HomePage implements OnInit {
     private productService: ProductService,
     private util: UtilityService,
     private auth: AuthenticationService,
-    public router: Router
+    public router: Router,
+    public nav:NavController
   ) {
 
     // this.auth.currentUser.subscribe((data) => {
@@ -131,6 +132,8 @@ export class HomePage implements OnInit {
     // console.log('scroll end');
 
   }
+
+  
   logScrollStart() {
     // console.log('start scrolling : ->');
 
@@ -168,9 +171,10 @@ export class HomePage implements OnInit {
     let id: string = catLink.substr(catLink.lastIndexOf('/') + 1);
     this.router.navigate([`app/categories/${id}`]);
   }
-  viewSubCategory(id: any, title: string) {
+  viewSubCategory(id: any, title: string) {    
     localStorage.SetTitle = title;
-    this.router.navigate([`sub-category/${id}`]);
+    // console.log('id :: ', id, 'title :: ', title);
+    this.nav.navigateForward([`sub-category/${id}`]);
   }
   getTopProducts(): any {
     this.productService.getTopProducts('test-org').subscribe((res: any) => {
@@ -266,9 +270,9 @@ export class HomePage implements OnInit {
     this.categoryService.getTopCategories().subscribe(
       (data) => {
         this.categories = data.data.slice(0, 4);
-        console.log(
-          'getFeaturedCatgeories: ' + JSON.stringify(this.categories)
-        );
+        // console.log(
+        //   'getFeaturedCatgeories: ' + JSON.stringify(this.categories)
+        // );
       },
       (err) => {
         console.error(err);
